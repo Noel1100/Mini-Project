@@ -10,11 +10,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $confirm_password = $_POST['re_pass'];
 
     // Debugging: Output form data
-    echo "Name: " . $name . "<br>";
-    echo "Email: " . $email . "<br>";
-    echo "Phone: " . $phone . "<br>";
-    echo "Password: " . $password . "<br>";
-    echo "Confirm Password: " . $confirm_password . "<br>";
+    //echo "Name: " . $name . "<br>";
+    //echo "Email: " . $email . "<br>";
+    //echo "Phone: " . $phone . "<br>";
+    //echo "Password: " . $password . "<br>";
+    //echo "Confirm Password: " . $confirm_password . "<br>";
 
     // Validate form data (check for empty fields)
     if (empty($name) || empty($email) || empty($phone) || empty($password) || empty($confirm_password)) {

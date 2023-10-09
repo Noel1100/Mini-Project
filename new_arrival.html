@@ -20,15 +20,41 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
-      /* CSS styles for the heading */
+   
       #i{
           font-family: Arial, sans-serif;
           font-size: 36px;
           color: black; /* Blue color, you can change this to your preferred color */
           text-align: center;
           text-shadow: 2px 2px 4px rgb(228, 227, 227); /* Add a subtle text shadow */
-          margin-bottom: 10px;
       }
+  </style>
+  <style>
+    #p{
+      width: 300px;
+      margin: 0 10px;
+      box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.1); 
+      transition: 1s;
+      height: 400px;
+    }
+    #p img{
+      display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+      border-radius: 4px;
+    }
+    #p:hover{
+      transform: scale(1.20);
+      z-index: 1.5;
+    }
+   #l{
+    color: black;
+   }
+  #x{
+    box-shadow: 0 0 20px 2px rgba(0, 0, 0, .1); 
+  }
+
   </style>
     <style>
       #d {
@@ -39,36 +65,44 @@
       h2 {
           margin-top: 10px; /* Add margin to the top of the heading to create space */
       }
-  </style>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #333;
-            color: #fff;
+
+      #z {
+            background-color: rgba(60, 85, 140, 0.7); /* Semi-transparent black background */
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2); /* White box shadow for a cool effect */
             text-align: center;
-            padding: 20px;
-        }
-        h1 {
-            font-size: 36px;
-        }
-        p {
-            font-size: 18px;
-            margin: 20px;
-        }
-        .appliance {
-            background-color: #fff;
-            padding: 20px;
-            margin: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            align-items: center;
         }
 
-        .site-logo {
+
+        #z1 {
+            background-color: rgba(60, 85, 140, 0.7); /* Semi-transparent black background */
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2); /* White box shadow for a cool effect */
+            text-align: center;
+            align-items: center;
+        }
+
+        #z1:hover {
+            transform: scale(1.10); /* Scale up on hover */
+            transition: transform 0.3s ease-in-out;
+        }
+        #z1 {
+            transition: transform 0.3s ease-in-out; /* Apply the same transition without scaling */
+}
+
+  </style>
+  <style>
+    .site-navbar{
+      background-color:aliceblue;
+    }
+
+
+    .site-logo {
   position: relative;
   overflow: hidden;
 }
@@ -93,6 +127,7 @@
     width: 80%;
   }
 }
+/* Style the image and text */
 .logo-image {
   max-width: 15%; /* Make the image responsive */
   height: auto; /* Automatically adjust the image height */
@@ -100,9 +135,11 @@
   vertical-align: middle; /* Align the image vertically with the text */
 }
 
+#zo a:hover {
+  background-color: aliceblue;
+}
+  </style>
 
-    </style>
-    
   </head>
   <body>
   
@@ -130,8 +167,8 @@
 
             <div class="col-6 col-md-4 order-3 order-md-3 text-right">
               <div class="site-top-icons">
-                <ul>
-                  <li><a href="#"><span class="icon icon-person"></span></a></li>
+                <ul> 
+                  <li><a href="signin.html"><span class="icon icon-person"></span></a></li>
                   <li><a href="#"><span class="icon icon-heart-o"></span></a></li>
                   <li>
                     <a href="cart.html" class="site-cart">
@@ -147,101 +184,34 @@
           </div>
         </div>
       </div> 
-      <nav class="site-navigation text-right text-md-center" role="navigation">
+      <nav class="site-navigation text-right text-md-center" role="navigation" id="zo">
         <div class="container">
           <ul class="site-menu js-clone-nav d-none d-md-block">
             <li class="has-children">
               <a href="index.html">Home</a>
               <ul class="dropdown">
-                <li><a href="index.html#fre">Featured Products</a></li>
-                <li><a href="index.html#com">Combo Offers</a></li>
-                <li class="has-children">
-                  <a href="#">Sub Menu</a>
-                  <ul class="dropdown">
-                    <li><a href="#">Menu One</a></li>
-                    <li><a href="#">Menu Two</a></li>
-                    <li><a href="#">Menu Three</a></li>
-                  </ul>
+                <li><a href="#fre">Featured Products</a></li>
+                <li><a href="#com">Combo Offers</a></li>
+                <li><a href="#big">Big Sale!</a></li>
                 </li>
               </ul>
             </li>
             <li class="">
               <a href="about.html">About</a>
-            <li class="">
-              <a href="shop.html">Shop</a>
             </li>
+            <li><a href="shop.html">Shop</a></li>
             <li><a href="#">Catalogue</a></li>
-            <li><a href="new_arrival.html">New Arrivals</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li class="has-children active">
+              <a href="#">New Arrivals</a>
+              <ul class="dropdown">
+                <li><a href="#">Home Appliances</a></li>
+                <li><a href="#">Computer Accessories</a></li>
+                <li><a href="#">Camera</a></li>
+              </ul>
+            </li>
+            <li><a href="contact.html">Contact Us</a></li>
           </ul>
         </div>
       </nav>
     </header>
-
-    <div class="bg-light py-3">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 mb-0"><a href="index.html">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Big Sale!</strong></div>
-        </div>
-      </div>
-    </div>
-
-    <header>
-        <h1>Electrical Appliances</h1>
-        <p>Welcome to our website about electrical appliances!</p>
-    </header>
-    <div class="appliance">
-        <h2>Refrigerator</h2>
-        <p>A refrigerator is an essential household appliance that keeps your food and beverages cold and fresh.</p>
-    </div>
-    <div class="appliance">
-        <h2>Washing Machine</h2>
-        <p>A washing machine is a device used to wash laundry, such as clothes and sheets.</p>
-    </div>
-    <div class="appliance">
-        <h2>Television</h2>
-        <p>A television is an electronic device that displays video and audio content for entertainment and information.</p>
-    </div>
-    <div class="appliance">
-        <h2>Toaster</h2>
-        <p>A toaster is a kitchen appliance used to brown slices of bread, typically for making toast.</p>
-    </div>
-
-  <script>
-    document.querySelectorAll('a[href^="#TheTeam"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
-</script>
-
-<script>
-  document.querySelectorAll('a[href^="#i"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-          e.preventDefault();
-
-          document.querySelector(this.getAttribute('href')).scrollIntoView({
-              behavior: 'smooth'
-          });
-      });
-  });
-</script>
-
-<script>
-  document.querySelectorAll('a[href^="#cat"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-          e.preventDefault();
-
-          document.querySelector(this.getAttribute('href')).scrollIntoView({
-              behavior: 'smooth'
-          });
-      });
-  });
-</script>
     
-  </body>
-</html>

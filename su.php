@@ -23,8 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
        
         $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-
-        // SQL query to insert data into the database
         $sql = "INSERT INTO users (username, email, phone, password) VALUES ('$name', '$email', '$phone', '$hashed_password')";
 
         if ($conn->query($sql) === TRUE) {

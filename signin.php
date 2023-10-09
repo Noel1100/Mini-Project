@@ -19,11 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     
     // Debugging: Output form data
-    echo "Name: " . $name . "<br>";
     echo "Email: " . $email . "<br>";
-    echo "Phone: " . $phone . "<br>";
     echo "Password: " . $password . "<br>";
-    echo "Confirm Password: " . $confirm_password . "<br>";
 
     // TODO: Add proper validation and sanitization of input (e.g., SQL injection prevention)
 

@@ -134,6 +134,10 @@
   display: inline-block;
   vertical-align: middle; /* Align the image vertically with the text */
 }
+
+#zo a:hover {
+  background-color: aliceblue;
+}
   </style>
 
   </head>
@@ -180,7 +184,7 @@
           </div>
         </div>
       </div> 
-      <nav class="site-navigation text-right text-md-center" role="navigation">
+      <nav class="site-navigation text-right text-md-center" role="navigation" id="zo">
         <div class="container">
           <ul class="site-menu js-clone-nav d-none d-md-block">
             <li class="has-children">
@@ -197,8 +201,8 @@
             </li>
             <li><a href="shop.html">Shop</a></li>
             <li><a href="#">Catalogue</a></li>
-            <li class="has-children">
-              <a href="#" class="active">New Arrivals</a>
+            <li class="has-children active">
+              <a href="#">New Arrivals</a>
               <ul class="dropdown">
                 <li><a href="#">Home Appliances</a></li>
                 <li><a href="#">Computer Accessories</a></li>

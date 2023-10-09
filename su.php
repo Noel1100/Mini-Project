@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "All fields are required.";
     } else {
 
-        // Hash the password (for security)
+       
         $hashed_password = password_hash($password, PASSWORD_BCRYPT);
         $sql = "INSERT INTO users (username, email, phone, password) VALUES ('$name', '$email', '$phone', '$hashed_password')";
 

@@ -144,7 +144,7 @@
         </div>
       </div>
     </div>  
-
+  <div id="item-container">
     <div class="site-section">
       <div class="container">
         <div class="row">
@@ -174,6 +174,66 @@
         </div>
       </div>
     </div>
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <img src="images/marshall  headphone.jpg" alt="Image" class="img-fluid">
+          </div>
+          <div class="col-md-6">
+            <h2 class="text-black">MOTIF II A.N.C</h2>
+            <p style="color: black;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, vitae, explicabo? Incidunt facere, natus soluta dolores iusto! Molestiae expedita veritatis nesciunt doloremque sint asperiores fuga voluptas, distinctio, aperiam, ratione dolore.</p>
+            <p class="mb-4" style="color: black;">Ex numquam veritatis debitis minima quo error quam eos dolorum quidem perferendis. Quos repellat dignissimos minus, eveniet nam voluptatibus molestias omnis reiciendis perspiciatis illum hic magni iste, velit aperiam quis.</p>
+            <p><strong class="text-primary h3">M.R.P ₹19,999</strong></p>
+            <div class="mb-5">
+              <div class="input-group mb-3" style="max-width: 120px;">
+              <div class="input-group-prepend">
+                <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+              </div>
+              <input type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+              <div class="input-group-append">
+                <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+              </div>
+            </div>
+
+            </div>
+            <p><a href="cart.html" class="buy-now btn btn-sm btn-primary">Add To Cart</a></p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="item-container">
+      <div class="site-section">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <img src="images/computer accesories.jpg" alt="Image" class="img-fluid">
+            </div>
+            <div class="col-md-6">
+              <h2 class="text-black">TP-Link 16 Port</h2>
+              <p style="color: black;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, vitae, explicabo? Incidunt facere, natus soluta dolores iusto! Molestiae expedita veritatis nesciunt doloremque sint asperiores fuga voluptas, distinctio, aperiam, ratione dolore.</p>
+              <p class="mb-4" style="color: black;">Ex numquam veritatis debitis minima quo error quam eos dolorum quidem perferendis. Quos repellat dignissimos minus, eveniet nam voluptatibus molestias omnis reiciendis perspiciatis illum hic magni iste, velit aperiam quis.</p>
+              <p><strong class="text-primary h3">M.R.P ₹9,999</strong></p>
+              <div class="mb-5">
+                <div class="input-group mb-3" style="max-width: 120px;">
+                <div class="input-group-prepend">
+                  <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                </div>
+                <input type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                </div>
+              </div>
+  
+              </div>
+              <p><a href="cart.html" class="buy-now btn btn-sm btn-primary">Add To Cart</a></p>
+  
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
 
     <div class="site-section block-3 site-blocks-2 bg-light">
       <div class="container">
@@ -336,5 +396,89 @@
 
   <script src="js/main.js"></script>
     
+
+  <script>
+    // Function to parse query parameters
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    // Get the "item" query parameter
+    const itemParam = getQueryParam("item");
+
+    // Define an array of item data (you can fetch this from an API or database)
+    const items = [
+        {
+            title: "Marshall Acton III 60W Bluetooth Speaker",
+            description: "Loud things come in small packages. Acton III is the most discreet Bluetooth speaker in the home line-up and has an even wider soundstage .",
+            price: "₹31,999",
+            image: "images/item1.jpg",
+        },
+        {
+            title: "MOTIF II A.N.C.",
+            description: "Motif II A.N.C. offers huge sound, in a tiny package. Its sleek charging case packs a punch by powering your headphones with 30 hours of wireless playtime.",
+            price: "₹19,999",
+            image: "images/marshall  headphone.jpg",
+        },
+        {
+          title: "TP-Link 16 Port",
+          description: "TP-Link 16 Port Gigabit PoE Switch 8 PoE Port+ @150W Easy Smart Plug & Play Sturdy Metal w/Shielded Ports Support QoS, Vlan, IGMP and Link Aggregation.",
+          price: "₹9,999",
+          image: "images/computer accesories.jpg",
+        },
+    ];
+
+    // Function to display item details
+    function displayItem(itemIndex) {
+        const item = items[itemIndex];
+        const itemContainer = document.getElementById("item-container");
+
+        const itemHTML = `
+        <div id="item-container">
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <img src="${item.image}" alt="Image" class="img-fluid">
+          </div>
+          <div class="col-md-6">
+                    <h3 style="color: black;">${item.title}</h3>
+                    <p style="color: black;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, vitae, explicabo? Incidunt facere, natus soluta dolores iusto! Molestiae expedita veritatis nesciunt doloremque sint asperiores fuga voluptas, distinctio, aperiam, ratione dolore.</p>
+            <p class="mb-4" style="color: black;">Ex numquam veritatis debitis minima quo error quam eos dolorum quidem perferendis. Quos repellat dignissimos minus, eveniet nam voluptatibus molestias omnis reiciendis perspiciatis illum hic magni iste, velit aperiam quis.</p>
+                    <p><strong class="text-primary h3">M.R.P ${item.price}</strong></p>
+                    <div class="mb-5">
+              <div class="input-group mb-3" style="max-width: 120px;">
+              <div class="input-group-prepend">
+                <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+              </div>
+              <input type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+              <div class="input-group-append">
+                <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+              </div>
+            </div>
+
+            </div>
+            <p><a href="cart.html" class="buy-now btn btn-sm btn-primary">Add To Cart</a></p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+   </div>
+  </div>
+        `;
+
+        itemContainer.innerHTML = itemHTML;
+    }
+
+    // Check if "item" query parameter is provided and load the corresponding item
+    if (itemParam) {
+        const itemIndex = parseInt(itemParam) - 1; // Adjust index (1-based to 0-based)
+        if (!isNaN(itemIndex) && itemIndex >= 0 && itemIndex < items.length) {
+            displayItem(itemIndex);
+        }
+    }
+</script>
   </body>
 </html>

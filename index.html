@@ -34,7 +34,7 @@
       width: 300px;
       margin: 0 10px;
       box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.1); 
-      transition: 1s;
+      transition: 0.2s;
       height: 400px;
     }
     #p img{
@@ -94,6 +94,25 @@
         #z1 {
             transition: transform 0.3s ease-in-out; /* Apply the same transition without scaling */
 }
+
+/* Add shade effect to all images inside the container */
+#cat .block-2-item::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.2); /* Adjust the opacity to control the shade */
+  transition: background 0.3s ease;
+}
+
+/* Change the shade effect on hover */
+#cat .block-2-item:hover::before {
+  background: rgba(0, 0, 0, 0); /* Change to transparent on hover */
+}
+
 
   </style>
   <style>
@@ -204,7 +223,7 @@
             </li>
             <li><a href="shop.html">Shop</a></li>
             <li><a href="#">Catalogue</a></li>
-            <li><a href="#">New Arrivals</a></li>
+            <li><a href="new_arrival.html">New Arrivals</a></li>
             <li><a href="contact.html">Contact Us</a></li>
           </ul>
         </div>
@@ -264,7 +283,7 @@
   <div class="row justify-content-center" id="fre">
     <div class="col-md-7 site-section-heading text-center pt-4">
     <div id="i"><h2>Featured Products</h2></div></div>
-    <div class="site-section site-blocks-2">
+    <div class="site-section site-blocks-2" id="cat">
       <div class="container">
         <div class="row">
           <div class="col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade" data-aos-delay="" id="x">

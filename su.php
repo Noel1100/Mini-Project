@@ -20,10 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($name) || empty($email) || empty($phone) || empty($password) || empty($confirm_password)) {
         echo "All fields are required.";
     } else {
-
-       
-        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-        $sql = "INSERT INTO users (username, email, phone, password) VALUES ('$name', '$email', '$phone', '$hashed_password')";
+        $sql = "INSERT INTO users (username, email, phone, password) VALUES ('$name', '$email', '$phone', '$password')";
 
         if ($conn->query($sql) === TRUE) {
             echo "Record created successfully";

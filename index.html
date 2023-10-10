@@ -155,6 +155,71 @@
 }
   </style>
 
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    /* Styles for the comment box */
+    .comment-box {
+  position: absolute;
+  background-color: rgba(0, 0, 255, 0.1); /* Transparent blue background */
+  border: 1px solid #ffffff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  opacity: 1; /* Initially visible */
+  transition: opacity 1s;
+  z-index: 1;
+}
+
+    /* Styles for the icon with the comment box */
+    #login-icon {
+      position: relative;
+      color: blue;
+    }
+
+    /* Styles for the comment text */
+    #login-comment p {
+      margin: 0;
+    }
+
+    /* When the comment box is hidden */
+    #login-icon.clicked #login-comment {
+      opacity: 0;
+    }
+  </style>
+ <style>
+ .slideshow-container {
+ max-width: 600px;
+ position: relative;
+ margin: auto;
+ overflow: hidden;
+}
+
+.slide {
+ display: none;
+ animation: fade 2s ease-in-out infinite;
+}
+
+img {
+ width: 100%;
+ height: 200px;
+}
+
+@keyframes fade {
+ 0%, 100% {
+   opacity: 0;
+ }
+ 50% {
+   opacity: 1;
+ }
+}
+
+/* Adjust the size of the promo image */
+.promo-image {
+  width: 122px; /* Set your desired width */
+  height: auto; /* Auto adjust the height to maintain aspect ratio */
+}
+
+ </style>
   </head>
   <body>
   
@@ -183,7 +248,12 @@
             <div class="col-6 col-md-4 order-3 order-md-3 text-right">
               <div class="site-top-icons">
                 <ul> 
-                  <li><a href="signin.html"><span class="icon icon-person"></span></a></li>
+                  <li><a href="signin.html"><span class="icon icon-person"></span>
+                  <div class="comment-box" id="login-comment">
+                    <p style="color: black;">Login</p>
+                  </div>
+                </a>
+              </li>
                   <li><a href="#"><span class="icon icon-heart-o"></span></a></li>
                   <li>
                     <a href="cart.html" class="site-cart">
@@ -230,18 +300,23 @@
       </nav>
     </header>
     
-    <div class="site-blocks-cover" style="background-image: url(images/Firefly\ electronic\ devices\ 59310.jpg);" data-aos="fade">
+    <div class="site-blocks-cover"  data-aos="fade">
       <div class="container1">
         <div class="d-lg-flex align-items-md-center justify-content-center">
-          <div class="col-md-5 text-center text-md-center pt-5 pt-md-0">
-            <h1 class="mb-2" id="z">Modernize your Home Efficiently</h1>
-            <div class="intro-text text-center text-md-left">
-              <p class="mb-4" id="z1">Electro-Kart, where the future meets the present. Explore our vast range of electronics, embrace innovation, 
-                and embark on a journey that transforms the way you live, work, and play. Your electronic dreams are just a click away! </p>
-            <p class="text-center">
-                <a href="shop.html" class="btn btn-sm btn-primary">Shop Now</a>
-              </p>
+          <div class="slideshow-container">
+            <div class="slide">
+              <img src="images/camera.jpg" alt="Advertisement 1">
             </div>
+            <div class="slide">
+              <img src="images/computer accesories.jpg" alt="Advertisement 2">
+            </div>
+            <div class="slide">
+              <img src="images/cpu.jpg" alt="Advertisement 3">
+            </div>
+            <div class="slide">
+              <img src="images/shoe.png" alt="Advertisement 4">
+            </div>
+          </div>
           </div>
         </div>
       </div>
@@ -473,7 +548,7 @@
           <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
             <h3 class="footer-heading mb-4">Promo</h3>
             <a href="#" class="block-6">
-              <img src="images/kart.jpg" alt="Image placeholder" class="img-fluid rounded mb-4">
+              <img src="images/kart.jpg" alt="Image placeholder" class="img-fluid rounded mb-4 promo-image">
               <h3 class="font-weight-light  mb-0">Finding Your Perfect Shoes</h3>
               <p>Promo from  nuary 15 &mdash; 25, 2019</p>
             </a>
@@ -570,6 +645,35 @@
       });
   });
 </script>
-    
+
+<script>
+  $(document).ready(function() {
+    // Add a click event listener on your login button
+    $('#login-icon').click(function() {
+      // Toggle the "clicked" class to hide the comment box
+      $(this).toggleClass('clicked');
+    });
+  });
+</script>
+
+<script src="script.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var slides = document.querySelectorAll(".slide");
+  var currentSlideIndex = 0;
+
+  // Show the first slide by default
+  slides[currentSlideIndex].style.display = "block";
+
+  function showNextSlide() {
+    slides[currentSlideIndex].style.display = "none";
+    currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+    slides[currentSlideIndex].style.display = "block";
+  }
+
+  setInterval(showNextSlide, 2000); // Change slides every 3 seconds
+});
+
+</script>
   </body>
 </html>

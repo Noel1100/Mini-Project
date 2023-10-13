@@ -1,11 +1,5 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "electrokart";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+include 'config.php';
 
 // Check connection
 if ($conn->connect_error) {
@@ -17,22 +11,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    
-    // Debugging: Output form data
-    echo "Email: " . $email . "<br>";
-    echo "Password: " . $password . "<br>";
-
-    // TODO: Add proper validation and sanitization of input (e.g., SQL injection prevention)
-
     // SQL query to check if the user exists with the given email and password
     $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
 
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        // User found, redirect to index page
-        header("Location: index.php");
-        exit();
+        // User found, get their id and redirect accordingly
+        $row = $result->fetch_assoc();
+        $userId = $row['id'];
+
+        if ($userId == 0) {
+            // Admin
+            header("Location: admin.php");
+            exit();
+        } elseif ($userId == 1) {
+            // Regular user
+            header("Location: index.html");
+            exit();
+        } elseif ($userId == 2) {
+            // Seller
+            header("Location: seller.php");
+            exit();
+        } else {
+            // Invalid user id
+            echo "Invalid user ID.";
+        }
     } else {
         // User not found, display an error message
         echo "User does not exist.";
@@ -41,6 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $conn->close();
 ?>
+
 
 
 <!DOCTYPE html>

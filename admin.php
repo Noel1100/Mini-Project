@@ -33,7 +33,7 @@
         </div>
         <div class="btn-group" role="group" aria-label="Admin Actions">
             <a href="" class="btn btn-success">View Products</a>
-            <a href="" class="btn btn-success">Insert Products</a>
+            <a href="insert_items.php" class="btn btn-success">Insert Products</a>
             <a href="" class="btn btn-success">View Categories</a>
             <a href="" class="btn btn-success">Insert Categories</a>
             <a href="" class="btn btn-success">View Brands</a>

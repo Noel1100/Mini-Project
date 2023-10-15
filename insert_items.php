@@ -105,6 +105,51 @@ $conn->close();
         ul li:last-child {
             margin-bottom: 0;
         }
+          /* Modal styles */
+          .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            border: 1px solid #888;
+            width: 200px; /* Set the width of the modal */
+            height: 200px; /* Set the height of the modal */
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .close {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .close:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
@@ -158,12 +203,23 @@ $conn->close();
     unset($_SESSION['uploaded_files']);
     ?>
 
+  <!-- Modal -->
+  <div id="successModal" class="modal">
+        <div class="modal-content">
+            <p><?php echo $successMessage; ?></p>
+            <button class="close" onclick="closeModal()">OK</button>
+        </div>
+    </div>
+
     <script>
-        // Display a success message if redirected with a parameter
-        const urlParams = new URLSearchParams(window.location.search);
-        const successMessage = urlParams.get('successMessage');
-        if (successMessage) {
-            alert(successMessage);
+        // Display the success modal
+        const modal = document.getElementById('successModal');
+
+        modal.style.display = 'flex';
+
+        // Close the modal when the user clicks the OK button
+        function closeModal() {
+            modal.style.display = 'none';
         }
     </script>
 </body>

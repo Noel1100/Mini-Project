@@ -315,26 +315,20 @@ img {
     <div class="site-section">
       <div class="container">
         <div class="row">
+          <div class="col-md-12">
+            <h2 class="text-black" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: center;">
+              Marshall Acton III 60W Bluetooth Speaker</h2><br><br>
+          </div>
+        </div>
+        <div class="row">
           <div class="col-md-6" style="border-right: 1px solid #2e2e2e;">
-            <img src="images/item1.jpg" alt="Image" class="img-fluid" style="border-radius: 20px;">
+            <img src="images/item1.jpg" alt="Image" class="img-fluid" style="border-radius: 20px; max-width: 100%;">
           </div>
           <div class="col-md-6" style="overflow-y: auto;">
-            <h2 class="text-black">Marshall Acton III 60W Bluetooth Speaker</h2>
-            <p style="color: black;">Loud things come in small packages. Acton III is the most discreet Bluetooth speaker in the home line-up and has an even wider soundstage .</p>
-            <p class="mb-4" style="color: black;">Ex numquam veritatis debitis minima quo error quam eos dolorum quidem perferendis. Quos repellat dignissimos minus, eveniet nam voluptatibus molestias omnis reiciendis perspiciatis illum hic magni iste, velit aperiam quis.</p>
+            <p style="color: black;" class="h5">Loud things come in small packages. Acton III is the most discreet Bluetooth speaker in the home line-up and has an even wider soundstage .</p>
+            <p class="mb-4 h5" style="color: black;">Ex numquam veritatis debitis minima quo error quam eos dolorum quidem perferendis. Quos repellat dignissimos minus, eveniet nam voluptatibus molestias omnis reiciendis perspiciatis illum hic magni iste, velit aperiam quis.</p>
             <p><strong class="text-primary h3">M.R.P ₹31,999</strong></p>
-            <div class="mb-5">
-              <div class="input-group mb-3" style="max-width: 120px;">
-              <div class="input-group-prepend">
-                <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
-              </div>
-              <input type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-              <div class="input-group-append">
-                <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
-              </div>
-            </div>
-
-            </div>
+          
             <div class="container">
               <p class="h3" style="color: black;">Product Specifications</p>
               <table>
@@ -376,7 +370,54 @@ img {
                   </tr>
               </table>
          </div>
-       </div>
+
+
+
+         </div>
+
+       <div class="site-section">
+        <div class="container">
+          <div class="row mb-5">
+            <form class="col-md-12" method="post">
+              <div class="site-blocks-table">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th class="product-thumbnail">Image</th>
+                      <th class="product-name">Product</th>
+                      <th class="product-quantity">Quantity</th>
+                      <th class="product-total">Total</th>
+                      <th class="product-remove">Remove</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="product-thumbnail">
+                        <img src="images/item1.jpg" alt="Image" class="img-fluid">
+                      </td>
+                      <td class="product-name">
+                        <h2 class="h5 text-black"> Marshall Acton III 60W Bluetooth Speaker</h2>
+                      </td>
+                      <td>
+                        <div class="input-group mb-3" style="max-width: 120px;">
+                          <div class="input-group-prepend">
+                            <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                          </div>
+                          <input type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                          <div class="input-group-append">
+                            <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                          </div>
+                        </div>
+  
+                      </td>
+                      <td> ₹ 1,250.00</td>
+                      <td><a href="#" class="btn btn-primary btn-sm remove-item">X</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </form>
+          </div>
        </div>
        </div>
        </div>
@@ -384,7 +425,18 @@ img {
         </div>
       </div>
     </div>
-      
+    <div class="mb-5">
+      <div class="input-group mb-3" style="max-width: 120px;">
+      <div class="input-group-prepend">
+        <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+      </div>
+      <input type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+      <div class="input-group-append">
+        <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+      </div>
+     </div>
+
+    </div>
 
 <footer class="site-footer border-top">
   <div>
@@ -461,6 +513,23 @@ img {
 <script src="js/aos.js"></script>
 
 <script src="js/main.js"></script>
+
+<script>
+  // Add an event listener to all "X" links with the class "remove-item"
+  document.addEventListener("DOMContentLoaded", function() {
+    const removeButtons = document.querySelectorAll(".remove-item");
+    removeButtons.forEach(function(button) {
+      button.addEventListener("click", function(event) {
+        event.preventDefault(); // Prevent the default link behavior (e.g., navigating to a new page)
+        const row = event.target.closest("tr"); // Find the closest <tr> element
+        if (row) {
+          row.remove(); // Remove the row from the table
+        }
+      });
+    });
+  });
+</script>
+
 
 </body>
 </html>

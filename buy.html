@@ -514,21 +514,7 @@ img {
 
 <script src="js/main.js"></script>
 
-<script>
-  // Add an event listener to all "X" links with the class "remove-item"
-  document.addEventListener("DOMContentLoaded", function() {
-    const removeButtons = document.querySelectorAll(".remove-item");
-    removeButtons.forEach(function(button) {
-      button.addEventListener("click", function(event) {
-        event.preventDefault(); // Prevent the default link behavior (e.g., navigating to a new page)
-        const row = event.target.closest("tr"); // Find the closest <tr> element
-        if (row) {
-          row.remove(); // Remove the row from the table
-        }
-      });
-    });
-  });
-</script>
+
 
 
 </body>

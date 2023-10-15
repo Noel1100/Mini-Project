@@ -1,71 +1,29 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <link rel="stylesheet" type="text/css" href="styles.css">
-  <style>
-  .slideshow-container {
-  max-width: 600px;
-  position: relative;
-  margin: auto;
-  overflow: hidden;
-}
-
-.slide {
-  display: none;
-  animation: fade 2s ease-in-out infinite;
-}
-
-img {
-  width: 100%;
-  height: auto;
-}
-
-@keyframes fade {
-  0%, 100% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
-
-  </style>
-</head>
-<body>
-  <div class="slideshow-container">
-    <div class="slide">
-      <img src="images/camera.jpg" alt="Advertisement 1">
+<div id="item-container">
+    <div class="site-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6" style="border-right: 1px solid #ccc;">
+                    <img src="images/item1.jpg" alt="Image" class="img-fluid">
+                </div>
+                <div class="col-md-6" style="overflow-y: auto;">
+                    <h2 class="text-black">Marshall Acton III 60W Bluetooth Speaker</h2>
+                    <p style="color: black;">Loud things come in small packages. Acton III is the most discreet Bluetooth speaker in the home line-up and has an even wider soundstage .</p>
+                    <p class="mb-4" style="color: black;">Ex numquam veritatis debitis minima quo error quam eos dolorum quidem perferendis. Quos repellat dignissimos minus, eveniet nam voluptatibus molestias omnis reiciendis perspiciatis illum hic magni iste, velit aperiam quis.</p>
+                    <p><strong class="text-primary h3">M.R.P ₹31,999</strong></p>
+                    <div class="mb-5">
+                        <div class="input-group mb-3" style="max-width: 120px;">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                            </div>
+                            <input type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with a button addon" aria-describedby="button-addon1">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                            </div>
+                        </div>
+                    </div>
+                    <p><a href="cart.html" class="buy-now btn btn-sm btn-primary">Add To Cart</a></p>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="slide">
-      <img src="images/computer accesories.jpg" alt="Advertisement 2">
-    </div>
-    <div class="slide">
-      <img src="images/cpu.jpg" alt="Advertisement 3">
-    </div>
-    <div class="slide">
-      <img src="images/shoe.png" alt="Advertisement 4">
-    </div>
-  </div>
-
-  <script src="script.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  var slides = document.querySelectorAll(".slide");
-  var currentSlideIndex = 0;
-
-  // Show the first slide by default
-  slides[currentSlideIndex].style.display = "block";
-
-  function showNextSlide() {
-    slides[currentSlideIndex].style.display = "none";
-    currentSlideIndex = (currentSlideIndex + 1) % slides.length;
-    slides[currentSlideIndex].style.display = "block";
-  }
-
-  setInterval(showNextSlide, 2000); // Change slides every 3 seconds
-});
-
-</script>
-</body>
-</html>
+</div>

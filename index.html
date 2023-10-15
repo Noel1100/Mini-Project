@@ -117,7 +117,7 @@
   </style>
   <style>
     .site-navbar{
-      background-color:aliceblue;
+      background-color:#353e70;
     }
 
 
@@ -143,12 +143,12 @@
     width: 0;
   }
   100% {
-    width: 80%;
+    width: 100%;
   }
 }
 /* Style the image and text */
 .logo-image {
-  max-width: 15%; /* Make the image responsive */
+  max-width: 20%; /* Make the image responsive */
   height: auto; /* Automatically adjust the image height */
   display: inline-block;
   vertical-align: middle; /* Align the image vertically with the text */
@@ -326,6 +326,39 @@ img {
   #imageSlider img {
     vertical-align: middle; /* Vertically align the images to the middle */
   }
+
+
+  .icon-link {
+    text-decoration: none;
+}
+
+.icon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 50%; /* Make the container circular */
+    width: 75px; /* Set the width of the circular container */
+    height: 75px; /* Set the height of the circular container */
+    padding: 10px;
+    background-color: white; /* Transparent background */
+    transition: background-color 0.3s; /* Smooth transition on hover */
+    text-align: center;
+    font-size: 16px;
+}
+
+.icon-container:hover {
+    color: blue; /* Background color on hover */
+}
+
+.icon {
+    font-size: 30px; /* Adjust the font size for the icon */
+}
+
+.count {
+    font-size: 14px; /* Adjust the font size for the count */
+}
+
+
  </style>
   </head>
   <body>
@@ -347,31 +380,50 @@ img {
               <div class="site-logo">
                 <a href="index.html" class="js-logo-clone">
                   <img src="images/kart.jpg" alt="Electro-KART" class="logo-image">
-                  <span class="logo-text">Electro-Kart</span>
+                  <span class="logo-text" style="font-size: 35px; color: white;">Electro-Kart</span>
                 </a>
               </div>
             </div>
 
             <div class="col-6 col-md-4 order-3 order-md-3 text-right">
               <div class="site-top-icons">
-                <ul> 
-                  <li><a href="signin.php"><span class="icon icon-person"></span>
-                  <div class="comment-box" id="login-comment">
-                    <p style="color: black;">Login</p>
-                  </div>
-                </a>
-              </li>
-                  <li><a href="#"><span class="icon icon-heart-o"></span></a></li>
-                  <li>
-                    <a href="cart.html" class="site-cart">
-                      <span class="icon icon-shopping_cart"></span>
-                      <span class="count">2</span>
-                    </a>
-                  </li> 
-                  <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><span class="icon-menu"></span></a></li>
-                </ul>
-              </div> 
-            </div>
+                  <ul>
+                      <li>
+                          <a href="signin.php" class="">
+                              <div class="icon-container">
+                                  <span class="icon icon-person"></span>
+                                  <span class="icon-text">Login</span>
+                              </div>
+                          </a>
+                      </li>
+                      <li>
+                          <a href="#" class="">
+                              <div class="icon-container">
+                                  <span class="icon" style="color: red;">&#9829;</span>
+                                  <span class="icon-text">Favorites</span>
+                              </div>
+                          </a>
+                      </li>
+                      <li>
+                          <a href="cart.html" class="">
+                              <div class="icon-container">
+                                  <span class="icon">&#128722;</span>
+                                  <span class="icon-text">Cart</span>
+                              </div>
+                          </a>
+                      </li>
+                      <li>
+                          <a href="#" class="">
+                              <div class="icon-container">
+                                  <span class="icon">&#127978;</span>
+                                  <span class="icon-text">Become a Seller</span>
+                              </div>
+                          </a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+          
 
           </div>
         </div>

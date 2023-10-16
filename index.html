@@ -326,56 +326,6 @@ img {
   #imageSlider img {
     vertical-align: middle; /* Vertically align the images to the middle */
   }
-
-
-  .icon-link {
-            text-decoration: none;
-        }
-
-        .button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 90px; /* Set the width of the buttons */
-            height: 40px; /* Set the height of the buttons */
-            background-color: white;
-            outline:auto;
-            outline-color:#aeace8;
-            padding: 5px 10px; /* Add padding to the buttons */
-            margin-right: 10px; /* Add margin between buttons */
-        }
-        .button1 {
-          display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px; /* Set the width of the buttons */
-            height: 30px; /* Set the height of the buttons */
-            background-color: white;
-            outline:auto;
-            outline-color:#aeace8;
-            padding: 5px 10px; /* Add padding to the buttons */
-            margin-right: 10px; /* Add margin between buttons */
-        }
-
-        .icon-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icon {
-            font-size: 20px;
-            margin-right: 5px;
-        }
-
-        .icon1{
-          margin-inline: -10px;
-          font-size: 20px;
-        }
-
-        .icon-text {
-            font-size: 17px;
-        }
  </style>
   </head>
   <body>
@@ -404,51 +354,19 @@ img {
 
             <div class="col-6 col-md-4 order-3 order-md-3 text-right">
               <div class="site-top-icons">
-                  <ul>
-                    <li>
-                      <button class="button">
-                     
-                          <div class="icon-container">
-                              <span class="icon">&#127978;</span>
-                              <span class="icon-text">Become Seller</span>
-                          </div>
-                      
-                    </button>
-                  </li>
-                      <li>
-                        <button class="button">
-                      
-                              <div class="icon-container">
-                                  <span class="icon icon-person"></span>
-                                  <span class="icon-text">Login</span>
-                              </div>
-                         
-                        </button>
-                      </li>
-                      <li>
-                        <button class="button1">
-                          <a href="#" class="">
-                            
-                                  <span class="icon1" style="color: red;">&#9829;</span>
-                           
-                          </a>
-                        </button>
-                      </li>
-                      <li>
-                        <button class="button1">
-                          <a href="cart.html" class="site-cart">
-                        
-                                  <span class="icon1 icon-shopping_cart"></span>
-                                  <span class="count" style="margin-top: 20px;">2</span>
-                             
-                          </a>
-                        </button>
-                      </li>
-                     
-                  </ul>
-              </div>
-          </div>
-          
+                <ul> 
+                  <li><a href="signin.html"><span class="icon icon-person"></span></a></li>
+                  <li><a href="#"><span class="icon icon-heart-o"></span></a></li>
+                  <li>
+                    <a href="cart.html" class="site-cart">
+                      <span class="icon icon-shopping_cart"></span>
+                      <span class="count">2</span>
+                    </a>
+                  </li> 
+                  <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><span class="icon-menu"></span></a></li>
+                </ul>
+              </div> 
+            </div>
 
           </div>
         </div>

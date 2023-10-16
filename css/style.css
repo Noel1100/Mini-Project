@@ -166,7 +166,7 @@ a {
   .site-navbar a {
     color: #000000; }
     .site-navbar a:hover {
-      color: #ffffff; }
+      color: #030303; }
   .site-navbar .icon {
     font-size: 20px; }
   .site-navbar .site-top-icons ul, .site-navbar .site-top-icons ul li {
@@ -194,7 +194,7 @@ a {
           display: block;
           text-align: center;
           background: #7971ea;
-          color: #fff;
+          color: black;
           -webkit-transition: .2s all ease-in-out;
           -o-transition: .2s all ease-in-out;
           transition: .2s all ease-in-out; }
@@ -214,7 +214,7 @@ a {
   .site-navbar .site-navigation .site-menu {
     margin-bottom: 0; }
     .site-navbar .site-navigation .site-menu .active > a {
-      color: #ffffff; }
+      color:blue; }
     .site-navbar .site-navigation .site-menu a {
       text-decoration: none !important;
       font-size: 15px;
@@ -226,11 +226,11 @@ a {
         padding: 10px 10px;
         text-transform: uppercase;
         letter-spacing: .05em;
-        color: #c6c6c6;
+        color: #000000;
         font-size: 20px;
         text-decoration: none !important; }
         .site-navbar .site-navigation .site-menu > li > a:hover {
-          color:rgb(255, 255, 255); }
+          color:#7971ea; }
     .site-navbar .site-navigation .site-menu .has-children {
       position: relative; }
       .site-navbar .site-navigation .site-menu .has-children > a {

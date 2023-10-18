@@ -1,3 +1,7 @@
+<?php
+session_start();
+include 'config.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -235,12 +239,6 @@ img {
   height: auto; /* Auto adjust the height to maintain aspect ratio */
 }
 
-
-
-
-
-
-
 .container1 {
             position: relative;
             width: 1525px;
@@ -361,7 +359,7 @@ img {
 
             <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
               <div class="site-logo">
-                <a href="index.html" class="js-logo-clone">
+                <a href="index.php" class="js-logo-clone">
                   <img src="images/kart.jpg" alt="Electro-KART" class="logo-image">
                   <span class="logo-text">Electro-Kart</span>
                 </a>
@@ -377,9 +375,17 @@ img {
                   </li>
                 
                   <li>
-                    <a href="signin.php" class="btn btn-sm custom-button">
-                      <span class="icon"><i class="fas fa-sign-in-alt"></i></span> Login
-                    </a>
+                  <?php
+                      if(isset($_SESSION['username'])) {
+                          echo '<a href="signin.php" class="btn btn-sm custom-button">
+                                  <span class="icon"><i class="fas fa-user"></i></span>' . $_SESSION['username'] .
+                              '</a>';
+                      } else {
+                          echo '<a href="signin.php" class="btn btn-sm custom-button">
+                                  <span class="icon"><i class="fas fa-sign-in-alt"></i></span> Login
+                              </a>';
+                      }
+                  ?>
                   </li>
 
                   <li>
@@ -399,7 +405,7 @@ img {
         <div class="container">
           <ul class="site-menu js-clone-nav d-none d-md-block">
             <li class="has-children active">
-              <a href="index.html">Home</a>
+              <a href="index.php">Home</a>
               <ul class="dropdown">
                 <li><a href="#fre">Featured Products</a></li>
                 <li><a href="#com">Combo Offers</a></li>

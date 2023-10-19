@@ -1,4 +1,6 @@
 <?php
+session_start();  // Start the session
+
 include 'config.php';
 
 // Check connection
@@ -21,13 +23,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $row = $result->fetch_assoc();
         $userId = $row['id'];
 
+        $_SESSION['username'] = $row['username'];  // Set the username in the session
+
         if ($userId == 0) {
             // Admin
             header("Location: admin.php");
             exit();
         } elseif ($userId == 1) {
             // Regular user
-            header("Location: index.html");
+            header("Location: index.php");
             exit();
         } elseif ($userId == 2) {
             // Seller
@@ -45,8 +49,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $conn->close();
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -80,11 +82,11 @@ $conn->close();
                 <form method="POST" class="register-form" id="login-form">
                     <div class="form-group">
                         <label for="email"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                        <input type="text" name="email" id="your_name" placeholder="Your Email"/>
+                        <input type="text" name="email" id="email" placeholder="Your Email"/>
                     </div>
                     <div class="form-group">
                         <label for="password"><i class="zmdi zmdi-lock"></i></label>
-                        <input type="password" name="password" id="your_pass" placeholder="Password"/>
+                        <input type="password" name="password" id="email" placeholder="Password"/>
                     </div>
                     <div class="form-group">
                         <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />

@@ -55,6 +55,18 @@
   vertical-align: middle; /* Align the image vertically with the text */
 }
 
+/* Style for the thumbnail images */
+.thumb {
+    cursor: pointer;
+    transition: transform 0.5s;
+}
+
+/* Style for the active thumbnail */
+.thumb.active {
+    transform: scale(1.2);
+}
+
+
 </style>
 
 
@@ -129,16 +141,17 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6" style="border-right: 1px solid #2e2e2e;">
-            <img src="images/item1.jpg" alt="Image" class="img-fluid">
+            <img id="main-image" src="images/item1.jpg" alt="Image" class="img-fluid">
+            <br><br>
             <div class="row">
               <div class="col-md-4">
-                  <img src="images/vivo1.png" alt="Image 2" class="img-fluid">
+                  <img src="images/marshall_sub.png" alt="Image 2" class="img-fluid thumb" data-src="images/marshall_sub.png" style="width: 150px; height: 100px;">
               </div>
               <div class="col-md-4">
-                  <img src="images/asus1.png" alt="Image 3" class="img-fluid">
+                  <img src="images/marshall1_sub.png" alt="Image 3" class="img-fluid thumb" data-src="images/marshall1_sub.jpg" style="width: 150px; height: 100px;">
               </div>
               <div class="col-md-4">
-                  <img src="images/lg_.png" alt="Image 4" class="img-fluid">
+                  <img src="images/marshall2_sub.png" alt="Image 4" class="img-fluid thumb" data-src="images/marshall2_sub.jpg" style="width: 150px; height: 100px;">
               </div>
           </div>
           </div>
@@ -209,7 +222,19 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-            <img src="images/marshall  headphone.jpg" alt="Image" class="img-fluid">
+            <img id="main-image" src="images/marshall  headphone.jpg" alt="Image" class="img-fluid">
+            <br><br>
+            <div class="row">
+              <div class="col-md-4">
+                  <img src="images/marshall  headphone.jpg" alt="Image 2" class="img-fluid thumb" data-src="images/marshall  headphone.jpg" style="width: 150px; height: 100px;">
+              </div>
+              <div class="col-md-4">
+                  <img src="images/motif1_sub.png" alt="Image 3" class="img-fluid thumb" data-src="images/motif1_sub.png" style="width: 150px; height: 100px;">
+              </div>
+              <div class="col-md-4">
+                  <img src="images/motif2_sub.png" alt="Image 4" class="img-fluid thumb" data-src="images/motif2_sub.png" style="width: 150px; height: 100px;">
+              </div>
+          </div>
           </div>
           <div class="col-md-6">
             <h2 class="text-black">MOTIF II A.N.C</h2>
@@ -228,7 +253,46 @@
             </div>
 
             </div>
-            <p><a href="cart.html" class="buy-now btn btn-sm btn-primary">Add To Cart</a></p>
+            <div class="container">
+              <p class="h3" style="color: black;">Product Specifications</p>
+              <table style="color: black; border: 1px solid black;">
+                  <tr>
+               
+                  </tr>
+                  <tr>
+                      <td style="border: 1px solid black;  text-align: center;">General</td>
+                      <td style="border: 1px solid black;  text-align: center;">Product Name: Example Product</td>
+                  </tr>
+                  <tr>
+                      <td style="border: 1px solid black;  text-align: center;"></td>
+                      <td style="border: 1px solid black;  text-align: center;">Model: ABC-123</td>
+                  </tr>
+                  <tr>
+                      <td style="border: 1px solid black;  text-align: center;">Features</td>
+                      <td style="border: 1px solid black;  text-align: center;">Screen Size: 15 inches</td>
+                  </tr>
+                  <tr>
+                      <td style="border: 1px solid black; text-align: center;"></td>
+                      <td style="border: 1px solid black;  text-align: center;">Processor: Quad-core 2.0 GHz</td>
+                  </tr>
+                  <tr>
+                      <td style="border: 1px solid black;  text-align: center;">Connectivity</td>
+                      <td style="border: 1px solid black;  text-align: center;">Wi-Fi: 802.11ac</td>
+                  </tr>
+                  <tr>
+                      <td style="border: 1px solid black;  text-align: center;"></td>
+                      <td style="border: 1px solid black;  text-align: center;">Bluetooth: 5.0</td>
+                  </tr>
+                  <tr>
+                      <td style="border: 1px solid black;  text-align: center;">Other Details</td>
+                      <td style="border: 1px solid black;  text-align: center;">Dimensions: 13.5" x 9.5" x 0.75"</td>
+                  </tr>
+                  <tr>
+                      <td style="border: 1px solid black;  text-align: center;"></td>
+                      <td style="border: 1px solid black;  text-align: center;">Weight: 3.5 lbs</td>
+                  </tr>
+              </table>
+         </div>
 
           </div>
         </div>
@@ -513,16 +577,17 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6"  style="border-right: 1px solid #2e2e2e;">
-            <img src="${item.image}" alt="Image" class="img-fluid">
+            <img id="main-image" src="${item.image}" alt="Image" class="img-fluid">
+            <br><br>
             <div class="row">
               <div class="col-md-4">
-                  <img src="images/vivo1.png" alt="Image 2" class="img-fluid">
+                  <img src="images/marshall_sub.png" alt="Image 2" class="img-fluid thumb" data-src="images/marshall_sub.png" style="width: 150px; height: 100px;">
               </div>
               <div class="col-md-4">
-                  <img src="images/asus1.png" alt="Image 3" class="img-fluid">
+                  <img src="images/marshall1_sub.png" alt="Image 3" class="img-fluid thumb" data-src="images/marshall1_sub.png" style="width: 150px; height: 100px;">
               </div>
               <div class="col-md-4">
-                  <img src="images/lg_.png" alt="Image 4" class="img-fluid">
+                  <img src="images/marshall2_sub.png" alt="Image 4" class="img-fluid thumb" data-src="images/marshall2_sub.png" style="width: 150px; height: 100px;">
               </div>
           </div>
             </div>
@@ -607,5 +672,32 @@
         }
     }
 </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const mainImage = document.getElementById('main-image');
+    const thumbnails = document.querySelectorAll('.thumb');
+
+    thumbnails.forEach(thumb => {
+        thumb.addEventListener('click', function() {
+            // Change the main image source to the clicked thumbnail's data-src
+            mainImage.style.opacity = '0';
+            setTimeout(function() {
+                mainImage.src = thumb.getAttribute('data-src');
+                mainImage.style.opacity = '1';
+            }, 300);
+
+            // Remove the 'active' class from all thumbnails
+            thumbnails.forEach(t => t.classList.remove('active'));
+
+            // Add the 'active' class to the clicked thumbnail
+            thumb.classList.add('active');
+        });
+    });
+});
+
+
+</script>
+
   </body>
 </html>

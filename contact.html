@@ -7,7 +7,8 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
     <link rel="stylesheet" href="fonts/icomoon/style.css">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/magnific-popup.css">
     <link rel="stylesheet" href="css/jquery-ui.css">
@@ -75,6 +76,27 @@
   vertical-align: middle; /* Align the image vertically with the text */
 }
 
+.custom-button {
+      padding: 10px 20px;
+      margin-right: 10px;
+      display: inline-flex;
+      align-items: center;
+      background-color: aliceblue;
+      outline: none;
+      border: none;
+
+    }
+
+    .custom-button .icon {
+      margin-right: 10px;
+    }
+
+    .site-navbar{
+      background-color:aliceblue;
+    }
+
+
+
   </style>
   </head>
   <body>
@@ -82,10 +104,10 @@
   <div class="site-wrap">
     <header class="site-navbar" role="banner">
       <div class="site-navbar-top">
-        <div class="container">
+        <div class="">
           <div class="row align-items-center">
 
-            <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
+            <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left" style="padding-left: 50px;">
               <form action="" class="site-block-top-search">
                 <span class="icon icon-search2"></span>
                 <input type="text" class="form-control border-0" placeholder="Search">
@@ -100,21 +122,32 @@
                 </a>
               </div>
             </div>
-            <div class="col-6 col-md-4 order-3 order-md-3 text-right">
+
+
+            <div class="col-6 col-md-4 order-3 order-md-3 text-right" style="padding-right: 50px;">
               <div class="site-top-icons">
                 <ul>
-                  <li><a href="#"><span class="icon icon-person"></span></a></li>
-                  <li><a href="#"><span class="icon icon-heart-o"></span></a></li>
                   <li>
-                    <a href="cart.html" class="site-cart">
-                      <span class="icon icon-shopping_cart"></span>
+                    <a href="signin.php" class="btn btn-sm custom-button">
+                      <span class="icon"><i class="fas fa-solid fa-store"></i></span>Become a Seller
+                    </a>
+                  </li>
+                
+                  <li>
+                    <a href="signin.php" class="btn btn-sm custom-button">
+                      <span class="icon"><i class="fas fa-sign-in-alt"></i></span> Login
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="cart.html" class="site-cart btn btn-sm custom-button">
+                      <span class="icon icon-shopping_cart"><i class="fas"></i></span> Cart
                       <span class="count">2</span>
                     </a>
-                  </li> 
-                  <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><span class="icon-menu"></span></a></li>
+                  </li>
                 </ul>
-              </div> 
-            </div>
+              </div>
+            </div>  
 
           </div>
         </div>

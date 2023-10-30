@@ -24,6 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $userId = $row['id'];
 
         $_SESSION['username'] = $row['username'];  // Set the username in the session
+        $_SESSION['user_id'] = $userId;  // Set the user ID in the session
+        $_SESSION['login'] = true;  // Set the login status in the session
 
         if ($userId == 0) {
             // Admin
@@ -31,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit();
         } elseif ($userId == 1) {
             // Regular user
-            header("Location: index.php");
+            header("Location: profile.php");
             exit();
         } elseif ($userId == 2) {
             // Seller
@@ -49,6 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $conn->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

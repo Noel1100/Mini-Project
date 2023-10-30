@@ -377,9 +377,10 @@ img {
                   <li>
                   <?php
                       if(isset($_SESSION['username'])) {
-                          echo '<a href="signin.php" class="btn btn-sm custom-button">
+                          echo '<a href="profile.php" class="btn btn-sm custom-button">
                                   <span class="icon"><i class="fas fa-user"></i></span>' . $_SESSION['username'] .
                               '</a>';
+                              $_SESSION['login'] = true;
                       } else {
                           echo '<a href="signin.php" class="btn btn-sm custom-button">
                                   <span class="icon"><i class="fas fa-sign-in-alt"></i></span> Login

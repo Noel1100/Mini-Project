@@ -145,13 +145,13 @@
             <br><br>
             <div class="row">
               <div class="col-md-4">
-                  <img src="images/marshall_sub.png" alt="Image 2" class="img-fluid thumb" data-src="images/marshall_sub.png" style="width: 150px; height: 100px;">
+                  <img src="images/marshall_sub.png" alt="Image 2" class="img-fluid thumb" data-src="images/marshall_sub.png" id="sub-image1" style="width: 150px; height: 100px;">
               </div>
               <div class="col-md-4">
-                  <img src="images/marshall1_sub.png" alt="Image 3" class="img-fluid thumb" data-src="images/marshall1_sub.jpg" style="width: 150px; height: 100px;">
+                  <img src="images/marshall1_sub.png" alt="Image 3" class="img-fluid thumb" data-src="images/marshall1_sub.jpg" id="sub-image2" style="width: 150px; height: 100px;">
               </div>
               <div class="col-md-4">
-                  <img src="images/marshall2_sub.png" alt="Image 4" class="img-fluid thumb" data-src="images/marshall2_sub.jpg" style="width: 150px; height: 100px;">
+                  <img src="images/marshall2_sub.png" alt="Image 4" class="img-fluid thumb" data-src="images/marshall2_sub.jpg" id="sub-image3" style="width: 150px; height: 100px;">
               </div>
           </div>
           </div>
@@ -226,13 +226,13 @@
             <br><br>
             <div class="row">
               <div class="col-md-4">
-                  <img src="images/marshall  headphone.jpg" alt="Image 2" class="img-fluid thumb" data-src="images/marshall  headphone.jpg" style="width: 150px; height: 100px;">
+                  <img src="images/marshall  headphone.jpg" alt="Image 2" class="img-fluid thumb" data-src="images/marshall  headphone.jpg" id="sub-image1" style="width: 150px; height: 100px;">
               </div>
               <div class="col-md-4">
-                  <img src="images/motif1_sub.png" alt="Image 3" class="img-fluid thumb" data-src="images/motif1_sub.png" style="width: 150px; height: 100px;">
+                  <img src="images/motif1_sub.png" alt="Image 3" class="img-fluid thumb" data-src="images/motif1_sub.png" id="sub-image2" style="width: 150px; height: 100px;">
               </div>
               <div class="col-md-4">
-                  <img src="images/motif2_sub.png" alt="Image 4" class="img-fluid thumb" data-src="images/motif2_sub.png" style="width: 150px; height: 100px;">
+                  <img src="images/motif2_sub.png" alt="Image 4" class="img-fluid thumb" data-src="images/motif2_sub.png" id="sub-image3" style="width: 150px; height: 100px;">
               </div>
           </div>
           </div>
@@ -541,6 +541,7 @@
             description1: "Ex numquam veritatis debitis minima quo error quam eos dolorum quidem perferendis. Quos repellat dignissimos minus, eveniet nam voluptatibus molestias omnis reiciendis perspiciatis illum hic magni iste, velit aperiam quis.",
             price: "₹31,999",
             image: "images/item1.jpg",
+            
         },
         {
             title: "MOTIF II A.N.C.",
@@ -581,13 +582,13 @@
             <br><br>
             <div class="row">
               <div class="col-md-4">
-                  <img src="images/marshall_sub.png" alt="Image 2" class="img-fluid thumb" data-src="images/marshall_sub.png" style="width: 150px; height: 100px;">
+                  <img src="${item.subImages}" alt="Image 2" class="img-fluid thumb" data-src="images/marshall_sub.png" id="sub-image1" style="width: 150px; height: 100px;">
               </div>
               <div class="col-md-4">
-                  <img src="images/marshall1_sub.png" alt="Image 3" class="img-fluid thumb" data-src="images/marshall1_sub.png" style="width: 150px; height: 100px;">
+                  <img src="${item.subImages}" alt="Image 3" class="img-fluid thumb" data-src="images/marshall1_sub.png" id="sub-image2" style="width: 150px; height: 100px;">
               </div>
               <div class="col-md-4">
-                  <img src="images/marshall2_sub.png" alt="Image 4" class="img-fluid thumb" data-src="images/marshall2_sub.png" style="width: 150px; height: 100px;">
+                  <img src="${item.subImages}" alt="Image 4" class="img-fluid thumb" data-src="images/marshall2_sub.png" id="sub-image3" style="width: 150px; height: 100px;">
               </div>
           </div>
             </div>
@@ -683,7 +684,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Change the main image source to the clicked thumbnail's data-src
             mainImage.style.opacity = '0';
             setTimeout(function() {
-                mainImage.src = thumb.getAttribute('data-src');
+                mainImage.src = thumb.getAttribute('src');
                 mainImage.style.opacity = '1';
             }, 300);
 
@@ -695,9 +696,29 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-
-
 </script>
+ 
+<script>
+  // JavaScript to handle image switching based on the item parameter
+  window.addEventListener("DOMContentLoaded", function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const item = urlParams.get("item");
+
+    if (item === "1") {
+      document.getElementById("main-image").src = "images/item1.jpg";
+      document.getElementById("sub-image1").src = "images/marshall_sub.png";
+      document.getElementById("sub-image2").src = "images/marshall1_sub.png";
+      document.getElementById("sub-image3").src = "images/marshall2_sub.png";
+    } 
+    else if (item === "2") {
+      document.getElementById("main-image").src = "images/marshall  headphone.jpg";
+      document.getElementById("sub-image1").src = "images/marshall  headphone.jpg";
+      document.getElementById("sub-image2").src = "images/motif1_sub.png";
+      document.getElementById("sub-image3").src = "images/motif2_sub.png";
+    }
+  });
+</script>
+
 
   </body>
 </html>

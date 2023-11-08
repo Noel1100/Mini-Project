@@ -672,7 +672,17 @@
             displayItem(itemIndex);
         }
     }
+    function displayItem(itemIndex) {
+  const item = items[itemIndex];
+
+  // Convert the item object to a JSON string and encode it for the URL
+  const itemData = encodeURIComponent(JSON.stringify(item));
+
+  // Redirect to the "buy.html" page with the item data as a parameter
+  window.location.href = `buy.html?item=${itemData}`;
+}
 </script>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {

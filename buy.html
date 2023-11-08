@@ -314,24 +314,7 @@ img {
   <div id="item-container">
     <div class="site-section">
       <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <h2 class="text-black" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: center;">
-              Marshall Acton III 60W Bluetooth Speaker</h2><br><br>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6" style="border-right: 1px solid #2e2e2e;">
-            <img src="images/item1.jpg" alt="Image" class="img-fluid" style="border-radius: 20px; max-width: 100%;">
-          </div>
-          <div class="col-md-6" style="overflow-y: auto;">
-            <p style="color: black;" class="h5">Loud things come in small packages. Acton III is the most discreet Bluetooth speaker in the home line-up and has an even wider soundstage .</p>
-            <p class="mb-4 h5" style="color: black;">Ex numquam veritatis debitis minima quo error quam eos dolorum quidem perferendis. Quos repellat dignissimos minus, eveniet nam voluptatibus molestias omnis reiciendis perspiciatis illum hic magni iste, velit aperiam quis.</p>
-            <p><strong class="text-primary h3">M.R.P ₹31,999</strong></p>
-          
-            
-
-         </div>
+      
 
        <div class="site-section">
         <div class="container">
@@ -350,10 +333,10 @@ img {
                   <tbody>
                     <tr>
                       <td class="product-thumbnail">
-                        <img src="images/item1.jpg" alt="Image" class="img-fluid">
+                        <img id="product-image" src="images/item1.jpg" alt="Image" class="img-fluid">
                       </td>
                       <td class="product-name">
-                        <h2 class="h5 text-black"> Marshall Acton III 60W Bluetooth Speaker</h2>
+                        <h2 class="h5 text-black" id="product-title"> Marshall Acton III 60W Bluetooth Speaker</h2>
                       </td>
                       <td>
                         <div class="input-group mb-3" style="max-width: 120px;">
@@ -367,7 +350,7 @@ img {
                         </div>
   
                       </td>
-                      <td> ₹ 1,250.00</td>
+                      <td id="product-price">₹ 0.00</td>
                     </tr>
                   </tbody>
                 </table>
@@ -728,7 +711,20 @@ img {
 
 <script src="js/main.js"></script>
 
+<script>
+  // Use JavaScript to update the product details based on the selected item
+  const urlParams = new URLSearchParams(window.location.search);
+  const itemData = urlParams.get('item');
 
+  if (itemData) {
+    const item = JSON.parse(decodeURIComponent(itemData));
+
+    // Update the product details with the selected item's information
+    document.getElementById("product-image").src = item.image;
+    document.getElementById("product-title").textContent = item.title;
+    document.getElementById("product-price").textContent = `₹ ${item.price}`;
+  }
+</script>
 
 
 </body>

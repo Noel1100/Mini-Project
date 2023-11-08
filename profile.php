@@ -672,11 +672,6 @@ document.querySelectorAll('a[href^="#cat"]').forEach(anchor => {
     const editForm = document.getElementById('editForm');
     editForm.addEventListener('submit', (event) => {
         event.preventDefault();
-
-        // Get form data and save changes here
-        // You can use AJAX or fetch to send the data to the server and update the profile
-        // After saving the changes, update the profile display
-        // Hide the edit form
     });
 </script>
 

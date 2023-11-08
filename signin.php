@@ -14,7 +14,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
 
     // SQL query to check if the user exists with the given email and password
-    $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
+    $sql = "(SELECT * FROM users WHERE email='$email' AND password='$password') 
+    UNION 
+    (SELECT * FROM seller WHERE email='$email' AND password='$password')";
 
     $result = $conn->query($sql);
 

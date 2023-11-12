@@ -1,3 +1,47 @@
+<?php
+session_start();
+require 'config.php';
+
+if (isset($_SESSION['username'])) {
+    $sql = "SELECT * FROM users WHERE username = '" . $_SESSION['username'] . "'";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $id = $row['id'];
+            $username = $row['username'];
+            $fname = $row['firstname'];
+            $lname = $row['lastname'];
+            $email = $row['email'];
+            $phone = $row['phone'];
+        }
+    }
+    if (isset($_POST['update'])) {
+      $fname = mysqli_real_escape_string($conn, $_POST['firstname']);
+      $lname = mysqli_real_escape_string($conn, $_POST['lastname']);
+      $phone = mysqli_real_escape_string($conn, $_POST['phone']);
+      $email = mysqli_real_escape_string($conn, $_POST['email']);
+      
+      // Update user information in the database
+      $updateQuery = "UPDATE users SET firstname = '$fname', lastname = '$lname', phone = '$phone', email = '$email' WHERE id = '$id'";
+      $updateResult = mysqli_query($conn, $updateQuery);
+  
+      if ($updateResult) {
+          // Update session variables
+          $_SESSION['firstname'] = $fname;
+          $_SESSION['lastname'] = $lname;
+          $_SESSION['phone'] = $phone;
+          $_SESSION['email'] = $email;
+  
+          // Redirect to the profile page
+          header("Location: profile.php");
+          exit();
+      } else {
+          echo "Error updating record: " . mysqli_error($conn);
+      }
+  }
+  }
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -415,12 +459,6 @@ border-radius: 20px;
                           <span class="icon"><i class="fas fa-solid fa-store"></i></span>Become a Seller
                         </a>
                       </li>
-                    
-                      <li>
-                        <a href="signin.php" class="btn btn-sm custom-button">
-                          <span class="icon"><i class="fas fa-sign-in-alt"></i></span> Login
-                        </a>
-                      </li>
     
                       <li>
                         <a href="cart.html" class="site-cart btn btn-sm custom-button">
@@ -473,63 +511,9 @@ border-radius: 20px;
 <div class="d-flex flex-column align-items-center text-center">
 <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
 <div class="mt-3">
-<h4><?php echo $row['username']; ?></h4>
+<h4><?php echo $username ?></h4>
 <p class="text-muted font-size-sm">Bay Area, San Francisco, CA iuqberfciw2rhbefcvouwerhbvwlje</p>
-<button class="btn btn-outline-primary"><a href="#">Logout</a></button>
-</div>
-</div>
-</div>
-</div></div>
-        <?php
-        include ('config.php');
-        session_start();
-        $id = $_SESSION['id'];
-        $query = mysqli_query($conn, "SELECT * FROM users where id='$id'") or die(mysqli_error($conn));
-        $row = mysqli_fetch_array($query);
-        ?>
-<div class="col-md-8">
-<div class="card mb-3">
-<div class="card-body">
-<div class="row">
-<div class="col-sm-3">
-<h6 class="mb-0">Full Name</h6>
-</div>
-<div class="col-sm-9 text-secondary">
-<?php echo $row['username']; ?>
-</div>
-</div>
-<hr>
-<div class="row">
-<div class="col-sm-3">
-<h6 class="mb-0">Email</h6>
-</div>
-<div class="col-sm-9 text-secondary">
-<?php echo $row['email']; ?>
-<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e0868990a08a958b8d9588ce818c">[email&#160;protected]</a>
-</div>
-</div>
-<hr>
-<div class="row">
-<div class="col-sm-3">
-<h6 class="mb-0">Phone</h6>
-</div>
-<div class="col-sm-9 text-secondary">
-<?php echo $row['phone']; ?>
-</div>
-</div>
-<hr>
-<div class="row">
-<div class="col-sm-3">
-<h6 class="mb-0">Address</h6>
-</div>
-<div class="col-sm-9 text-secondary">
-Bay Area, San Francisco, CA
-</div>
-</div>
-<hr>
-<div class="row">
-<div class="col-sm-12">
-<a class="btn btn-info " id="editProfileButton" href="#">Edit</a>
+<button class="btn btn-outline-primary"><a href="signout.php">Logout</a></button>
 </div>
 </div>
 </div>
@@ -541,16 +525,70 @@ Bay Area, San Francisco, CA
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="blue" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-package"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
     <a href="#" id="e">ORDERS</a>
 </h6>
-  <span class="text-secondary">https://bootdey.com</span>
+  <span class="text-secondary"></span>
   </li>
   <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
   <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="green" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>PAYMENT</h6>
-  <span class="text-secondary">bootdey</span>
+  <span class="text-secondary"></span>
   </li>
  
   </ul>
   </div>
-  </div>
+</div>
+<div class="col-md-8">
+<div class="card mb-3">
+<div class="card-body">
+<div class="row">
+<div class="col-sm-3">
+<h6 class="mb-0">First Name</h6>
+</div>
+<div class="row-sm-9 text-secondary">
+<?php echo $fname ?>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-sm-3">
+<h6 class="mb-0">Last Name</h6>
+</div>
+<div class="row-sm-9 text-secondary">
+<?php echo $lname ?>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-sm-3">
+<h6 class="mb-0">Email</h6>
+</div>
+<div class="row-sm-9 text-secondary">
+<?php echo $email ?>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-sm-3">
+<h6 class="mb-0">Phone Number</h6>
+</div>
+<div class="row-sm-9 text-secondary">
+<?php echo $phone ?>
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-sm-3">
+<h6 class="mb-0">Address</h6>
+</div>
+<div class="row-sm-9 text-secondary">
+Sanfransico
+</div>
+</div>
+<hr>
+<div class="row">
+<div class="col-sm-12">
+<a class="btn btn-info " id="editProfileButton" href="#">Edit</a>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -567,16 +605,20 @@ Bay Area, San Francisco, CA
   <form method="post" enctype="multipart/form-data" class="row justify-content-center">
     <div class="col-md-6"> <!-- Center the form in a column (adjust the column width as needed) -->
       <div class="form-group">
-        <label for="name" style="color: white;">Name</label>
-        <input type="text" class="form-control" id="name" name="name" value="">
+        <label for="firstname" style="color: white;">First Name</label>
+        <input type="text" class="form-control" id="firstname" name="firstname" value="<?php echo $fname ?>">
+      </div>
+      <div class="form-group">
+        <label for="lastname" style="color: white;">Last Name</label>
+        <input type="text" class="form-control" id="lastname" name="lastname" value="<?php echo $lname ?>">
       </div>
       <div class="form-group">
         <label for="email" style="color: white;">Email</label>
-        <input type="email" class="form-control" id="email" name="email" value="">
+        <input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>">
       </div>
       <div class="form-group">
-        <label for="contactno" style="color: white;">Contact Number</label>
-        <input type="text" class="form-control" id="contactno" name="contactno" value="">
+        <label for="phone" style="color: white;">Phone Number</label>
+        <input type="text" class="form-control" id="phone" name="phone" value="<?php echo $phone ?>">
       </div>
       <button type="submit" class="btn btn-outline-primary" name="update">Update</button>
     </div>
@@ -584,15 +626,6 @@ Bay Area, San Francisco, CA
 </div>
 
 </div>
-</div>
-    </div>
-    </div>
-    </div>
-   
-    </div>
-    </div>
-    </div>
-    </div>
 </div>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -677,21 +710,3 @@ document.querySelectorAll('a[href^="#cat"]').forEach(anchor => {
 
 </body>
 </html>
-<?php
-if (isset($_POST['submit'])) {
-    $fullname = $_POST['username'];
-    $phone = $_POST['phone'];
-    $email = $_POST['email'];
-    $address = $_POST['address'];
-    $query = "UPDATE users SET full_name = '$fullname',
-                      phone = '$phone', email = $email, address = '$address'
-                      WHERE user_id = '$id'";
-    $result = mysqli_query($db, $query) or die(mysqli_error($db));
-    ?>
-    <script type="text/javascript">
-        alert("Update Successful.");
-        window.location = "index.php"; // Assuming "index.php" is your homepage
-    </script>
-    <?php
-}
-?>

@@ -1,5 +1,5 @@
 <?php
-session_start();  // Start the session
+session_start(); // Start the session
 
 include 'config.php';
 
@@ -13,10 +13,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
+    // Check if the email and password are not empty
+    if (empty($email) || empty($password)) {
+        echo "Email and password cannot be empty.";
+        exit();
+    }
+
     // SQL query to check if the user exists with the given email and password
-    $sql = "(SELECT * FROM users WHERE email='$email' AND password='$password') 
-    UNION 
-    (SELECT * FROM seller WHERE email='$email' AND password='$password')";
+    $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
 
     $result = $conn->query($sql);
 
@@ -25,9 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $row = $result->fetch_assoc();
         $userId = $row['id'];
 
-        $_SESSION['username'] = $row['username'];  // Set the username in the session
-        $_SESSION['user_id'] = $userId;  // Set the user ID in the session
-        $_SESSION['login'] = true;  // Set the login status in the session
+        $_SESSION['username'] = $row['username']; // Set the username in the session
+        $_SESSION['id'] = $userId; // Set the user ID in the session
+        $_SESSION['login'] = true; // Set the login status in the session
 
         if ($userId == 0) {
             // Admin
@@ -50,9 +54,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "User does not exist.";
     }
 }
-
 $conn->close();
 ?>
+
 
 
 <!DOCTYPE html>

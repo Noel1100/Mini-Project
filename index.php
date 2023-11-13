@@ -4,121 +4,136 @@ include 'config.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Electro-KART</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
-    <link rel="stylesheet" href="fonts/icomoon/style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/jquery-ui.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+<head>
+  <title>Electro-KART</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/magnific-popup.css">
+  <link rel="stylesheet" href="css/jquery-ui.css">
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
 
 
-    <link rel="stylesheet" href="css/aos.css">
+  <link rel="stylesheet" href="css/aos.css">
 
-    <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css">
 
-    <style>
-   
-      #i{
-          font-family: Arial, sans-serif;
-          font-size: 36px;
-          color: black; /* Blue color, you can change this to your preferred color */
-          text-align: center;
-          text-shadow: 2px 2px 4px rgb(228, 227, 227); /* Add a subtle text shadow */
-      }
+  <style>
+    #i {
+      font-family: Arial, sans-serif;
+      font-size: 36px;
+      color: black;
+      /* Blue color, you can change this to your preferred color */
+      text-align: center;
+      text-shadow: 2px 2px 4px rgb(228, 227, 227);
+      /* Add a subtle text shadow */
+    }
   </style>
   <style>
-    #p{
+    #p {
       width: 300px;
       margin: 0 10px;
-      box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.1); 
+      box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.1);
       transition: 0.2s;
       height: 400px;
     }
-    #p img{
+
+    #p img {
       display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
+      margin-left: auto;
+      margin-right: auto;
+      width: 50%;
       border-radius: 4px;
     }
-    #p:hover{
+
+    #p:hover {
       transform: scale(1.20);
       z-index: 1.5;
     }
-   #l{
-    color: black;
-   }
-  #x{
-    box-shadow: 0 0 20px 2px rgba(0, 0, 0, .1); 
-  }
 
+    #l {
+      color: black;
+    }
+
+    #x {
+      box-shadow: 0 0 20px 2px rgba(0, 0, 0, .1);
+    }
   </style>
-    <style>
-      #d {
-          border: 1px solid #ccc; /* Optional: Add a border for visualization */
-          padding: 20px; /* Add padding to create space inside the container */
-      }
+  <style>
+    #d {
+      border: 1px solid #ccc;
+      /* Optional: Add a border for visualization */
+      padding: 20px;
+      /* Add padding to create space inside the container */
+    }
 
-      h2 {
-          margin-top: 10px; /* Add margin to the top of the heading to create space */
-      }
+    h2 {
+      margin-top: 10px;
+      /* Add margin to the top of the heading to create space */
+    }
 
-      #z {
-            background-color: rgba(60, 85, 140, 0.7); /* Semi-transparent black background */
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2); /* White box shadow for a cool effect */
-            text-align: center;
-            align-items: center;
-        }
-
-
-        #z1 {
-            background-color: rgba(60, 85, 140, 0.7); /* Semi-transparent black background */
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2); /* White box shadow for a cool effect */
-            text-align: center;
-            align-items: center;
-        }
-
-        #z1:hover {
-            transform: scale(1.10); /* Scale up on hover */
-            transition: transform 0.3s ease-in-out;
-        }
-        #z1 {
-            transition: transform 0.3s ease-in-out; /* Apply the same transition without scaling */
-}
-
-/* Add shade effect to all images inside the container */
-#cat .block-2-item::before {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.2); /* Adjust the opacity to control the shade */
-  transition: background 0.3s ease;
-}
-
-/* Change the shade effect on hover */
-#cat .block-2-item:hover::before {
-  background: rgba(0, 0, 0, 0); /* Change to transparent on hover */
-}
+    #z {
+      background-color: rgba(60, 85, 140, 0.7);
+      /* Semi-transparent black background */
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+      /* White box shadow for a cool effect */
+      text-align: center;
+      align-items: center;
+    }
 
 
+    #z1 {
+      background-color: rgba(60, 85, 140, 0.7);
+      /* Semi-transparent black background */
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+      /* White box shadow for a cool effect */
+      text-align: center;
+      align-items: center;
+    }
+
+    #z1:hover {
+      transform: scale(1.10);
+      /* Scale up on hover */
+      transition: transform 0.3s ease-in-out;
+    }
+
+    #z1 {
+      transition: transform 0.3s ease-in-out;
+      /* Apply the same transition without scaling */
+    }
+
+    /* Add shade effect to all images inside the container */
+    #cat .block-2-item::before {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.2);
+      /* Adjust the opacity to control the shade */
+      transition: background 0.3s ease;
+    }
+
+    /* Change the shade effect on hover */
+    #cat .block-2-item:hover::before {
+      background: rgba(0, 0, 0, 0);
+      /* Change to transparent on hover */
+    }
   </style>
   <style>
     .custom-button {
@@ -136,59 +151,66 @@ include 'config.php';
       margin-right: 10px;
     }
 
-    .site-navbar{
-      background-color:aliceblue;
+    .site-navbar {
+      background-color: aliceblue;
     }
 
 
     .site-logo {
-  position: relative;
-  overflow: hidden;
-}
+      position: relative;
+      overflow: hidden;
+    }
 
-.js-logo-clone {
-  display: inline-block;
-  font-size: 2rem;
-  position: relative;
-  overflow: hidden;
-  color: transparent;
-  transition: width 1s ease, opacity 1s ease;
-  width: 0;
-  white-space: nowrap;
-  animation: revealText 2s ease forwards;
-}
+    .js-logo-clone {
+      display: inline-block;
+      font-size: 2rem;
+      position: relative;
+      overflow: hidden;
+      color: transparent;
+      transition: width 1s ease, opacity 1s ease;
+      width: 0;
+      white-space: nowrap;
+      animation: revealText 2s ease forwards;
+    }
 
-@keyframes revealText {
-  0% {
-    width: 0;
-  }
-  100% {
-    width: 80%;
-  }
-}
-/* Style the image and text */
-.logo-image {
-  max-width: 15%; /* Make the image responsive */
-  height: auto; /* Automatically adjust the image height */
-  display: inline-block;
-  vertical-align: middle; /* Align the image vertically with the text */
-}
+    @keyframes revealText {
+      0% {
+        width: 0;
+      }
+
+      100% {
+        width: 80%;
+      }
+    }
+
+    /* Style the image and text */
+    .logo-image {
+      max-width: 15%;
+      /* Make the image responsive */
+      height: auto;
+      /* Automatically adjust the image height */
+      display: inline-block;
+      vertical-align: middle;
+      /* Align the image vertically with the text */
+    }
   </style>
 
- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
     /* Styles for the comment box */
     .comment-box {
-  position: absolute;
-  background-color: rgba(0, 0, 255, 0.1); /* Transparent blue background */
-  border: 1px solid #ffffff;
-  padding: 5px 10px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  opacity: 1; /* Initially visible */
-  transition: opacity 1s;
-  z-index: 1;
-}
+      position: absolute;
+      background-color: rgba(0, 0, 255, 0.1);
+      /* Transparent blue background */
+      border: 1px solid #ffffff;
+      padding: 5px 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      opacity: 1;
+      /* Initially visible */
+      transition: opacity 1s;
+      z-index: 1;
+    }
 
     /* Styles for the icon with the comment box */
     #login-icon {
@@ -206,144 +228,154 @@ include 'config.php';
       opacity: 0;
     }
   </style>
- <style>
- .slideshow-container {
+  <style>
+    .slideshow-container {
 
- position: relative;
- margin: auto;
- overflow: hidden;
-}
+      position: relative;
+      margin: auto;
+      overflow: hidden;
+    }
 
-.slide {
- display: none;
- animation: fade 2s ease-in-out infinite;
-}
+    .slide {
+      display: none;
+      animation: fade 2s ease-in-out infinite;
+    }
 
-img {
- width: 100%;
- height: 200px;
-}
+    img {
+      width: 100%;
+      height: 200px;
+    }
 
-@keyframes fade {
- 0%, 100% {
-   opacity: 0;
- }
- 50% {
-   opacity: 1;
- }
-}
+    @keyframes fade {
 
-/* Adjust the size of the promo image */
-.promo-image {
-  width: auto; /* Set your desired width */
-  height: auto; /* Auto adjust the height to maintain aspect ratio */
-}
+      0%,
+      100% {
+        opacity: 0;
+      }
 
-.container1 {
-            position: relative;
-            width: 1525px;
-            height: 500px;
-            overflow: hidden;
-        }
+      50% {
+        opacity: 1;
+      }
+    }
 
-        .container1 img {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1s;
-        }
+    /* Adjust the size of the promo image */
+    .promo-image {
+      width: auto;
+      /* Set your desired width */
+      height: auto;
+      /* Auto adjust the height to maintain aspect ratio */
+    }
 
-        .container1 img:first-child {
-            opacity: 1;
-        }
+    .container1 {
+      position: relative;
+      width: 1525px;
+      height: 500px;
+      overflow: hidden;
+    }
 
-        .slider-arrows {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            list-style: none;
-        }
-        .slider-arrows .arrow{
-          list-style: none;
-          margin: 0;
-          padding: 0;
-        }
+    .container1 img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s;
+    }
 
-        .arrow {
-          font-size: 36px;
-            cursor: pointer;
-            width: 0;
-            height: 0;
-            border-style: solid;
-            display: inline-block;
-            position: absolute;
-            list-style: none;
-        }
+    .container1 img:first-child {
+      opacity: 1;
+    }
 
-        #prev {
-          position: absolute;
-          color: blue;
-  top: 50%;
-  left: 0;
-  transform: translateX(200%);
-  cursor: pointer;
-  z-index: 1;
-  list-style-type: none;
-        }
+    .slider-arrows {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      list-style: none;
+    }
 
-        #next {
-          position: absolute;
-          color: blue;
-  top: 50%;
-  right: 100;
-  transform: translateX(30250%);
-  cursor: pointer;
-  z-index: 1;
-   list-style-type: none;
-          }
+    .slider-arrows .arrow {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
 
-        .bullet-indicators {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-        }
+    .arrow {
+      font-size: 36px;
+      cursor: pointer;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      display: inline-block;
+      position: absolute;
+      list-style: none;
+    }
 
-        .bullet {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: rgb(182, 182, 182);
-            margin: 0 5px;
-            cursor: pointer;
-        }
+    #prev {
+      position: absolute;
+      color: blue;
+      top: 50%;
+      left: 0;
+      transform: translateX(200%);
+      cursor: pointer;
+      z-index: 1;
+      list-style-type: none;
+    }
 
-        .bullet.active {
-            background: blue;
-        }
+    #next {
+      position: absolute;
+      color: blue;
+      top: 50%;
+      right: 100;
+      transform: translateX(30250%);
+      cursor: pointer;
+      z-index: 1;
+      list-style-type: none;
+    }
 
-        #imageSliderContainer {
-          width: 500;
-          border: 1px solid #000; /* Add a border to the container */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+    .bullet-indicators {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+    }
 
-        #imageSlider {
-    display: inline-block; /* Prevents the container from taking the full width */
-    overflow: hidden;
-  }
+    .bullet {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgb(182, 182, 182);
+      margin: 0 5px;
+      cursor: pointer;
+    }
 
-  #imageSlider img {
-    vertical-align: middle; /* Vertically align the images to the middle */
-  }
- </style>
-  </head>
-  <body>
-  
+    .bullet.active {
+      background: blue;
+    }
+
+    #imageSliderContainer {
+      width: 500;
+      border: 1px solid #000;
+      /* Add a border to the container */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #imageSlider {
+      display: inline-block;
+      /* Prevents the container from taking the full width */
+      overflow: hidden;
+    }
+
+    #imageSlider img {
+      vertical-align: middle;
+      /* Vertically align the images to the middle */
+    }
+  </style>
+</head>
+
+<body>
+
   <div class="site-wrap">
     <header class="site-navbar" role="banner">
       <div class="site-navbar-top">
@@ -369,24 +401,24 @@ img {
             <div class="col-6 col-md-4 order-3 order-md-3 text-right" style="padding-right: 50px;">
               <div class="site-top-icons">
                 <ul>
-                    <a href="signin.php" class="btn btn-sm custom-button">
-                      <span class="icon"><i class="fas fa-solid fa-store"></i></span>Become a Seller
-                    </a>
+                  <a href="signin.php" class="btn btn-sm custom-button">
+                    <span class="icon"><i class="fas fa-solid fa-store"></i></span>Become a Seller
+                  </a>
                   </li>
-                
+
                   <li>
-                  <?php
-                      if(isset($_SESSION['username'])) {
-                          echo '<a href="profile.php" class="btn btn-sm custom-button">
+                    <?php
+                    if (isset($_SESSION['username'])) {
+                      echo '<a href="profile.php" class="btn btn-sm custom-button">
                                   <span class="icon"><i class="fas fa-user"></i></span>' . $_SESSION['username'] .
-                              '</a>';
-                              $_SESSION['login'] = true;
-                      } else {
-                          echo '<a href="signin.php" class="btn btn-sm custom-button">
+                        '</a>';
+                      $_SESSION['login'] = true;
+                    } else {
+                      echo '<a href="signin.php" class="btn btn-sm custom-button">
                                   <span class="icon"><i class="fas fa-sign-in-alt"></i></span> Login
                               </a>';
-                      }
-                  ?>
+                    }
+                    ?>
                   </li>
 
                   <li>
@@ -397,11 +429,11 @@ img {
                   </li>
                 </ul>
               </div>
-            </div>  
+            </div>
 
           </div>
         </div>
-      </div> 
+      </div>
       <nav class="site-navigation text-right text-md-center" role="navigation">
         <div class="container">
           <ul class="site-menu js-clone-nav d-none d-md-block">
@@ -433,19 +465,19 @@ img {
 
     <div class="site-blocks-cover" data-aos="fade">
       <div class="container1" id="imageSlider">
-       <img src="images/vivo1.png">
-      <img src="images/asus1.png">
-      <img src="images/lg_.png">
-      <img src="images/iphone.png">
+        <img src="images/vivo1.png">
+        <img src="images/asus1.png">
+        <img src="images/lg_.png">
+        <img src="images/iphone.png">
       </div>
       <div class="slider-arrows">
         <div class="arrow" id="prev">&#9664;</div>
         <div class="arrow" id="next">&#9654;</div>
-    </div>
+      </div>
       <div class="bullet-indicators" id="bulletIndicators">
       </div>
     </div>
-    
+
 
     <div class="site-section site-section-sm site-blocks-1">
       <div class="container">
@@ -456,7 +488,8 @@ img {
             </div>
             <div class="text">
               <h2 class="text-uppercase">Free Shipping</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan tincidunt fringilla.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan
+                tincidunt fringilla.</p>
             </div>
           </div>
           <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="100">
@@ -465,7 +498,8 @@ img {
             </div>
             <div class="text">
               <h2 class="text-uppercase">Free Returns</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan tincidunt fringilla.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan
+                tincidunt fringilla.</p>
             </div>
           </div>
           <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="200">
@@ -474,55 +508,59 @@ img {
             </div>
             <div class="text">
               <h2 class="text-uppercase">Customer Support</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan tincidunt fringilla.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan
+                tincidunt fringilla.</p>
             </div>
           </div>
         </div>
       </div>
     </div>
-  <div class="row justify-content-center" id="fre">
-    <div class="col-md-7 site-section-heading text-center pt-4">
-    <div id="i"><h2>Featured Products</h2></div></div>
-    <div class="site-section site-blocks-2" id="cat">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade" data-aos-delay="" id="x">
-            <a class="block-2-item" href="new_arrival.html?home-appliances">
-              <figure class="image">
-                <img src="images/refrigerator.jpg" alt="" class="img-fluid">
-              </figure>
-              <div class="text">
-                <span class="text-uppercase">New</span>
-                <h3>Home Appliances</h3>
-              </div>
-            </a>
-          </div>
-          <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="100">
-            <a class="block-2-item" href="#">
-              <figure class="image">
-                <img src="images/geforce.jpg" alt="" class="img-fluid">
-              </figure>
-              <div class="text">
-                <span class="text-uppercase">New</span>
-                <h3>Computer Accessories</h3>
-              </div>
-            </a>
-          </div>
-          <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="200">
-            <a class="block-2-item" href="#">
-              <figure class="image">
-                <img src="images/camera.jpg" alt="" class="img-fluid">
-              </figure>
-              <div class="text">
-                <span class="text-uppercase">New</span>
-                <h3>Camera</h3>
-              </div>
-            </a>
+    <div class="row justify-content-center" id="fre">
+      <div class="col-md-7 site-section-heading text-center pt-4">
+        <div id="i">
+          <h2>Featured Products</h2>
+        </div>
+      </div>
+      <div class="site-section site-blocks-2" id="cat">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade" data-aos-delay="" id="x">
+              <a class="block-2-item" href="new_arrival.html?home-appliances">
+                <figure class="image">
+                  <img src="images/refrigerator.jpg" alt="" class="img-fluid">
+                </figure>
+                <div class="text">
+                  <span class="text-uppercase">New</span>
+                  <h3>Home Appliances</h3>
+                </div>
+              </a>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="100">
+              <a class="block-2-item" href="#">
+                <figure class="image">
+                  <img src="images/geforce.jpg" alt="" class="img-fluid">
+                </figure>
+                <div class="text">
+                  <span class="text-uppercase">New</span>
+                  <h3>Computer Accessories</h3>
+                </div>
+              </a>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="200">
+              <a class="block-2-item" href="#">
+                <figure class="image">
+                  <img src="images/camera.jpg" alt="" class="img-fluid">
+                </figure>
+                <div class="text">
+                  <span class="text-uppercase">New</span>
+                  <h3>Camera</h3>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
     <div class="site-section block-3 site-blocks-2 bg-light">
       <div class="container" id="com">
         <div class="row justify-content-center">
@@ -540,7 +578,8 @@ img {
                   </figure>
                   <div class="block-4-text p-4">
                     <h3><a href="shop-single.html?item=1">Marshall Acton III 60W Bluetooth Speaker</a></h3>
-                    <p class="mb-0" id="l">Marshall Acton III 60W Bluetooth Speaker price in India starts from ₹31,999.</p>
+                    <p class="mb-0" id="l">Marshall Acton III 60W Bluetooth Speaker price in India starts from ₹31,999.
+                    </p>
                     <p class="text-primary font-weight-bold">M.R.P
                       ₹
                       31,999</p>
@@ -554,9 +593,10 @@ img {
                   </figure>
                   <div class="block-4-text p-4">
                     <h3><a href="shop-single.html?item=2">MOTIF II A.N.C.</a></h3>
-                    <p class="mb-0" id="l">Motif II A.N.C. offers huge sound.Its sleek charging case by powering your headphones with 30 hours of wireless playtime.</p>
+                    <p class="mb-0" id="l">Motif II A.N.C. offers huge sound.Its sleek charging case by powering your
+                      headphones with 30 hours of wireless playtime.</p>
                     <p class="text-primary font-weight-bold">M.R.P.
-                      ₹ 
+                      ₹
                       19,999.00</p>
                   </div>
                 </div>
@@ -568,10 +608,11 @@ img {
                   </figure>
                   <div class="block-4-text p-4">
                     <h3><a href="#">TP-Link 16 Port</a></h3>
-                    <p class="mb-0" id="l">TP-Link 16 Port Gigabit PoE Switch 8 PoE Port+ @150W Easy Smart Plug & Play Sturdy Metal w/Shielded Ports Support QoS, Vlan, IGMP and Link Aggregation (TL-SG1016PE).</p>
+                    <p class="mb-0" id="l">TP-Link 16 Port Gigabit PoE Switch 8 PoE Port+ @150W Easy Smart Plug & Play
+                      Sturdy Metal w/Shielded Ports Support QoS, Vlan, IGMP and Link Aggregation (TL-SG1016PE).</p>
                     <p class="text-primary font-weight-bold">M.R.P
-                       ₹
-                       9,999</p>
+                      ₹
+                      9,999</p>
                   </div>
                 </div>
               </div>
@@ -582,7 +623,8 @@ img {
                   </figure>
                   <div class="block-4-text p-4">
                     <h3><a href="#">Lava Blaze</a></h3>
-                    <p class="mb-0" id="l">Buy the Lava Blaze 5G 128 GB (Glass Green, 8 GB RAM) and delve into a new world of possibilities. The stylish and marvellous design of the phone attracts everyone. </p>
+                    <p class="mb-0" id="l">Buy the Lava Blaze 5G 128 GB (Glass Green, 8 GB RAM) and delve into a new
+                      world of possibilities. The stylish and marvellous design of the phone attracts everyone. </p>
                     <p class="text-primary font-weight-bold">M.R.P
                       ₹
                       13,999</p>
@@ -596,7 +638,8 @@ img {
                   </figure>
                   <div class="block-4-text p-4">
                     <h3><a href="#">JUMBO HOME UPS </a></h3>
-                    <p class="mb-0" id="l">DSP/ HIGH-END MICRO CONTROLLER BASED JUMBO UPS Model are designed using latest State-of-the-art Technology for Optimum Performance and Higher Reliability.</p>
+                    <p class="mb-0" id="l">DSP/ HIGH-END MICRO CONTROLLER BASED JUMBO UPS Model are designed using
+                      latest State-of-the-art Technology for Optimum Performance and Higher Reliability.</p>
                     <p class="text-primary font-weight-bold">M.R.P
                       ₹
                       18360</p>
@@ -621,10 +664,16 @@ img {
             <a href="bigsale.html"><img src="images/cpu1.png" alt="Image placeholder" class="img-fluid rounded"></a>
           </div>
           <div class="col-md-12 col-lg-5 text-center pl-md-5">
-            <h2><p class="text-primary">-50% on Purchase</p></h2>
-            <p class="post-meta mb-4" id="l">Buy <a href="bigsale.html" class="text-primary font-weight-bold">NOW..</a><span class="block-8-sep">&bullet;</span> Till November 3, 2023</p>
-            <p id="l">Enjoy a fantastic 50% off on all your purchases at our store! It's the perfect time to grab those items you've had your eye on or explore new products at unbeatable prices.
-               Whether you're shopping for essentials or treating yourself to something special, our 50% discount ensures you get more for less.</p>
+            <h2>
+              <p class="text-primary">-50% on Purchase</p>
+            </h2>
+            <p class="post-meta mb-4" id="l">Buy <a href="bigsale.html"
+                class="text-primary font-weight-bold">NOW..</a><span class="block-8-sep">&bullet;</span> Till November
+              3, 2023</p>
+            <p id="l">Enjoy a fantastic 50% off on all your purchases at our store! It's the perfect time to grab those
+              items you've had your eye on or explore new products at unbeatable prices.
+              Whether you're shopping for essentials or treating yourself to something special, our 50% discount ensures
+              you get more for less.</p>
             <p><a href="bigsale.html" class="btn btn-primary btn-sm">Shop Now</a></p>
           </div>
         </div>
@@ -635,8 +684,8 @@ img {
       <div>
         <div class="row justify-content-center">
           <div class="col-md-7 site-section-heading text-center pt-4">
-        <h2 id="i">Help</h2>
-        </div>
+            <h2 id="i">Help</h2>
+          </div>
         </div>
       </div>
       <div class="container" id="d">
@@ -670,7 +719,7 @@ img {
               </div>
             </div>
           </div>
-  
+
           <div class="col-md-6 col-lg-3">
             <div class="block-5 mb-5">
               <h3 class="footer-heading mb-4">Contact Info</h3>
@@ -692,9 +741,9 @@ img {
             </div>
           </div>
         </div>
-        </div>
       </div>
-    </footer>
+  </div>
+  </footer>
   </div>
 
   <script src="js/jquery-3.3.1.min.js"></script>
@@ -704,145 +753,146 @@ img {
   <script src="js/owl.carousel.min.js"></script>
   <script src="js/jquery.magnific-popup.min.js"></script>
   <script src="js/aos.js"></script>
- 
+
   <script src="js/main.js"></script>
 
   <script>
     document.querySelectorAll('a[href^="#TheTeam"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
 
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
         });
+      });
     });
-</script>
+  </script>
 
-<script>
-  document.querySelectorAll('a[href^="#i"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-          e.preventDefault();
+  <script>
+    document.querySelectorAll('a[href^="#i"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
 
-          document.querySelector(this.getAttribute('href')).scrollIntoView({
-              behavior: 'smooth'
-          });
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
       });
-  });
-</script>
-<script>
-  document.querySelectorAll('a[href^="#fre"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-          e.preventDefault();
-
-          document.querySelector(this.getAttribute('href')).scrollIntoView({
-              behavior: 'smooth'
-          });
-      });
-  });
-</script>
-<script>
-  document.querySelectorAll('a[href^="#com"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-          e.preventDefault();
-
-          document.querySelector(this.getAttribute('href')).scrollIntoView({
-              behavior: 'smooth'
-          });
-      });
-  });
-</script>
-<script>
-  document.querySelectorAll('a[href^="#big"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-          e.preventDefault();
-
-          document.querySelector(this.getAttribute('href')).scrollIntoView({
-              behavior: 'smooth'
-          });
-      });
-  });
-</script>
-
-<script>
-  $(document).ready(function() {
-    // Add a click event listener on your login button
-    $('#login-icon').click(function() {
-      // Toggle the "clicked" class to hide the comment box
-      $(this).toggleClass('clicked');
     });
-  });
-</script>
+  </script>
+  <script>
+    document.querySelectorAll('a[href^="#fre"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
 
-<script src="script.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  var slides = document.querySelectorAll(".slide");
-  var currentSlideIndex = 0;
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+  <script>
+    document.querySelectorAll('a[href^="#com"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
 
-  // Show the first slide by default
-  slides[currentSlideIndex].style.display = "block";
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+  <script>
+    document.querySelectorAll('a[href^="#big"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
 
-  function showNextSlide() {
-    slides[currentSlideIndex].style.display = "none";
-    currentSlideIndex = (currentSlideIndex + 1) % slides.length;
-    slides[currentSlideIndex].style.display = "block";
-  }
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
 
-  setInterval(showNextSlide, 2000); // Change slides every 3 seconds
-});
+  <script>
+    $(document).ready(function () {
+      // Add a click event listener on your login button
+      $('#login-icon').click(function () {
+        // Toggle the "clicked" class to hide the comment box
+        $(this).toggleClass('clicked');
+      });
+    });
+  </script>
 
-</script>
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var slides = document.querySelectorAll(".slide");
+      var currentSlideIndex = 0;
 
-<script>
-  let currentImageIndex = 0;
-  const images = document.querySelectorAll('.container1 img');
-  const bulletIndicators = document.getElementById('bulletIndicators');
+      // Show the first slide by default
+      slides[currentSlideIndex].style.display = "block";
 
-  function showImage(index) {
+      function showNextSlide() {
+        slides[currentSlideIndex].style.display = "none";
+        currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+        slides[currentSlideIndex].style.display = "block";
+      }
+
+      setInterval(showNextSlide, 2000); // Change slides every 3 seconds
+    });
+
+  </script>
+
+  <script>
+    let currentImageIndex = 0;
+    const images = document.querySelectorAll('.container1 img');
+    const bulletIndicators = document.getElementById('bulletIndicators');
+
+    function showImage(index) {
       images.forEach((image, i) => {
-          if (i === index) {
-              image.style.opacity = 1;
-          } else {
-              image.style.opacity = 0;
-          }
+        if (i === index) {
+          image.style.opacity = 1;
+        } else {
+          image.style.opacity = 0;
+        }
       });
 
       // Update bullet indicators
       bulletIndicators.querySelectorAll('.bullet').forEach((bullet, i) => {
-          if (i === index) {
-              bullet.classList.add('active');
-          } else {
-              bullet.classList.remove('active');
-          }
+        if (i === index) {
+          bullet.classList.add('active');
+        } else {
+          bullet.classList.remove('active');
+        }
       });
-  }
+    }
 
-  function nextImage() {
+    function nextImage() {
       currentImageIndex = (currentImageIndex + 1) % images.length;
       showImage(currentImageIndex);
-  }
+    }
 
-  function prevImage() {
+    function prevImage() {
       currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
       showImage(currentImageIndex);
-  }
+    }
 
-  // Create bullet indicators
-  for (let i = 0; i < images.length; i++) {
+    // Create bullet indicators
+    for (let i = 0; i < images.length; i++) {
       const bullet = document.createElement('div');
       bullet.classList.add('bullet');
       bullet.addEventListener('click', () => showImage(i));
       bulletIndicators.appendChild(bullet);
-  }
+    }
 
-  showImage(currentImageIndex);
+    showImage(currentImageIndex);
 
-  document.getElementById('next').addEventListener('click', nextImage);
-  document.getElementById('prev').addEventListener('click', prevImage);
+    document.getElementById('next').addEventListener('click', nextImage);
+    document.getElementById('prev').addEventListener('click', prevImage);
 
-  // Set an interval to automatically transition to the next image (adjust the time interval as needed)
-  setInterval(nextImage, 5000); // 5 seconds
-</script>
-  </body>
+    // Set an interval to automatically transition to the next image (adjust the time interval as needed)
+    setInterval(nextImage, 5000); // 5 seconds
+  </script>
+</body>
+
 </html>

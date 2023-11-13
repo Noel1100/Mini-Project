@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Admin Dashboard | Electro-KART</title>
     <meta charset="utf-8">
@@ -11,21 +12,26 @@
             font-family: 'Roboto', sans-serif;
             background-color: #f5f5f5;
         }
+
         .container {
             padding: 20px;
         }
+
         .header {
             text-align: center;
             padding: 30px 0;
         }
+
         .btn-group {
             margin-bottom: 20px;
         }
+
         .btn-group .btn {
             margin-right: 10px;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="header">
@@ -44,4 +50,5 @@
         </div>
     </div>
 </body>
+
 </html>

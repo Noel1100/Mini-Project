@@ -158,19 +158,20 @@ $conn->close();
 </head>
 
 <body>
-    <h1>Insert Product</h1>
+    <h1><center>Insert Product</center></h1><br>
     <form action="" method="post" enctype="multipart/form-data">
         <label for="productname">Product Name:</label>
-        <input type="text" name="productname" id="productname" required><br>
+        <input type="text" name="productname" id="productname" required><br><br>
 
         <label for="description">Product Description:</label>
-        <textarea name="description" id="description" required></textarea><br>
+        <textarea name="description" id="description" required></textarea><br><br>
 
         <label for="stock">Stock:</label>
-        <input type="number" name="stock" id="stock" required><br>
+        <input type="number" name="stock" id="stock" required><br><br>
+
 
         <label for="price">Price:</label>
-        <input type="number" name="price" id="price" required><br>
+        <input type="number" name="price" id="price" required><br><br>
 
         <label for="category">Category:</label>
         <select name="category" id="category" required>
@@ -183,12 +184,18 @@ $conn->close();
             <option value="Home Appliances">Home Appliances</option>
             <option value="Personal Care Appliances">Personal Care Appliances</option>
             <!-- Add more categories as needed -->
-        </select><br>
+        </select><br><br>
 
         <label for="brand">Brand:</label>
-        <input type="text" name="brand" id="brand" required><br>
-
+        <input type="text" name="brand" id="brand" required><br><br>
+        
         <label for="product_images">Images:</label>
+        <input type="file" name="product_images[]" id="product_images" accept="image/*" multiple><br><br>
+
+        <input type="file" name="product_images[]" id="product_images" accept="image/*" multiple><br><br>
+
+        <input type="file" name="product_images[]" id="product_images" accept="image/*" multiple><br><br>
+
         <input type="file" name="product_images[]" id="product_images" accept="image/*" multiple><br><br>
 
         <input type="submit" value="Insert Product">
@@ -209,6 +216,8 @@ $conn->close();
     ?>
 
     <!-- Modal -->
+    <?php if (!empty($successMessage)): ?>
+    <!-- Modal -->
     <div id="successModal" class="modal">
         <div class="modal-content">
             <p>
@@ -221,13 +230,14 @@ $conn->close();
     <script>
         // Display the success modal
         const modal = document.getElementById('successModal');
-
         modal.style.display = 'flex';
 
         // Close the modal when the user clicks the OK button
         function closeModal() {
             modal.style.display = 'none';
         }
+    </script>
+<?php endif; ?>
     </script>
 </body>
 

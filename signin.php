@@ -59,12 +59,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             // User not found in both tables, display an error message
             echo "User does not exist.";
+
+            // Check if the username, email, phone, and password already exist in the users table
+            $existingUserSql = "SELECT * FROM users WHERE email='$email'";
+            $existingUserResult = $conn->query($existingUserSql);
+
+            $existingSellerSql = "SELECT * FROM seller WHERE email='$email'";
+            $existingSellerResult = $conn->query($existingSellerSql);
+
+            if ($existingUserResult->num_rows > 0 || $existingSellerResult->num_rows > 0) {
+                echo "Email already exists.";
+            }
         }
     }
 }
 
 $conn->close();
 ?>
+
 
 
 

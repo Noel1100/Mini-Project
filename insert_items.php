@@ -56,6 +56,7 @@ $conn->close();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Insert Product</title>
@@ -105,8 +106,9 @@ $conn->close();
         ul li:last-child {
             margin-bottom: 0;
         }
-          /* Modal styles */
-          .modal {
+
+        /* Modal styles */
+        .modal {
             display: none;
             position: fixed;
             z-index: 1;
@@ -115,8 +117,8 @@ $conn->close();
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0,0.4);
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
             align-items: center;
             justify-content: center;
         }
@@ -124,8 +126,10 @@ $conn->close();
         .modal-content {
             background-color: #fefefe;
             border: 1px solid #888;
-            width: 200px; /* Set the width of the modal */
-            height: 200px; /* Set the height of the modal */
+            width: 200px;
+            /* Set the width of the modal */
+            height: 200px;
+            /* Set the height of the modal */
             padding: 20px;
             text-align: center;
             display: flex;
@@ -152,6 +156,7 @@ $conn->close();
         }
     </style>
 </head>
+
 <body>
     <h1>Insert Product</h1>
     <form action="" method="post" enctype="multipart/form-data">
@@ -189,7 +194,7 @@ $conn->close();
         <input type="submit" value="Insert Product">
     </form>
 
-    <?php if (!empty($_SESSION['uploaded_files'])) : ?>
+    <?php if (!empty($_SESSION['uploaded_files'])): ?>
         <h2>Uploaded Files:</h2>
         <ul>
             <?php foreach ($_SESSION['uploaded_files'] as $file) {
@@ -203,10 +208,12 @@ $conn->close();
     unset($_SESSION['uploaded_files']);
     ?>
 
-  <!-- Modal -->
-  <div id="successModal" class="modal">
+    <!-- Modal -->
+    <div id="successModal" class="modal">
         <div class="modal-content">
-            <p><?php echo $successMessage; ?></p>
+            <p>
+                <?php echo $successMessage; ?>
+            </p>
             <button class="close" onclick="closeModal()">OK</button>
         </div>
     </div>
@@ -223,4 +230,5 @@ $conn->close();
         }
     </script>
 </body>
+
 </html>

@@ -532,14 +532,14 @@
 
     // Get the "item" query parameter
     const itemParam = getQueryParam("item");
-
+    document.addEventListener("DOMContentLoaded", function () {
     // Define an array of item data (you can fetch this from an API or database)
     const items = [
         {
             title: "Marshall Acton III 60W Bluetooth Speaker",
             description: "Loud things come in small packages. Acton III is the most discreet Bluetooth speaker in the home line-up and has an even wider soundstage .",
             description1: "Ex numquam veritatis debitis minima quo error quam eos dolorum quidem perferendis. Quos repellat dignissimos minus, eveniet nam voluptatibus molestias omnis reiciendis perspiciatis illum hic magni iste, velit aperiam quis.",
-            price: "₹31,999",
+            price: "31,999",
             image: "images/item1.jpg",
             
         },
@@ -547,21 +547,21 @@
             title: "MOTIF II A.N.C.",
             description: "Motif II A.N.C. offers huge sound, in a tiny package. Its sleek charging case packs a punch by powering your headphones with 30 hours of wireless playtime.",
             description1: "Ex numquam veritatis debitis minima quo error quam eos dolorum quidem perferendis. Quos repellat dignissimos minus, eveniet nam voluptatibus molestias omnis reiciendis perspiciatis illum hic magni iste, velit aperiam quis.",
-            price: "₹19,999",
+            price: "19,999",
             image: "images/marshall  headphone.jpg",
         },
         {
           title: "TP-Link 16 Port",
           description: "TP-Link 16 Port Gigabit PoE Switch 8 PoE Port+ @150W Easy Smart Plug & Play Sturdy Metal w/Shielded Ports Support QoS, Vlan, IGMP and Link Aggregation.",
           description1: "Ex numquam veritatis debitis minima quo error quam eos dolorum quidem perferendis. Quos repellat dignissimos minus, eveniet nam voluptatibus molestias omnis reiciendis perspiciatis illum hic magni iste, velit aperiam quis.",
-          price: "₹9,999",
+          price: "9,999",
           image: "images/computer accesories.jpg",
         },
         {
           title: "Lava Blaze 5G",
           description: "Buy the Lava Blaze 5G 128 GB (Glass Green, 8 GB RAM) and delve into a new world of possibilities. The stylish and marvellous design of the phone attracts everyone.",
           description1: "Ex numquam veritatis debitis minima quo error quam eos dolorum quidem perferendis. Quos repellat dignissimos minus, eveniet nam voluptatibus molestias omnis reiciendis perspiciatis illum hic magni iste, velit aperiam quis.",
-          price: "₹13,999",
+          price: "13,999",
           image: "images/phone.jpg",
         },
 
@@ -609,8 +609,8 @@
             </div>
 
             </div>
-            <p><a href="cart.html" class="buy-now btn btn-sm btn-primary">Add To Cart</a>
-              <a href="buy.html" class="buy-now btn btn-sm btn-primary">Buy Now</a>
+            <p><a href="cart.html" class="buy-now btn btn-sm btn-primary" id="addToCart">Add To Cart</a>
+              <a href="buy.html" class="buy-now btn btn-sm btn-primary" id="buyNowLink" >Buy Now</a>
               </p>
               <div class="container">
               <p class="h3" style="color: black;">Product Specifications</p>
@@ -672,15 +672,7 @@
             displayItem(itemIndex);
         }
     }
-    function displayItem(itemIndex) {
-  const item = items[itemIndex];
-
-  // Convert the item object to a JSON string and encode it for the URL
-  const itemData = encodeURIComponent(JSON.stringify(item));
-
-  // Redirect to the "buy.html" page with the item data as a parameter
-  window.location.href = `buy.html?item=${itemData}`;
-}
+});
 </script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

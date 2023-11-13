@@ -314,50 +314,6 @@ img {
   <div id="item-container">
     <div class="site-section">
       <div class="container">
-      
-
-       <div class="site-section">
-        <div class="container">
-          <div class="row mb-5">
-            <form class="col-md-12" method="post">
-              <div class="site-blocks-table">
-                <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th class="product-thumbnail">Image</th>
-                      <th class="product-name">Product</th>
-                      <th class="product-quantity">Quantity</th>
-                      <th class="product-total">Total</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td class="product-thumbnail">
-                        <img id="product-image" src="images/item1.jpg" alt="Image" class="img-fluid">
-                      </td>
-                      <td class="product-name">
-                        <h2 class="h5 text-black" id="product-title"> Marshall Acton III 60W Bluetooth Speaker</h2>
-                      </td>
-                      <td>
-                        <div class="input-group mb-3" style="max-width: 120px;">
-                          <div class="input-group-prepend">
-                            <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
-                          </div>
-                          <input type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                          <div class="input-group-append">
-                            <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
-                          </div>
-                        </div>
-  
-                      </td>
-                      <td id="product-price">₹ 0.00</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </form>
-          </div>
-       </div>
        
     <div class="site">
       <div class="">
@@ -710,21 +666,6 @@ img {
 <script src="js/aos.js"></script>
 
 <script src="js/main.js"></script>
-
-<script>
-  // Use JavaScript to update the product details based on the selected item
-  const urlParams = new URLSearchParams(window.location.search);
-  const itemData = urlParams.get('item');
-
-  if (itemData) {
-    const item = JSON.parse(decodeURIComponent(itemData));
-
-    // Update the product details with the selected item's information
-    document.getElementById("product-image").src = item.image;
-    document.getElementById("product-title").textContent = item.title;
-    document.getElementById("product-price").textContent = `₹ ${item.price}`;
-  }
-</script>
 
 
 </body>

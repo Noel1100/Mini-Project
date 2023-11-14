@@ -319,249 +319,67 @@
                 </div>
               </div>
             </div>
-            <div class="content-container">
-              <div class="" id="1">
-                <div class="row mb-5">
-                  <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                    <div class="block-4 text-center border">
-                      <figure class="block-4-image">
-                        <a href="shop-single.html?item=1" class="image-zoom-container"><img src="images/item1.jpg"
-                            alt="Image placeholder" class="img-fluid image-zoom">
-                          <div class="image-zoom-overlay"></div>
-                        </a>
-                      </figure>
-                      <div class="block-4-text p-4" id="oo">
-                        <h3><a href="shop-single.html?item=1">Marshall Acton III 60W Bluetooth Speaker</a></h3>
-                        <ul style="text-align: left;">
-                          <li><strong>Color:</strong> Midnight Black</li>
-                          <li><strong>Size:</strong> 6.5 inches</li>
-                          <li><strong>Processor:</strong>Snapdragon 855
-                          </li>
-                      </ul>
-                        <p class="text-primary font-weight-bold">M.R.P
-                          ₹
-                          31,999</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                    <div class="block-4 text-center border">
-                      <figure class="block-4-image">
-                        <a href="shop-single.html?item=2" class="image-zoom-container"><img
-                            src="images/marshall  headphone.jpg" alt="Image placeholder" class="img-fluid image-zoom">
-                          <div class="image-zoom-overlay"></div>
-                        </a>
-                      </figure>
-                      <div class="block-4-text p-4" id="oo">
-                        <h3><a href="shop-single.html?item=2">MOTIF II A.N.C.</a></h3>
-                        <ul style="text-align: left;">
-                          <li><strong>Color:</strong> Midnight Black</li>
-                          <li><strong>Size:</strong> 6.5 inches</li>
-                          <li><strong>Processor:</strong>Snapdragon 855
-                          </li>
-                      </ul>
-                        <p class="text-primary font-weight-bold">M.R.P.
-                          ₹
-                          19,999</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                    <div class="block-4 text-center border">
-                      <figure class="block-4-image">
-                        <a href="shop-single.html?item=3" class="image-zoom-container"><img
-                            src="images/computer accesories.jpg" alt="Image placeholder" class="img-fluid image-zoom">
-                          <div class="image-zoom-overlay"></div>
-                        </a>
-                      </figure>
-                      <div class="block-4-text p-4" id="oo">
-                        <h3><a href="shop-single.html?item=3">TP-Link 16 Port</a></h3>
-                        <ul style="text-align: left;">
-                          <li><strong>Color:</strong> Midnight Black</li>
-                          <li><strong>Size:</strong> 6.5 inches</li>
-                          <li><strong>Processor:</strong>Snapdragon 855
-                          </li>
-                      </ul>
-                        <p class="text-primary font-weight-bold">M.R.P
-                          ₹
-                          9,999</p>
-                      </div>
-                    </div>
-                  </div>
+            <div class="container">
+            <?php
+            include 'config.php';
+// Fetch property data from the database
+$sql = "SELECT * FROM products";
+$result = $conn->query($sql);
 
-                  <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                    <div class="block-4 text-center border">
-                      <figure class="block-4-image">
-                        <a href="shop-single.html?item=4" class="image-zoom-container"><img src="images/phone.jpg"
-                            alt="Image placeholder" class="img-fluid image-zoom">
-                          <div class="image-zoom-overlay"></div>
-                        </a>
-                      </figure>
-                      <div class="block-4-text p-4" id="oo">
-                        <h3><a href="shop-single.html?item=4">Lava Blaze 5G</a></h3>
-                        <p class="mb-0">Buy the Lava Blaze 5G 128 GB (Glass Green, 8 GB RAM) and delve into a new world
-                          of possibilities. The stylish and marvellous design of the phone attracts everyone.</p>
-                        <p class="text-primary font-weight-bold">M.R.P
-                          ₹
-                          13,999</p>
-                      </div>
-                    </div>
-                  </div>
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $proId = $row['product_id'];
+        $name = $row['product_name'];
+        $title = $row['product_title'];
+        $brand = $row['brand'];
+        $price = $row['price'];
+        $desc = $row['description'];
+        $stock = $row['stock'];
+        $size = $row['size'];
+        $weight = $row['weight'];
+        $color = $row['color'];
+        $inthebox = $row['inthebox'];
+        $highlights = $row['highlights'];
+        $connectivity = $row['connectivity'];
 
-                  <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                    <div class="block-4 text-center border">
-                      <figure class="block-4-image">
-                        <a href="shop-single.html" class="image-zoom-container"><img src="images/inverter.jpg"
-                            alt="Image placeholder" class="img-fluid image-zoom">
-                          <div class="image-zoom-overlay"></div>
-                        </a>
-                      </figure>
-                      <div class="block-4-text p-4" id="oo">
-                        <h3><a href="shop-single.html">JUMBO HOME UPS</a></h3>
-                        <p class="mb-0">HIGH-END MICRO CONTROLLER BASED JUMBO UPS Model are designed using latest
-                          State-of-the-art Technology for Optimum Performance and Higher Reliability.</p>
-                        <p class="text-primary font-weight-bold">M.R.P
-                          ₹
-                          18,360</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                    <div class="block-4 text-center border">
-                      <figure class="block-4-image">
-                        <a href="shop-single.html" class="image-zoom-container"><img src="images/cpu.jpg"
-                            alt="Image placeholder" class="img-fluid image-zoom">
-                          <div class="image-zoom-overlay"></div>
-                        </a>
-                      </figure>
-                      <div class="block-4-text p-4" id="oo">
-                        <h3><a href="shop-single.html">Thermaltake</a></h3>
-                        <p class="mb-0">AMD Ryzen 7 5800X CPU Watercooled, AMD X570 Chipset ATX motherboard, 16GB
-                          ToughRam DDR4 RGB, 1TB NVMe Gen4 M.2, WiFi, Windows 10 Home.</p>
-                        <p class="text-primary font-weight-bold">M.R.P
-                          ₹
-                          4,51,169</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                    <div class="block-4 text-center border">
-                      <figure class="block-4-image">
-                        <a href="shop-single.html" class="image-zoom-container"><img src="images/keyboard.jpg"
-                            alt="Image placeholder" class="img-fluid image-zoom">
-                          <div class="image-zoom-overlay"></div>
-                        </a>
-                      </figure>
-                      <div class="block-4-text p-4" id="oo">
-                        <h3><a href="shop-single.html">Ant Esports KM540 Keyboard Mouse Combo</a></h3>
-                        <p class="mb-0"> a full-size gaming keyboard with RGB backlight and a high-DPI gaming mouse.
-                          This combo has the excellent build quality and a bang for the price.</p>
-                        <p class="text-primary font-weight-bold">M.R.P
-                          ₹
-                          1,250</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                    <div class="block-4 text-center border">
-                      <figure class="block-4-image">
-                        <a href="shop-single.html" class="image-zoom-container"><img src="images/camera1.jpg"
-                            alt="Image placeholder" class="img-fluid image-zoom">
-                          <div class="image-zoom-overlay"></div>
-                        </a>
-                      </figure>
-                      <div class="block-4-text p-4" id="oo">
-                        <h3><a href="shop-single.html">MI Xiaomi Wireless Home Security Camera</a></h3>
-                        <p class="mb-0">2022 Edition | Full HD Picture | 360 View | 2MP | AI Powered Motion Detection |
-                          Enhanced Night Vision| Talk Back Feature (2 Way Calling), 1080p, White</p>
-                        <p class="text-primary font-weight-bold">M.R.P
-                          ₹
-                          2,699</p>
-                      </div>
-                    </div>
-                  </div>
+        // Fetch the first image for the product
+        $imageSql = "SELECT image FROM product_images WHERE product_id = '$proId' LIMIT 1";
+        $imageResult = $conn->query($imageSql);
+        $imageRow = $imageResult->fetch_assoc();
+        $imageUrl = $imageRow['image'];
 
-                  <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                    <div class="block-4 text-center border">
-                      <figure class="block-4-image">
-                        <a href="shop-single.html" class="image-zoom-container"><img src="images/dock.jpg"
-                            alt="Image placeholder" class="img-fluid image-zoom">
-                          <div class="image-zoom-overlay"></div>
-                        </a>
-                      </figure>
-                      <div class="block-4-text p-4" id="oo">
-                        <h3><a href="shop-single.html">Docking Station </a></h3>
-                        <p class="mb-0">Plugable USB-C Triple Display Docking Station with Charging Support/Power
-                          Delivery for Specific Windows USB-C and Thunderbolt 3 Systems</p>
-                        <p class="text-primary font-weight-bold">M.R.P
-                          ₹
-                          41,950</p>
-                      </div>
+        // Output the property data in the desired style
+        echo "<div class='item' id='$proId'>
+            <div class='row mb-5'>
+                <div class='col-sm-6 col-lg-4 mb-4' data-aos='fade-up'>
+                    <div class='block-4 text-center border'>
+                        <figure class='block-4-image'>
+                            <a href='shop-single.html?product_id=$proId' class='image-zoom-container'>
+                                <img src='$imageUrl' alt='Image placeholder' class='img-fluid image-zoom'>
+                                <div class='image-zoom-overlay'></div>
+                            </a>
+                        </figure>
+                        <div class='block-4-text p-4' id='oo'>
+                            <h3><a href='shop-single.html?product_id=$proId'>$name</a></h3>
+                            <ul style='text-align: left;'>
+                                <li><strong>Brand:</strong> $brand</li>
+                                <li><strong>Color:</strong> $color</li>
+                                <li><strong>Size:</strong> $size</li>
+                                <li><strong>Weight:</strong> $weight</li>
+                                <li><strong>Connectivity:</strong> $connectivity</li>
+                            </ul>
+                            <p class='text-primary font-weight-bold'>M.R.P ₹ $price</p>
+                        </div>
                     </div>
-                  </div>
-                  <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                    <div class="block-4 text-center border">
-                      <figure class="block-4-image">
-                        <a href="shop-single.html" class="image-zoom-container"><img src="images/mob1.jpg"
-                            alt="Image placeholder" class="img-fluid image-zoom">
-                          <div class="image-zoom-overlay"></div>
-                        </a>
-                      </figure>
-                      <div class="block-4-text p-4" id="oo">
-                        <h3><a href="shop-single.html">Virtual Reality Headset</a></h3>
-                        <p class="mb-0"> Headset comes with 40mm or 42mm lenses, which provide an expanded field of view
-                          of over 100 degrees, giving users a fully immersive viewing experience. The headset is
-                          designed with eye safety and viewing comfort in mind.The Procus One X model also features
-                          inbuilt headphones. </p>
-                        <p class="text-primary font-weight-bold">M.R.P
-                          ₹
-                          1,999</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                    <div class="block-4 text-center border">
-                      <figure class="block-4-image">
-                        <a href="shop-single.html" class="image-zoom-container"><img src="images/mob2.jpg"
-                            alt="Image placeholder" class="img-fluid image-zoom">
-                          <div class="image-zoom-overlay"></div>
-                        </a>
-                      </figure>
-                      <div class="block-4-text p-4" id="oo">
-                        <h3><a href="shop-single.html">Gorilla Tripod</a></h3>
-                        <p class="mb-0">The Gorillapod mobile tripod is made of high quality ABS. Making it a very heavy
-                          duty product and giving it an exponentially longer life, as compared to other plastic based
-                          camera tripod. Ensuring balance and safety even with a very rough usage your mobile phone,
-                          camera, phone, DSLR.</p>
-                        <p class="text-primary font-weight-bold">M.R.P
-                          ₹
-                          199</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                    <div class="block-4 text-center border">
-                      <figure class="block-4-image">
-                        <a href="shop-single.html" class="image-zoom-container"><img src="images/mob3.jpg"
-                            alt="Image placeholder" class="img-fluid image-zoom">
-                          <div class="image-zoom-overlay"></div>
-                        </a>
-                      </figure>
-                      <div class="block-4-text p-4" id="oo">
-                        <h3><a href="shop-single.html">Hohem iSteady X</a></h3>
-                        <p class="mb-0">Hohem iSteady X - 3-Axis Lightweight Smartphone Gimbal Foldable Handheld Pocket
-                          Stabilizer Youtuber Vlogger Live for iPhone, Android to edit and make creation. ISteady X
-                          gimbal stabilizer rotates your phone automatically.</p>
-                        <p class="text-primary font-weight-bold">M.R.P
-                          ₹
-                          5,798</p>
-                      </div>
-                    </div>
-                  </div>
                 </div>
+            </div>
+        </div>";
+    }
+} else {
+    echo "No products found.";
+}
+?>
 
-              </div>
 
               <div class="row container text-center" data-aos="fade-up">
                 <div class="col-md-12 text-center">
@@ -673,161 +491,6 @@
                         </div>
                       </div>
                     </div>
-
-                    <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                      <div class="block-4 text-center border">
-                        <figure class="block-4-image">
-                          <a href="shop-single.html" class="image-zoom-container"><img src="images/inverter.jpg"
-                              alt="Image placeholder" class="img-fluid image-zoom">
-                            <div class="image-zoom-overlay"></div>
-                          </a>
-                        </figure>
-                        <div class="block-4-text p-4" id="oo">
-                          <h3><a href="shop-single.html">JUMBO HOME UPS</a></h3>
-                          <p class="mb-0">HIGH-END MICRO CONTROLLER BASED JUMBO UPS Model are designed using latest
-                            State-of-the-art Technology for Optimum Performance and Higher Reliability.</p>
-                          <p class="text-primary font-weight-bold">M.R.P
-                            ₹
-                            18,360</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                      <div class="block-4 text-center border">
-                        <figure class="block-4-image">
-                          <a href="shop-single.html" class="image-zoom-container"><img src="images/cpu.jpg"
-                              alt="Image placeholder" class="img-fluid image-zoom">
-                            <div class="image-zoom-overlay"></div>
-                          </a>
-                        </figure>
-                        <div class="block-4-text p-4" id="oo">
-                          <h3><a href="shop-single.html">Thermaltake</a></h3>
-                          <p class="mb-0">AMD Ryzen 7 5800X CPU Watercooled, AMD X570 Chipset ATX motherboard, 16GB
-                            ToughRam DDR4 RGB, 1TB NVMe Gen4 M.2, WiFi, Windows 10 Home.</p>
-                          <p class="text-primary font-weight-bold">M.R.P
-                            ₹
-                            4,51,169</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                      <div class="block-4 text-center border">
-                        <figure class="block-4-image">
-                          <a href="shop-single.html" class="image-zoom-container"><img src="images/keyboard.jpg"
-                              alt="Image placeholder" class="img-fluid image-zoom">
-                            <div class="image-zoom-overlay"></div>
-                          </a>
-                        </figure>
-                        <div class="block-4-text p-4" id="oo">
-                          <h3><a href="shop-single.html">Ant Esports KM540 Keyboard Mouse Combo</a></h3>
-                          <p class="mb-0"> a full-size gaming keyboard with RGB backlight and a high-DPI gaming mouse.
-                            This combo has the excellent build quality and a bang for the price.</p>
-                          <p class="text-primary font-weight-bold">M.R.P
-                            ₹
-                            1,250</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                      <div class="block-4 text-center border">
-                        <figure class="block-4-image">
-                          <a href="shop-single.html" class="image-zoom-container"><img src="images/camera1.jpg"
-                              alt="Image placeholder" class="img-fluid image-zoom">
-                            <div class="image-zoom-overlay"></div>
-                          </a>
-                        </figure>
-                        <div class="block-4-text p-4" id="oo">
-                          <h3><a href="shop-single.html">MI Xiaomi Wireless Home Security Camera</a></h3>
-                          <p class="mb-0">2022 Edition | Full HD Picture | 360 View | 2MP | AI Powered Motion Detection
-                            | Enhanced Night Vision| Talk Back Feature (2 Way Calling), 1080p, White</p>
-                          <p class="text-primary font-weight-bold">M.R.P
-                            ₹
-                            2,699</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                      <div class="block-4 text-center border">
-                        <figure class="block-4-image">
-                          <a href="shop-single.html" class="image-zoom-container"><img src="images/dock.jpg"
-                              alt="Image placeholder" class="img-fluid image-zoom">
-                            <div class="image-zoom-overlay"></div>
-                          </a>
-                        </figure>
-                        <div class="block-4-text p-4" id="oo">
-                          <h3><a href="shop-single.html">Docking Station </a></h3>
-                          <p class="mb-0">Plugable USB-C Triple Display Docking Station with Charging Support/Power
-                            Delivery for Specific Windows USB-C and Thunderbolt 3 Systems</p>
-                          <p class="text-primary font-weight-bold">M.R.P
-                            ₹
-                            41,950</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                      <div class="block-4 text-center border">
-                        <figure class="block-4-image">
-                          <a href="shop-single.html" class="image-zoom-container"><img src="images/mob1.jpg"
-                              alt="Image placeholder" class="img-fluid image-zoom">
-                            <div class="image-zoom-overlay"></div>
-                          </a>
-                        </figure>
-                        <div class="block-4-text p-4" id="oo">
-                          <h3><a href="shop-single.html">Virtual Reality Headset</a></h3>
-                          <p class="mb-0"> Headset comes with 40mm or 42mm lenses, which provide an expanded field of
-                            view of over 100 degrees, giving users a fully immersive viewing experience. The headset is
-                            designed with eye safety and viewing comfort in mind.The Procus One X model also features
-                            inbuilt headphones. </p>
-                          <p class="text-primary font-weight-bold">M.R.P
-                            ₹
-                            1,999</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                      <div class="block-4 text-center border">
-                        <figure class="block-4-image">
-                          <a href="shop-single.html" class="image-zoom-container"><img src="images/mob2.jpg"
-                              alt="Image placeholder" class="img-fluid image-zoom">
-                            <div class="image-zoom-overlay"></div>
-                          </a>
-                        </figure>
-                        <div class="block-4-text p-4" id="oo">
-                          <h3><a href="shop-single.html">Gorilla Tripod</a></h3>
-                          <p class="mb-0">The Gorillapod mobile tripod is made of high quality ABS. Making it a very
-                            heavy duty product and giving it an exponentially longer life, as compared to other plastic
-                            based camera tripod. Ensuring balance and safety even with a very rough usage your mobile
-                            phone, camera, phone, DSLR.</p>
-                          <p class="text-primary font-weight-bold">M.R.P
-                            ₹
-                            199</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                      <div class="block-4 text-center border">
-                        <figure class="block-4-image">
-                          <a href="shop-single.html" class="image-zoom-container"><img src="images/mob3.jpg"
-                              alt="Image placeholder" class="img-fluid image-zoom">
-                            <div class="image-zoom-overlay"></div>
-                          </a>
-                        </figure>
-                        <div class="block-4-text p-4" id="oo">
-                          <h3><a href="shop-single.html">Hohem iSteady X</a></h3>
-                          <p class="mb-0">Hohem iSteady X - 3-Axis Lightweight Smartphone Gimbal Foldable Handheld
-                            Pocket Stabilizer Youtuber Vlogger Live for iPhone, Android to edit and make creation.
-                            ISteady X gimbal stabilizer rotates your phone automatically.</p>
-                          <p class="text-primary font-weight-bold">M.R.P
-                            ₹
-                            5,798</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
 
                 <div class="row container text-center" data-aos="fade-up">
                   <div class="col-md-12 text-center">

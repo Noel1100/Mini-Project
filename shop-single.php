@@ -174,25 +174,61 @@
         </div>
       </div>
     </div>
+   
     <div id="item-container">
       <div class="site-section">
-        <div class="container">
+        <div class="container show">
           <div class="row">
+          <?php
+    include 'config.php';
+
+    // Check if the property ID is set in the URL
+    if (isset($_GET['show'])) {
+      $proId = $_GET['show'];
+
+      // Fetch property details from the database based on the property ID
+      $proSql = "SELECT * FROM products WHERE product_id = '$proId'";
+      $proResult = $conn->query($proSql);
+
+      if ($proResult->num_rows > 0) {
+        $proRow = $propertyResult->fetch_assoc();
+        $name = $proRow['product_name'];
+        $title = $proRow['product_title'];
+        $brand = $proRow['brand'];
+        $price = $proRow['price'];
+        $desc = $proRow['description'];
+        $stock = $proRow['stock'];
+        $size = $proRow['size'];
+        $weight = $proRow['weight'];
+        $color = $proRow['color'];
+        $inthebox =$proRow['inthebox'];
+        $highlights = $$proRow['highlights'];
+        $connectivity = $proRow['connectivity'];
+        // Output the property data in the desired style
+        $imageSql = "SELECT image, image1, image2, image3 FROM product_images WHERE bid = '$propertyId'";
+        $imageResult = $conn->query($imageSql);
+        $imageRow = $imageResult->fetch_assoc();
+        $imageUrl = $imageRow['image'];
+        $imageUrl1 = isset($imageRow['image1']) ? $imageRow['image1'] : '';
+        $imageUrl2 = isset($imageRow['image2']) ? $imageRow['image2'] : '';
+        $imageUrl3 = isset($imageRow['image3']) ? $imageRow['image3'] : '';
+
+        echo '
             <div class="col-md-6" style="border-right: 1px solid #2e2e2e;">
-              <img id="main-image" src="images/item1.jpg" alt="Image" class="img-fluid">
+              <img id="main-image" src="$imagesUrl" alt="Image" class="img-fluid">
               <br><br>
               <div class="row">
                 <div class="col-md-4">
-                  <img src="images/marshall_sub.png" alt="Image 2" class="img-fluid thumb"
-                    data-src="images/marshall_sub.png" id="sub-image1" style="width: 150px; height: 100px;">
+                  <img src="$imagesUrl1" alt="Image 2" class="img-fluid thumb"
+                    data-src="$imagesUrl1" id="sub-image1" style="width: 150px; height: 100px;">
                 </div>
                 <div class="col-md-4">
-                  <img src="images/marshall1_sub.png" alt="Image 3" class="img-fluid thumb"
-                    data-src="images/marshall1_sub.jpg" id="sub-image2" style="width: 150px; height: 100px;">
+                  <img src="i$imagesUrl2" alt="Image 3" class="img-fluid thumb"
+                    data-src="$imagesUrl2" id="sub-image2" style="width: 150px; height: 100px;">
                 </div>
                 <div class="col-md-4">
-                  <img src="images/marshall2_sub.png" alt="Image 4" class="img-fluid thumb"
-                    data-src="images/marshall2_sub.jpg" id="sub-image3" style="width: 150px; height: 100px;">
+                  <img src="$imagesUrl3" alt="Image 4" class="img-fluid thumb"
+                    data-src="$imagesUrl3" id="sub-image3" style="width: 150px; height: 100px;">
                 </div>
               </div>
             </div>
@@ -216,207 +252,19 @@
                   </div>
                 </div>
 
-              </div>
+              </div>';
+            }
+            } else {
+              echo "No properties found.";
+            }
+            $conn->close();
+            ?>
 
             </div>
           </div>
         </div>
       </div>
-      <div class="site-section">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-6">
-              <img id="main-image" src="images/marshall  headphone.jpg" alt="Image" class="img-fluid">
-              <br><br>
-              <div class="row">
-                <div class="col-md-4">
-                  <img src="images/marshall  headphone.jpg" alt="Image 2" class="img-fluid thumb"
-                    data-src="images/marshall  headphone.jpg" id="sub-image1" style="width: 150px; height: 100px;">
-                </div>
-                <div class="col-md-4">
-                  <img src="images/motif1_sub.png" alt="Image 3" class="img-fluid thumb"
-                    data-src="images/motif1_sub.png" id="sub-image2" style="width: 150px; height: 100px;">
-                </div>
-                <div class="col-md-4">
-                  <img src="images/motif2_sub.png" alt="Image 4" class="img-fluid thumb"
-                    data-src="images/motif2_sub.png" id="sub-image3" style="width: 150px; height: 100px;">
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <h2 class="text-black">MOTIF II A.N.C</h2>
-              <p style="color: black;">Motif II A.N.C. offers huge sound, in a tiny package. Its sleek charging case
-                packs a punch by powering your headphones with 30 hours of wireless playtime.</p>
-              <p class="mb-4" style="color: black;">Ex numquam veritatis debitis minima quo error quam eos dolorum
-                quidem perferendis. Quos repellat dignissimos minus, eveniet nam voluptatibus molestias omnis reiciendis
-                perspiciatis illum hic magni iste, velit aperiam quis.</p>
-              <p><strong class="text-primary h3">M.R.P ₹19,999</strong></p>
-              <div class="mb-5">
-                <div class="input-group mb-3" style="max-width: 120px;">
-                  <div class="input-group-prepend">
-                    <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
-                  </div>
-                  <input type="text" class="form-control text-center" value="1" placeholder=""
-                    aria-label="Example text with button addon" aria-describedby="button-addon1">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="item-container">
-        <div class="site-section">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-6">
-                <img src="images/computer accesories.jpg" alt="Image" class="img-fluid">
-              </div>
-              <div class="col-md-6">
-                <h2 class="text-black">TP-Link 16 Port</h2>
-                <p style="color: black;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, vitae,
-                  explicabo? Incidunt facere, natus soluta dolores iusto! Molestiae expedita veritatis nesciunt
-                  doloremque sint asperiores fuga voluptas, distinctio, aperiam, ratione dolore.</p>
-                <p class="mb-4" style="color: black;">Ex numquam veritatis debitis minima quo error quam eos dolorum
-                  quidem perferendis. Quos repellat dignissimos minus, eveniet nam voluptatibus molestias omnis
-                  reiciendis perspiciatis illum hic magni iste, velit aperiam quis.</p>
-                <p><strong class="text-primary h3">M.R.P ₹9,999</strong></p>
-                <div class="mb-5">
-                  <div class="input-group mb-3" style="max-width: 120px;">
-                    <div class="input-group-prepend">
-                      <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
-                    </div>
-                    <input type="text" class="form-control text-center" value="1" placeholder=""
-                      aria-label="Example text with button addon" aria-describedby="button-addon1">
-                    <div class="input-group-append">
-                      <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
-                    </div>
-                  </div>
-
-                </div>
-              
-
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div id="item-container">
-          <div class="site-section">
-            <div class="container">
-              <div class="row">
-                <div class="col-md-6">
-                  <img src="images/phone.jpg" alt="Image" class="img-fluid">
-                </div>
-                <div class="col-md-6">
-                  <h2 class="text-black">Lava Blaze 5G</h2>
-                  <p style="color: black;">The Lava Blaze 5G 128 GB (Glass Green, 8 GB RAM) and delve into a new world
-                    of possibilities. The stylish and marvellous design of the phone attracts everyone.</p>
-                  <p class="mb-4" style="color: black;">Ex numquam veritatis debitis minima quo error quam eos dolorum
-                    quidem perferendis. Quos repellat dignissimos minus, eveniet nam voluptatibus molestias omnis
-                    reiciendis perspiciatis illum hic magni iste, velit aperiam quis.</p>
-                  <p><strong class="text-primary h3">M.R.P ₹13,999</strong></p>
-                  <div class="mb-5">
-                    <div class="input-group mb-3" style="max-width: 120px;">
-                      <div class="input-group-prepend">
-                        <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
-                      </div>
-                      <input type="text" class="form-control text-center" value="1" placeholder=""
-                        aria-label="Example text with button addon" aria-describedby="button-addon1">
-                      <div class="input-group-append">
-                        <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
-                      </div>
-                    </div>
-
-                  </div>
-                  <p><a href="cart.html" class="buy-now btn btn-sm btn-primary">Add To Cart</a></p>
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="site-section block-3 site-blocks-2 bg-light">
-          <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-md-7 site-section-heading text-center pt-4">
-                <h2>Featured Products</h2>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="nonloop-block-3 owl-carousel">
-                  <div class="item">
-                    <div class="block-4 text-center">
-                      <figure class="block-4-image">
-                        <img src="images/cloth_1.jpg" alt="Image placeholder" class="img-fluid">
-                      </figure>
-                      <div class="block-4-text p-4">
-                        <h3><a href="#">Tank Top</a></h3>
-                        <p class="mb-0">Finding perfect t-shirt</p>
-                        <p class="text-primary font-weight-bold">$50</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="block-4 text-center">
-                      <figure class="block-4-image">
-                        <img src="images/shoe_1.jpg" alt="Image placeholder" class="img-fluid">
-                      </figure>
-                      <div class="block-4-text p-4">
-                        <h3><a href="#">Corater</a></h3>
-                        <p class="mb-0">Finding perfect products</p>
-                        <p class="text-primary font-weight-bold">$50</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="block-4 text-center">
-                      <figure class="block-4-image">
-                        <img src="images/cloth_2.jpg" alt="Image placeholder" class="img-fluid">
-                      </figure>
-                      <div class="block-4-text p-4">
-                        <h3><a href="#">Polo Shirt</a></h3>
-                        <p class="mb-0">Finding perfect products</p>
-                        <p class="text-primary font-weight-bold">$50</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="block-4 text-center">
-                      <figure class="block-4-image">
-                        <img src="images/cloth_3.jpg" alt="Image placeholder" class="img-fluid">
-                      </figure>
-                      <div class="block-4-text p-4">
-                        <h3><a href="#">T-Shirt Mockup</a></h3>
-                        <p class="mb-0">Finding perfect products</p>
-                        <p class="text-primary font-weight-bold">$50</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="block-4 text-center">
-                      <figure class="block-4-image">
-                        <img src="images/shoe_1.jpg" alt="Image placeholder" class="img-fluid">
-                      </figure>
-                      <div class="block-4-text p-4">
-                        <h3><a href="#">Corater</a></h3>
-                        <p class="mb-0">Finding perfect products</p>
-                        <p class="text-primary font-weight-bold">$50</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
+    
         <footer class="site-footer border-top">
           <div class="container">
             <div class="row">

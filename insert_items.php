@@ -1,11 +1,11 @@
 <?php
-session_start(); // Start the session
+session_start();
 include 'config.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Check if form was submitted
-    $name = $_POST['product_name'];
+    $name = $_POST['productname'];
     $title = $_POST['product_title'];
+    $highlights = $_POST['highlights'];
     $desc = $_POST['description'];
     $stock = $_POST['stock'];
     $price = $_POST['price'];
@@ -14,24 +14,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $weight = $_POST['weight'];
     $inthebox = $_POST['inthebox'];
     $connectivity = $_POST['connectivity'];
+    $category = $_POST['category']; // Assuming this is the selected category ID
 
     // Validate form data (check for empty fields)
-    if (empty($name) || empty($title) || empty($desc) || empty($stock) || empty($price) || empty($size) || empty($color) || empty($weight) || empty($inthebox) || empty($connectivity)) {
+    if (empty($name) || empty($title) || empty($highlights) || empty($desc) || empty($stock) || empty($price) || empty($size) || empty($color) || empty($weight) || empty($inthebox) || empty($connectivity) || empty($category)) {
         echo "All fields are required.";
     } else {
-        // Insert property details into the database
-        $sql = "INSERT INTO products (product_name, product_title, description, stock, price, size, color, weight, inthebox, connectivity) VALUES ('$name', '$title', '$desc', '$stock', '$price', '$size', '$color', '$weight', '$inthebox','$connectivity')";
+        // Prepare the SQL statement using prepared statements to prevent SQL injection
+        $sql = "INSERT INTO products (product_name, product_title, highlights, description, stock, price, size, color, weight, inthebox, connectivity, cat_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        if ($conn->query($sql) !== TRUE) {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-        } else {
-            // Get the last inserted property ID
-            $proId = $conn->insert_id;
+        // Create a prepared statement
+        $stmt = $conn->prepare($sql);
+    
+        if ($stmt) {
+            // Bind parameters to the prepared statement as strings
+            $stmt->bind_param("sssssiissssi", $name, $title, $highlights, $desc, $stock, $price, $size, $color, $weight, $inthebox, $connectivity, $category);
+    
+            // Execute the prepared statement
+            if ($stmt->execute()) {
+                $proId = $conn->insert_id;
+    
 
-            // Insert image data into the database with the associated property ID
+            // Insert image data into the database with the associated product ID
             if (!empty($_FILES['image']['name'][0])) {
                 foreach ($_FILES['image']['tmp_name'] as $key => $tmp_name) {
-                    $file_name = $_FILES['images']['name'][$key];
+                    $file_name = $_FILES['image']['name'][$key];
                     $targetFilePath = $file_name;
                     move_uploaded_file($tmp_name, $targetFilePath);
 
@@ -64,16 +71,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 move_uploaded_file($_FILES['image3']['tmp_name'][0], $targetFilePath);
                 $conn->query("UPDATE product_images SET image3 = '$targetFilePath' WHERE product_id = '$proId'");
             }
-
-            // Set success message in session
-            $_SESSION['success_message'] = "Product Inserted Sucessfully";
-
-            // Redirect to the same page after successful form submission
+            $_SESSION['success_message'] = "Product Inserted Successfully";
             header('Location: ' . $_SERVER['PHP_SELF']);
             exit;
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
         }
+
+        // Close the prepared statement
+        $stmt->close();
     }
-    $conn->close();
 }
 
 if (isset($_SESSION['success_message'])) {
@@ -120,6 +127,7 @@ if (isset($_SESSION['success_message'])) {
     // Remove the success message from the session to avoid displaying it on page refresh
     unset($_SESSION['success_message']);
 }
+}
 ?>
 
 <!DOCTYPE html>
@@ -127,7 +135,7 @@ if (isset($_SESSION['success_message'])) {
 
 <head>
     <meta charset="UTF-8">
-    <title>Add Property</title>
+    <title>Insert Products</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -143,8 +151,8 @@ if (isset($_SESSION['success_message'])) {
         }
 
         form input,
-        form textarea,
-        form select {
+        form select,form textarea {
+            font-family: 'Arial', sans-serif;
             width: 100%;
             padding: 10px;
             margin-bottom: 10px;
@@ -152,6 +160,7 @@ if (isset($_SESSION['success_message'])) {
             border-radius: 5px;
         }
 
+      
         form input[type="submit"] {
             background-color: #4CAF50;
             color: white;
@@ -226,11 +235,45 @@ if (isset($_SESSION['success_message'])) {
         <center>Insert Product</center>
     </h1><br>
     <form action="" method="post" enctype="multipart/form-data">
+
+        <label for="category">Category:</label>
+        <select name="category" id="category" required>
+            <option value="" disabled selected>Select a category</option>
+            <?php
+            include 'config.php'; // Include the file with the database connection
+            
+            $sql = "SELECT cat_id, category_name FROM categories";
+            $result = $conn->query($sql);
+
+            // Check for errors in query execution
+            if ($result === false) {
+                trigger_error('Error: ' . $conn->error, E_USER_ERROR);
+            }
+
+            // Display fetched categories in the dropdown
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "<option value='" . $row['cat_id'] . "'>" . $row['category_name'] . "</option>";
+                }
+            } else {
+                echo "<option value=''>No categories found</option>";
+            }
+
+            // Close the database connection
+            $conn->close();
+            ?>
+        </select><br><br>
         <label for="productname">Product Name:</label>
         <input type="text" name="productname" id="productname" required><br><br>
 
+        <label for="product_title">Title of the product</label>
+        <textarea type="text" name="product_title" id="product_title" required></textarea><br><br>
+
         <label for="description">Product Description:</label>
         <textarea name="description" id="description" required></textarea><br><br>
+
+        <label for="highlights">Product Highlights:</label>
+        <textarea name="highlights" id="highlights" required></textarea><br><br>
 
         <label for="stock">Stock:</label>
         <input type="number" name="stock" id="stock" required><br><br>
@@ -239,21 +282,23 @@ if (isset($_SESSION['success_message'])) {
         <label for="price">Price:</label>
         <input type="number" name="price" id="price" required><br><br>
 
-        <label for="category">Category:</label>
-        <select name="category" id="category" required>
-            <option value="" disabled selected>Select a category</option>
-            <option value="Mobile Phones and Accessories">Mobile Phones and Accessories</option>
-            <option value="Gaming Consoles">Gaming Consoles</option>
-            <option value="Cameras and Accessories">Camera and Accessories</option>
-            <option value="Audio and Home Entertainment">Audio and Home Entertainment</option>
-            <option value="Wearable technology">Wearable Technology</option>
-            <option value="Home Appliances">Home Appliances</option>
-            <option value="Personal Care Appliances">Personal Care Appliances</option>
-            <!-- Add more categories as needed -->
-        </select><br><br>
-
         <label for="brand">Brand:</label>
         <input type="text" name="brand" id="brand" required><br><br>
+
+        <label for="size">Size:</label>
+        <input type="text" name="size" id="size" required><br><br>
+
+        <label for="color">Color:</label>
+        <input type="text" name="color" id="color" required><br><br>
+
+        <label for="weight">Weight:</label>
+        <input type="text" name="weight" id="weight" required><br><br>
+
+        <label for="brand">In the Box</label>
+        <textarea type="text" name="inthebox" id="inthebox" required></textarea><br><br>
+
+        <label for="connectivity">Connectivity</label>
+        <textarea type="text" name="connectivity" id="connectivity" required></textarea><br><br>
 
         <label for="product_images">Images:</label>
         <input type="file" name="image[]" id="image" accept="image/*" multiple><br><br>

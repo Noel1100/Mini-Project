@@ -443,14 +443,6 @@ include 'config.php';
                 <li><a href="#fre">Featured Products</a></li>
                 <li><a href="#com">Combo Offers</a></li>
                 <li><a href="#big">Big Sale!</a></li>
-                <li class="has-children">
-                  <a href="#">Sub Menu</a>
-                  <ul class="dropdown">
-                    <li><a href="#">Menu One</a></li>
-                    <li><a href="#">Menu Two</a></li>
-                    <li><a href="#">Menu Three</a></li>
-                  </ul>
-                </li>
               </ul>
             </li>
             <li class="">
@@ -607,7 +599,7 @@ include 'config.php';
                     <img src="images/computer accesories.jpg" alt="Image placeholder" class="img-fluid">
                   </figure>
                   <div class="block-4-text p-4">
-                    <h3><a href="#">TP-Link 16 Port</a></h3>
+                    <h3><a href="shop-single.html?item=3">TP-Link 16 Port</a></h3>
                     <p class="mb-0" id="l">TP-Link 16 Port Gigabit PoE Switch 8 PoE Port+ @150W Easy Smart Plug & Play
                       Sturdy Metal w/Shielded Ports Support QoS, Vlan, IGMP and Link Aggregation (TL-SG1016PE).</p>
                     <p class="text-primary font-weight-bold">M.R.P
@@ -622,7 +614,7 @@ include 'config.php';
                     <img src="images/phone.jpg" alt="Image placeholder" class="img-fluid">
                   </figure>
                   <div class="block-4-text p-4">
-                    <h3><a href="#">Lava Blaze</a></h3>
+                    <h3><a href="shop-single.html?item=4">Lava Blaze</a></h3>
                     <p class="mb-0" id="l">Buy the Lava Blaze 5G 128 GB (Glass Green, 8 GB RAM) and delve into a new
                       world of possibilities. The stylish and marvellous design of the phone attracts everyone. </p>
                     <p class="text-primary font-weight-bold">M.R.P

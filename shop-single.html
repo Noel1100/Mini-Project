@@ -126,7 +126,7 @@
               <div class="site-top-icons">
                 <ul>
                   <li>
-                    <a href="signin.php" class="btn btn-sm custom-button">
+                    <a href="demo.html" class="btn btn-sm custom-button">
                       <span class="icon"><i class="fas fa-solid fa-store"></i></span>Become a Seller
                     </a>
                   </li>
@@ -298,7 +298,7 @@
                   </div>
 
                 </div>
-                <p><a href="cart.html" class="buy-now btn btn-sm btn-primary">Add To Cart</a></p>
+              
 
               </div>
             </div>
@@ -543,6 +543,8 @@
         function displayItem(itemIndex) {
           const item = items[itemIndex];
           const itemContainer = document.getElementById("item-container");
+         
+
 
           const itemHTML = `
         <div id="item-container">
@@ -570,19 +572,20 @@
             <p class="mb-4" style="color: black;">${item.description1}</p>
                     <p><strong class="text-primary h3">M.R.P ${item.price}</strong></p>
                     <div class="mb-5">
-              <div class="input-group mb-3" style="max-width: 120px;">
-              <div class="input-group-prepend">
-                <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
-              </div>
-              <input type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-              <div class="input-group-append">
-                <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
-              </div>
-            </div>
+                      <div class="input-group mb-3" style="max-width: 120px;">
+  <div class="input-group-prepend">
+    <button class="btn btn-outline-primary js-btn-minus" type="button" onclick="decrementQuantity()">−</button>
+  </div>
+  <input id="quantityInput" type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+  <div class="input-group-append">
+    <button class="btn btn-outline-primary js-btn-plus" type="button" onclick="incrementQuantity()">+</button>
+  </div>
+</div>
 
             </div>
-            <p><a href="cart.html" class="buy-now btn btn-sm btn-primary" id="addToCart">Add To Cart</a>
-              <a href="buy.html" class="buy-now btn btn-sm btn-primary" id="buyNowLink" >Buy Now</a>
+            <p><!-- Link to cart page with parameters -->
+              <a href="cart.html" onclick="addToCart('${item.title}', '${item.image}', '1', '${item.price}')" class="btn btn-primary">Add to Cart</a>
+              <a href="#" onclick="addToBuy('${item.title}', document.getElementById('quantityInput').value, '${item.price}'); return false;" class="buy-now btn btn-sm btn-primary" id="buyNowLink">Buy Now</a>
               </p>
           
 
@@ -648,6 +651,53 @@
         }
       });
       </script>
+      <script>
+        function addToCart(productName, imageURL, quantity, total) {
+          // Retrieve existing cart items from localStorage
+          const existingCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+      
+          // Add the new item to the cart
+          const newItem = { productName, imageURL, quantity, total };
+          existingCartItems.push(newItem);
+      
+          // Save the updated cart items back to localStorage
+          localStorage.setItem('cartItems', JSON.stringify(existingCartItems));
+      
+          // Optionally, you can redirect to the cart page after adding the item
+          window.location.href = 'cart.html';
+        }
+      </script>
+<script>
+  function incrementQuantity() {
+    var quantityInput = document.getElementById('quantityInput');
+    quantityInput.value = parseInt(quantityInput.value) + 0;
+  }
+
+  function decrementQuantity() {
+    var quantityInput = document.getElementById('quantityInput');
+    if (parseInt(quantityInput.value) > 1) {
+      quantityInput.value = parseInt(quantityInput.value) - 0;
+    }
+  }
+
+  function addToBuy(itemTitle, quantity, price) {
+    // Assuming buyItems is an array in localStorage
+    let buyItems = JSON.parse(localStorage.getItem('buyItems')) || [];
+
+    // Add the current item to the buyItems array with the updated quantity
+    buyItems.push({
+      title: itemTitle,
+      quantity: quantity,
+      price: price
+    });
+
+    // Save the updated buyItems array to localStorage
+    localStorage.setItem('buyItems', JSON.stringify(buyItems));
+
+    // Redirect to the buy.html page
+    window.location.href = 'buy.html';
+  }
+</script>
 
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script>
@@ -691,6 +741,18 @@
             document.getElementById("sub-image1").src = "images/marshall  headphone.jpg";
             document.getElementById("sub-image2").src = "images/motif1_sub.png";
             document.getElementById("sub-image3").src = "images/motif2_sub.png";
+          }
+          else if (item === "3") {
+            document.getElementById("main-image").src = "images/computer accesories.jpg";
+            document.getElementById("sub-image1").src = "images/computer accesories.jpg";
+            document.getElementById("sub-image2").src = "images/tp1.png";
+            document.getElementById("sub-image3").src = "images/tp2.png";
+          }
+          else if (item === "4") {
+            document.getElementById("main-image").src = "images/phone.jpg";
+            document.getElementById("sub-image1").src = "images/phone.jpg";
+            document.getElementById("sub-image2").src = "images/phone1.png";
+            document.getElementById("sub-image3").src = "images/phone2.png";
           }
         });
       </script>

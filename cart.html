@@ -9,7 +9,8 @@
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
   <link rel="stylesheet" href="fonts/icomoon/style.css">
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/magnific-popup.css">
   <link rel="stylesheet" href="css/jquery-ui.css">
@@ -114,77 +115,73 @@
   </style>
 
 
-
-
 </head>
 
-<body>
-  <div class="site-wrap">
-    <header class="site-navbar" role="banner">
-      <div class="site-navbar-top">
-        <div class="container">
-          <div class="row align-items-center">
+<div class="site-wrap">
+  <header class="site-navbar" role="banner">
+    <div class="site-navbar-top">
+      <div class="">
+        <div class="row align-items-center">
 
-            <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
-              <form action="" class="site-block-top-search">
-                <span class="icon icon-search2"></span>
-                <input type="text" class="form-control border-0" placeholder="Search">
-              </form>
-            </div>
-
-            <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
-              <div class="site-logo">
-                <a href="index.php" class="js-logo-clone">
-                  <img src="images/kart.jpg" alt="Electro-KART" class="logo-image">
-                  <span class="logo-text">Electro-Kart</span>
-                </a>
-              </div>
-            </div>
-
-            <div class="col-6 col-md-4 order-3 order-md-3 text-right">
-              <div class="site-top-icons">
-                <ul>
-                  <li><a href="signin.html"><span class="icon icon-person"></span></a></li>
-                  <li><a href="#"><span class="icon icon-heart-o"></span></a></li>
-                  <li>
-                    <a href="cart.html" class="site-cart active" style="color: blue;">
-                      <span class="icon icon-shopping_cart"></span>
-                      <span class="count">2</span>
-                    </a>
-                  </li>
-                  <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><span
-                        class="icon-menu"></span></a></li>
-                </ul>
-              </div>
-            </div>
-
+          <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left" style="padding-left: 50px;">
+            <form action="" class="site-block-top-search">
+              <span class="icon icon-search2"></span>
+              <input type="text" class="form-control border-0" placeholder="Search">
+            </form>
           </div>
+
+          <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
+            <div class="site-logo">
+              <a href="index.php" class="js-logo-clone">
+                <img src="images/kart.jpg" alt="Electro-KART" class="logo-image">
+                <span class="logo-text">Electro-Kart</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4 order-3 order-md-3 text-right" style="padding-right: 50px;">
+            <div class="site-top-icons">
+              <ul>
+                <li>
+                  <a href="demo.html" class="btn btn-sm custom-button">
+                    <span class="icon"><i class="fas fa-solid fa-store"></i></span>Become a Seller
+                  </a>
+                </li>
+
+                <li>
+                  <a href="signin.php" class="btn btn-sm custom-button">
+                    <span class="icon"><i class="fas fa-sign-in-alt"></i></span> Login
+                  </a>
+                </li>
+
+                <li>
+                  <a href="cart.html" class="site-cart btn btn-sm custom-button border-primary">
+                    <span class="icon icon-shopping_cart"><i class="fas"></i></span> Cart
+                    <span class="count">2</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
         </div>
       </div>
-      <nav class="site-navigation text-right text-md-center" role="navigation">
-        <div class="container">
-          <ul class="site-menu js-clone-nav d-none d-md-block">
-            <li class="has-children">
-              <a href="index.php">Home</a>
-              <ul class="dropdown">
-                <li><a href="index.html#fre">Featured Products</a></li>
-                <li><a href="index.html#com">Combo Offers</a></li>
-                <li><a href="bigsale.html">Big Sale!</a></li>
-              </ul>
-            </li>
-            <li class="has-children">
-              <a href="about.html">About</a>
-              <ul class="dropdown">
-                <li><a href="about.html#TheTeam">The Team</a></li>
-                <li><a href="#i">Help</a></li>
-              </ul>
-            </li>
-            <li><a href="shop.html">Shop</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-        </div>
-      </nav>
-    </header>
+    </div>
+    <nav class="site-navigation text-right text-md-center" role="navigation">
+      <div class="container">
+        <ul class="site-menu js-clone-nav d-none d-md-block">
+          <li class="">
+            <a href="index.php">Home</a>
+          </li>
+          <li class="">
+            <a href="about.html">About</a>
+          </li>
+          <li class=""><a href="shop.html">Shop</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
 
     <div class="bg-light py-3">
       <div class="container">
@@ -213,62 +210,7 @@
                     <th class="product-remove">Remove</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td class="product-thumbnail">
-                      <img src="images/item1.jpg" alt="Image" class="img-fluid">
-                    </td>
-                    <td class="product-name">
-                      <h2 class="h5 text-black">Marshall Acton III 60W Bluetooth Speaker</h2>
-                    </td>
-                    <td>
-                      <div class="input-group mb-3" style="max-width: 120px;">
-                        <div class="input-group-prepend">
-                          <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
-                        </div>
-                        <input type="text" class="form-control text-center" value="1" placeholder=""
-                          aria-label="Example text with button addon" aria-describedby="button-addon1">
-                        <div class="input-group-append">
-                          <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
-                        </div>
-                      </div>
-
-                    </td>
-                    <td> ₹ 1,250.00</td>
-                    <td>
-                      <p><a href="buy.html" class="btn btn-primary btn-sm">Shop Now</a></p>
-                    </td>
-                    <td><a href="#" class="btn btn-primary btn-sm remove-item" data-toggle="modal"
-                        data-target="#confirmationModal">X</a></td>
-                  </tr>
-
-                  <tr>
-                    <td class="product-thumbnail">
-                      <img src="images/marshall  headphone.jpg" alt="Image" class="img-fluid">
-                    </td>
-                    <td class="product-name">
-                      <h2 class="h5 text-black">Marshall Headphones</h2>
-                    </td>
-                    <td>
-                      <div class="input-group mb-3" style="max-width: 120px;">
-                        <div class="input-group-prepend">
-                          <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
-                        </div>
-                        <input type="text" class="form-control text-center" value="1" placeholder=""
-                          aria-label="Example text with button addon" aria-describedby="button-addon1">
-                        <div class="input-group-append">
-                          <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
-                        </div>
-                      </div>
-
-                    </td>
-                    <td>₹ 19,999.00</td>
-                    <td>
-                      <p><a href="buy.html" class="btn btn-primary btn-sm">Shop Now</a></p>
-                    </td>
-                    <td><a href="#" class="btn btn-primary btn-sm remove-item" data-toggle="modal"
-                        data-target="#confirmationModal">X</a></td>
-                  </tr>
+                <tbody  id="cartItemsContainer">
                 </tbody>
               </table>
             </div>
@@ -448,48 +390,93 @@
 
   <!-- Add your Bootstrap and jQuery dependencies as you mentioned -->
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const removeButtons = document.querySelectorAll(".remove-item");
-      let selectedItemToRemove;
+ 
+<script>
+ document.addEventListener("DOMContentLoaded", function () {
+  let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  const cartItemsContainer = document.getElementById("cartItemsContainer");
+  const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+  let itemToRemove;
 
-      removeButtons.forEach(function (button) {
-        button.addEventListener("click", function (event) {
-          event.preventDefault();
+  function updateCart() {
+    cartItemsContainer.innerHTML = "";
+    cartItems.forEach((item, index) => {
+      const cartItemHTML = `
+        <tr data-product-id="${item.productId}">
+          <td class="product-thumbnail">
+            <img src="${item.imageURL}" alt="Image" class="img-fluid">
+          </td>
+          <td class="product-name">
+            <h2 class="h5 text-black">${item.productName}</h2>
+          </td>
+          <td><div class="input-group mb-3" style="max-width: 120px;">
+                        <div class="input-group-prepend">
+                          <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                        </div>
+                        <input type="text" class="form-control text-center" value="1" placeholder=""
+                          aria-label="Example text with button addon" aria-describedby="button-addon1">
+                        <div class="input-group-append">
+                          <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                        </div>
+                      </div></td>
+          <td>₹${item.total}</td>
+          <td>
+            <p><a href="buy.html" class="btn btn-primary btn-sm">Shop Now</a></p>
+          </td>
+          <td><a href="#" class="btn btn-primary btn-sm remove-item"  data-item-index="${index}">X</a></td>
+        </tr>
+      `;
 
-          // Store a reference to the closest <tr> element
-          selectedItemToRemove = event.target.closest("tr");
-
-          // Display the confirmation modal
-          $("#confirmationModal").modal("show");
-        });
-      });
-
-      // Add an event listener to the "Remove" button in the modal
-      document.getElementById("confirmRemove").addEventListener("click", function () {
-        if (selectedItemToRemove) {
-          // Remove the selected item's row from the table
-          selectedItemToRemove.remove();
-
-          // Close the modal
-          $("#confirmationModal").modal("hide");
-        }
-      });
-
-      // Add an event listener when the modal is shown
-      $('#confirmationModal').on('shown.bs.modal', function () {
-        // Add the blur effect to the whole page
-        document.body.classList.add("modal-open");
-      });
-
-      // Add an event listener when the modal is hidden
-      $('#confirmationModal').on('hidden.bs.modal', function () {
-        // Remove the blur effect and backdrop
-        document.body.classList.remove("modal-open");
-        $('.modal-backdrop').remove();
-      });
+      cartItemsContainer.innerHTML += cartItemHTML;
     });
-  </script>
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  }
+
+    // Event listener for the plus button
+    cartItemsContainer.addEventListener("click", function (event) {
+    if (event.target && event.target.classList.contains("js-btn-plus")) {
+      const productId = event.target.closest("tr").getAttribute("data-product-id");
+      const selectedItem = cartItems.find(item => item.productId === productId);
+      selectedItem.quantity += 1;
+      selectedItem.total = selectedItem.price * selectedItem.quantity;
+      updateCart();
+    }
+  });
+
+  // Event listener for the minus button
+  cartItemsContainer.addEventListener("click", function (event) {
+    if (event.target && event.target.classList.contains("js-btn-minus")) {
+      const productId = event.target.closest("tr").getAttribute("data-product-id");
+      const selectedItem = cartItems.find(item => item.productId === productId);
+      if (selectedItem.quantity > 1) {
+        selectedItem.quantity -= 1;
+        selectedItem.total = selectedItem.price * selectedItem.quantity;
+        updateCart();
+      }
+    }
+  });
+  // Event delegation to handle click events on "X" links
+  document.body.addEventListener('click', function (event) {
+    if (event.target.classList.contains('remove-item')) {
+      const dataIndex = event.target.getAttribute('data-item-index');
+      itemToRemove = cartItems[dataIndex];
+      confirmationModal.show();
+    }
+  });
+
+  // Event listener for the "Remove" button in the modal
+  document.getElementById('confirmRemove').addEventListener('click', function () {
+    // Remove the selected item from the cartItems array
+    cartItems = cartItems.filter(item => item !== itemToRemove);
+    updateCart();
+    confirmationModal.hide();
+  });
+
+  updateCart();
+});
+</script>
+
+
 
 
 

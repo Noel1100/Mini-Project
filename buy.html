@@ -8,7 +8,8 @@
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
   <link rel="stylesheet" href="fonts/icomoon/style.css">
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/magnific-popup.css">
   <link rel="stylesheet" href="css/jquery-ui.css">
@@ -269,67 +270,73 @@
 </head>
 
 <body>
-<div class="site-wrap">
-  <header class="site-navbar" role="banner">
-    <div class="site-navbar-top">
-      <div class="container">
-        <div class="row align-items-center">
+  <div class="site-wrap">
+    <header class="site-navbar" role="banner">
+      <div class="site-navbar-top">
+        <div class="">
+          <div class="row align-items-center">
 
-          <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
-            <form action="" class="site-block-top-search">
-              <span class="icon icon-search2"></span>
-              <input type="text" class="form-control border-0" placeholder="Search">
-            </form>
-          </div>
-
-          <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
-            <div class="site-logo">
-              <a href="index.php" class="js-logo-clone">
-                <img src="images/kart.jpg" alt="Electro-KART" class="logo-image">
-                <span class="logo-text">Electro-Kart</span>
-              </a>
+            <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left" style="padding-left: 50px;">
+              <form action="" class="site-block-top-search">
+                <span class="icon icon-search2"></span>
+                <input type="text" class="form-control border-0" placeholder="Search">
+              </form>
             </div>
-          </div>
 
-          <div class="col-6 col-md-4 order-3 order-md-3 text-right">
-            <div class="site-top-icons">
-              <ul> 
-                <li><a href="signin.html"><span class="icon icon-person"></span>
-                <div class="comment-box" id="login-comment">
-                  <p style="color: black;">Login</p>
-                </div>
-              </a>
-            </li>
-                <li><a href="#"><span class="icon icon-heart-o"></span></a></li>
-                <li>
-                  <a href="cart.html" class="site-cart">
-                    <span class="icon icon-shopping_cart"></span>
-                    <span class="count">2</span>
-                  </a>
-                </li> 
-                <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><span class="icon-menu"></span></a></li>
-              </ul>
-            </div> 
-          </div>
+            <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
+              <div class="site-logo">
+                <a href="index.php" class="js-logo-clone">
+                  <img src="images/kart.jpg" alt="Electro-KART" class="logo-image">
+                  <span class="logo-text">Electro-Kart</span>
+                </a>
+              </div>
+            </div>
 
+            <div class="col-6 col-md-4 order-3 order-md-3 text-right" style="padding-right: 50px;">
+              <div class="site-top-icons">
+                <ul>
+                  <li>
+                    <a href="demo.html" class="btn btn-sm custom-button">
+                      <span class="icon"><i class="fas fa-solid fa-store"></i></span>Become a Seller
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="signin.php" class="btn btn-sm custom-button">
+                      <span class="icon"><i class="fas fa-sign-in-alt"></i></span> Login
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="cart.html" class="site-cart btn btn-sm custom-button">
+                      <span class="icon icon-shopping_cart"><i class="fas"></i></span> Cart
+                      <span class="count">2</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
-    </div> 
-    <nav class="site-navigation text-right text-md-center" role="navigation">
-      <div class="container">
-        <ul class="site-menu js-clone-nav d-none d-md-block">
-          <li class="">
-            <a href="index.php">Home</a>
-          </li>
-          <li class="">
-            <a href="about.html">About</a>
-          </li>
-          <li><a href="shop.html">Shop</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-        </ul>
-      </div>
-    </nav>
-  </header>
+      <nav class="site-navigation text-right text-md-center" role="navigation">
+        <div class="container">
+          <ul class="site-menu js-clone-nav d-none d-md-block">
+            <li class="">
+              <a href="index.php">Home</a>
+            </li>
+            <li class="">
+              <a href="about.html">About</a>
+            </li>
+            <li class="">
+              <a href="shop.html">Shop</a>
+            </li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
 
   <div class="bg-light py-3">
     <div class="container">
@@ -576,28 +583,13 @@
                       <div class="col-md-12">
                         <h2 class="h3 mb-3 text-black">Your Order</h2>
                         <div class="p-3 p-lg-5 border">
-                          <table class="table site-block-order-table mb-5">
+                          <table class="table site-block-order-table mb-5" id="orderTable">
                             <thead>
                               <th>Product</th>
                               <th>Total</th>
                             </thead>
-                            <tbody>
-                              <tr>
-                                <td>Top Up T-Shirt <strong class="mx-2">x</strong> 1</td>
-                                <td>$250.00</td>
-                              </tr>
-                              <tr>
-                                <td>Polo Shirt <strong class="mx-2">x</strong> 1</td>
-                                <td>$100.00</td>
-                              </tr>
-                              <tr>
-                                <td class="text-black font-weight-bold"><strong>Cart Subtotal</strong></td>
-                                <td class="text-black">$350.00</td>
-                              </tr>
-                              <tr>
-                                <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
-                                <td class="text-black font-weight-bold"><strong>$350.00</strong></td>
-                              </tr>
+                            <tbody id="buyItemsContainer">
+                            
                             </tbody>
                           </table>
 
@@ -740,6 +732,45 @@
   <script src="js/aos.js"></script>
 
   <script src="js/main.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Retrieve items from localStorage
+      let buyItems = JSON.parse(localStorage.getItem('buyItems')) || [];
+      const buyItemsContainer = document.getElementById("buyItemsContainer");
+  
+      // Function to update the cart table
+      function updateBuy() {
+        // Clear existing content in the table body
+        buyItemsContainer.innerHTML = "";
+  
+        // Iterate through the items and add them to the table
+        buyItems.forEach((item) => {
+          const buyItemHTML = `
+            <td>${item.title} <strong class="mx-2">x</strong>${item.quantity}</td>
+            <td>${item.price}</td>
+          `;
+  
+          // Create a new table row
+          const newRow = document.createElement('tr');
+          newRow.innerHTML = buyItemHTML;
+  
+          // Append the new row to the table body
+          buyItemsContainer.appendChild(newRow);
+        });
+      }
+  
+      // Call the updateCart function to populate the cart on page load
+      updateBuy();
+  
+      // Clear the localStorage after retrieving the items
+      localStorage.removeItem('buyItems');
+    });
+  </script>
+  
+  
+  
+
 
 </body>
 

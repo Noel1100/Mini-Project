@@ -401,7 +401,7 @@ include 'config.php';
             <div class="col-6 col-md-4 order-3 order-md-3 text-right" style="padding-right: 50px;">
               <div class="site-top-icons">
                 <ul>
-                  <a href="signin.php" class="btn btn-sm custom-button">
+                  <a href="demo.html" class="btn btn-sm custom-button">
                     <span class="icon"><i class="fas fa-solid fa-store"></i></span>Become a Seller
                   </a>
                   </li>
@@ -525,7 +525,7 @@ include 'config.php';
         <div class="container">
           <div class="row">
             <div class="col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade" data-aos-delay="" id="x">
-              <a class="block-2-item" href="new_arrival.html?home-appliances">
+              <a class="block-2-item" href="#">
                 <figure class="image">
                   <img src="images/refrigerator.jpg" alt="" class="img-fluid">
                 </figure>

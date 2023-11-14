@@ -1,57 +1,125 @@
 <?php
+session_start(); // Start the session
 include 'config.php';
 
-// Start a session
-session_start();
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $productname = $_POST['productname'];
-    $description = $_POST['description'];
+    // Check if form was submitted
+    $name = $_POST['product_name'];
+    $title = $_POST['product_title'];
+    $desc = $_POST['description'];
     $stock = $_POST['stock'];
     $price = $_POST['price'];
-    $category = $_POST['category'];
-    $brand = $_POST['brand'];
+    $size = $_POST['size'];
+    $color = $_POST['color'];
+    $weight = $_POST['weight'];
+    $inthebox = $_POST['inthebox'];
+    $connectivity = $_POST['connectivity'];
 
-    // Handle product images
-    $imageData = array();
-    foreach ($_FILES['product_images']['tmp_name'] as $key => $tmp_name) {
-        $file_name = $_FILES['product_images']['name'][$key];
-        $targetFilePath = $file_name;
-        move_uploaded_file($tmp_name, $targetFilePath);
-        $imageData[] = file_get_contents($targetFilePath);
-    }
+    // Validate form data (check for empty fields)
+    if (empty($name) || empty($title) || empty($desc) || empty($stock) || empty($price) || empty($size) || empty($color) || empty($weight) || empty($inthebox) || empty($connectivity)) {
+        echo "All fields are required.";
+    } else {
+        // Insert property details into the database
+        $sql = "INSERT INTO products (product_name, product_title, description, stock, price, size, color, weight, inthebox, connectivity) VALUES ('$name', '$title', '$desc', '$stock', '$price', '$size', '$color', '$weight', '$inthebox','$connectivity')";
 
-    // Insert data into the database
-    foreach ($imageData as $image) {
-        $stmt = $conn->prepare("INSERT INTO products (productname, brand, image, price, categoryname, description, stock) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $null = NULL; // Use NULL for BLOB parameter
-        $stmt->bind_param('ssbsssi', $productname, $brand, $null, $price, $category, $description, $stock);
-
-        // Assign values to parameters
-        $productname = $_POST['productname'];
-        $brand = $_POST['brand'];
-        $price = $_POST['price'];
-        $category = $_POST['category'];
-        $description = $_POST['description'];
-        $stock = $_POST['stock'];
-        $stmt->send_long_data(2, $image); // Send image data as a stream
-
-        if ($stmt->execute()) {
-            // Redirect to avoid form resubmission on refresh with success message
-            header('Location: ' . $_SERVER['PHP_SELF'] . '?successMessage=Product+Inserted+Successfully');
-            exit();
+        if ($conn->query($sql) !== TRUE) {
+            echo "Error: " . $sql . "<br>" . $conn->error;
         } else {
-            echo "Error: " . $stmt->error;
+            // Get the last inserted property ID
+            $proId = $conn->insert_id;
+
+            // Insert image data into the database with the associated property ID
+            if (!empty($_FILES['image']['name'][0])) {
+                foreach ($_FILES['image']['tmp_name'] as $key => $tmp_name) {
+                    $file_name = $_FILES['images']['name'][$key];
+                    $targetFilePath = $file_name;
+                    move_uploaded_file($tmp_name, $targetFilePath);
+
+                    // Insert image name into the database
+                    $imageSql = "INSERT INTO product_images (product_id, image) VALUES ('$proId', '$targetFilePath')";
+                    if ($conn->query($imageSql) !== TRUE) {
+                        echo "Error: " . $imageSql . "<br>" . $conn->error;
+                    }
+                }
+            }
+
+            // Insert additional images into the new columns
+            if (!empty($_FILES['image1']['name'][0])) {
+                $file_name = $_FILES['image1']['name'][0];
+                $targetFilePath = $file_name;
+                move_uploaded_file($_FILES['image1']['tmp_name'][0], $targetFilePath);
+                $conn->query("UPDATE product_images SET image1 = '$targetFilePath' WHERE product_id = '$proId'");
+            }
+
+            if (!empty($_FILES['image2']['name'][0])) {
+                $file_name = $_FILES['image2']['name'][0];
+                $targetFilePath = $file_name;
+                move_uploaded_file($_FILES['image2']['tmp_name'][0], $targetFilePath);
+                $conn->query("UPDATE product_images SET image2 = '$targetFilePath' WHERE product_id = '$proId'");
+            }
+
+            if (!empty($_FILES['image3']['name'][0])) {
+                $file_name = $_FILES['image3']['name'][0];
+                $targetFilePath = $file_name;
+                move_uploaded_file($_FILES['image3']['tmp_name'][0], $targetFilePath);
+                $conn->query("UPDATE product_images SET image3 = '$targetFilePath' WHERE product_id = '$proId'");
+            }
+
+            // Set success message in session
+            $_SESSION['success_message'] = "Product Inserted Sucessfully";
+
+            // Redirect to the same page after successful form submission
+            header('Location: ' . $_SERVER['PHP_SELF']);
+            exit;
         }
-
-        $stmt->close();
     }
-
-    // Store uploaded files in session
-    $_SESSION['uploaded_files'] = $_FILES['product_images']['name'];
+    $conn->close();
 }
 
-$conn->close();
+if (isset($_SESSION['success_message'])) {
+    echo "<div id='myModal' class='modal'>
+            <div class='modal-content'>
+                <div style='text-align: center;'>
+                    <i class='fas fa-check-circle' style='font-size: 48px; color: #4CAF50;'></i>
+                </div>
+                <p style='text-align: center;'>" . $_SESSION['success_message'] . "</p>
+                <button onclick='closeModal()' style='background-color: #4CAF50; color: white;'>OK</button>
+            </div>
+          </div>
+
+          <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Show the modal box
+                var modal = document.getElementById('myModal');
+                modal.style.display = 'block';
+                // Remove the message from session
+                " . "deleteMessage(); 
+            });
+
+            function deleteMessage() {
+                // Function to remove the message from session
+                fetch('delete_message.php', {
+                    method: 'GET',
+                })
+                .then(response => response.text())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+            }
+
+            function closeModal() {
+                // Function to close the modal box
+                var modal = document.getElementById('myModal');
+                modal.style.display = 'none';
+            }
+          </script>";
+
+    // Remove the success message from the session to avoid displaying it on page refresh
+    unset($_SESSION['success_message']);
+}
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +127,7 @@ $conn->close();
 
 <head>
     <meta charset="UTF-8">
-    <title>Insert Product</title>
+    <title>Add Property</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -107,7 +175,7 @@ $conn->close();
             margin-bottom: 0;
         }
 
-        /* Modal styles */
+        /* Custom modal styles */
         .modal {
             display: none;
             position: fixed;
@@ -119,46 +187,44 @@ $conn->close();
             overflow: auto;
             background-color: rgb(0, 0, 0);
             background-color: rgba(0, 0, 0, 0.4);
-            align-items: center;
-            justify-content: center;
+            padding-top: 60px;
         }
 
         .modal-content {
             background-color: #fefefe;
-            border: 1px solid #888;
-            width: 200px;
-            /* Set the width of the modal */
-            height: 200px;
-            /* Set the height of the modal */
+            margin: 5% auto;
             padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
             text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            border-radius: 10px;
+            /* Added to make the modal box square-shaped */
         }
 
-        .close {
+        button {
             background-color: #4CAF50;
             color: white;
+            padding: 10px 15px;
             border: none;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
             border-radius: 5px;
+            cursor: pointer;
         }
 
-        .close:hover {
+        button:hover {
             background-color: #45a049;
         }
     </style>
+
+    <!-- Add Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-4ayA5WUNhz4GNxQ5XiyWJTna7/aB9/ejTp2MhN5pIG/QJT6z8e+25fLvl4CcGb7bKAAStEVpWtd5aQEGm7rpxQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
-    <h1><center>Insert Product</center></h1><br>
+    <h1>
+        <center>Insert Product</center>
+    </h1><br>
     <form action="" method="post" enctype="multipart/form-data">
         <label for="productname">Product Name:</label>
         <input type="text" name="productname" id="productname" required><br><br>
@@ -188,15 +254,15 @@ $conn->close();
 
         <label for="brand">Brand:</label>
         <input type="text" name="brand" id="brand" required><br><br>
-        
+
         <label for="product_images">Images:</label>
-        <input type="file" name="product_images[]" id="product_images" accept="image/*" multiple><br><br>
+        <input type="file" name="image[]" id="image" accept="image/*" multiple><br><br>
 
-        <input type="file" name="product_images[]" id="product_images" accept="image/*" multiple><br><br>
+        <input type="file" name="image1[]" id="image1" accept="image/*" multiple><br><br>
 
-        <input type="file" name="product_images[]" id="product_images" accept="image/*" multiple><br><br>
+        <input type="file" name="image2[]" id="image2" accept="image/*" multiple><br><br>
 
-        <input type="file" name="product_images[]" id="product_images" accept="image/*" multiple><br><br>
+        <input type="file" name="image3[]" id="image3" accept="image/*" multiple><br><br>
 
         <input type="submit" value="Insert Product">
     </form>
@@ -217,27 +283,27 @@ $conn->close();
 
     <!-- Modal -->
     <?php if (!empty($successMessage)): ?>
-    <!-- Modal -->
-    <div id="successModal" class="modal">
-        <div class="modal-content">
-            <p>
-                <?php echo $successMessage; ?>
-            </p>
-            <button class="close" onclick="closeModal()">OK</button>
+        <!-- Modal -->
+        <div id="successModal" class="modal">
+            <div class="modal-content">
+                <p>
+                    <?php echo $successMessage; ?>
+                </p>
+                <button class="close" onclick="closeModal()">OK</button>
+            </div>
         </div>
-    </div>
 
-    <script>
-        // Display the success modal
-        const modal = document.getElementById('successModal');
-        modal.style.display = 'flex';
+        <script>
+            // Display the success modal
+            const modal = document.getElementById('successModal');
+            modal.style.display = 'flex';
 
-        // Close the modal when the user clicks the OK button
-        function closeModal() {
-            modal.style.display = 'none';
-        }
-    </script>
-<?php endif; ?>
+            // Close the modal when the user clicks the OK button
+            function closeModal() {
+                modal.style.display = 'none';
+            }
+        </script>
+    <?php endif; ?>
     </script>
 </body>
 

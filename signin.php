@@ -107,7 +107,7 @@ $conn->close();
                 <div class="signin-content">
                     <div class="signin-image">
                         <figure><img src="images/signin-image.jpg" alt="sing up image"></figure>
-                        <a href="signup.html" class="signup-image-link">Create an account</a>
+                        <a href="signup.php" class="signup-image-link">Create an account</a>
                     </div>
 
                     <div class="signin-form">

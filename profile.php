@@ -732,7 +732,7 @@ $conn->close();
           <label for="phone" style="color: #7971ea;">State</label>
           <input type="text" class="form-control" id="state" name="state" value="<?php echo $state ?>">
         </div>
-        <button type="submit" class="btn btn-outline" name="update" style="background-color: #7971ea;">Update</button>
+        <button type="submit" class="btn btn-outline" name="update" style="background-color: #7971ea; color: white;">Update</button>
       </div>
     </form>
   </div>

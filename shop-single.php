@@ -130,6 +130,19 @@ if (isset($_GET['show'])) {
       margin-bottom: 15px;
     }
   </style>
+  <style>
+  #d {
+    border: 1px solid #ccc;
+    /* Optional: Add a border for visualization */
+    padding: 20px;
+    /* Add padding to create space inside the container */
+  }
+
+  h2 {
+    margin-top: 10px;
+    /* Add margin to the top of the heading to create space */
+  }
+</style>
 
 </head>
 
@@ -389,63 +402,63 @@ if (isset($_GET['show'])) {
   });
 </script>
 <footer class="site-footer border-top">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-6 mb-5 mb-lg-0">
-        <div class="row">
-          <div class="col-md-12">
-            <h3 class="footer-heading mb-4">Navigations</h3>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <ul class="list-unstyled">
-              <li><a href="#">Sell online</a></li>
-              <li><a href="#">Features</a></li>
-              <li><a href="#">Shopping cart</a></li>
-              <li><a href="#">Store builder</a></li>
-            </ul>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <ul class="list-unstyled">
-              <li><a href="#">Mobile commerce</a></li>
-              <li><a href="#">Dropshipping</a></li>
-              <li><a href="#">Website development</a></li>
-            </ul>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <ul class="list-unstyled">
-              <li><a href="#">Point of sale</a></li>
-              <li><a href="#">Hardware</a></li>
-              <li><a href="#">Software</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
-        <h3 class="footer-heading mb-4">Promo</h3>
-        <a href="#" class="block-6">
-          <img src="images/hero_1.jpg" alt="Image placeholder" class="img-fluid rounded mb-4">
-          <h3 class="font-weight-light  mb-0">Finding Your Perfect Shoes</h3>
-          <p>Promo from nuary 15 &mdash; 25, 2019</p>
-        </a>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="block-5 mb-5">
-          <h3 class="footer-heading mb-4">Contact Info</h3>
-          <ul class="list-unstyled">
-            <li class="address">203 Fake St. Mountain View, San Francisco, California, USA</li>
-            <li class="phone"><a href="tel://23923929210">+2 392 3929 210</a></li>
-            <li class="email">emailaddress@domain.com</li>
-          </ul>
-        </div>
-
-        <div class="block-7">
-          <form action="#" method="post">
-            <label for="email_subscribe" class="footer-heading">Subscribe</label>
-            <div class="form-group">
-              <input type="text" class="form-control py-4" id="email_subscribe" placeholder="Email">
-              <input type="submit" class="btn btn-sm btn-primary" value="Send">
+<div class="container" id="d">
+      <div class="row">
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <div class="row">
+            <div class="col-md-12">
+              <h3 class="footer-heading mb-4">Navigations</h3>
             </div>
-          </form>
+            <div class="col-md-6 col-lg-4">
+              <ul class="list-unstyled">
+                <li><a href="demo.html">Sell online</a></li>
+                <li><a href="about.html">Features</a></li>
+                <li><a href="cart.html">Shopping cart</a></li>
+                <li><a href="shop.php">Shop</a></li>
+              </ul>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <ul class="list-unstyled">
+                <li><a href="shop.php">Categories</a></li>
+                <li><a href="about.html">Shipping Details</a></li>
+                <li><a href="profile.php">Profile</a></li>
+              </ul>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <ul class="list-unstyled">
+                <li><a href="demo.html">How to become a Seller?</a></li>
+                <li><a href="#">Manage Order</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+          <h3 class="footer-heading mb-4"></h3>
+          <a href="#" class="block-6">
+            <!-- Adjust the max-width value to reduce the image size further -->
+            <img src="images/kart.jpg" alt="Image placeholder" class="img-fluid rounded mb-4" style="width: 100%; max-width: 100px; height: auto;">
+            <h3 class="font-weight-light  mb-0">Finding Your Perfect Gadgets</h3>
+            <p>Make Living a Habit</p>
+          </a>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="block-5 mb-5">
+            <h3 class="footer-heading mb-4">Contact Info</h3>
+            <ul class="list-unstyled">
+              <li class="address">203 St. Mountain View, San Francisco, California, USA</li>
+              <li class="phone"><a href="tel://23923929210">+2 392 3929 210</a></li>
+              <li class="email">emailaddress@domain.com</li>
+            </ul>
+          </div>
+
+          <div class="block-7">
+            <form action="#" method="post">
+              <label for="email_subscribe" class="footer-heading"></label>
+              <div class="form-group">
+                <input type="text" class="form-control py-4" id="email_subscribe" placeholder="Email">
+                <input type="submit" class="btn btn-sm btn-primary" value="Send">
+              </div>
+            </form>
         </div>
       </div>
     </div>

@@ -254,6 +254,7 @@ if (isset($_GET['show'])) {
               </p>
               <hr>
               <p><strong class="text-secondary h5">Units Available: ' . $stock . '</strong></p>
+              <p><strong class="text-secondary h5">Product Hightlights: ' . $highlights . '</strong></p>
           </div>
         </div>
             </div>

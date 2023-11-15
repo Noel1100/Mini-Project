@@ -173,7 +173,7 @@ if (isset($_GET['show'])) {
                   </li>
 
                   <li>
-                    <a href="cart.html" class="site-cart btn btn-sm custom-button">
+                    <a href="cart.php" class="site-cart btn btn-sm custom-button">
                       <span class="icon icon-shopping_cart"><i class="fas"></i></span> Cart
                       <span class="count">2</span>
                     </a>
@@ -249,7 +249,7 @@ if (isset($_GET['show'])) {
 
             </div>
             <p><!-- Link to cart page with parameters -->
-              <a href="cart.html" class="btn btn-primary">Add to Cart</a>
+              <a href="shop.php?add_to_cart.php='.$proId.'" class="btn btn-primary">Add to Cart</a>
               <a href="#" class="buy-now btn btn-sm btn-primary" id="buyNowLink">Buy Now</a>
               </p>
               <hr>
@@ -311,27 +311,74 @@ if (isset($_GET['show'])) {
   echo "Product ID not provided.";
 }
 ?>
+<?php
+function cart(){
+  session_start(); // Start the session
+
+  // Check if the user is logged in and the username is stored in a session variable
+  if(isset($_SESSION['username'])){
+    $username = $_SESSION['username'];
+    //echo "Logged-in username: $username";
+    // You can use $username in this function for further processing
+  } else {
+    echo "User not logged in.";
+    // Handle the case when the user is not logged in
+  }
+
+  if(isset($_GET['add_to_cart'])){
+    include 'config.php'; // Assuming you have a file named 'config.php' that contains your database connection
+    
+    $get_product_id = $_GET['add_to_cart'];
+
+    $select_query = "SELECT * FROM cart WHERE product_id = ?";
+    
+    // Assuming $conn is your database connection object
+    $stmt = $conn->prepare($select_query);
+    $stmt->bind_param("i", $get_product_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $stmt->close();
+    $conn->close();
+  }
+}
+?>
+
 <script>
-  function addToCart(productName, imageURL, quantity, total) {
-    // Retrieve existing cart items from localStorage
-    const existingCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  function addToCart() {
+    var productName = '<?php echo $name; ?>';
+    var productPrice = '<?php echo $price; ?>';
+    var productImage = '<?php echo $imageUrl; ?>';
+    var productId = '<?php echo $productId; ?>'; // Replace with your actual product ID variable
+    var quantity = parseInt(document.getElementById('quantityInput').value);
 
-    // Add the new item to the cart
-    const newItem = {
-      productName,
-      imageURL,
-      quantity,
-      total
+    var newItem = {
+      name: productName,
+      price: parseFloat(productPrice),
+      image: productImage,
+      productId: productId,
+      quantity: quantity
     };
-    existingCartItems.push(newItem);
 
-    // Save the updated cart items back to localStorage
-    localStorage.setItem('cartItems', JSON.stringify(existingCartItems));
-
-    // Optionally, you can redirect to the cart page after adding the item
-    window.location.href = 'cart.html';
+    // AJAX POST request to send cart item data to server
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'Cart.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          // Success message or further actions if needed
+          alert('Item added to cart!');
+        } else {
+          // Error handling
+          alert('Failed to add item to cart. Please try again.');
+        }
+      }
+    };
+    xhr.send(JSON.stringify(newItem));
   }
 </script>
+
 <script>
   function incrementQuantity() {
     var quantityInput = document.getElementById('quantityInput');

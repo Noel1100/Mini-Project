@@ -1,3 +1,21 @@
+<?php
+include 'config.php';
+$name = $data['name'];
+$price = $data['price'];
+$image = $data['image'];
+$productId = $data['productId'];
+$quantity = $data['quantity'];
+
+$sql = "INSERT INTO cart (name, price, image, productId, quantity) VALUES ('$name', '$price', '$image', '$productId', '$quantity')";
+
+if ($conn->query($sql) === TRUE) {
+  echo "Item added to cart successfully";
+} else {
+  echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+$conn->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
 

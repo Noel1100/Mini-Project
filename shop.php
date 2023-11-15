@@ -319,7 +319,7 @@
                 </div>
               </div>
             </div>
-            <div class="container">
+            <div class="content-container" >
             <?php
             include 'config.php';
 // Fetch property data from the database
@@ -343,24 +343,24 @@ if ($result->num_rows > 0) {
         $connectivity = $row['connectivity'];
 
         // Fetch the first image for the product
-        $imageSql = "SELECT image FROM product_images WHERE product_id = '$proId' LIMIT 1";
+        $imageSql = "SELECT image FROM product_images WHERE product_id = '$proId'";
         $imageResult = $conn->query($imageSql);
         $imageRow = $imageResult->fetch_assoc();
         $imageUrl = $imageRow['image'];
 
         // Output the property data in the desired style
-        echo "<div class='item' id='$proId'>
+        echo "<div class='' id='1'>
             <div class='row mb-5'>
                 <div class='col-sm-6 col-lg-4 mb-4' data-aos='fade-up'>
                     <div class='block-4 text-center border'>
                         <figure class='block-4-image'>
-                            <a href='shop-single.html?product_id=$proId' class='image-zoom-container'>
+                            <a href='shop-single.php?show=$proId' class='image-zoom-container'>
                                 <img src='$imageUrl' alt='Image placeholder' class='img-fluid image-zoom'>
                                 <div class='image-zoom-overlay'></div>
                             </a>
                         </figure>
                         <div class='block-4-text p-4' id='oo'>
-                            <h3><a href='shop-single.html?product_id=$proId'>$name</a></h3>
+                            <h3><a href='shop-single.php?show=$proId'>$name</a></h3>
                             <ul style='text-align: left;'>
                                 <li><strong>Brand:</strong> $brand</li>
                                 <li><strong>Color:</strong> $color</li>
@@ -379,7 +379,6 @@ if ($result->num_rows > 0) {
     echo "No products found.";
 }
 ?>
-
 
               <div class="row container text-center" data-aos="fade-up">
                 <div class="col-md-12 text-center">

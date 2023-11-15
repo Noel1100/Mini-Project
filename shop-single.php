@@ -1,4 +1,36 @@
-<!DOCTYPE html>
+<?php
+include 'config.php';        // Check if the product ID is set in the URL
+if (isset($_GET['show'])) {
+  $proId = $_GET['show'];
+
+  // Fetch product details from the database based on the product ID
+  $proSql = "SELECT * FROM products WHERE product_id = '$proId'";
+  $proResult = $conn->query($proSql);
+
+  if ($proResult && $proResult->num_rows > 0) {
+    $proRow = $proResult->fetch_assoc();
+    // Retrieve product details
+    $name = $proRow['product_name'];
+    $brand = $proRow['brand'];
+    $price = $proRow['price'];
+    $desc = $proRow['description'];
+    $stock = $proRow['stock'];
+    $size = $proRow['size'];
+    $weight = $proRow['weight'];
+    $color = $proRow['color'];
+    $inthebox = $proRow['inthebox'];
+    $highlights = $proRow['highlights'];
+    $connectivity = $proRow['connectivity'];
+
+    // Output the product data in the desired style
+    $imageSql = "SELECT image, image1, image2, image3 FROM product_images WHERE product_id = '$proId'";
+    $imageResult = $conn->query($imageSql);
+    $imageRow = $imageResult->fetch_assoc();
+    $imageUrl = $imageRow['image'];
+    $imageUrl1 = isset($imageRow['image1']) ? $imageRow['image1'] : '';
+    $imageUrl2 = isset($imageRow['image2']) ? $imageRow['image2'] : '';
+    $imageUrl3 = isset($imageRow['image3']) ? $imageRow['image3'] : '';
+    echo ' <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -71,30 +103,33 @@
       transform: scale(1.2);
     }
   </style>
-<style>
+  <style>
     #pl {
-        margin-top: 40px;
-        margin-left: 5px; /* Adjust the left margin as needed */
-        width: 50%; /* Set the width to take up half of the page */
+      margin-top: 40px;
+      margin-left: 5px;
+      /* Adjust the left margin as needed */
+      width: 50%;
+      /* Set the width to take up half of the page */
     }
-  
+
     ul {
       list-style-type: none;
       padding: 0;
-  }
-  .category-box {
+    }
+
+    .category-box {
       border: 1px solid #ddd;
       border-radius: 5px;
       box-shadow: 2px 2px 5px #ccc;
       padding: 10px;
       margin-bottom: 20px;
-  }
+    }
 
-  .category-divider {
+    .category-divider {
       border-bottom: 1px solid #ddd;
       margin-bottom: 15px;
-  }
-</style>
+    }
+  </style>
 
 </head>
 
@@ -159,7 +194,7 @@
             <li class="">
               <a href="about.html">About</a>
             </li>
-            <li class=""><a href="shop.html">Shop</a></li>
+            <li class=""><a href="shop.php">Shop</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
@@ -169,256 +204,38 @@
     <div class="bg-light py-3">
       <div class="container">
         <div class="row">
-          <div class="col-md-12 mb-0"><a href="index.html">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Shop</strong>
+          <div class="col-md-12 mb-0"><a href="index.html">Home</a> <span class="mx-2 mb-0">/</span> <strong
+              class="text-black">Shop</strong>
           </div>
         </div>
       </div>
     </div>
-   
     <div id="item-container">
-      <div class="site-section">
+                <div class="site-section">
         <div class="container show">
           <div class="row">
-          <?php
-    include 'config.php';
-
-    // Check if the property ID is set in the URL
-    if (isset($_GET['show'])) {
-      $proId = $_GET['show'];
-
-      // Fetch property details from the database based on the property ID
-      $proSql = "SELECT * FROM products WHERE product_id = '$proId'";
-      $proResult = $conn->query($proSql);
-
-      if ($proResult->num_rows > 0) {
-        $proRow = $propertyResult->fetch_assoc();
-        $name = $proRow['product_name'];
-        $title = $proRow['product_title'];
-        $brand = $proRow['brand'];
-        $price = $proRow['price'];
-        $desc = $proRow['description'];
-        $stock = $proRow['stock'];
-        $size = $proRow['size'];
-        $weight = $proRow['weight'];
-        $color = $proRow['color'];
-        $inthebox =$proRow['inthebox'];
-        $highlights = $$proRow['highlights'];
-        $connectivity = $proRow['connectivity'];
-        // Output the property data in the desired style
-        $imageSql = "SELECT image, image1, image2, image3 FROM product_images WHERE bid = '$propertyId'";
-        $imageResult = $conn->query($imageSql);
-        $imageRow = $imageResult->fetch_assoc();
-        $imageUrl = $imageRow['image'];
-        $imageUrl1 = isset($imageRow['image1']) ? $imageRow['image1'] : '';
-        $imageUrl2 = isset($imageRow['image2']) ? $imageRow['image2'] : '';
-        $imageUrl3 = isset($imageRow['image3']) ? $imageRow['image3'] : '';
-
-        echo '
-            <div class="col-md-6" style="border-right: 1px solid #2e2e2e;">
-              <img id="main-image" src="$imagesUrl" alt="Image" class="img-fluid">
-              <br><br>
-              <div class="row">
-                <div class="col-md-4">
-                  <img src="$imagesUrl1" alt="Image 2" class="img-fluid thumb"
-                    data-src="$imagesUrl1" id="sub-image1" style="width: 150px; height: 100px;">
-                </div>
-                <div class="col-md-4">
-                  <img src="i$imagesUrl2" alt="Image 3" class="img-fluid thumb"
-                    data-src="$imagesUrl2" id="sub-image2" style="width: 150px; height: 100px;">
-                </div>
-                <div class="col-md-4">
-                  <img src="$imagesUrl3" alt="Image 4" class="img-fluid thumb"
-                    data-src="$imagesUrl3" id="sub-image3" style="width: 150px; height: 100px;">
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6" style="overflow-y: auto;">
-              <h2 class="text-black">Marshall Acton III 60W Bluetooth Speaker</h2>
-              <p style="color: black;">Loud things come in small packages. Acton III is the most discreet Bluetooth
-                speaker in the home line-up and has an even wider soundstage .</p>
-              <p class="mb-4" style="color: black;">Ex numquam veritatis debitis minima quo error quam eos dolorum
-                quidem perferendis. Quos repellat dignissimos minus, eveniet nam voluptatibus molestias omnis reiciendis
-                perspiciatis illum hic magni iste, velit aperiam quis.</p>
-              <p><strong class="text-primary h3">M.R.P ₹31,999</strong></p>
-              <div class="mb-5">
-                <div class="input-group mb-3" style="max-width: 120px;">
-                  <div class="input-group-prepend">
-                    <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
-                  </div>
-                  <input type="text" class="form-control text-center" value="1" placeholder=""
-                    aria-label="Example text with button addon" aria-describedby="button-addon1">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
-                  </div>
-                </div>
-
-              </div>';
-            }
-            } else {
-              echo "No properties found.";
-            }
-            $conn->close();
-            ?>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    
-        <footer class="site-footer border-top">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-6 mb-5 mb-lg-0">
-                <div class="row">
-                  <div class="col-md-12">
-                    <h3 class="footer-heading mb-4">Navigations</h3>
-                  </div>
-                  <div class="col-md-6 col-lg-4">
-                    <ul class="list-unstyled">
-                      <li><a href="#">Sell online</a></li>
-                      <li><a href="#">Features</a></li>
-                      <li><a href="#">Shopping cart</a></li>
-                      <li><a href="#">Store builder</a></li>
-                    </ul>
-                  </div>
-                  <div class="col-md-6 col-lg-4">
-                    <ul class="list-unstyled">
-                      <li><a href="#">Mobile commerce</a></li>
-                      <li><a href="#">Dropshipping</a></li>
-                      <li><a href="#">Website development</a></li>
-                    </ul>
-                  </div>
-                  <div class="col-md-6 col-lg-4">
-                    <ul class="list-unstyled">
-                      <li><a href="#">Point of sale</a></li>
-                      <li><a href="#">Hardware</a></li>
-                      <li><a href="#">Software</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
-                <h3 class="footer-heading mb-4">Promo</h3>
-                <a href="#" class="block-6">
-                  <img src="images/hero_1.jpg" alt="Image placeholder" class="img-fluid rounded mb-4">
-                  <h3 class="font-weight-light  mb-0">Finding Your Perfect Shoes</h3>
-                  <p>Promo from nuary 15 &mdash; 25, 2019</p>
-                </a>
-              </div>
-              <div class="col-md-6 col-lg-3">
-                <div class="block-5 mb-5">
-                  <h3 class="footer-heading mb-4">Contact Info</h3>
-                  <ul class="list-unstyled">
-                    <li class="address">203 Fake St. Mountain View, San Francisco, California, USA</li>
-                    <li class="phone"><a href="tel://23923929210">+2 392 3929 210</a></li>
-                    <li class="email">emailaddress@domain.com</li>
-                  </ul>
-                </div>
-
-                <div class="block-7">
-                  <form action="#" method="post">
-                    <label for="email_subscribe" class="footer-heading">Subscribe</label>
-                    <div class="form-group">
-                      <input type="text" class="form-control py-4" id="email_subscribe" placeholder="Email">
-                      <input type="submit" class="btn btn-sm btn-primary" value="Send">
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-            <div class="row pt-5 mt-5 text-center">
-              <div class="col-md-12">
-              </div>
-
-            </div>
-          </div>
-        </footer>
-      </div>
-
-      <script src="js/jquery-3.3.1.min.js"></script>
-      <script src="js/jquery-ui.js"></script>
-      <script src="js/popper.min.js"></script>
-      <script src="js/bootstrap.min.js"></script>
-      <script src="js/owl.carousel.min.js"></script>
-      <script src="js/jquery.magnific-popup.min.js"></script>
-      <script src="js/aos.js"></script>
-
-      <script src="js/main.js"></script>
-      <script>
-        // Function to parse query parameters
-        function getQueryParam(param) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(param);
-        }
-    
-        // Get the "item" query parameter
-        const itemParam = getQueryParam("item");
-        document.addEventListener("DOMContentLoaded", function () {
-        // Define an array of item data (you can fetch this from an API or database)
-        const items = [
-            {
-                title: "Marshall Acton III 60W Bluetooth Speaker",
-                description: "Loud things come in small packages. Acton III is the most discreet Bluetooth speaker in the home line-up and has an even wider soundstage .",
-                description1: "Ex numquam veritatis debitis minima quo error quam eos dolorum quidem perferendis. Quos repellat dignissimos minus, eveniet nam voluptatibus molestias omnis reiciendis perspiciatis illum hic magni iste, velit aperiam quis.",
-                price: "31,999",
-                image: "images/item1.jpg",
-                
-            },
-            {
-                title: "MOTIF II A.N.C.",
-                description: "Motif II A.N.C. offers huge sound, in a tiny package. Its sleek charging case packs a punch by powering your headphones with 30 hours of wireless playtime.",
-                description1: "Ex numquam veritatis debitis minima quo error quam eos dolorum quidem perferendis. Quos repellat dignissimos minus, eveniet nam voluptatibus molestias omnis reiciendis perspiciatis illum hic magni iste, velit aperiam quis.",
-                price: "19,999",
-                image: "images/marshall  headphone.jpg",
-            },
-            {
-              title: "TP-Link 16 Port",
-              description: "TP-Link 16 Port Gigabit PoE Switch 8 PoE Port+ @150W Easy Smart Plug & Play Sturdy Metal w/Shielded Ports Support QoS, Vlan, IGMP and Link Aggregation.",
-              description1: "Ex numquam veritatis debitis minima quo error quam eos dolorum quidem perferendis. Quos repellat dignissimos minus, eveniet nam voluptatibus molestias omnis reiciendis perspiciatis illum hic magni iste, velit aperiam quis.",
-              price: "9,999",
-              image: "images/computer accesories.jpg",
-            },
-            {
-              title: "Lava Blaze 5G",
-              description: "Buy the Lava Blaze 5G 128 GB (Glass Green, 8 GB RAM) and delve into a new world of possibilities. The stylish and marvellous design of the phone attracts everyone.",
-              description1: "Ex numquam veritatis debitis minima quo error quam eos dolorum quidem perferendis. Quos repellat dignissimos minus, eveniet nam voluptatibus molestias omnis reiciendis perspiciatis illum hic magni iste, velit aperiam quis.",
-              price: "13,999",
-              image: "images/phone.jpg",
-            },
-    
-        ];
-        // Function to display item details
-        function displayItem(itemIndex) {
-          const item = items[itemIndex];
-          const itemContainer = document.getElementById("item-container");
-         
-
-
-          const itemHTML = `
-        <div id="item-container">
-    <div class="site-section">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6"  style="border-right: 1px solid #2e2e2e;">
-            <img id="main-image" src="${item.image}" alt="Image" class="img-fluid">
-            <br><br>
-            <div class="row">
-              <div class="col-md-4">
-                  <img src="${item.subImages}" alt="Image 2" class="img-fluid thumb" data-src="images/marshall_sub.png" id="sub-image1" style="width: 150px; height: 100px;">
-              </div>
-              <div class="col-md-4">
-                  <img src="${item.subImages}" alt="Image 3" class="img-fluid thumb" data-src="images/marshall1_sub.png" id="sub-image2" style="width: 150px; height: 100px;">
-              </div>
-              <div class="col-md-4">
-                  <img src="${item.subImages}" alt="Image 4" class="img-fluid thumb" data-src="images/marshall2_sub.png" id="sub-image3" style="width: 150px; height: 100px;">
-              </div>
-          </div>
-            </div>
-          <div class="col-md-6" style="overflow-y: auto;">
-                    <h3 style="color: black;">${item.title}</h3>
-                    <p style="color: black;">${item.description}</p>
-            <p class="mb-4" style="color: black;">${item.description1}</p>
-                    <p><strong class="text-primary h3">M.R.P ${item.price}</strong></p>
+  <div class="col-md-6" style="border-right: 1px solid #2e2e2e;">
+                                <img id="main-image" src="' . $imageUrl . '" alt="Image" class="img-fluid">
+                                <br><br>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img src="' . $imageUrl1 . '" alt="Image 2" class="img-fluid thumb"
+                                            data-src="' . $imageUrl1 . '" id="sub-image1" style="width: 150px; height: 100px;">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <img src="' . $imageUrl2 . '" alt="Image 3" class="img-fluid thumb"
+                                            data-src="' . $imageUrl2 . '" id="sub-image2" style="width: 150px; height: 100px;">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <img src="' . $imageUrl3 . '" alt="Image 4" class="img-fluid thumb"
+                                            data-src="' . $imageUrl3 . '" id="sub-image3" style="width: 150px; height: 100px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="overflow-y: auto;">
+                    <h3 style="color: black;">' . $name . '</h3>
+                    <p style="color: black;">' . $desc . '</p><br>
+                    <p><strong class="text-primary h3">M.R.P ' . $price . '</strong></p>
                     <div class="mb-5">
                       <div class="input-group mb-3" style="max-width: 120px;">
   <div class="input-group-prepend">
@@ -432,89 +249,88 @@
 
             </div>
             <p><!-- Link to cart page with parameters -->
-              <a href="cart.html" onclick="addToCart('${item.title}', '${item.image}', '1', '${item.price}')" class="btn btn-primary">Add to Cart</a>
-              <a href="#" onclick="addToBuy('${item.title}', document.getElementById('quantityInput').value, '${item.price}'); return false;" class="buy-now btn btn-sm btn-primary" id="buyNowLink">Buy Now</a>
+              <a href="cart.html" class="btn btn-primary">Add to Cart</a>
+              <a href="#" class="buy-now btn btn-sm btn-primary" id="buyNowLink">Buy Now</a>
               </p>
-          
-
+              <hr>
+              <p><strong class="text-secondary h5">Units Available: ' . $stock . '</strong></p>
           </div>
         </div>
-
-
-        <div class="container" id="pl">
-    <p class="h3" style="color: black; text-align: center;">Product Specifications</p>
-
-    <ul>
-      <div class="category-box">
-            <strong>General</strong>
-            <ul style="display: inline-block; margin-left: 15px; vertical-align: top;">
-                <li style="color: black;">Product Name: Example Product</li>
-                <li style="color: black;">Model: ABC-123</li>
-            </ul>
-
-        <li class="category-divider"></li>
-
-            <strong>Features</strong>
-            <ul style="display: inline-block; margin-left: 15px; vertical-align: top;">
-                <li style="color: black;">Screen Size: 15 inches</li>
-                <li style="color: black;">Processor: Quad-core 2.0 GHz</li>
-            </ul>
-
-        <li class="category-divider"></li>
-
-            <strong>Connectivity</strong>
-            <ul style="display: inline-block; margin-left: 15px; vertical-align: top;">
-                <li style="color: black;">Wi-Fi: 802.11ac</li>
-                <li style="color: black;">Bluetooth: 5.0</li>
-            </ul>
-
-        <li class="category-divider"></li>
-
-    
-            <strong>Other Details</strong>
-            <ul style="display: inline-block; margin-left: 15px; vertical-align: top;">
-                <li style="color: black;">Dimensions: 13.5" x 9.5" x 0.75"</li>
-                <li style="color: black;">Weight: 3.5 lbs</li>
-            </ul>
-      </div>
-    </ul>
+            </div>
+        </div>
+    </div>
 </div>
+      
+<div class="container" id="pl">
+<p class="h3" style="color: black; text-align: center;">Product Specifications</p>
 
+<ul>
+    <div class="category-box">
+        <strong style="color:black;"><b>General</b></strong>
+        <ul class="details-list">
+            <li><span class="details-label">Brand: </span><span class="details-value">'.$brand.'</span></li>
+            <li><span class="details-label">Name: </span><span class="details-value">'.$name.'</span></li>
+        </ul>
+
+        <li class="category-divider"></li>
+
+        <strong style="color:black;"><b>Features</b></strong>
+        <ul class="details-list">
+            <li><span class="details-label">Size: </span><span class="details-value">'.$size.'</span></li>
+            <li><span class="details-label">Weight: </span><span class="details-value">'.$weight.'</span></li>
+        </ul>
+
+        <li class="category-divider"></li>
+
+         <strong style="color:black;"><b>Connectivity</b></strong>
+        <ul class="details-list">
+            <li><span class="details-label">Connectivity: </span><span class="details-value">'.$connectivity.'</span></li>
+        </ul>
+
+        <li class="category-divider"></li>
+
+         <strong style="color:black;"><b>Other Details</b></strong>
+        <ul class="details-list">
+            <li><span class="details-label">In the Box: </span><span class="details-value">'.$inthebox.'</span></li>
+            <li><span class="details-label">Color: </span><span class="details-value">'.$color.'</span></li>
+        </ul>
+    </div>
+</ul>
+</div>
 
       </div>
     </div>
    </div>
-  </div>
-        `;
+          </div>';
+  } else {
+    echo "No products found.";
+  }
+  $conn->close();
+} else {
+  echo "Product ID not provided.";
+}
+?>
+<script>
+  function addToCart(productName, imageURL, quantity, total) {
+    // Retrieve existing cart items from localStorage
+    const existingCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
-          itemContainer.innerHTML = itemHTML;
-        }
+    // Add the new item to the cart
+    const newItem = {
+      productName,
+      imageURL,
+      quantity,
+      total
+    };
+    existingCartItems.push(newItem);
 
-        // Check if "item" query parameter is provided and load the corresponding item
-        if (itemParam) {
-          const itemIndex = parseInt(itemParam) - 1; // Adjust index (1-based to 0-based)
-          if (!isNaN(itemIndex) && itemIndex >= 0 && itemIndex < items.length) {
-            displayItem(itemIndex);
-          }
-        }
-      });
-      </script>
-      <script>
-        function addToCart(productName, imageURL, quantity, total) {
-          // Retrieve existing cart items from localStorage
-          const existingCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-      
-          // Add the new item to the cart
-          const newItem = { productName, imageURL, quantity, total };
-          existingCartItems.push(newItem);
-      
-          // Save the updated cart items back to localStorage
-          localStorage.setItem('cartItems', JSON.stringify(existingCartItems));
-      
-          // Optionally, you can redirect to the cart page after adding the item
-          window.location.href = 'cart.html';
-        }
-      </script>
+    // Save the updated cart items back to localStorage
+    localStorage.setItem('cartItems', JSON.stringify(existingCartItems));
+
+    // Optionally, you can redirect to the cart page after adding the item
+    window.location.href = 'cart.html';
+  }
+</script>
 <script>
   function incrementQuantity() {
     var quantityInput = document.getElementById('quantityInput');
@@ -547,63 +363,108 @@
   }
 </script>
 
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-      <script>
-        document.addEventListener('DOMContentLoaded', function () {
-          const mainImage = document.getElementById('main-image');
-          const thumbnails = document.querySelectorAll('.thumb');
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const mainImage = document.getElementById('main-image');
+    const thumbnails = document.querySelectorAll('.thumb');
 
-          thumbnails.forEach(thumb => {
-            thumb.addEventListener('click', function () {
-              // Change the main image source to the clicked thumbnail's data-src
-              mainImage.style.opacity = '0';
-              setTimeout(function () {
-                mainImage.src = thumb.getAttribute('src');
-                mainImage.style.opacity = '1';
-              }, 300);
+    thumbnails.forEach(thumb => {
+      thumb.addEventListener('click', function () {
+        // Change the main image source to the clicked thumbnail's data-src
+        mainImage.style.opacity = '0';
+        setTimeout(function () {
+          mainImage.src = thumb.getAttribute('src');
+          mainImage.style.opacity = '1';
+        }, 300);
 
-              // Remove the 'active' class from all thumbnails
-              thumbnails.forEach(t => t.classList.remove('active'));
+        // Remove the 'active' class from all thumbnails
+        thumbnails.forEach(t => t.classList.remove('active'));
 
-              // Add the 'active' class to the clicked thumbnail
-              thumb.classList.add('active');
-            });
-          });
-        });
-      </script>
+        // Add the 'active' class to the clicked thumbnail
+        thumb.classList.add('active');
+      });
+    });
+  });
+</script>
+<footer class="site-footer border-top">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <div class="row">
+          <div class="col-md-12">
+            <h3 class="footer-heading mb-4">Navigations</h3>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <ul class="list-unstyled">
+              <li><a href="#">Sell online</a></li>
+              <li><a href="#">Features</a></li>
+              <li><a href="#">Shopping cart</a></li>
+              <li><a href="#">Store builder</a></li>
+            </ul>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <ul class="list-unstyled">
+              <li><a href="#">Mobile commerce</a></li>
+              <li><a href="#">Dropshipping</a></li>
+              <li><a href="#">Website development</a></li>
+            </ul>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <ul class="list-unstyled">
+              <li><a href="#">Point of sale</a></li>
+              <li><a href="#">Hardware</a></li>
+              <li><a href="#">Software</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+        <h3 class="footer-heading mb-4">Promo</h3>
+        <a href="#" class="block-6">
+          <img src="images/hero_1.jpg" alt="Image placeholder" class="img-fluid rounded mb-4">
+          <h3 class="font-weight-light  mb-0">Finding Your Perfect Shoes</h3>
+          <p>Promo from nuary 15 &mdash; 25, 2019</p>
+        </a>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="block-5 mb-5">
+          <h3 class="footer-heading mb-4">Contact Info</h3>
+          <ul class="list-unstyled">
+            <li class="address">203 Fake St. Mountain View, San Francisco, California, USA</li>
+            <li class="phone"><a href="tel://23923929210">+2 392 3929 210</a></li>
+            <li class="email">emailaddress@domain.com</li>
+          </ul>
+        </div>
 
-      <script>
-        // JavaScript to handle image switching based on the item parameter
-        window.addEventListener("DOMContentLoaded", function () {
-          const urlParams = new URLSearchParams(window.location.search);
-          const item = urlParams.get("item");
+        <div class="block-7">
+          <form action="#" method="post">
+            <label for="email_subscribe" class="footer-heading">Subscribe</label>
+            <div class="form-group">
+              <input type="text" class="form-control py-4" id="email_subscribe" placeholder="Email">
+              <input type="submit" class="btn btn-sm btn-primary" value="Send">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="row pt-5 mt-5 text-center">
+      <div class="col-md-12">
+      </div>
 
-          if (item === "1") {
-            document.getElementById("main-image").src = "images/item1.jpg";
-            document.getElementById("sub-image1").src = "images/marshall_sub.png";
-            document.getElementById("sub-image2").src = "images/marshall1_sub.png";
-            document.getElementById("sub-image3").src = "images/marshall2_sub.png";
-          }
-          else if (item === "2") {
-            document.getElementById("main-image").src = "images/marshall  headphone.jpg";
-            document.getElementById("sub-image1").src = "images/marshall  headphone.jpg";
-            document.getElementById("sub-image2").src = "images/motif1_sub.png";
-            document.getElementById("sub-image3").src = "images/motif2_sub.png";
-          }
-          else if (item === "3") {
-            document.getElementById("main-image").src = "images/computer accesories.jpg";
-            document.getElementById("sub-image1").src = "images/computer accesories.jpg";
-            document.getElementById("sub-image2").src = "images/tp1.png";
-            document.getElementById("sub-image3").src = "images/tp2.png";
-          }
-          else if (item === "4") {
-            document.getElementById("main-image").src = "images/phone.jpg";
-            document.getElementById("sub-image1").src = "images/phone.jpg";
-            document.getElementById("sub-image2").src = "images/phone1.png";
-            document.getElementById("sub-image3").src = "images/phone2.png";
-          }
-        });
-      </script>
+    </div>
+  </div>
+</footer>
+</div>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/aos.js"></script>
+
+<script src="js/main.js"></script>
 
 
 </body>

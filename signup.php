@@ -1,8 +1,6 @@
 <?php
 include 'config.php';
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Check if form was submitted
     $username = $_POST['username'];
     $fname = $_POST['firstname'];
     $lname = $_POST['lastname'];
@@ -10,37 +8,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $phone = $_POST['phone'];
     $password = $_POST['pass'];
     $confirm_password = $_POST['re_pass'];
+    $address = $_POST['address'];
+    $city = $_POST['city'];
+    $postalcode = $_POST['postalcode'];
+    $state = $_POST['state'];
 
-    // Validate form data (check for empty fields)
-    if (empty($username) || empty($fname) || empty($lname) || empty($email) || empty($phone) || empty($password) || empty($confirm_password)) {
+    // Check for empty fields
+    if (empty($username) || empty($fname) || empty($lname) || empty($email) || empty($phone) || empty($password) || empty($confirm_password) || empty($address) || empty($city) || empty($postalcode) || empty($state)) {
         echo "All fields are required.";
     } else {
-        // Use prepared statement to prevent SQL injection
-        $sql = "INSERT INTO users (username, firstname, lastname, email, phone, password) VALUES (?, ?, ?, ?, ?, ?)";
-        $stmt = $conn->prepare($sql);
+        // Insert user data into 'users' table
+        $userSql = "INSERT INTO users (username, firstname, lastname, email, phone, password) VALUES (?, ?, ?, ?, ?, ?)";
+        $userStmt = $conn->prepare($userSql);
+        $userStmt->bind_param("ssssss", $username, $fname, $lname, $email, $phone, $password);
+        $userResult = $userStmt->execute();
 
-        if ($stmt) {
-            // Bind parameters
-            $stmt->bind_param("ssssss", $username, $fname, $lname, $email, $phone, $password);
+        // Insert address data into 'address' table
+        $addressSql = "INSERT INTO address (username, address, city, `postal code`, state) VALUES (?, ?, ?, ?, ?)";
+        $addressStmt = $conn->prepare($addressSql);
+        $addressStmt->bind_param("sssss", $username, $address, $city, $postalcode, $state);
+        $addressResult = $addressStmt->execute();
 
-            // Execute the statement
-            if ($stmt->execute()) {
-                echo "Record created successfully";
-            } else {
-                echo "Error executing statement: " . $stmt->error;
-            }
-
-            // Close the statement
-            $stmt->close();
+        if ($userResult && $addressResult) {
+            echo "Record created successfully";
         } else {
-            echo "Error preparing statement: " . $conn->error;
+            echo "Error executing statement: " . $conn->error;
         }
+
+        $userStmt->close();
+        $addressStmt->close();
     }
 }
 
-// Close the connection
 $conn->close();
 ?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -150,6 +156,22 @@ $conn->close();
                                 <input type="text" name="phone" id="phone" placeholder="Your Phone number" / required>
                             </div>
                             <div class="form-group">
+                                <label for="address"><i class="zmdi zmdi-home"></i></label>
+                                <input type="text" name="address" id="address" placeholder="Your Address" / required>
+                            </div>
+                            <div class="form-group">
+                                <label for="postalcode"><i class="zmdi zmdi-home"></i></label>
+                                <input type="text" name="postalcode" id="postalcode" placeholder="Your Postal Code" / required>
+                            </div>
+                            <div class="form-group">
+                                <label for="city"><i class="zmdi zmdi-city"></i></label>
+                                <input type="text" name="city" id="city" placeholder="Your City" / required>
+                            </div>
+                            <div class="form-group">
+                                <label for="state"><i class="zmdi zmdi-city"></i></label>
+                                <input type="text" name="state" id="state" placeholder="Your State" / required>
+                            </div>
+                            <div class="form-group">
                                 <label for="pass"><i class="zmdi zmdi-lock"></i></label>
                                 <input type="password" name="pass" id="pass" placeholder="Password" / required>
                             </div>
@@ -183,8 +205,6 @@ $conn->close();
  <!-- JS -->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="js/login.js"></script>
-
-<!-- Modal Box -->
 <div id="myModal" class="modal" style="display: none;">
     <!-- Modal content -->
     <div class="modal-content">
@@ -244,8 +264,6 @@ $conn->close();
         };
     });
 </script>
-
-  
     <script>
         $(document).ready(function () {
             $('#pass').on('keyup', function () {

@@ -205,6 +205,7 @@ $conn->close();
  <!-- JS -->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="js/login.js"></script>
+
 <div id="myModal" class="modal" style="display: none;">
     <!-- Modal content -->
     <div class="modal-content">
@@ -249,13 +250,13 @@ $conn->close();
         // When the user clicks outside the modal, close it
         window.onclick = function (event) {
             if (event.target === document.getElementById('myModal')) {
-                closeModal(false);
+                closeModal(true);
             }
         };
 
         // Event listener for the close button (&times;)
         document.getElementsByClassName('close')[0].onclick = function () {
-            closeModal(false);
+            closeModal(true);
         };
 
         // Event listener for the OK button

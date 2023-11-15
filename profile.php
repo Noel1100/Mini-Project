@@ -3,45 +3,83 @@ session_start();
 require 'config.php';
 
 if (isset($_SESSION['username'])) {
-  $sql = "SELECT * FROM users WHERE username = '" . $_SESSION['username'] . "'";
-  $result = mysqli_query($conn, $sql);
+    $username = $_SESSION['username'];
 
-  if (mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-      $id = $row['id'];
-      $username = $row['username'];
-      $fname = $row['firstname'];
-      $lname = $row['lastname'];
-      $email = $row['email'];
-      $phone = $row['phone'];
-    }
-  }
-  if (isset($_POST['update'])) {
-    $fname = mysqli_real_escape_string($conn, $_POST['firstname']);
-    $lname = mysqli_real_escape_string($conn, $_POST['lastname']);
-    $phone = mysqli_real_escape_string($conn, $_POST['phone']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    // Use prepared statement to prevent SQL injection
+    $sql = "SELECT users.*, address.address FROM users LEFT JOIN address ON users.id = address.user_id WHERE users.username = ?";
+    $stmt = $conn->prepare($sql);
 
-    // Update user information in the database
-    $updateQuery = "UPDATE users SET firstname = '$fname', lastname = '$lname', phone = '$phone', email = '$email' WHERE id = '$id'";
-    $updateResult = mysqli_query($conn, $updateQuery);
+    if ($stmt) {
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
 
-    if ($updateResult) {
-      // Update session variables
-      $_SESSION['firstname'] = $fname;
-      $_SESSION['lastname'] = $lname;
-      $_SESSION['phone'] = $phone;
-      $_SESSION['email'] = $email;
+        $result = $stmt->get_result();
 
-      // Redirect to the profile page
-      header("Location: profile.php");
-      exit();
+        if ($result) {
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $id = $row['id'];
+                    $username = $row['username'];
+                    $fname = $row['firstname'];
+                    $lname = $row['lastname'];
+                    $email = $row['email'];
+                    $phone = $row['phone'];
+                    $address = $row['address']; // Fetch address from the joined table
+                }
+            } else {
+                echo "No user found";
+            }
+        } else {
+            echo "Error fetching result: " . $stmt->error;
+        }
+
+        $stmt->close();
     } else {
-      echo "Error updating record: " . mysqli_error($conn);
+        echo "Error preparing statement: " . $conn->error;
     }
-  }
+
+    if (isset($_POST['update'])) {
+        // Update user information in the database
+        $fname = mysqli_real_escape_string($conn, $_POST['firstname']);
+        $lname = mysqli_real_escape_string($conn, $_POST['lastname']);
+        $phone = mysqli_real_escape_string($conn, $_POST['phone']);
+        $email = mysqli_real_escape_string($conn, $_POST['email']);
+        $address = mysqli_real_escape_string($conn, $_POST['address']);
+
+        $updateQuery = "UPDATE users SET firstname = '$fname', lastname = '$lname', phone = '$phone', email = '$email' WHERE id = '$id'";
+        $updateResult = mysqli_query($conn, $updateQuery);
+
+        if ($updateResult) {
+            // Check if the user has an existing address record
+            $addressQuery = "SELECT * FROM address WHERE user_id = '$id'";
+            $addressResult = mysqli_query($conn, $addressQuery);
+
+            if ($addressResult) {
+                if (mysqli_num_rows($addressResult) > 0) {
+                    // Update existing address record
+                    $updateAddressQuery = "UPDATE address SET address = '$address' WHERE user_id = '$id'";
+                } else {
+                    // Insert a new address record
+                    $updateAddressQuery = "INSERT INTO address (user_id, address) VALUES ('$id', '$address')";
+                }
+
+                mysqli_query($conn, $updateAddressQuery);
+                echo "Record updated successfully";
+            } else {
+                echo "Error fetching address result: " . mysqli_error($conn);
+            }
+        } else {
+            echo "Error updating record: " . mysqli_error($conn);
+        }
+    }
+} else {
+    echo "User not logged in";
 }
+
+// Close the connection
+$conn->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -524,7 +562,7 @@ if (isset($_SESSION['username'])) {
               <a href="about.html">About</a>
             </li>
             <li class="">
-              <a href="shop.html">Shop</a>
+              <a href="shop.php">Shop</a>
             </li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
@@ -663,22 +701,38 @@ if (isset($_SESSION['username'])) {
     <form method="post" enctype="multipart/form-data" class="row justify-content-center">
       <div class="col-md-6"> <!-- Center the form in a column (adjust the column width as needed) -->
         <div class="form-group">
-          <label for="firstname" style="color: white;">First Name</label>
+          <label for="firstname" style="color: #7971ea;">First Name</label>
           <input type="text" class="form-control" id="firstname" name="firstname" value="<?php echo $fname ?>">
         </div>
         <div class="form-group">
-          <label for="lastname" style="color: white;">Last Name</label>
+          <label for="lastname" style="color: #7971ea;">Last Name</label>
           <input type="text" class="form-control" id="lastname" name="lastname" value="<?php echo $lname ?>">
         </div>
         <div class="form-group">
-          <label for="email" style="color: white;">Email</label>
+          <label for="email" style="color: #7971ea;">Email</label>
           <input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>">
         </div>
         <div class="form-group">
-          <label for="phone" style="color: white;">Phone Number</label>
+          <label for="phone" style="color: #7971ea;">Phone Number</label>
           <input type="text" class="form-control" id="phone" name="phone" value="<?php echo $phone ?>">
         </div>
-        <button type="submit" class="btn btn-outline-primary" name="update">Update</button>
+        <div class="form-group">
+          <label for="address" style="color: #7971ea;">Address</label>
+          <input type="textarea" class="form-control" id="address" name="address" value="address">
+        </div>
+        <div class="form-group">
+          <label for="postalcode" style="color: #7971ea;">Postal Code</label>
+          <input type="text" class="form-control" id="postalcode" name="postalcode" value="<?php echo $postal_code ?>">
+        </div>
+        <div class="form-group">
+          <label for="city" style="color: #7971ea;">City</label>
+          <input type="text" class="form-control" id="city" name="city" value="<?php echo $city ?>">
+        </div>
+        <div class="form-group">
+          <label for="phone" style="color: #7971ea;">State</label>
+          <input type="text" class="form-control" id="state" name="state" value="<?php echo $state ?>">
+        </div>
+        <button type="submit" class="btn btn-outline" name="update" style="background-color: #7971ea;">Update</button>
       </div>
     </form>
   </div>

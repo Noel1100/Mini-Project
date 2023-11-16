@@ -329,86 +329,71 @@
                 </div>
               </div>
             </div>
-            <div class="content-container" >
-            <?php
-            include 'config.php';
-// Fetch property data from the database
-$sql = "SELECT * FROM products";
-$result = $conn->query($sql);
+   <div class="content-container">
+    <div class="row">
+        <?php
+        include 'config.php';
 
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $proId = $row['product_id'];
-        $name = $row['product_name'];
-        $title = $row['product_title'];
-        $brand = $row['brand'];
-        $price = $row['price'];
-        $desc = $row['description'];
-        $stock = $row['stock'];
-        $size = $row['size'];
-        $weight = $row['weight'];
-        $color = $row['color'];
-        $inthebox = $row['inthebox'];
-        $highlights = $row['highlights'];
-        $connectivity = $row['connectivity'];
+        // Fetch property data from the database
+        $sql = "SELECT * FROM products";
+        $result = $conn->query($sql);
 
-        // Fetch the first image for the product
-        $imageSql = "SELECT image FROM product_images WHERE product_id = '$proId'";
-        $imageResult = $conn->query($imageSql);
-        $imageRow = $imageResult->fetch_assoc();
-        $imageUrl = $imageRow['image'];
+        if ($result->num_rows > 0) {
+            $counter = 0; // Counter for tracking items in a row
+            while ($row = $result->fetch_assoc()) {
+                // Fetch the first image for the product
+                $imageSql = "SELECT image FROM product_images WHERE product_id = '{$row['product_id']}'";
+                $imageResult = $conn->query($imageSql);
+                $imageRow = $imageResult->fetch_assoc();
+                $imageUrl = $imageRow['image'];
 
-        // Output the property data in the desired style
-        echo "<div class='' id='1'>
-            <div class='row mb-5'>
-                <div class='col-sm-6 col-lg-4 mb-4' data-aos='fade-up'>
-                    <div class='block-4 text-center border'>
-                        <figure class='block-4-image'>
-                            <a href='shop-single.php?show=$proId' class='image-zoom-container'>
-                                <img src='$imageUrl' alt='Image placeholder' class='img-fluid image-zoom'>
-                                <div class='image-zoom-overlay'></div>
-                            </a>
-                        </figure>
-                        <div class='block-4-text p-4' id='oo'>
-                            <h3><a href='shop-single.php?show=$proId'>$name</a></h3>
-                            <ul style='text-align: left;'>
-                                <li><strong>Brand:</strong> $brand</li>
-                                <li><strong>Color:</strong> $color</li>
-                                <li><strong>Size:</strong> $size</li>
-                                <li><strong>Weight:</strong> $weight</li>
-                                <li><strong>Connectivity:</strong> $connectivity</li>
-                            </ul>
-                            <p class='text-primary font-weight-bold'>M.R.P ₹ $price</p>
+                // Output the property data in the desired style
+                echo "<div class='col-sm-6 col-lg-4 mb-4' data-aos='fade-up'>
+                        <div class='block-4 text-center border'>
+                            <figure class='block-4-image d-flex align-items-center justify-content-center' style='height: 400px;'>
+                                <a href='shop-single.php?show={$row['product_id']}' class='image-zoom-container'>
+                                    <img src='{$imageUrl}' alt='Image placeholder' class='img-fluid image-zoom'>
+                                    <div class='image-zoom-overlay'></div>
+                                </a>
+                            </figure>
+                            <div class='block-4-text p-4' id='oo'>
+                                <h3><a href='shop-single.php?show={$row['product_id']}'>{$row['product_name']}</a></h3>
+                                <ul style='text-align: left;'>
+                                    <li><strong>Brand:</strong> {$row['brand']}</li>
+                                    <li><strong>Color:</strong> {$row['color']}</li>
+                                    <li><strong>Size:</strong> {$row['size']}</li>
+                                    <li><strong>Weight:</strong> {$row['weight']}</li>
+                                    <li><strong>Connectivity:</strong> {$row['connectivity']}</li>
+                                </ul>
+                                <p class='text-primary font-weight-bold'>M.R.P ₹ {$row['price']}</p>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>";
-    }
-} else {
-    echo "No products found.";
-}
-?>
+                    </div>";
+            }
+        } else {
+            echo "No products found.";
+        }
+        ?>
+    </div>
+</div>
 
-              <div class="row container text-center" data-aos="fade-up">
-                <div class="col-md-12 text-center">
-                  <div class="site-block-27">
-                    <ul>
-                     
-                      <li class="active"><a href="#1" onclick="navigateToPage(1)">1</a></li>
-                      <li><a href="#2" onclick="navigateToPage(2)">2</a></li>
-                      <li><a href="#">3</a></li>
-                      <li><a href="#">4</a></li>
-                      <li><a href="#">5</a></li>
-                    
-                    </ul>
-                  </div>
-                </div>
-              </div>
+    <div class="row container text-center" data-aos="fade-up">
+        <div class="col-md-12 text-center">
+            <div class="site-block-27">
+                <ul>
+                    <li class="active"><a href="#1" onclick="navigateToPage(1)">1</a></li>
+                    <li><a href="#2" onclick="navigateToPage(2)">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                </ul>
             </div>
-          </div>
+        </div>
+    </div>
+</div>
 
-          <div class="col-md-3 order-1 mb-5 mb-md-0">
+
+          <div class=" order-1 mb-5 mb-md-0">
             <!-- Categories Box -->
             <div class="border p-4 rounded mb-4">
                 <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
@@ -500,6 +485,7 @@ if ($result->num_rows > 0) {
                         </div>
                       </div>
                     </div>
+                  </div>
 
                 <div class="row container text-center" data-aos="fade-up">
                   <div class="col-md-12 text-center">
@@ -518,8 +504,9 @@ if ($result->num_rows > 0) {
                 </div>
               </div>
             </div>
+            </div>
 
-            <div class="col-md-3 order-1 mb-5 mb-md-0">
+            <div class=" order-1 mb-5 mb-md-0">
               <div class="border p-4 rounded mb-4">
                 <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
                 <ul class="list-unstyled mb-0">

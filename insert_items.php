@@ -36,50 +36,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
 
             // Insert image data into the database with the associated product ID
-            if (!empty($_FILES['image']['name'][0])) {
-                foreach ($_FILES['image']['tmp_name'] as $key => $tmp_name) {
-                    $file_name = $_FILES['image']['name'][$key];
-                    $targetFilePath = $file_name;
-                    move_uploaded_file($tmp_name, $targetFilePath);
+           if (!empty($_FILES['image']['name'][0])) {
+        foreach ($_FILES['image']['tmp_name'] as $key => $tmp_name) {
+            $file_name = $_FILES['image']['name'][$key];
+            $targetFilePath = $file_name;
 
-                    // Insert image name into the database
-                    $imageSql = "INSERT INTO product_images (product_id, image) VALUES ('$proId', '$targetFilePath')";
-                    if ($conn->query($imageSql) !== TRUE) {
-                        echo "Error: " . $imageSql . "<br>" . $conn->error;
-                    }
-                }
+            // Insert image name into the database
+            $imageSql = "INSERT INTO product_images (product_id, image) VALUES ('$proId', '$targetFilePath')";
+            if ($conn->query($imageSql) !== TRUE) {
+                echo "Error: " . $imageSql . "<br>" . $conn->error;
+            } else {
+                move_uploaded_file($tmp_name, $targetFilePath);
             }
-
-            // Insert additional images into the new columns
-            if (!empty($_FILES['image1']['name'][0])) {
-                $file_name = $_FILES['image1']['name'][0];
-                $targetFilePath = $file_name;
-                move_uploaded_file($_FILES['image1']['tmp_name'][0], $targetFilePath);
-                $conn->query("UPDATE product_images SET image1 = '$targetFilePath' WHERE product_id = '$proId'");
-            }
-
-            if (!empty($_FILES['image2']['name'][0])) {
-                $file_name = $_FILES['image2']['name'][0];
-                $targetFilePath = $file_name;
-                move_uploaded_file($_FILES['image2']['tmp_name'][0], $targetFilePath);
-                $conn->query("UPDATE product_images SET image2 = '$targetFilePath' WHERE product_id = '$proId'");
-            }
-
-            if (!empty($_FILES['image3']['name'][0])) {
-                $file_name = $_FILES['image3']['name'][0];
-                $targetFilePath = $file_name;
-                move_uploaded_file($_FILES['image3']['tmp_name'][0], $targetFilePath);
-                $conn->query("UPDATE product_images SET image3 = '$targetFilePath' WHERE product_id = '$proId'");
-            }
-            $_SESSION['success_message'] = "Product Inserted Successfully";
-            header('Location: ' . $_SERVER['PHP_SELF']);
-            exit;
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
         }
+    }
 
-        // Close the prepared statement
-        $stmt->close();
+    // Insert additional images into the new columns
+    if (!empty($_FILES['image1']['name'][0])) {
+        $file_name = $_FILES['image1']['name'][0];
+        $targetFilePath = $file_name;
+        move_uploaded_file($_FILES['image1']['tmp_name'][0], $targetFilePath);
+        $conn->query("UPDATE product_images SET image1 = '$targetFilePath' WHERE product_id = '$proId'");
+    }
+
+    if (!empty($_FILES['image2']['name'][0])) {
+        $file_name = $_FILES['image2']['name'][0];
+        $targetFilePath = $file_name;
+        move_uploaded_file($_FILES['image2']['tmp_name'][0], $targetFilePath);
+        $conn->query("UPDATE product_images SET image2 = '$targetFilePath' WHERE product_id = '$proId'");
+    }
+
+    if (!empty($_FILES['image3']['name'][0])) {
+        $file_name = $_FILES['image3']['name'][0];
+        $targetFilePath = $file_name;
+        move_uploaded_file($_FILES['image3']['tmp_name'][0], $targetFilePath);
+        $conn->query("UPDATE product_images SET image3 = '$targetFilePath' WHERE product_id = '$proId'");
+    }
+
+    $_SESSION['success_message'] = "Product Inserted Successfully";
+    header('Location: ' . $_SERVER['PHP_SELF']);
+    exit;
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+// Close the prepared statement
+$stmt->close();
     }
 }
 

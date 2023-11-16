@@ -648,7 +648,7 @@ include 'config.php';
       <div class="container" id="big">
         <div class="row justify-content-center  mb-5">
           <div class="col-md-7 site-section-heading text-center pt-4">
-            <h2><a href="bigsale.html" style="color: black;">Big Sale!</a></h2>
+            <h2><a href="shop.php" style="color: black;">Big Sale!</a></h2>
           </div>
         </div>
         <div class="row align-items-center">
@@ -666,7 +666,7 @@ include 'config.php';
               items you've had your eye on or explore new products at unbeatable prices.
               Whether you're shopping for essentials or treating yourself to something special, our 50% discount ensures
               you get more for less.</p>
-            <p><a href="bigsale.html" class="btn btn-primary btn-sm">Shop Now</a></p>
+            <p><a href="shop.php" class="btn btn-primary btn-sm">Shop Now</a></p>
           </div>
         </div>
       </div>

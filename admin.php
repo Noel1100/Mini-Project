@@ -38,13 +38,13 @@
             <h1>ADMIN DASHBOARD</h1>
         </div>
         <div class="btn-group" role="group" aria-label="Admin Actions">
-            <a href="" class="btn btn-success">View Products</a>
+            <a href="list-products.php" class="btn btn-success">View Products</a>
             <a href="insert_items.php" class="btn btn-success">Insert Products</a>
             <a href="" class="btn btn-success">View Categories</a>
             <a href="" class="btn btn-success">Insert Categories</a>
             <a href="" class="btn btn-success">View Brands</a>
             <a href="" class="btn btn-success">Insert Brands</a>
-            <a href="" class="btn btn-success">List Users</a>
+            <a href="list-user.php" class="btn btn-success">List Users</a>
             <a href="" class="btn btn-success">All Orders</a>
             <a href="" class="btn btn-success">All Payments</a>
         </div>

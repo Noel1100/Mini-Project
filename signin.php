@@ -49,6 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($sellerResult->num_rows > 0) {
             $sellerRow = $sellerResult->fetch_assoc();
             $sellerId = $sellerRow['seller_id'];
+            $_SESSION['firstname'] = $sellerRow['firstname']; 
             $_SESSION['seller_id'] = $sellerId;
             // Seller found in the seller table, redirect to seller.php
             header("Location: sellerprofile.php");

@@ -180,12 +180,6 @@ if (isset($_GET['show'])) {
                   </li>
 
                   <li>
-                    <a href="signin.php" class="btn btn-sm custom-button">
-                      <span class="icon"><i class="fas fa-sign-in-alt"></i></span> Login
-                    </a>
-                  </li>
-
-                  <li>
                     <a href="cart.php" class="site-cart btn btn-sm custom-button">
                       <span class="icon icon-shopping_cart"><i class="fas"></i></span> Cart
                       <span class="count">2</span>
@@ -262,9 +256,9 @@ if (isset($_GET['show'])) {
 
             </div>
             <p><!-- Link to cart page with parameters -->
-              <a href="cart.php" class="btn btn-primary">Add to Cart</a>
+              <a href="index.php?add_to_cart='.$proId.'" class="btn btn-primary">Add to Cart</a>
               
-              <a href="#" class="buy-now btn btn-sm btn-primary" id="buyNowLink">Buy Now</a>
+              <a href="buy.html" class="buy-now btn btn-sm btn-primary" id="buyNowLink">Buy Now</a>
               </p>
               <hr>
               <p><strong class="text-secondary h5">Units Available: ' . $stock . '</strong></p>
@@ -326,40 +320,7 @@ if (isset($_GET['show'])) {
 }
 ?>
 
-<script>
-  function addToCart() {
-    var productName = '<?php echo $name; ?>';
-    var productPrice = '<?php echo $price; ?>';
-    var productImage = '<?php echo $imageUrl; ?>';
-    var productId = '<?php echo $productId; ?>'; // Replace with your actual product ID variable
-    var quantity = parseInt(document.getElementById('quantityInput').value);
 
-    var newItem = {
-      name: productName,
-      price: parseFloat(productPrice),
-      image: productImage,
-      productId: productId,
-      quantity: quantity
-    };
-
-    // AJAX POST request to send cart item data to server
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'Cart.php', true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState === XMLHttpRequest.DONE) {
-        if (xhr.status === 200) {
-          // Success message or further actions if needed
-          alert('Item added to cart!');
-        } else {
-          // Error handling
-          alert('Failed to add item to cart. Please try again.');
-        }
-      }
-    };
-    xhr.send(JSON.stringify(newItem));
-  }
-</script>
 
 <script>
   function incrementQuantity() {

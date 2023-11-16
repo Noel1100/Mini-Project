@@ -542,9 +542,23 @@ $conn->close();
                   </li>
 
                   <li>
-                    <a href="signin.php" class="btn btn-sm custom-button">
-                      <span class="icon"><i class="fas fa-sign-in-alt"></i></span> Login
-                    </a>
+                  <?php
+                    if (isset($_SESSION['username'])) {
+                      echo '<a href="userprofile.php" class="btn btn-sm custom-button">
+                                  <span class="icon"><i class="fas fa-user"></i></span>' . $_SESSION['username'] .
+                        '</a>';
+                      $_SESSION['login'] = true;
+                    } elseif (isset($_SESSION['seller_id'])) {
+                        echo '<a href="sellerprofile.php" class="btn btn-sm custom-button">
+                                    <span class="icon"><i class="fas fa-user"></i></span>' . $_SESSION['firstname'] .
+                          '</a>';
+                      }
+                    else {
+                      echo '<a href="signin.php" class="btn btn-sm custom-button">
+                                  <span class="icon"><i class="fas fa-sign-in-alt"></i></span> Login
+                              </a>';
+                    }
+                    ?>
                   </li>
 
                 </ul>

@@ -534,7 +534,7 @@ if (isset($_SESSION['seller_id'])) {
               <div class="site-top-icons">
                 <ul>
                   <li>
-                    <a href="demo.html" class="btn btn-sm custom-button">
+                    <a href="seller.php" class="btn btn-sm custom-button">
                       <span class="icon"><i class="fas fa-solid fa-store"></i></span>Become a Seller
                     </a>
                   </li>

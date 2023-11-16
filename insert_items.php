@@ -336,10 +336,7 @@ if (isset($_SESSION['success_message'])) {
 
         <input type="submit" value="Insert Product" style="background-color: #7971ea; color: white;">
     </form>
-  <div id="modal">
-        <p>Your product uploaded successfully</p>
-        <button id="closeModal">OK</button>
-    </div>
+
     <?php if (!empty($_SESSION['uploaded_files'])): ?>
         <h2>Uploaded Files:</h2>
         <ul>

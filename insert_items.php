@@ -226,6 +226,29 @@ if (isset($_SESSION['success_message'])) {
         }
     </style>
 
+<style>
+    /* Add this style to your existing styles or in the head section of your HTML */
+    input[type="text"],
+    input[type="number"],
+    #category,
+    #product_title,
+    #description,
+    #highlights,
+    #inthebox,
+    #connectivity,
+    select {
+        border: 2px solid blue;
+        padding: 8px; /* Add some padding for better aesthetics */
+    }
+
+    input[type="file"] {
+        border: 2px solid blue;
+        padding: 8px; /* Add some padding for better aesthetics */
+        display: block; /* Make file input display as block for better spacing */
+        margin-bottom: 10px; /* Add some margin between file inputs */
+    }
+</style>
+
     <!-- Add Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         integrity="sha512-4ayA5WUNhz4GNxQ5XiyWJTna7/aB9/ejTp2MhN5pIG/QJT6z8e+25fLvl4CcGb7bKAAStEVpWtd5aQEGm7rpxQ=="
@@ -233,7 +256,7 @@ if (isset($_SESSION['success_message'])) {
 </head>
 
 <body>
-    <h1>
+    <h1 style="color: #7971ea">
         <center>Insert Product</center>
     </h1><br>
     <form action="" method="post" enctype="multipart/form-data">
@@ -311,9 +334,12 @@ if (isset($_SESSION['success_message'])) {
 
         <input type="file" name="image3[]" id="image3" accept="image/*" multiple><br><br>
 
-        <input type="submit" value="Insert Product">
+        <input type="submit" value="Insert Product" style="background-color: #7971ea; color: white;">
     </form>
-
+  <div id="modal">
+        <p>Your product uploaded successfully</p>
+        <button id="closeModal">OK</button>
+    </div>
     <?php if (!empty($_SESSION['uploaded_files'])): ?>
         <h2>Uploaded Files:</h2>
         <ul>

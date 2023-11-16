@@ -262,7 +262,8 @@ if (isset($_GET['show'])) {
 
             </div>
             <p><!-- Link to cart page with parameters -->
-              <a href="shop.php?add_to_cart.php='.$proId.'" class="btn btn-primary">Add to Cart</a>
+              <a href="cart.php" class="btn btn-primary">Add to Cart</a>
+              
               <a href="#" class="buy-now btn btn-sm btn-primary" id="buyNowLink">Buy Now</a>
               </p>
               <hr>
@@ -322,38 +323,6 @@ if (isset($_GET['show'])) {
   $conn->close();
 } else {
   echo "Product ID not provided.";
-}
-?>
-<?php
-function cart(){
-  session_start(); // Start the session
-
-  // Check if the user is logged in and the username is stored in a session variable
-  if(isset($_SESSION['username'])){
-    $username = $_SESSION['username'];
-    //echo "Logged-in username: $username";
-    // You can use $username in this function for further processing
-  } else {
-    echo "User not logged in.";
-    // Handle the case when the user is not logged in
-  }
-
-  if(isset($_GET['add_to_cart'])){
-    include 'config.php'; // Assuming you have a file named 'config.php' that contains your database connection
-    
-    $get_product_id = $_GET['add_to_cart'];
-
-    $select_query = "SELECT * FROM cart WHERE product_id = ?";
-    
-    // Assuming $conn is your database connection object
-    $stmt = $conn->prepare($select_query);
-    $stmt->bind_param("i", $get_product_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    $stmt->close();
-    $conn->close();
-  }
 }
 ?>
 

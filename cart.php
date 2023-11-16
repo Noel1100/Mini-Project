@@ -1,20 +1,25 @@
 <?php
-include 'config.php';
-$name = $data['name'];
-$price = $data['price'];
-$image = $data['image'];
-$productId = $data['productId'];
-$quantity = $data['quantity'];
-
-$sql = "INSERT INTO cart (name, price, image, productId, quantity) VALUES ('$name', '$price', '$image', '$productId', '$quantity')";
-
-if ($conn->query($sql) === TRUE) {
-  echo "Item added to cart successfully";
-} else {
-  echo "Error: " . $sql . "<br>" . $conn->error;
+if (isset($_GET['remove_success']) && $_GET['remove_success'] == 1) {
+    echo "<script>alert('Product removed!')</script>";
+    echo "<script>window.location.assign('cart.php')</script>";
 }
-
-$conn->close();
+if (isset($_GET['order_success']) && $_GET['order_success'] == 1) {
+    echo "<script>alert('Order placed!')</script>";
+    echo "<script>window.location.assign('cart.php')</script>";
+}
+session_start();
+if (!empty($_SESSION['cart'])) {
+    $printCount = count($_SESSION['cart']);
+}
+else {
+    $printCount = 0;
+}
+if (!empty($_SESSION['id']) && !empty($_SESSION['username'])) {
+    $printUsername = $_SESSION['username'];
+}
+else {
+    $printUsername = "None"; 
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

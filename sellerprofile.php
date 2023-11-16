@@ -2,35 +2,35 @@
 session_start();
 require 'config.php';
 
-if (isset($_SESSION['username'])) {
-    $username = $_SESSION['username'];
+// Check if the seller is logged in
+if (isset($_SESSION['seller_id'])) {
+    $sellerId = $_SESSION['seller_id'];
 
-    // Use prepared statement to prevent SQL injection
-    $sql = "SELECT users.*, address.address FROM users LEFT JOIN address ON users.id = address.user_id WHERE users.username = ?";
+    // Fetch seller details from the database using seller_id
+    $sql = "SELECT * FROM seller WHERE seller_id = ?";
     $stmt = $conn->prepare($sql);
 
     if ($stmt) {
-        $stmt->bind_param("s", $username);
+        $stmt->bind_param("i", $sellerId); // Assuming seller_id is an integer
         $stmt->execute();
 
         $result = $stmt->get_result();
 
-        if ($result) {
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    $id = $row['id'];
-                    $username = $row['username'];
-                    $fname = $row['firstname'];
-                    $lname = $row['lastname'];
-                    $email = $row['email'];
-                    $phone = $row['phone'];
-                    $address = $row['address']; // Fetch address from the joined table
-                }
-            } else {
-                echo "No user found";
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $id = $row['seller_id'];
+                $shopname = $row['shop_name'];
+                $fname = $row['firstname'];
+                $lname = $row['lastname'];
+                $email = $row['email'];
+                $phone = $row['phone'];
+                $address = $row['address'];
+                $city = $row['city'];
+                $postalcode = $row['postal_code'];
+                $state = $row['state'];
             }
         } else {
-            echo "Error fetching result: " . $stmt->error;
+            echo "No seller found";
         }
 
         $stmt->close();
@@ -38,47 +38,47 @@ if (isset($_SESSION['username'])) {
         echo "Error preparing statement: " . $conn->error;
     }
 
-    if (isset($_POST['update'])) {
-        // Update user information in the database
-        $fname = mysqli_real_escape_string($conn, $_POST['firstname']);
-        $lname = mysqli_real_escape_string($conn, $_POST['lastname']);
-        $phone = mysqli_real_escape_string($conn, $_POST['phone']);
-        $email = mysqli_real_escape_string($conn, $_POST['email']);
-        $address = mysqli_real_escape_string($conn, $_POST['address']);
+    // If the update form is submitted
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (isset($_POST['update'])) {
+            // Collect form data
+            $fname = $_POST['firstname'];
+            $lname = $_POST['lastname'];
+            $email = $_POST['email'];
+            $phone = $_POST['phone'];
+            $address = $_POST['address'];
+            $city = $_POST['city'];
+            $postalcode = $_POST['postalcode'];
+            $state = $_POST['state'];
 
-        $updateQuery = "UPDATE users SET firstname = '$fname', lastname = '$lname', phone = '$phone', email = '$email' WHERE id = '$id'";
-        $updateResult = mysqli_query($conn, $updateQuery);
+            // Update seller details in the database using seller_id
+            $updateQuery = "UPDATE seller SET firstname = ?, lastname = ?, email = ?, phone = ?, address = ?, city = ?, postal_code = ?, state = ? WHERE seller_id = ?";
+            $stmtUpdate = $conn->prepare($updateQuery);
 
-        if ($updateResult) {
-            // Check if the user has an existing address record
-            $addressQuery = "SELECT * FROM address WHERE user_id = '$id'";
-            $addressResult = mysqli_query($conn, $addressQuery);
+            if ($stmtUpdate) {
+                $stmtUpdate->bind_param("ssssssssi", $fname, $lname, $email, $phone, $address, $city, $postalcode, $state, $sellerId);
+                $stmtUpdate->execute();
 
-            if ($addressResult) {
-                if (mysqli_num_rows($addressResult) > 0) {
-                    // Update existing address record
-                    $updateAddressQuery = "UPDATE address SET address = '$address' WHERE user_id = '$id'";
+                // Check if the update was successful
+                if ($stmtUpdate->affected_rows > 0) {
+                    echo "Seller details updated successfully";
+                    // You may redirect or display a success message here
                 } else {
-                    // Insert a new address record
-                    $updateAddressQuery = "INSERT INTO address (user_id, address) VALUES ('$id', '$address')";
+                    echo "No changes were made";
                 }
 
-                mysqli_query($conn, $updateAddressQuery);
-                echo "Record updated successfully";
+                $stmtUpdate->close();
             } else {
-                echo "Error fetching address result: " . mysqli_error($conn);
+                echo "Error updating seller details: " . $conn->error;
             }
-        } else {
-            echo "Error updating record: " . mysqli_error($conn);
         }
     }
-} else {
-    echo "User not logged in";
-}
 
-// Close the connection
-$conn->close();
+    // Close the database connection
+    $conn->close();
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -592,9 +592,9 @@ $conn->close();
                   width="150">
                 <div class="mt-3">
                   <h4>
-                    <?php echo $username ?>
+                    <?php echo $shopname ?>
                   </h4>
-                  <p class="text-muted font-size-sm">Bay Area, San Francisco, CA iuqberfciw2rhbefcvouwerhbvwlje</p>
+                  <p class="text-muted font-size-sm"><?php echo $address ?></p>
                   <button class="btn btn-outline-primary"><a href="signout.php">Logout</a></button>
                 </div>
               </div>
@@ -675,7 +675,34 @@ $conn->close();
                   <h6 class="mb-0">Address</h6>
                 </div>
                 <div class="row-sm-9 text-secondary">
-                  Sanfransico
+                  <?php echo $address?>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Postal Code</h6>
+                </div>
+                <div class="row-sm-9 text-secondary">
+                  <?php echo $postalcode?>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">City</h6>
+                </div>
+                <div class="row-sm-9 text-secondary">
+                  <?php echo $city?>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">State</h6>
+                </div>
+                <div class="row-sm-9 text-secondary">
+                  <?php echo $state?>
                 </div>
               </div>
               <hr>
@@ -718,11 +745,11 @@ $conn->close();
         </div>
         <div class="form-group">
           <label for="address" style="color: #7971ea;">Address</label>
-          <input type="textarea" class="form-control" id="address" name="address" value="address">
+          <input type="textarea" class="form-control" id="address" name="address" value="<?php echo $address?>">
         </div>
         <div class="form-group">
           <label for="postalcode" style="color: #7971ea;">Postal Code</label>
-          <input type="text" class="form-control" id="postalcode" name="postalcode" value="<?php echo $postal_code ?>">
+          <input type="text" class="form-control" id="postalcode" name="postalcode" value="<?php echo $postalcode ?>">
         </div>
         <div class="form-group">
           <label for="city" style="color: #7971ea;">City</label>

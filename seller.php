@@ -1,3 +1,42 @@
+<?php
+include 'config.php';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $shopname = $_POST['shopname'];
+    $fname = $_POST['firstname'];
+    $lname = $_POST['lastname'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $password = $_POST['pass'];
+    $confirm_password = $_POST['re_pass'];
+    $address = $_POST['address'];
+    $city = $_POST['city'];
+    $district = $_POST['district'];
+    $state = $_POST['state'];
+    $postalcode = $_POST['postalcode'];
+
+    // Check for empty fields
+    if (empty($shopname) || empty($fname) || empty($lname) || empty($email) || empty($phone) || empty($password) || empty($confirm_password) || empty($address) || empty($city) || empty($district)|| empty($postalcode) || empty($state)) {
+        echo "All fields are required.";
+    } else {
+        // Insert user data into 'users' table
+        $sellerSql = "INSERT INTO seller (shop_name, firstname, lastname, email, phone, password, address, city, state, district, postal_code) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sellerStmt = $conn->prepare($sellerSql);
+        $sellerStmt->bind_param("sssssssssss", $shopname, $fname, $lname, $email, $phone, $password, $address, $city, $state, $district ,$postalcode);
+        $sellerResult = $sellerStmt->execute();
+
+        if ($sellerResult) {
+            echo "Record created successfully";
+        } else {
+            echo "Error executing statement: " . $conn->error;
+        }
+
+        $sellerStmt->close();
+    }
+}
+
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -586,7 +625,7 @@
               <div class="container">
                   <div class="seller-content">
                       <div class="seller-form">
-                          <form action="signup.php" method="POST" class="register-form" id="register-form">
+                          <form method="POST" class="register-form" id="register-form">
                               <div class="form-group">
                                   <label for="shopname"><i class="zmdi zmdi-account material-icons-name"></i></label>
                                   <input type="text" name="shopname" id="shopname" placeholder="Your shop Name" required>
@@ -607,9 +646,29 @@
                                   <label for="phone"><i class="zmdi zmdi-phone"></i></label>
                                   <input type="text" name="phone" id="phone" placeholder="Your Phone number" required>
                               </div>
+                              <div class="form-group">
+                                <label for="address"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="address" id="address" placeholder="Enter your Shop address" required>
+                            </div>
+                            <div class="form-group-half" style="padding-left: 20px;">
+                                  <label for="city"><i class="zmdi zmdi-lock"></i></label>
+                                  <input type="text" name="city" id="city" placeholder="Your City" required>
+                              </div>
+                              <div class="form-group-half" style="padding-left: 20px;">
+                                  <label for="district"><i class="zmdi zmdi-lock"></i></label>
+                                  <input type="text" name="district" id="district" placeholder="Your District" required>
+                              </div>
+                              <div class="form-group-half" style="padding-left: 20px;">
+                                  <label for="state"><i class="zmdi zmdi-lock"></i></label>
+                                  <input type="text" name="state" id="state" placeholder="Your State" required>
+                              </div>
+                              <div class="form-group-half" style="padding-left: 20px;">
+                                  <label for="postalcode"><i class="zmdi zmdi-lock"></i></label>
+                                  <input type="text" name="postalcode" id="postalcode" placeholder="Your Postal Code" required>
+                              </div>
                               <div class="form-group-half" style="padding-left: 20px;">
                                   <label for="pass"><i class="zmdi zmdi-lock"></i></label>
-                                  <input type="password" name="pass" id="pass" placeholder="Password" required>
+                                  <input type="password" name="pass" id="pass" placeholder="Create your password" required>
                               </div>
                               <div class="form-group-half" style="padding-left: 20px;">
                                   <label for="re-pass"><i class="zmdi zmdi-lock"></i></label>

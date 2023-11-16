@@ -38,15 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit();
         } elseif ($userId == 1) {
             // Regular user
-            header("Location: profile.php");
+            header("Location: userprofile.php");
             exit();
-        } elseif ($userId == 2) {
-            // Seller
-            header("Location: seller.php");
-            exit();
-        } else {
-            // Invalid user id
-            echo "Invalid user ID.";
         }
     } else {
         // User not found in the users table, check the seller table
@@ -54,22 +47,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $sellerResult = $conn->query($sellerSql);
 
         if ($sellerResult->num_rows > 0) {
-            // User found in the seller table, handle accordingly
-            // Add the logic for seller authentication and redirection here
+            $sellerRow = $sellerResult->fetch_assoc();
+            $sellerId = $sellerRow['seller_id'];
+            $_SESSION['seller_id'] = $sellerId;
+            // Seller found in the seller table, redirect to seller.php
+            header("Location: sellerprofile.php");
+            exit();
         } else {
-            // User not found in both tables, display an error message
+            // Neither user nor seller found in the tables
             echo "User does not exist.";
-
-            // Check if the username, email, phone, and password already exist in the users table
-            $existingUserSql = "SELECT * FROM users WHERE email='$email'";
-            $existingUserResult = $conn->query($existingUserSql);
-
-            $existingSellerSql = "SELECT * FROM seller WHERE email='$email'";
-            $existingSellerResult = $conn->query($existingSellerSql);
-
-            if ($existingUserResult->num_rows > 0 || $existingSellerResult->num_rows > 0) {
-                echo "Email already exists.";
-            }
         }
     }
 }

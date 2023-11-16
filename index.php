@@ -401,7 +401,7 @@ include 'config.php';
             <div class="col-6 col-md-4 order-3 order-md-3 text-right" style="padding-right: 50px;">
               <div class="site-top-icons">
                 <ul>
-                  <a href="demo.html" class="btn btn-sm custom-button">
+                  <a href="seller.php" class="btn btn-sm custom-button">
                     <span class="icon"><i class="fas fa-solid fa-store"></i></span>Become a Seller
                   </a>
                   </li>
@@ -409,7 +409,7 @@ include 'config.php';
                   <li>
                     <?php
                     if (isset($_SESSION['username'])) {
-                      echo '<a href="profile.php" class="btn btn-sm custom-button">
+                      echo '<a href="userprofile.php" class="btn btn-sm custom-button">
                                   <span class="icon"><i class="fas fa-user"></i></span>' . $_SESSION['username'] .
                         '</a>';
                       $_SESSION['login'] = true;

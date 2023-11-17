@@ -170,26 +170,31 @@ else {
                     <span class="icon"><i class="fas fa-solid fa-store"></i></span>Become a Seller
                   </a>
                 </li>
-
+                
                 <li>
-                <?php
+
+                    <?php
                     if (isset($_SESSION['username'])) {
                       echo '<a href="userprofile.php" class="btn btn-sm custom-button">
                                   <span class="icon"><i class="fas fa-user"></i></span>' . $_SESSION['username'] .
                         '</a>';
                       $_SESSION['login'] = true;
+
                     } elseif (isset($_SESSION['seller_id'])) {
                         echo '<a href="sellerprofile.php" class="btn btn-sm custom-button">
                                     <span class="icon"><i class="fas fa-user"></i></span>' . $_SESSION['firstname'] .
                           '</a>';
                       }
-                    else {
+                     else {
+
                       echo '<a href="signin.php" class="btn btn-sm custom-button">
                                   <span class="icon"><i class="fas fa-sign-in-alt"></i></span> Login
                               </a>';
                     }
                     ?>
                 </li>
+
+           </li>
 
                 <li>
                   <a href="cart.html" class="site-cart btn btn-sm custom-button border-primary">

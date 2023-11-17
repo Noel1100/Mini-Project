@@ -1,3 +1,7 @@
+<?php
+include 'config.php';
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,9 +66,6 @@
         </thead>
         <tbody>
             <?php
-            // Connect to your database - replace these values with your actual database credentials
-            include 'config.php';
-$_SESSION[username];
             // Fetch data from the products table
             $sql = "SELECT * FROM products where $S";
             $result = $conn->query($sql);

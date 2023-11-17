@@ -1,3 +1,8 @@
+<?php
+session_start();
+include 'config.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -214,6 +219,67 @@
       /* Add margin to the top of the heading to create space */
     }
   </style>
+<style>
+  /* Add this style to set a fixed height and width for the item boxes */
+  .block-4 {
+  height: 1000px; /* Adjust the height as needed */
+  width: 110%; /* Set a fixed width for the item boxes */
+  max-width: 600px; /* Set a maximum width for the item boxes */
+  margin-right: 20px; /* Add margin for separation between items */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+  /* Add this style to ensure content stays within the box */
+  .block-4-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  overflow: hidden; /* Hide overflow content */
+}
+
+.block-4-text h3 {
+  font-size: 18px; /* Adjust font size as needed */
+  margin-bottom: 10px;
+}
+.block-4-text ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.block-4-text ul li {
+  font-size: 14px; /* Adjust font size as needed */
+  margin-bottom: 5px;
+}
+
+.block-4-text p {
+  font-size: 16px; /* Adjust font size as needed */
+  margin: 0;
+}
+.block-4-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Hide overflow content */
+}
+
+/* Make the link take the full size of the container */
+.block-4-image a {
+  display: block;
+}
+
+/* Ensure the image doesn't exceed the card width */
+.block-4-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+</style>
 
 </head>
 
@@ -245,19 +311,30 @@
               <div class="site-top-icons">
                 <ul>
                   <li>
-                    <a href="demo.html" class="btn btn-sm custom-button">
+                    <a href="seller.php" class="btn btn-sm custom-button">
                       <span class="icon"><i class="fas fa-solid fa-store"></i></span>Become a Seller
                     </a>
                   </li>
 
+                
                   <li>
-                    <a href="signin.php" class="btn btn-sm custom-button">
-                      <span class="icon"><i class="fas fa-sign-in-alt"></i></span> Login
-                    </a>
+                    <?php
+                    if (isset($_SESSION['username'])) {
+                      echo '<a href="userprofile.php" class="btn btn-sm custom-button">
+                                  <span class="icon"><i class="fas fa-user"></i></span>' . $_SESSION['username'] .
+                        '</a>';
+                      $_SESSION['login'] = true;
+                    } else {
+                      echo '<a href="signin.php" class="btn btn-sm custom-button">
+                                  <span class="icon"><i class="fas fa-sign-in-alt"></i></span> Login
+                              </a>';
+                    }
+                    ?>
                   </li>
 
+
                   <li>
-                    <a href="cart.html" class="site-cart btn btn-sm custom-button">
+                    <a href="cart.php" class="site-cart btn btn-sm custom-button">
                       <span class="icon icon-shopping_cart"><i class="fas"></i></span> Cart
                       <span class="count">2</span>
                     </a>
@@ -276,15 +353,15 @@
               <a href="index.php">Home</a>
             </li>
             <li class="has-children">
-              <a href="about.html">About</a>
+              <a href="about.php">About</a>
               <ul class="dropdown">
-                <li><a href="about.html#i">Help</a></li>
+                <li><a href="about.php#i">Help</a></li>
               </ul>
             </li>
             <li class="active">
               <a href="shop.php">Shop</a>
             </li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="contact.php">Contact</a></li>
           </ul>
         </div>
       </nav>
@@ -329,52 +406,43 @@
                 </div>
               </div>
             </div>
-   <div class="content-container">
-    <div class="row">
-        <?php
-        include 'config.php';
+            <div class="content-container">
+  <div class="row mb-5">
+    <?php
+    include 'config.php';
 
-        // Fetch property data from the database
-        $sql = "SELECT * FROM products";
-        $result = $conn->query($sql);
+    $sql = "SELECT * FROM products";
+    $result = $conn->query($sql);
 
-        if ($result->num_rows > 0) {
-            $counter = 0; // Counter for tracking items in a row
-            while ($row = $result->fetch_assoc()) {
-                // Fetch the first image for the product
-                $imageSql = "SELECT image FROM product_images WHERE product_id = '{$row['product_id']}'";
-                $imageResult = $conn->query($imageSql);
-                $imageRow = $imageResult->fetch_assoc();
-                $imageUrl = $imageRow['image'];
+    if ($result->num_rows > 0) {
 
-                // Output the property data in the desired style
-                echo "<div class='col-sm-6 col-lg-4 mb-4' data-aos='fade-up'>
-                        <div class='block-4 text-center border'>
-                            <figure class='block-4-image d-flex align-items-center justify-content-center' style='height: 400px;'>
-                                <a href='shop-single.php?show={$row['product_id']}' class='image-zoom-container'>
-                                    <img src='{$imageUrl}' alt='Image placeholder' class='img-fluid image-zoom'>
-                                    <div class='image-zoom-overlay'></div>
-                                </a>
-                            </figure>
-                            <div class='block-4-text p-4' id='oo'>
-                                <h3><a href='shop-single.php?show={$row['product_id']}'>{$row['product_name']}</a></h3>
-                                <ul style='text-align: left;'>
-                                    <li><strong>Brand:</strong> {$row['brand']}</li>
-                                    <li><strong>Color:</strong> {$row['color']}</li>
-                                    <li><strong>Size:</strong> {$row['size']}</li>
-                                    <li><strong>Weight:</strong> {$row['weight']}</li>
-                                    <li><strong>Connectivity:</strong> {$row['connectivity']}</li>
-                                </ul>
-                                <p class='text-primary font-weight-bold'>M.R.P ₹ {$row['price']}</p>
-                            </div>
-                        </div>
-                    </div>";
-            }
-        } else {
-            echo "No products found.";
-        }
-        ?>
-    </div>
+      while ($row = $result->fetch_assoc()) {
+        $imageSql = "SELECT image FROM product_images WHERE product_id = '{$row['product_id']}'";
+        $imageResult = $conn->query($imageSql);
+        $imageRow = $imageResult->fetch_assoc();
+        $imageUrl = $imageRow['image'];
+
+        echo "<div class='col-sm-6 col-lg-4 mb-4' data-aos='fade-up'>
+                  <div class='block-4 text-center border'>
+                      <figure class='block-4-image d-flex align-items-center justify-content-center' style='height: 400px;object-fit: cover;'>
+                          <a href='shop-single.php?show={$row['product_id']}' class='image-zoom-container'>
+                              <img src='{$imageUrl}' alt='Image placeholder' class='img-fluid image-zoom' style='max-height: 100%; width: auto;'>
+                              <div class='image-zoom-overlay'></div>
+                          </a>
+                      </figure>
+                      <div class='block-4-text p-4' id='oo'>
+                          <h3><a href='shop-single.php?show={$row['product_id']}'>{$row['product_name']}</a></h3>
+                          <p>{$row['description']}</p>
+                          <p class='text-primary font-weight-bold'>M.R.P ₹ {$row['price']}</p>
+                      </div>
+                  </div>
+              </div>";
+      }
+    } else {
+      echo "No products found.";
+    }
+    ?>
+  </div>
 </div>
 
     <div class="row container text-center" data-aos="fade-up">
@@ -389,8 +457,9 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div> 
 </div>
+
 
 
           <div class=" order-1 mb-5 mb-md-0">

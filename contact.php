@@ -1,3 +1,8 @@
+<?php
+session_start();
+include 'config.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -138,19 +143,30 @@
               <div class="site-top-icons">
                 <ul>
                   <li>
-                    <a href="demo.html" class="btn btn-sm custom-button">
+                    <a href="seller.php" class="btn btn-sm custom-button">
                       <span class="icon"><i class="fas fa-solid fa-store"></i></span>Become a Seller
                     </a>
                   </li>
 
+                 
                   <li>
-                    <a href="signin.php" class="btn btn-sm custom-button">
-                      <span class="icon"><i class="fas fa-sign-in-alt"></i></span> Login
-                    </a>
+                    <?php
+                    if (isset($_SESSION['username'])) {
+                      echo '<a href="userprofile.php" class="btn btn-sm custom-button">
+                                  <span class="icon"><i class="fas fa-user"></i></span>' . $_SESSION['username'] .
+                        '</a>';
+                      $_SESSION['login'] = true;
+                    } else {
+                      echo '<a href="signin.php" class="btn btn-sm custom-button">
+                                  <span class="icon"><i class="fas fa-sign-in-alt"></i></span> Login
+                              </a>';
+                    }
+                    ?>
                   </li>
 
+
                   <li>
-                    <a href="cart.html" class="site-cart btn btn-sm custom-button">
+                    <a href="cart.php" class="site-cart btn btn-sm custom-button">
                       <span class="icon icon-shopping_cart"><i class="fas"></i></span> Cart
                       <span class="count">2</span>
                     </a>
@@ -169,13 +185,13 @@
               <a href="index.php">Home</a>
             </li>
             <li class="">
-              <a href="about.html">About</a>
+              <a href="about.php">About</a>
             </li>
             <li class="">
               <a href="shop.php">Shop</a>
             </li>
             <li class="has-children active">
-              <a href="contact.html">Contact Us</a>
+              <a href="contact.php">Contact Us</a>
               <ul class="dropdown">
                 <li><a href="#i">Help</a></li>
               </ul>

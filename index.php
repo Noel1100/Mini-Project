@@ -451,10 +451,10 @@ include 'config.php';
               </ul>
             </li>
             <li class="">
-              <a href="about.html">About</a>
+              <a href="about.php">About</a>
             </li>
             <li><a href="shop.php">Shop</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="contact.php">Contact Us</a></li>
           </ul>
         </div>
       </nav>

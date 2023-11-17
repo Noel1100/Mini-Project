@@ -536,7 +536,7 @@ $conn->close();
               <div class="site-top-icons">
                 <ul>
                   <li>
-                    <a href="signin.php" class="btn btn-sm custom-button">
+                    <a href="insert_items.php" class="btn btn-sm custom-button">
                       <span class="icon"><i class="fa fa-globe" aria-hidden="true"></i></span>Sell Online
                     </a>
                   </li>
@@ -642,51 +642,51 @@ $conn->close();
                           <form method="POST" class="register-form" id="register-form">
                               <div class="form-group">
                                   <label for="shopname"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                  <input type="text" name="shopname" id="shopname" placeholder="Your shop Name" required>
+                                  <input type="text" name="shopname" id="shopname" placeholder="Shop Name" required>
                               </div>
                               <div class="form-group-half" style="padding-left: 20px;">
                                   <label for="firstname"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                  <input type="text" name="firstname" id="firstname" placeholder="Your First Name" required>
+                                  <input type="text" name="firstname" id="firstname" placeholder="First Name" required>
                               </div>
                               <div class="form-group-half" style="padding-left: 20px;">
                                   <label for="lastname"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                  <input type="text" name="lastname" id="lastname" placeholder="Your Last Name" required>
+                                  <input type="text" name="lastname" id="lastname" placeholder="Last Name" required>
                               </div>
                               <div class="form-group-half" style="padding-left: 20px;">
                                   <label for="email"><i class="zmdi zmdi-email"></i></label>
-                                  <input type="email" name="email" id="email" placeholder="Your Email" required>
+                                  <input type="email" name="email" id="email" placeholder="Email" required>
                               </div>
                               <div class="form-group-half" style="padding-left: 20px;">
                                   <label for="phone"><i class="zmdi zmdi-phone"></i></label>
-                                  <input type="text" name="phone" id="phone" placeholder="Your Phone number" required>
+                                  <input type="text" name="phone" id="phone" placeholder="Phone number" required>
                               </div>
                               <div class="form-group">
                                 <label for="address"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="address" id="address" placeholder="Enter your Shop address" required>
+                                <input type="text" name="address" id="address" placeholder="Shop address" required>
                             </div>
                             <div class="form-group-half" style="padding-left: 20px;">
                                   <label for="city"><i class="zmdi zmdi-lock"></i></label>
-                                  <input type="text" name="city" id="city" placeholder="Your City" required>
+                                  <input type="text" name="city" id="city" placeholder="City" required>
                               </div>
                               <div class="form-group-half" style="padding-left: 20px;">
                                   <label for="district"><i class="zmdi zmdi-lock"></i></label>
-                                  <input type="text" name="district" id="district" placeholder="Your District" required>
+                                  <input type="text" name="district" id="district" placeholder="District" required>
                               </div>
                               <div class="form-group-half" style="padding-left: 20px;">
                                   <label for="state"><i class="zmdi zmdi-lock"></i></label>
-                                  <input type="text" name="state" id="state" placeholder="Your State" required>
+                                  <input type="text" name="state" id="state" placeholder="State" required>
                               </div>
                               <div class="form-group-half" style="padding-left: 20px;">
                                   <label for="postalcode"><i class="zmdi zmdi-lock"></i></label>
-                                  <input type="text" name="postalcode" id="postalcode" placeholder="Your Postal Code" required>
+                                  <input type="text" name="postalcode" id="postalcode" placeholder="Postal Code" required>
                               </div>
                               <div class="form-group-half" style="padding-left: 20px;">
                                   <label for="pass"><i class="zmdi zmdi-lock"></i></label>
-                                  <input type="password" name="pass" id="pass" placeholder="Create your password" required>
+                                  <input type="password" name="pass" id="pass" placeholder="Create password" required>
                               </div>
                               <div class="form-group-half" style="padding-left: 20px;">
                                   <label for="re-pass"><i class="zmdi zmdi-lock"></i></label>
-                                  <input type="password" name="re_pass" id="re_pass" placeholder="Confirm your password" required>
+                                  <input type="password" name="re_pass" id="re_pass" placeholder="Confirm password" required>
                               </div>
                               <div class="form-group">
                                 <label for="gst"><i class="zmdi zmdi-account material-icons-name"></i></label>

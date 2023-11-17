@@ -549,7 +549,7 @@ echo $successMessage; // Display success message if both updates were successful
               <div class="site-top-icons">
                 <ul>
                   <li>
-                    <a href="demo.html" class="btn btn-sm custom-button">
+                    <a href="seller.php" class="btn btn-sm custom-button">
                       <span class="icon"><i class="fas fa-solid fa-store"></i></span>Become a Seller
                     </a>
                   </li>
@@ -574,12 +574,12 @@ echo $successMessage; // Display success message if both updates were successful
               <a href="index.php">Home</a>
             </li>
             <li class="">
-              <a href="about.html">About</a>
+              <a href="about.php">About</a>
             </li>
             <li class="">
               <a href="shop.php">Shop</a>
             </li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="contact.php">Contact</a></li>
           </ul>
         </div>
       </nav>
@@ -609,7 +609,7 @@ echo $successMessage; // Display success message if both updates were successful
                   <h4>
                     <?php echo $username ?>
                   </h4>
-                  <p class="text-muted font-size-sm">Bay Area, San Francisco, CA iuqberfciw2rhbefcvouwerhbvwlje</p>
+                  <p><?php echo $address?> <?php echo $postalcode?></p>
                   <button class="btn btn-outline-primary"><a href="signout.php">Logout</a></button>
                 </div>
               </div>

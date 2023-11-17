@@ -555,7 +555,7 @@ echo $successMessage; // Display success message if both updates were successful
                   </li>
 
                   <li>
-                    <a href="cart.html" class="site-cart btn btn-sm custom-button">
+                    <a href="cart.php" class="site-cart btn btn-sm custom-button">
                       <span class="icon icon-shopping_cart"><i class="fas"></i></span> Cart
                       <span class="count">2</span>
                     </a>

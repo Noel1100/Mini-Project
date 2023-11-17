@@ -8,6 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $highlights = $_POST['highlights'];
     $desc = $_POST['description'];
     $stock = $_POST['stock'];
+    $brand = $_POST['brand'];
     $price = $_POST['price'];
     $size = $_POST['size'];
     $color = $_POST['color'];
@@ -17,19 +18,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $category = $_POST['category']; // Assuming this is the selected category ID
 
     // Validate form data (check for empty fields)
-    if (empty($name) || empty($title) || empty($highlights) || empty($desc) || empty($stock) || empty($price) || empty($size) || empty($color) || empty($weight) || empty($inthebox) || empty($connectivity) || empty($category)) {
+    if (empty($name) || empty($title) || empty($highlights) || empty($desc) || empty($stock) || empty($brand) || empty($price) || empty($size) || empty($color) || empty($weight) || empty($inthebox) || empty($connectivity) || empty($category)) {
         echo "All fields are required.";
     } else {
         // Prepare the SQL statement using prepared statements to prevent SQL injection
-        $sql = "INSERT INTO products (product_name, product_title, highlights, description, stock, price, size, color, weight, inthebox, connectivity, cat_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO products (product_name, product_title, highlights, description, stock, brand, price, size, color, weight, inthebox, connectivity, cat_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         // Create a prepared statement
         $stmt = $conn->prepare($sql);
     
         if ($stmt) {
             // Bind parameters to the prepared statement as strings
-            $stmt->bind_param("sssssiissssi", $name, $title, $highlights, $desc, $stock, $price, $size, $color, $weight, $inthebox, $connectivity, $category);
-    
+            $stmt->bind_param("sssssiisssiss", $name, $title, $highlights, $desc, $stock, $brand, $price, $size, $color, $weight, $inthebox, $connectivity, $category);
+
             // Execute the prepared statement
             if ($stmt->execute()) {
                 $proId = $conn->insert_id;
@@ -319,7 +320,7 @@ if (isset($_SESSION['success_message'])) {
         <label for="weight">Weight:</label>
         <input type="text" name="weight" id="weight" required><br><br>
 
-        <label for="brand">In the Box</label>
+        <label for="inthebox">In the Box</label>
         <textarea type="text" name="inthebox" id="inthebox" required></textarea><br><br>
 
         <label for="connectivity">Connectivity</label>

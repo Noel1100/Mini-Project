@@ -261,11 +261,13 @@ if (isset($_GET['show'])) {
 </div>
 
             </div>
-            <p><!-- Link to cart page with parameters -->
-              <a href="cart.php" class="btn btn-primary">Add to Cart</a>
-              
-              <a href="#" class="buy-now btn btn-sm btn-primary" id="buyNowLink">Buy Now</a>
-              </p>
+            <p>
+  <!-- Link to cart page with parameters -->
+  <a href="cart.php" class="btn btn-primary" id="addToCartBtn">Add to Cart</a>
+  
+  <!-- Buy Now button with data attributes -->
+  <a href="#" class="buy-now btn btn-sm btn-primary" id="buyNowLink" data-product-id="123" data-quantity="1" data-price="19.99">Buy Now</a>
+</p>
               <hr>
               <p><strong class="text-secondary h5">Units Available: ' . $stock . '</strong></p>
               <p><strong class="text-secondary h5">Product Hightlights: ' . $highlights . '</strong></p>
@@ -326,40 +328,7 @@ if (isset($_GET['show'])) {
 }
 ?>
 
-<script>
-  function addToCart() {
-    var productName = '<?php echo $name; ?>';
-    var productPrice = '<?php echo $price; ?>';
-    var productImage = '<?php echo $imageUrl; ?>';
-    var productId = '<?php echo $productId; ?>'; // Replace with your actual product ID variable
-    var quantity = parseInt(document.getElementById('quantityInput').value);
 
-    var newItem = {
-      name: productName,
-      price: parseFloat(productPrice),
-      image: productImage,
-      productId: productId,
-      quantity: quantity
-    };
-
-    // AJAX POST request to send cart item data to server
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'Cart.php', true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState === XMLHttpRequest.DONE) {
-        if (xhr.status === 200) {
-          // Success message or further actions if needed
-          alert('Item added to cart!');
-        } else {
-          // Error handling
-          alert('Failed to add item to cart. Please try again.');
-        }
-      }
-    };
-    xhr.send(JSON.stringify(newItem));
-  }
-</script>
 
 <script>
   function incrementQuantity() {
@@ -374,24 +343,67 @@ if (isset($_GET['show'])) {
     }
   }
 
-  function addToBuy(itemTitle, quantity, price) {
-    // Assuming buyItems is an array in localStorage
-    let buyItems = JSON.parse(localStorage.getItem('buyItems')) || [];
+  <!-- Include this script at the end of your HTML body -->
+  <script>
+  // JavaScript to handle Add to Cart button click
+  document.getElementById("addToCartBtn").addEventListener("click", function() {
+    addToCart();
+  });
 
-    // Add the current item to the buyItems array with the updated quantity
-    buyItems.push({
-      title: itemTitle,
-      quantity: quantity,
-      price: price
-    });
+  // JavaScript to handle Buy Now button click
+  document.getElementById("buyNowLink").addEventListener("click", function() {
+    buyNow();
+  });
 
-    // Save the updated buyItems array to localStorage
-    localStorage.setItem('buyItems', JSON.stringify(buyItems));
+  // Function to add the product to the cart
+  function addToCart() {
+    // Fetch necessary data from the page or set dynamic values using PHP
+    var productId = '<?php echo $proRow['product_id']; ?>'; // Replace with your dynamic value
+    var quantity = 1; // Set the quantity
+    var price = <?php echo $proRow['price']; ?>; // Replace with your dynamic value
 
-    // Redirect to the buy.html page
-    window.location.href = 'buy.html';
+    // Make an AJAX request to the server to add the product to the cart
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "addToCart.php", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    // Send the data to addToCart.php
+    xhr.send("product_id=" + productId + "&quantity=" + quantity + "&price=" + price);
+
+    // Handle the response from the server if needed
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        // You can handle the response here if needed
+        console.log(xhr.responseText);
+      }
+    };
+  }
+
+  // Function to handle Buy Now button click (similar to addToCart function)
+  function buyNow() {
+    // Fetch necessary data from the page or set dynamic values using PHP
+    var productId = '<?php echo $proRow['product_id']; ?>'; // Use the same variable name as addToCart
+    var quantity = 1; // Set the quantity
+    var price = <?php echo $proRow['price']; ?>; // Use the same variable name as addToCart
+
+    // Make an AJAX request to the server to handle the Buy Now action
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "buyNow.php", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    // Send the data to buyNow.php
+    xhr.send("product_id=" + productId + "&quantity=" + quantity + "&price=" + price);
+
+    // Handle the response from the server if needed
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        // You can handle the response here if needed
+        console.log(xhr.responseText);
+      }
+    };
   }
 </script>
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>

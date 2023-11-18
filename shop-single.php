@@ -256,18 +256,11 @@ if (isset($_GET['show'])) {
 
             </div>
             <p><!-- Link to cart page with parameters -->
-              <a href="index.php?add_to_cart='.$proId.'" class="btn btn-primary">Add to Cart</a>
+              <a href="cart.php?add_to_cart='.$proId.'" class="btn btn-primary">Add to Cart</a>
               
               <a href="buy.html" class="buy-now btn btn-sm btn-primary" id="buyNowLink">Buy Now</a>
               </p>
 
-            <p>
-  <!-- Link to cart page with parameters -->
-  <a href="cart.php" class="btn btn-primary" id="addToCartBtn">Add to Cart</a>
-  
-  <!-- Buy Now button with data attributes -->
-  <a href="#" class="buy-now btn btn-sm btn-primary" id="buyNowLink" data-product-id="123" data-quantity="1" data-price="19.99">Buy Now</a>
-</p>
 
               <hr>
               <p><strong class="text-secondary h5">Units Available: ' . $stock . '</strong></p>

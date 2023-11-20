@@ -21,7 +21,19 @@ if (isset($_GET['show'])) {
     $inthebox = $proRow['inthebox'];
     $highlights = $proRow['highlights'];
     $connectivity = $proRow['connectivity'];
-
+    if (isset($_POST['add_to_cart'])) {
+      // Check if the quantity is set in the POST request
+      if (isset($_POST['quantity'])) {
+        // Retrieve the quantity from the POST request
+        $quantity = $_POST['quantity'];
+        $insertSql = "INSERT INTO cart (username, product_name, quantity, total) VALUES ('$username', '$name', '$quantity', '$price')";
+        if ($conn->query($insertSql) === TRUE) {
+          echo "Product added to cart successfully";
+        } else {
+          echo "Error: " . $insertSql . "<br>" . $conn->error;
+        }
+      }
+    }
     // Output the product data in the desired style
     $imageSql = "SELECT image, image1, image2, image3 FROM product_images WHERE product_id = '$proId'";
     $imageResult = $conn->query($imageSql);
@@ -243,20 +255,19 @@ if (isset($_GET['show'])) {
                     <h3 style="color: black;">' . $name . '</h3>
                     <p style="color: black;">' . $desc . '</p><br>
                     <p><strong class="text-primary h3">M.R.P ' . $price . '</strong></p>
-                    <div class="mb-5">
-                      <div class="input-group mb-3" style="max-width: 120px;">
-  <div class="input-group-prepend">
-    <button class="btn btn-outline-primary js-btn-minus" type="button" onclick="decrementQuantity()">−</button>
-  </div>
-  <input id="quantityInput" type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-  <div class="input-group-append">
-    <button class="btn btn-outline-primary js-btn-plus" type="button" onclick="incrementQuantity()">+</button>
+                   <div class="mb-5">
+  <div class="input-group mb-3" style="max-width: 120px;">
+    <div class="input-group-prepend">
+      <button class="btn btn-outline-primary js-btn-minus" type="button" onclick="decrementQuantity()">−</button>
+    </div>
+    <input id="quantityInput" type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+    <div class="input-group-append">
+      <button class="btn btn-outline-primary js-btn-plus" type="button" onclick="incrementQuantity()">+</button>
+    </div>
   </div>
 </div>
-
-            </div>
             <p><!-- Link to cart page with parameters -->
-              <a href="cart.php?add_to_cart='.$proId.'" class="btn btn-primary">Add to Cart</a>
+              <a href="cart.php?add_to_cart=' . $proId . '" class="btn btn-primary">Add to Cart</a>
               
               <a href="buy.html" class="buy-now btn btn-sm btn-primary" id="buyNowLink">Buy Now</a>
               </p>
@@ -279,31 +290,31 @@ if (isset($_GET['show'])) {
     <div class="category-box">
         <strong style="color:black;"><b>General</b></strong>
         <ul class="details-list">
-            <li><span class="details-label">Brand: </span><span class="details-value">'.$brand.'</span></li>
-            <li><span class="details-label">Name: </span><span class="details-value">'.$name.'</span></li>
+            <li><span class="details-label">Brand: </span><span class="details-value">' . $brand . '</span></li>
+            <li><span class="details-label">Name: </span><span class="details-value">' . $name . '</span></li>
         </ul>
 
         <li class="category-divider"></li>
 
         <strong style="color:black;"><b>Features</b></strong>
         <ul class="details-list">
-            <li><span class="details-label">Size: </span><span class="details-value">'.$size.'</span></li>
-            <li><span class="details-label">Weight: </span><span class="details-value">'.$weight.'</span></li>
+            <li><span class="details-label">Size: </span><span class="details-value">' . $size . '</span></li>
+            <li><span class="details-label">Weight: </span><span class="details-value">' . $weight . '</span></li>
         </ul>
 
         <li class="category-divider"></li>
 
          <strong style="color:black;"><b>Connectivity</b></strong>
         <ul class="details-list">
-            <li><span class="details-label">Connectivity: </span><span class="details-value">'.$connectivity.'</span></li>
+            <li><span class="details-label">Connectivity: </span><span class="details-value">' . $connectivity . '</span></li>
         </ul>
 
         <li class="category-divider"></li>
 
          <strong style="color:black;"><b>Other Details</b></strong>
         <ul class="details-list">
-            <li><span class="details-label">In the Box: </span><span class="details-value">'.$inthebox.'</span></li>
-            <li><span class="details-label">Color: </span><span class="details-value">'.$color.'</span></li>
+            <li><span class="details-label">In the Box: </span><span class="details-value">' . $inthebox . '</span></li>
+            <li><span class="details-label">Color: </span><span class="details-value">' . $color . '</span></li>
         </ul>
     </div>
 </ul>
@@ -327,30 +338,36 @@ if (isset($_GET['show'])) {
 <script>
   function incrementQuantity() {
     var quantityInput = document.getElementById('quantityInput');
-    quantityInput.value = parseInt(quantityInput.value) + 0;
+    quantityInput.value = parseInt(quantityInput.value) + 1;
+    updateQuantity(quantityInput.value); // Update hidden input
   }
 
   function decrementQuantity() {
     var quantityInput = document.getElementById('quantityInput');
     if (parseInt(quantityInput.value) > 1) {
-      quantityInput.value = parseInt(quantityInput.value) - 0;
+      quantityInput.value = parseInt(quantityInput.value) - 1;
+      updateQuantity(quantityInput.value); // Update hidden input
     }
   }
 
-  <!-- Include this script at the end of your HTML body -->
+  function updateQuantity(value) {
+    // Update the hidden input field with the selected quantity
+    document.getElementById('selectedQuantity').value = value;
+  }
+
   <script>
   // JavaScript to handle Add to Cart button click
-  document.getElementById("addToCartBtn").addEventListener("click", function() {
-    addToCart();
+    document.getElementById("addToCartBtn").addEventListener("click", function() {
+      addToCart();
   });
 
-  // JavaScript to handle Buy Now button click
-  document.getElementById("buyNowLink").addEventListener("click", function() {
-    buyNow();
+    // JavaScript to handle Buy Now button click
+    document.getElementById("buyNowLink").addEventListener("click", function() {
+      buyNow();
   });
 
-  // Function to add the product to the cart
-  function addToCart() {
+    // Function to add the product to the cart
+    function addToCart() {
     // Fetch necessary data from the page or set dynamic values using PHP
     var productId = '<?php echo $proRow['product_id']; ?>'; // Replace with your dynamic value
     var quantity = 1; // Set the quantity
@@ -367,14 +384,14 @@ if (isset($_GET['show'])) {
     // Handle the response from the server if needed
     xhr.onreadystatechange = function() {
       if (xhr.readyState == 4 && xhr.status == 200) {
-        // You can handle the response here if needed
-        console.log(xhr.responseText);
+      // You can handle the response here if needed
+      console.log(xhr.responseText);
       }
     };
   }
 
-  // Function to handle Buy Now button click (similar to addToCart function)
-  function buyNow() {
+    // Function to handle Buy Now button click (similar to addToCart function)
+    function buyNow() {
     // Fetch necessary data from the page or set dynamic values using PHP
     var productId = '<?php echo $proRow['product_id']; ?>'; // Use the same variable name as addToCart
     var quantity = 1; // Set the quantity
@@ -391,8 +408,8 @@ if (isset($_GET['show'])) {
     // Handle the response from the server if needed
     xhr.onreadystatechange = function() {
       if (xhr.readyState == 4 && xhr.status == 200) {
-        // You can handle the response here if needed
-        console.log(xhr.responseText);
+      // You can handle the response here if needed
+      console.log(xhr.responseText);
       }
     };
   }
@@ -401,7 +418,7 @@ if (isset($_GET['show'])) {
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function () {
     const mainImage = document.getElementById('main-image');
     const thumbnails = document.querySelectorAll('.thumb');
 
@@ -424,63 +441,64 @@ if (isset($_GET['show'])) {
   });
 </script>
 <footer class="site-footer border-top">
-<div class="container" id="d">
-      <div class="row">
-        <div class="col-lg-6 mb-5 mb-lg-0">
-          <div class="row">
-            <div class="col-md-12">
-              <h3 class="footer-heading mb-4">Navigations</h3>
-            </div>
-            <div class="col-md-6 col-lg-4">
-              <ul class="list-unstyled">
-                <li><a href="demo.html">Sell online</a></li>
-                <li><a href="about.html">Features</a></li>
-                <li><a href="cart.html">Shopping cart</a></li>
-                <li><a href="shop.php">Shop</a></li>
-              </ul>
-            </div>
-            <div class="col-md-6 col-lg-4">
-              <ul class="list-unstyled">
-                <li><a href="shop.php">Categories</a></li>
-                <li><a href="about.html">Shipping Details</a></li>
-                <li><a href="profile.php">Profile</a></li>
-              </ul>
-            </div>
-            <div class="col-md-6 col-lg-4">
-              <ul class="list-unstyled">
-                <li><a href="demo.html">How to become a Seller?</a></li>
-                <li><a href="#">Manage Order</a></li>
-              </ul>
-            </div>
+  <div class="container" id="d">
+    <div class="row">
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <div class="row">
+          <div class="col-md-12">
+            <h3 class="footer-heading mb-4">Navigations</h3>
           </div>
-        </div>
-        <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
-          <h3 class="footer-heading mb-4"></h3>
-          <a href="#" class="block-6">
-            <!-- Adjust the max-width value to reduce the image size further -->
-            <img src="images/kart.jpg" alt="Image placeholder" class="img-fluid rounded mb-4" style="width: 100%; max-width: 100px; height: auto;">
-            <h3 class="font-weight-light  mb-0">Finding Your Perfect Gadgets</h3>
-            <p>Make Living a Habit</p>
-          </a>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <div class="block-5 mb-5">
-            <h3 class="footer-heading mb-4">Contact Info</h3>
+          <div class="col-md-6 col-lg-4">
             <ul class="list-unstyled">
-              <li class="address">203 St. Mountain View, San Francisco, California, USA</li>
-              <li class="phone"><a href="tel://23923929210">+2 392 3929 210</a></li>
-              <li class="email">emailaddress@domain.com</li>
+              <li><a href="demo.html">Sell online</a></li>
+              <li><a href="about.html">Features</a></li>
+              <li><a href="cart.html">Shopping cart</a></li>
+              <li><a href="shop.php">Shop</a></li>
             </ul>
           </div>
+          <div class="col-md-6 col-lg-4">
+            <ul class="list-unstyled">
+              <li><a href="shop.php">Categories</a></li>
+              <li><a href="about.html">Shipping Details</a></li>
+              <li><a href="profile.php">Profile</a></li>
+            </ul>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <ul class="list-unstyled">
+              <li><a href="demo.html">How to become a Seller?</a></li>
+              <li><a href="#">Manage Order</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+        <h3 class="footer-heading mb-4"></h3>
+        <a href="#" class="block-6">
+          <!-- Adjust the max-width value to reduce the image size further -->
+          <img src="images/kart.jpg" alt="Image placeholder" class="img-fluid rounded mb-4"
+            style="width: 100%; max-width: 100px; height: auto;">
+          <h3 class="font-weight-light  mb-0">Finding Your Perfect Gadgets</h3>
+          <p>Make Living a Habit</p>
+        </a>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="block-5 mb-5">
+          <h3 class="footer-heading mb-4">Contact Info</h3>
+          <ul class="list-unstyled">
+            <li class="address">203 St. Mountain View, San Francisco, California, USA</li>
+            <li class="phone"><a href="tel://23923929210">+2 392 3929 210</a></li>
+            <li class="email">emailaddress@domain.com</li>
+          </ul>
+        </div>
 
-          <div class="block-7">
-            <form action="#" method="post">
-              <label for="email_subscribe" class="footer-heading"></label>
-              <div class="form-group">
-                <input type="text" class="form-control py-4" id="email_subscribe" placeholder="Email">
-                <input type="submit" class="btn btn-sm btn-primary" value="Send">
-              </div>
-            </form>
+        <div class="block-7">
+          <form action="#" method="post">
+            <label for="email_subscribe" class="footer-heading"></label>
+            <div class="form-group">
+              <input type="text" class="form-control py-4" id="email_subscribe" placeholder="Email">
+              <input type="submit" class="btn btn-sm btn-primary" value="Send">
+            </div>
+          </form>
         </div>
       </div>
     </div>

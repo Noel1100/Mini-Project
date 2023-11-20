@@ -63,17 +63,7 @@ else {
   </style>
 
   <style>
-    #d {
-      border: 1px solid #ccc;
-      /* Optional: Add a border for visualization */
-      padding: 20px;
-      /* Add padding to create space inside the container */
-    }
-
-    h2 {
-      margin-top: 10px;
-      /* Add margin to the top of the heading to create space */
-    }
+    
   </style>
 
   <style>

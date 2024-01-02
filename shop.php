@@ -136,7 +136,7 @@ include 'config.php';
     }
 
     .image-zoom:hover .image-zoom {
-      transform: scale(1.2);
+      transform: scale(1.05);
       /* Adjust the scale value for the desired zoom level */
       z-index: 2;
       border-radius: 15px;
@@ -275,7 +275,7 @@ include 'config.php';
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
+      
       /* Hide overflow content */
     }
 
@@ -286,7 +286,7 @@ include 'config.php';
 
     /* Ensure the image doesn't exceed the card width */
     .block-4-image img {
-      max-width: 100%;
+      max-width: auto;
       height: auto;
     }
   </style>
@@ -362,11 +362,8 @@ include 'config.php';
             <li class="">
               <a href="index.php">Home</a>
             </li>
-            <li class="has-children">
+            <li class="">
               <a href="about.php">About</a>
-              <ul class="dropdown">
-                <li><a href="about.php#i">Help</a></li>
-              </ul>
             </li>
             <li class="active">
               <a href="shop.php">Shop</a>

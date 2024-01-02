@@ -376,7 +376,7 @@ include 'config.php';
             <div class="block-16">
               <figure>
                 <img src="images/kart1.png" alt="Image placeholder" class="img-fluid rounded-image">
-                <a href="https://www.youtube.com/watch?v=8tKrDeRtT6Q" class="play-button">
+                <a href="https://youtu.be/ACf6bCW2HeE?si=0rv3OumWbajEYX0i" class="play-button">
                   <span class="fa fa-play"></span>
                 </a>
               </figure>
@@ -413,9 +413,9 @@ include 'config.php';
                 <div class="block-38-img">
                   <div class="block-38-header">
                     <img src="images/me1.jpg" alt="Image placeholder" class="mb-4"
-                      style="border-radius: 50%; width: 150px; height: 150px;">
+                      style="border-radius: 20%; width: 130px; height: 150px;">
                     <h3 class="block-38-heading h4">Noel S Thomas</h3>
-                    <p class="block-38-subheading" style="color: black;">Co-Founder</p>
+                    <p class="block-38-subheading" style="color: black;">Founder</p>
                   </div>
                   <div class="block-38-body">
                     <p style="color: black;">Able to inspire and motivate the team that makes our strong work ethic and
@@ -429,9 +429,9 @@ include 'config.php';
                 <div class="block-38-img">
                   <div class="block-38-header">
                     <img src="images/giku2.png" alt="Image placeholder" class="mb-4"
-                      style="border-radius: 50%; width: 150px; height: 150px;">
+                      style="border-radius: 20%; width: 130px; height: 150px;">
                     <h3 class="block-38-heading h4">Giku Cherian Pothen</h3>
-                    <p class="block-38-subheading" style="color: black;">Co-Founder</p>
+                    <p class="block-38-subheading" style="color: black;">Founder</p>
                   </div>
                   <div class="block-38-body">
                     <p style="color: black;">Able to inspire and motivate the team that makes our strong work ethic and
@@ -445,10 +445,10 @@ include 'config.php';
               <div class="block-38 text-center">
                 <div class="block-38-img">
                   <div class="block-38-header">
-                    <img src="images/bilen3.jpg" alt="Image placeholder" class="mb-4"
-                      style="border-radius: 50%; width: 150px; height: 150px;">
+                    <img src="images/bilen2.png" alt="Image placeholder" class="mb-4"
+                      style="border-radius: 20%; width: 130px; height: 150px;">
                     <h3 class="block-38-heading h4">Bilen Antony</h3>
-                    <p class="block-38-subheading" style="color: black;">Co-Founder</p>
+                    <p class="block-38-subheading" style="color: black;">Founder</p>
                   </div>
                   <div class="block-38-body">
                     <p style="color: black;">Able to inspire and motivate the team that makes our strong work ethic and
@@ -467,7 +467,7 @@ include 'config.php';
         <div class="row">
           <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="">
             <div class="icon mr-4 align-self-start">
-              <span class="icon-truck animated-truck"></span>
+              <span class="icon-truck"></span>
             </div>
             <div class="text">
               <h2 class="text-uppercase">Free Shipping</h2>
@@ -476,7 +476,7 @@ include 'config.php';
             </div>
           </div>
           <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="icon mr-4 align-self-start animated-refresh">
+            <div class="icon mr-4 align-self-start">
               <span class="icon-refresh2"></span>
             </div>
             <div class="text">
@@ -486,7 +486,7 @@ include 'config.php';
             </div>
           </div>
           <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="200">
-            <div class="icon mr-4 align-self-start animated-help">
+            <div class="icon mr-4 align-self-start">
               <span class="icon-help"></span>
             </div>
             <div class="text">

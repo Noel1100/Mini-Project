@@ -549,12 +549,6 @@ echo $successMessage; // Display success message if both updates were successful
               <div class="site-top-icons">
                 <ul>
                   <li>
-                    <a href="seller.php" class="btn btn-sm custom-button">
-                      <span class="icon"><i class="fas fa-solid fa-store"></i></span>Become a Seller
-                    </a>
-                  </li>
-
-                  <li>
                     <a href="cart.php" class="site-cart btn btn-sm custom-button">
                       <span class="icon icon-shopping_cart"><i class="fas"></i></span> Cart
                       <span class="count">2</span>

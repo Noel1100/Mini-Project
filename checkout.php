@@ -116,26 +116,37 @@
   
               <div class="col-6 col-md-4 order-3 order-md-3 text-right" style="padding-right: 50px;">
                 <div class="site-top-icons">
-                  <ul>
-                    <li>
-                      <a href="seller.php" class="btn btn-sm custom-button">
-                        <span class="icon"><i class="fas fa-solid fa-store"></i></span>Become a Seller
-                      </a>
-                    </li>
-  
-                    <li>
-                      <a href="signin.php" class="btn btn-sm custom-button">
-                        <span class="icon"><i class="fas fa-sign-in-alt"></i></span> Login
-                      </a>
-                    </li>
-  
-                    <li>
-                      <a href="cart.html" class="site-cart btn btn-sm custom-button">
-                        <span class="icon icon-shopping_cart"><i class="fas"></i></span> Cart
-                        <span class="count">2</span>
-                      </a>
-                    </li>
-                  </ul>
+                <ul>
+    <?php
+    if (isset($_SESSION['username'])) {
+        // User is logged in as a regular user
+        echo '<li><a href="userprofile.php" class="btn btn-sm custom-button">
+                    <span class="icon"><i class="fas fa-user"></i></span>' . $_SESSION['username'] .
+            '</a></li>';
+        $_SESSION['login'] = true;
+    } elseif (isset($_SESSION['seller_id'])) {
+        // User is logged in as a seller
+        echo '<li><a href="sellerprofile.php" class="btn btn-sm custom-button">
+                    <span class="icon"><i class="fas fa-user"></i></span>' . $_SESSION['firstname'] .
+            '</a></li>';
+    } else {
+        // User is not logged in
+        echo '<li><a href="seller.php" class="btn btn-sm custom-button">
+                    <span class="icon"><i class="fas fa-solid fa-store"></i></span>Become a Seller
+                </a></li>';
+        echo '<li><a href="signin.php" class="btn btn-sm custom-button">
+                    <span class="icon"><i class="fas fa-sign-in-alt"></i></span> Login
+                </a></li>';
+    }
+    ?>
+
+    <li>
+        <a href="cart.php" class="site-cart btn btn-sm custom-button">
+            <span class="icon icon-shopping_cart"><i class="fas"></i></span> Cart
+            <span class="count">2</span>
+        </a>
+    </li>
+</ul>
                 </div>
               </div>
   

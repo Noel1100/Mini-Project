@@ -301,35 +301,37 @@ include 'config.php';
 
             <div class="col-6 col-md-4 order-3 order-md-3 text-right" style="padding-right: 50px;">
               <div class="site-top-icons">
-                <ul>
-                  <li>
-                    <a href="seller.php" class="btn btn-sm custom-button">
-                      <span class="icon"><i class="fas fa-solid fa-store"></i></span>Become a Seller
-                    </a>
-                  </li>
+              <ul>
+    <?php
+    if (isset($_SESSION['username'])) {
+        // User is logged in as a regular user
+        echo '<li><a href="userprofile.php" class="btn btn-sm custom-button">
+                    <span class="icon"><i class="fas fa-user"></i></span>' . $_SESSION['username'] .
+            '</a></li>';
+        $_SESSION['login'] = true;
+    } elseif (isset($_SESSION['seller_id'])) {
+        // User is logged in as a seller
+        echo '<li><a href="sellerprofile.php" class="btn btn-sm custom-button">
+                    <span class="icon"><i class="fas fa-user"></i></span>' . $_SESSION['firstname'] .
+            '</a></li>';
+    } else {
+        // User is not logged in
+        echo '<li><a href="seller.php" class="btn btn-sm custom-button">
+                    <span class="icon"><i class="fas fa-solid fa-store"></i></span>Become a Seller
+                </a></li>';
+        echo '<li><a href="signin.php" class="btn btn-sm custom-button">
+                    <span class="icon"><i class="fas fa-sign-in-alt"></i></span> Login
+                </a></li>';
+    }
+    ?>
 
-                  <li>
-                    <?php
-                    if (isset($_SESSION['username'])) {
-                      echo '<a href="userprofile.php" class="btn btn-sm custom-button">
-                                  <span class="icon"><i class="fas fa-user"></i></span>' . $_SESSION['username'] .
-                        '</a>';
-                      $_SESSION['login'] = true;
-                    } else {
-                      echo '<a href="signin.php" class="btn btn-sm custom-button">
-                                  <span class="icon"><i class="fas fa-sign-in-alt"></i></span> Login
-                              </a>';
-                    }
-                    ?>
-                  </li>
-
-                  <li>
-                    <a href="cart.php" class="site-cart btn btn-sm custom-button">
-                      <span class="icon icon-shopping_cart"><i class="fas"></i></span> Cart
-                      <span class="count">2</span>
-                    </a>
-                  </li>
-                </ul>
+    <li>
+        <a href="cart.php" class="site-cart btn btn-sm custom-button">
+            <span class="icon icon-shopping_cart"><i class="fas"></i></span> Cart
+            <span class="count">2</span>
+        </a>
+    </li>
+</ul>
               </div>
             </div>
 
@@ -365,6 +367,7 @@ include 'config.php';
         </div>
       </div>
     </div>
+  </div>
 
     <div class="site-section border-bottom" data-aos="fade">
       <div class="container">
@@ -442,7 +445,7 @@ include 'config.php';
               <div class="block-38 text-center">
                 <div class="block-38-img">
                   <div class="block-38-header">
-                    <img src="images/bilen1.jpg" alt="Image placeholder" class="mb-4"
+                    <img src="images/bilen3.jpg" alt="Image placeholder" class="mb-4"
                       style="border-radius: 50%; width: 150px; height: 150px;">
                     <h3 class="block-38-heading h4">Bilen Antony</h3>
                     <p class="block-38-subheading" style="color: black;">Co-Founder</p>
@@ -529,7 +532,7 @@ include 'config.php';
               </div>
               <div class="col-md-6 col-lg-4">
                 <ul class="list-unstyled">
-                  <li><a href="demo.html">How to become a Seller?</a></li>
+                  <li><a href="seller.php">How to become a Seller?</a></li>
                   <li><a href="#">Manage Order</a></li>
                 </ul>
               </div>

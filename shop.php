@@ -135,7 +135,7 @@ include 'config.php';
       transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
-    .image-zoom-container:hover .image-zoom {
+    .image-zoom:hover .image-zoom {
       transform: scale(1.2);
       /* Adjust the scale value for the desired zoom level */
       z-index: 2;
@@ -143,7 +143,7 @@ include 'config.php';
       /* Adjust the border-radius value for curved border when hovered */
     }
 
-    .image-zoom-container:hover .image-zoom-overlay {
+    .image-zoom:hover .image-zoom-overlay {
       opacity: 1;
       z-index: 1;
       transform: scale(1.05);
@@ -319,37 +319,37 @@ include 'config.php';
 
             <div class="col-6 col-md-4 order-3 order-md-3 text-right" style="padding-right: 50px;">
               <div class="site-top-icons">
-                <ul>
-                  <li>
-                    <a href="seller.php" class="btn btn-sm custom-button">
-                      <span class="icon"><i class="fas fa-solid fa-store"></i></span>Become a Seller
-                    </a>
-                  </li>
+                        <ul>
+    <?php
+    if (isset($_SESSION['username'])) {
+        // User is logged in as a regular user
+        echo '<li><a href="userprofile.php" class="btn btn-sm custom-button">
+                    <span class="icon"><i class="fas fa-user"></i></span>' . $_SESSION['username'] .
+            '</a></li>';
+        $_SESSION['login'] = true;
+    } elseif (isset($_SESSION['seller_id'])) {
+        // User is logged in as a seller
+        echo '<li><a href="sellerprofile.php" class="btn btn-sm custom-button">
+                    <span class="icon"><i class="fas fa-user"></i></span>' . $_SESSION['firstname'] .
+            '</a></li>';
+    } else {
+        // User is not logged in
+        echo '<li><a href="seller.php" class="btn btn-sm custom-button">
+                    <span class="icon"><i class="fas fa-solid fa-store"></i></span>Become a Seller
+                </a></li>';
+        echo '<li><a href="signin.php" class="btn btn-sm custom-button">
+                    <span class="icon"><i class="fas fa-sign-in-alt"></i></span> Login
+                </a></li>';
+    }
+    ?>
 
-
-                  <li>
-                    <?php
-                    if (isset($_SESSION['username'])) {
-                      echo '<a href="userprofile.php" class="btn btn-sm custom-button">
-                                  <span class="icon"><i class="fas fa-user"></i></span>' . $_SESSION['username'] .
-                        '</a>';
-                      $_SESSION['login'] = true;
-                    } else {
-                      echo '<a href="signin.php" class="btn btn-sm custom-button">
-                                  <span class="icon"><i class="fas fa-sign-in-alt"></i></span> Login
-                              </a>';
-                    }
-                    ?>
-                  </li>
-
-
-                  <li>
-                    <a href="cart.php" class="site-cart btn btn-sm custom-button">
-                      <span class="icon icon-shopping_cart"><i class="fas"></i></span> Cart
-                      <span class="count">2</span>
-                    </a>
-                  </li>
-                </ul>
+    <li>
+        <a href="cart.php" class="site-cart btn btn-sm custom-button">
+            <span class="icon icon-shopping_cart"><i class="fas"></i></span> Cart
+            <span class="count">2</span>
+        </a>
+    </li>
+</ul>
               </div>
             </div>
 
@@ -434,8 +434,8 @@ include 'config.php';
 
                     echo "<div class='col-sm-6 col-lg-4 mb-4' data-aos='fade-up'>
                   <div class='block-4 text-center border'>
-                      <figure class='block-4-image d-flex align-items-center justify-content-center' style='height: 400px;object-fit: cover;'>
-                          <a href='shop-single.php?show={$row['product_id']}' class='image-zoom-container'>
+                      <figure class='block-4-image d-flex align-items-center justify-content-center' style='height: 500px;object-fit: cover;'>
+                          <a href='shop-single.php?show={$row['product_id']}' class='image-zoom'>
                               <img src='{$imageUrl}' alt='Image placeholder' class='img-fluid image-zoom' style='max-height: 100%; width: auto;'>
                               <div class='image-zoom-overlay'></div>
                           </a>
@@ -565,6 +565,28 @@ include 'config.php';
                             ₹
                             13,999</p>
                         </div>
+                        
+                      </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+                      <div class="block-4 text-center border">
+                        <figure class="block-4-image">
+                          <a href="shop-single.html?item=4" class="image-zoom-container"><img src="images/phone.jpg"
+                              alt="Image placeholder" class="img-fluid image-zoom">
+                            <div class="image-zoom-overlay"></div>
+                          </a>
+                        </figure>
+                        <div class="block-4-text p-4" id="oo">
+                          <h3><a href="shop-single.html?item=4">Lava Blaze 5G</a></h3>
+                          <p class="mb-0">Buy the Lava Blaze 5G 128 GB (Glass Green, 8 GB RAM) and delve into a new
+                            world of possibilities. The stylish and marvellous design of the phone attracts everyone.
+                          </p>
+                          <p class="text-primary font-weight-bold">M.R.P
+                            ₹
+                            13,999</p>
+                        </div>
+                        
                       </div>
                     </div>
                   </div>

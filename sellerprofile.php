@@ -533,11 +533,7 @@ if (isset($_SESSION['seller_id'])) {
             <div class="col-1 col-md-4 order-3 order-md-3 text-right" style="padding-right: 30px;">
               <div class="site-top-icons">
                 <ul>
-                  <li>
-                    <a href="seller.php" class="btn btn-sm custom-button">
-                      <span class="icon"><i class="fas fa-solid fa-store"></i></span>Become a Seller
-                    </a>
-                  </li>
+                 
 
                   <li>
                     <a href="cart.html" class="site-cart btn btn-sm custom-button">
@@ -614,19 +610,11 @@ if (isset($_SESSION['seller_id'])) {
                     <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
                     <line x1="12" y1="22.08" x2="12" y2="12"></line>
                   </svg>
-                  <a href="profile-order.html" id="e">ORDERS</a>
+                  <a href="profile-order.html" id="e">SOLD ITEMS</a>
                 </h6>
                 <span class="text-secondary"></span>
               </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                    fill="none" stroke="green" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-dollar-sign">
-                    <line x1="12" y1="1" x2="12" y2="23"></line>
-                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                  </svg>PAYMENT</h6>
-                <span class="text-secondary"></span>
-              </li>
+
 
             </ul>
           </div>

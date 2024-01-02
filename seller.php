@@ -13,29 +13,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $district = $_POST['district'];
     $state = $_POST['state'];
     $postalcode = $_POST['postalcode'];
+    $gst = $_POST['gstnumber'];
 
     // Check for empty fields
-    if (empty($shopname) || empty($fname) || empty($lname) || empty($email) || empty($phone) || empty($password) || empty($confirm_password) || empty($address) || empty($city) || empty($district)|| empty($postalcode) || empty($state)) {
+    if (empty($shopname) || empty($fname) || empty($lname) || empty($email) || empty($phone) || empty($password) || empty($confirm_password) 
+    || empty($address) || empty($city) || empty($district) || empty($postalcode) || empty($state) || empty($gst)) {
         echo "All fields are required.";
     } else {
         // Insert user data into 'users' table
-        $sellerSql = "INSERT INTO seller (shop_name, firstname, lastname, email, phone, password, address, city, state, district, postal_code) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sellerSql = "INSERT INTO seller (shop_name, firstname, lastname, email, phone, password, address, city, state, district, postal_code, gst) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $sellerStmt = $conn->prepare($sellerSql);
-        $sellerStmt->bind_param("sssssssssss", $shopname, $fname, $lname, $email, $phone, $password, $address, $city, $state, $district ,$postalcode);
+        $sellerStmt->bind_param("ssssssssssss", $shopname, $fname, $lname, $email, $phone, $password, $address, $city, $state, $district ,$postalcode ,$gst);
         $sellerResult = $sellerStmt->execute();
 
         if ($sellerResult) {
-            echo "Record created successfully";
-        } else {
-            echo "Error executing statement: " . $conn->error;
-        }
-
-        $sellerStmt->close();
-    }
+          echo '<script>
+                  alert("Record created successfully");
+                  window.location.href = "signin.php";
+                </script>';
+      } else {
+          echo "Error executing statement: " . $conn->error;
+      }
+  
+      $sellerStmt->close();
+  }
 }
+  $conn->close();
+  ?>
 
-$conn->close();
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -733,7 +738,7 @@ $conn->close();
 
         <div class="box styles__Item-a5s7uc-15 cswvlQ">
             <img src="https://static-assets-web.flixcart.com/fk-sp-static/images/prelogin/icons/FileSvg.svg">
-            <span class="styles__SpanWrap-a5s7uc-16 dTSKYW">Fill in the GST Enrolment Application Form</span>
+            <span class="styles__SpanWrap-a5s7uc-16 dTSKYW">Fill in the <a href="https://gstregistration.org/">GST Enrolment Application Form</a></span>
         </div>
 
         <div class="box styles__Item-a5s7uc-15 cswvlQ">
@@ -796,6 +801,7 @@ $conn->close();
                  }
              });
          </script>
+         
 </body>
 </html>
 

@@ -24,9 +24,17 @@ function getProductDetails($productId)
 
     $imageQuery = "SELECT image1, image2, image3, image4 FROM product_images WHERE product_id = ?";
     $imgStmt = $conn->prepare($imageQuery);
+    if ($imgStmt === false) {
+      die('Image SQL query preparation failed: ' . $conn->error);
+    }
+    
     $imgStmt->bind_param('i', $productId);
     $imgStmt->execute();
     $imgResult = $imgStmt->get_result();
+    if ($imgResult === false) {
+      die('Image SQL query execution failed: ' . $imgStmt->error);
+    }
+    
 
     if ($imgResult->num_rows > 0) {
       $productDetails['images'] = $imgResult->fetch_assoc();

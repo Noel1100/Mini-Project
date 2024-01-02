@@ -1,6 +1,3 @@
-<?php 
-include 'config.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -109,58 +106,87 @@ include 'config.php';
 
 
 </head>
-
 <div class="cart-container">
   <h2>Your Cart</h2>
 
-  <?php
-  session_start();
-  include 'config.php';
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product Image</th>
+        <th>Product Name</th>
+        <th>Quantity</th>
+        <th>Total Price</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="cartItemsContainer">
+      <?php
+      session_start();
+      include 'config.php';
+      
+      if (isset($_SESSION['username'])) {
+        $username = $_SESSION['username'];
 
-  // Fetch cart items from the database based on product IDs/ Assuming user ID is stored in the session
-  
-  $cartQuery = "SELECT cart.quantity, cart.product_name, cart.total, products.product_id, products.product_name AS prod_name, product_images.image1
-  FROM cart
-  INNER JOIN products ON cart.product_id = products.product_id
-  INNER JOIN product_images ON products.product_id = product_images.product_id
-  WHERE cart.username = ?";
+        // Prepare the SQL query to fetch cart details for the logged-in user
+        $cartItemsQuery = "SELECT 
+                              cart.quantity,
+                              cart.product_id,
+                              products.product_name AS prod_name,
+                              products.price,
+                              product_images.image1
+                            FROM 
+                              cart
+                            INNER JOIN 
+                              products ON cart.product_id = products.product_id
+                            INNER JOIN 
+                              product_images ON products.product_id = product_images.product_id
+                            WHERE 
+                              cart.username = ?";
 
-  $stmt = $conn->prepare($cartQuery);
-  if ($stmt) {
-    $stmt->bind_param("i", $userId);
-    $stmt->execute();
-    $result = $stmt->get_result();
+        // Prepare the statement
+        $stmt = $conn->prepare($cartItemsQuery);
 
-    if ($result->num_rows > 0) {
-      while ($row = $result->fetch_assoc()) {
-        // Display cart items
-        $productName = $row['prod_name'];
-        $quantity = $row['quantity'];
-        $price = $row['price'];
-        $imageURL = $row['image1'];
+        if ($stmt) {
+          // Bind parameters and execute the statement
+          $stmt->bind_param("s", $_SESSION['username']);
+          $stmt->execute();
+          $cartItemsResult = $stmt->get_result();
 
-        // Output cart item details
-        echo "<div class='cart-item'>
-                            <img src='$imageURL' alt='$productName'>
-                            <div class='cart-details'>
-                                <h3>$productName</h3>
-                                <p>Quantity: $quantity</p>
-                                <p>Price: $price</p>
-                            </div>
-                          </div>";
+          if (!empty($cartItemsResult) && $cartItemsResult->num_rows > 0) {
+            while ($row = $cartItemsResult->fetch_assoc()) {
+              // Display cart item details
+              $productName = $row['prod_name'];
+              $quantity = $row['quantity'];
+              $price = $row['price'];
+              $totalPrice = $quantity * $price;
+              $imageURL = $row['image1'];
+
+              // Output cart item details in table rows
+              echo "<tr>
+                      <td><img src='$imageURL' alt='$productName' width='100'></td>
+                      <td>$productName</td>
+                      <td>$quantity</td>
+                      <td>$totalPrice</td>
+                      <td><!-- Action buttons/links --></td>
+                    </tr>";
+            }
+          } else {
+            echo "<tr><td colspan='5'>Your cart is empty.</td></tr>";
+          }
+
+          // Close the statement
+          $stmt->close();
+        } else {
+          echo "<tr><td colspan='5'>Error in preparing statement.</td></tr>";
+        }
+      } else {
+        echo "<tr><td colspan='5'>User not logged in.</td></tr>";
       }
-    } else {
-      echo "<p>Your cart is empty.</p>";
-    }
-
-    $stmt->close();
-  } else {
-    echo "Error in preparing statement.";
-  }
-  ?>
-
-  <!-- Continue with the rest of your HTML content -->
+      ?>
+    </tbody>
+  </table>
 </div>
+
 
 <footer class="site-footer border-top">
   <div>
@@ -358,12 +384,6 @@ include 'config.php';
     updateCart();
   });
 </script>
-
-
-
-
-
-
 
 <!-- Modal Section -->
 <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel"

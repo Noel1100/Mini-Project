@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
         if ($stmt) {
             // Bind parameters to the prepared statement as strings
-            $stmt->bind_param("sssssiisssiss", $name, $title, $highlights, $desc, $stock, $brand, $price, $size, $color, $weight, $inthebox, $connectivity, $category);
+            $stmt->bind_param("ssssssisssiss", $name, $title, $highlights, $desc, $stock, $brand, $price, $size, $color, $weight, $inthebox, $connectivity, $category);
 
             // Execute the prepared statement
             if ($stmt->execute()) {
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $targetFilePath = $file_name;
 
             // Insert image name into the database
-            $imageSql = "INSERT INTO product_images (product_id, image) VALUES ('$proId', '$targetFilePath')";
+            $imageSql = "INSERT INTO product_images (product_id, image1,image2,image3,image4) VALUES ('$proId', '$targetFilePath')";
             if ($conn->query($imageSql) !== TRUE) {
                 echo "Error: " . $imageSql . "<br>" . $conn->error;
             } else {

@@ -21,27 +21,15 @@ if (isset($_GET['show'])) {
     $inthebox = $proRow['inthebox'];
     $highlights = $proRow['highlights'];
     $connectivity = $proRow['connectivity'];
-    if (isset($_POST['add_to_cart'])) {
-      // Check if the quantity is set in the POST request
-      if (isset($_POST['quantity'])) {
-        // Retrieve the quantity from the POST request
-        $quantity = $_POST['quantity'];
-        $insertSql = "INSERT INTO cart (username, product_name, quantity, total) VALUES ('$username', '$name', '$quantity', '$price')";
-        if ($conn->query($insertSql) === TRUE) {
-          echo "Product added to cart successfully";
-        } else {
-          echo "Error: " . $insertSql . "<br>" . $conn->error;
-        }
-      }
-    }
+
     // Output the product data in the desired style
-    $imageSql = "SELECT image, image1, image2, image3 FROM product_images WHERE product_id = '$proId'";
+    $imageSql = "SELECT image1, image2, image3 FROM product_images WHERE product_id = '$proId'";
     $imageResult = $conn->query($imageSql);
     $imageRow = $imageResult->fetch_assoc();
-    $imageUrl = $imageRow['image'];
     $imageUrl1 = isset($imageRow['image1']) ? $imageRow['image1'] : '';
     $imageUrl2 = isset($imageRow['image2']) ? $imageRow['image2'] : '';
     $imageUrl3 = isset($imageRow['image3']) ? $imageRow['image3'] : '';
+    $imageUrl4 = isset($imageRow['image4']) ? $imageRow['image4'] : '';
     echo ' <!DOCTYPE html>
 <html lang="en">
 
@@ -234,20 +222,20 @@ if (isset($_GET['show'])) {
         <div class="container show">
           <div class="row">
   <div class="col-md-6" style="border-right: 1px solid #2e2e2e;">
-                                <img id="main-image" src="' . $imageUrl . '" alt="Image" class="img-fluid">
+                                <img id="main-image" src="' . $imageUrl1 . '" alt="Image" class="img-fluid">
                                 <br><br>
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <img src="' . $imageUrl1 . '" alt="Image 2" class="img-fluid thumb"
-                                            data-src="' . $imageUrl1 . '" id="sub-image1" style="width: 150px; height: 100px;">
+                                        <img src="' . $imageUrl2 . '" alt="Image 2" class="img-fluid thumb"
+                                            data-src="' . $imageUrl2 . '" id="sub-image1" style="width: 150px; height: 100px;">
                                     </div>
                                     <div class="col-md-4">
-                                        <img src="' . $imageUrl2 . '" alt="Image 3" class="img-fluid thumb"
-                                            data-src="' . $imageUrl2 . '" id="sub-image2" style="width: 150px; height: 100px;">
+                                        <img src="' . $imageUrl3 . '" alt="Image 3" class="img-fluid thumb"
+                                            data-src="' . $imageUrl3 . '" id="sub-image2" style="width: 150px; height: 100px;">
                                     </div>
                                     <div class="col-md-4">
-                                        <img src="' . $imageUrl3 . '" alt="Image 4" class="img-fluid thumb"
-                                            data-src="' . $imageUrl3 . '" id="sub-image3" style="width: 150px; height: 100px;">
+                                        <img src="' . $imageUrl4 . '" alt="Image 4" class="img-fluid thumb"
+                                            data-src="' . $imageUrl4 . '" id="sub-image3" style="width: 150px; height: 100px;">
                                     </div>
                                 </div>
                             </div>
@@ -267,8 +255,10 @@ if (isset($_GET['show'])) {
   </div>
 </div>
             <p><!-- Link to cart page with parameters -->
-              <a href="cart.php?add_to_cart=' . $proId . '" class="btn btn-primary">Add to Cart</a>
-              
+            <button class="btn btn-primary btn-lg btn-block text-uppercase" type="button" 
+            onclick="addToCart('<?php echo htmlspecialchars($proRow["product_id"]); ?>', '<?php echo htmlspecialchars($proRow['product_name']); ?>', '<?php echo htmlspecialchars($proRow['product_price']); ?>', '1');">
+            Add to cart
+        </button> 
               <a href="buy.html" class="buy-now btn btn-sm btn-primary" id="buyNowLink">Buy Now</a>
               </p>
 
@@ -366,30 +356,23 @@ if (isset($_GET['show'])) {
       buyNow();
   });
 
-    // Function to add the product to the cart
-    function addToCart() {
-    // Fetch necessary data from the page or set dynamic values using PHP
-    var productId = '<?php echo $proRow['product_id']; ?>'; // Replace with your dynamic value
-    var quantity = 1; // Set the quantity
-    var price = <?php echo $proRow['price']; ?>; // Replace with your dynamic value
-
-    // Make an AJAX request to the server to add the product to the cart
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "addToCart.php", true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-    // Send the data to addToCart.php
-    xhr.send("product_id=" + productId + "&quantity=" + quantity + "&price=" + price);
-
-    // Handle the response from the server if needed
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState == 4 && xhr.status == 200) {
-      // You can handle the response here if needed
-      console.log(xhr.responseText);
-      }
-    };
+  <script>
+  function addToCart(id, name, price, quantity) {
+     $.ajax({
+       url: 'addToCart.php',
+       type: 'POST',
+       data: {
+         id: id,
+         name: name,
+         price: price,
+         quantity: quantity
+       },
+       success: function(response) {
+         alert(response);
+       }
+     });
   }
-
+ </script>
     // Function to handle Buy Now button click (similar to addToCart function)
     function buyNow() {
     // Fetch necessary data from the page or set dynamic values using PHP

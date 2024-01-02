@@ -206,7 +206,7 @@ include 'config.php';
       /* Align the image vertically with the text */
     }
   </style>
-    <style>
+  <style>
     #d {
       border: 1px solid #ccc;
       /* Optional: Add a border for visualization */
@@ -219,67 +219,77 @@ include 'config.php';
       /* Add margin to the top of the heading to create space */
     }
   </style>
-<style>
-  /* Add this style to set a fixed height and width for the item boxes */
-  .block-4 {
-  height: 1000px; /* Adjust the height as needed */
-  width: 110%; /* Set a fixed width for the item boxes */
-  max-width: 600px; /* Set a maximum width for the item boxes */
-  margin-right: 20px; /* Add margin for separation between items */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
+  <style>
+    /* Add this style to set a fixed height and width for the item boxes */
+    .block-4 {
+      height: 1000px;
+      /* Adjust the height as needed */
+      width: 110%;
+      /* Set a fixed width for the item boxes */
+      max-width: 600px;
+      /* Set a maximum width for the item boxes */
+      margin-right: 20px;
+      /* Add margin for separation between items */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
 
 
-  /* Add this style to ensure content stays within the box */
-  .block-4-text {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 20px;
-  overflow: hidden; /* Hide overflow content */
-}
+    /* Add this style to ensure content stays within the box */
+    .block-4-text {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px;
+      overflow: hidden;
+      /* Hide overflow content */
+    }
 
-.block-4-text h3 {
-  font-size: 18px; /* Adjust font size as needed */
-  margin-bottom: 10px;
-}
-.block-4-text ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
+    .block-4-text h3 {
+      font-size: 18px;
+      /* Adjust font size as needed */
+      margin-bottom: 10px;
+    }
 
-.block-4-text ul li {
-  font-size: 14px; /* Adjust font size as needed */
-  margin-bottom: 5px;
-}
+    .block-4-text ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
 
-.block-4-text p {
-  font-size: 16px; /* Adjust font size as needed */
-  margin: 0;
-}
-.block-4-image {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden; /* Hide overflow content */
-}
+    .block-4-text ul li {
+      font-size: 14px;
+      /* Adjust font size as needed */
+      margin-bottom: 5px;
+    }
 
-/* Make the link take the full size of the container */
-.block-4-image a {
-  display: block;
-}
+    .block-4-text p {
+      font-size: 16px;
+      /* Adjust font size as needed */
+      margin: 0;
+    }
 
-/* Ensure the image doesn't exceed the card width */
-.block-4-image img {
-  max-width: 100%;
-  height: auto;
-}
+    .block-4-image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      /* Hide overflow content */
+    }
 
-</style>
+    /* Make the link take the full size of the container */
+    .block-4-image a {
+      display: block;
+    }
+
+    /* Ensure the image doesn't exceed the card width */
+    .block-4-image img {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
 
 </head>
 
@@ -316,7 +326,7 @@ include 'config.php';
                     </a>
                   </li>
 
-                
+
                   <li>
                     <?php
                     if (isset($_SESSION['username'])) {
@@ -389,40 +399,40 @@ include 'config.php';
                   </div>
                   <div class="d-flex">
                     <div class="dropdown mr-1 ml-md-auto">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuReference"
-                        data-toggle="dropdown">Reference</button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
-                        <a class="dropdown-item" href="#">Relevance</a>
-                        <a class="dropdown-item" href="#">Name, A to Z</a>
-                        <a class="dropdown-item" href="#">Name, Z to A</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Price, low to high</a>
-                        <a class="dropdown-item" href="#">Price, high to low</a>
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-secondary btn-sm dropdown-toggle"
+                          id="dropdownMenuReference" data-toggle="dropdown">Reference</button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+                          <a class="dropdown-item" href="#">Relevance</a>
+                          <a class="dropdown-item" href="#">Name, A to Z</a>
+                          <a class="dropdown-item" href="#">Name, Z to A</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="#">Price, low to high</a>
+                          <a class="dropdown-item" href="#">Price, high to low</a>
+                        </div>
                       </div>
                     </div>
-                  </div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="content-container">
-  <div class="row mb-5">
-    <?php
-    include 'config.php';
+              <div class="row mb-5">
+                <?php
+                include 'config.php';
 
-    $sql = "SELECT * FROM products";
-    $result = $conn->query($sql);
+                $sql = "SELECT * FROM products";
+                $result = $conn->query($sql);
 
-    if ($result->num_rows > 0) {
+                if ($result->num_rows > 0) {
 
-      while ($row = $result->fetch_assoc()) {
-        $imageSql = "SELECT image FROM product_images WHERE product_id = '{$row['product_id']}'";
-        $imageResult = $conn->query($imageSql);
-        $imageRow = $imageResult->fetch_assoc();
-        $imageUrl = $imageRow['image'];
+                  while ($row = $result->fetch_assoc()) {
+                    $imageSql = "SELECT image1 FROM product_images WHERE product_id = '{$row['product_id']}'";
+                    $imageResult = $conn->query($imageSql);
+                    $imageRow = $imageResult->fetch_assoc();
+                    $imageUrl = $imageRow['image1'];
 
-        echo "<div class='col-sm-6 col-lg-4 mb-4' data-aos='fade-up'>
+                    echo "<div class='col-sm-6 col-lg-4 mb-4' data-aos='fade-up'>
                   <div class='block-4 text-center border'>
                       <figure class='block-4-image d-flex align-items-center justify-content-center' style='height: 400px;object-fit: cover;'>
                           <a href='shop-single.php?show={$row['product_id']}' class='image-zoom-container'>
@@ -437,58 +447,61 @@ include 'config.php';
                       </div>
                   </div>
               </div>";
-      }
-    } else {
-      echo "No products found.";
-    }
-    ?>
-  </div>
-</div>
+                  }
+                } else {
+                  echo "No products found.";
+                }
+                ?>
+              </div>
+            </div>
 
-    <div class="row container text-center" data-aos="fade-up">
-        <div class="col-md-12 text-center">
-            <div class="site-block-27">
-                <ul>
+            <div class="row container text-center" data-aos="fade-up">
+              <div class="col-md-12 text-center">
+                <div class="site-block-27">
+                  <ul>
                     <li class="active"><a href="#1" onclick="navigateToPage(1)">1</a></li>
                     <li><a href="#2" onclick="navigateToPage(2)">2</a></li>
                     <li><a href="#">3</a></li>
                     <li><a href="#">4</a></li>
                     <li><a href="#">5</a></li>
-                </ul>
+                  </ul>
+                </div>
+              </div>
             </div>
-        </div>
-    </div> 
-</div>
+          </div>
 
 
 
           <div class=" order-1 mb-5 mb-md-0">
             <!-- Categories Box -->
             <div class="border p-4 rounded mb-4">
-                <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
-                <ul class="list-unstyled mb-0">
-                    <li class="mb-1"><a href="#" class="d-flex"><span>Mobiles & Accessories</span> <span class="text-black ml-auto">(2,220)</span></a></li>
-                    <li class="mb-1"><a href="#" class="d-flex"><span>Gaming console</span> <span class="text-black ml-auto">(2,550)</span></a></li>
-                    <li class="mb-1"><a href="#" class="d-flex"><span>PC & Laptop</span> <span class="text-black ml-auto">(2,124)</span></a></li>
-                    <li class="mb-1"><a href="#" class="d-flex"><span>Camera & Accessories</span></li>
-                    <li class="mb-1"><a href="#" class="d-flex"><span>Audio Entertainment</span></li>
-                    <li class="mb-1"><a href="#" class="d-flex"><span>Wearable Technology</span></li>
-                    <li class="mb-1"><a href="#" class="d-flex"><span>Home Appliances</span></li>
-                    <li class="mb-1"><a href="#" class="d-flex"><span>Personel Gadgets</span></li>
-                </ul>
+              <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
+              <ul class="list-unstyled mb-0">
+                <li class="mb-1"><a href="#" class="d-flex"><span>Mobiles & Accessories</span> <span
+                      class="text-black ml-auto">(2,220)</span></a></li>
+                <li class="mb-1"><a href="#" class="d-flex"><span>Gaming console</span> <span
+                      class="text-black ml-auto">(2,550)</span></a></li>
+                <li class="mb-1"><a href="#" class="d-flex"><span>PC & Laptop</span> <span
+                      class="text-black ml-auto">(2,124)</span></a></li>
+                <li class="mb-1"><a href="#" class="d-flex"><span>Camera & Accessories</span></li>
+                <li class="mb-1"><a href="#" class="d-flex"><span>Audio Entertainment</span></li>
+                <li class="mb-1"><a href="#" class="d-flex"><span>Wearable Technology</span></li>
+                <li class="mb-1"><a href="#" class="d-flex"><span>Home Appliances</span></li>
+                <li class="mb-1"><a href="#" class="d-flex"><span>Personel Gadgets</span></li>
+              </ul>
             </div>
-        
+
             <!-- Filter Box -->
             <div class="border p-4 rounded mb-4">
-                <div class="mb-4">
-                    <h3 class="mb-3 h6 text-uppercase text-black d-block">Filter by Price</h3>
-                    <div id="slider-range" class="border-primary"></div>
-                    <input type="text" name="text" id="amount" class="form-control border-0 pl-0 bg-white" disabled="" />
-                </div>
+              <div class="mb-4">
+                <h3 class="mb-3 h6 text-uppercase text-black d-block">Filter by Price</h3>
+                <div id="slider-range" class="border-primary"></div>
+                <input type="text" name="text" id="amount" class="form-control border-0 pl-0 bg-white" disabled="" />
+              </div>
             </div>
+          </div>
         </div>
-</div>
-</div>        
+      </div>
 
 
       <div class="site-section">
@@ -556,52 +569,55 @@ include 'config.php';
                     </div>
                   </div>
 
-                <div class="row container text-center" data-aos="fade-up">
-                  <div class="col-md-12 text-center">
-                    <div class="site-block-27">
-                      <ul>
-                     
-                        <li><a href="#1" onclick="navigateToPage(1)">1</a></li>
-                        <li class="active"><a href="#2" onclick="navigateToPage(2)">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                     
-                      </ul>
+                  <div class="row container text-center" data-aos="fade-up">
+                    <div class="col-md-12 text-center">
+                      <div class="site-block-27">
+                        <ul>
+
+                          <li><a href="#1" onclick="navigateToPage(1)">1</a></li>
+                          <li class="active"><a href="#2" onclick="navigateToPage(2)">2</a></li>
+                          <li><a href="#">3</a></li>
+                          <li><a href="#">4</a></li>
+                          <li><a href="#">5</a></li>
+
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
             </div>
 
             <div class=" order-1 mb-5 mb-md-0">
               <div class="border p-4 rounded mb-4">
                 <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
                 <ul class="list-unstyled mb-0">
-                    <li class="mb-1"><a href="#" class="d-flex"><span>Mobiles & Accessories</span> <span class="text-black ml-auto">(2,220)</span></a></li>
-                    <li class="mb-1"><a href="#" class="d-flex"><span>Gaming console</span> <span class="text-black ml-auto">(2,550)</span></a></li>
-                    <li class="mb-1"><a href="#" class="d-flex"><span>PC & Laptop</span> <span class="text-black ml-auto">(2,124)</span></a></li>
-                    <li class="mb-1"><a href="#" class="d-flex"><span>Camera & Accessories</span></li>
-                    <li class="mb-1"><a href="#" class="d-flex"><span>Audio Entertainment</span></li>
-                    <li class="mb-1"><a href="#" class="d-flex"><span>Wearable Technology</span></li>
-                    <li class="mb-1"><a href="#" class="d-flex"><span>Home Appliances</span></li>
-                    <li class="mb-1"><a href="#" class="d-flex"><span>Personel Gadgets</span></li>
-                    </ul>
-                  </div>
-              
-                  <!-- Filter Box -->
-                  <div class="border p-4 rounded mb-4">
-                      <div class="mb-4">
-                          <h3 class="mb-3 h6 text-uppercase text-black d-block">Filter by Price</h3>
-                          <div id="slider-range" class="border-primary"></div>
-                          <input type="text" name="text" id="amount" class="form-control border-0 pl-0 bg-white" disabled="" />
-                      </div>
-                  </div>
+                  <li class="mb-1"><a href="#" class="d-flex"><span>Mobiles & Accessories</span> <span
+                        class="text-black ml-auto">(2,220)</span></a></li>
+                  <li class="mb-1"><a href="#" class="d-flex"><span>Gaming console</span> <span
+                        class="text-black ml-auto">(2,550)</span></a></li>
+                  <li class="mb-1"><a href="#" class="d-flex"><span>PC & Laptop</span> <span
+                        class="text-black ml-auto">(2,124)</span></a></li>
+                  <li class="mb-1"><a href="#" class="d-flex"><span>Camera & Accessories</span></li>
+                  <li class="mb-1"><a href="#" class="d-flex"><span>Audio Entertainment</span></li>
+                  <li class="mb-1"><a href="#" class="d-flex"><span>Wearable Technology</span></li>
+                  <li class="mb-1"><a href="#" class="d-flex"><span>Home Appliances</span></li>
+                  <li class="mb-1"><a href="#" class="d-flex"><span>Personel Gadgets</span></li>
+                </ul>
               </div>
-      </div>
-      </div>        
-      
+
+              <!-- Filter Box -->
+              <div class="border p-4 rounded mb-4">
+                <div class="mb-4">
+                  <h3 class="mb-3 h6 text-uppercase text-black d-block">Filter by Price</h3>
+                  <div id="slider-range" class="border-primary"></div>
+                  <input type="text" name="text" id="amount" class="form-control border-0 pl-0 bg-white" disabled="" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
 
         <div class="row justify-content-center">
           <div class="col-md-7 site-section-heading text-center pt-4">
@@ -662,62 +678,63 @@ include 'config.php';
         </div>
       </div>
       <div class="container" id="d">
-      <div class="row">
-        <div class="col-lg-6 mb-5 mb-lg-0">
-          <div class="row">
-            <div class="col-md-12">
-              <h3 class="footer-heading mb-4">Navigations</h3>
-            </div>
-            <div class="col-md-6 col-lg-4">
-              <ul class="list-unstyled">
-                <li><a href="demo.html">Sell online</a></li>
-                <li><a href="about.html">Features</a></li>
-                <li><a href="cart.html">Shopping cart</a></li>
-                <li><a href="shop.php">Shop</a></li>
-              </ul>
-            </div>
-            <div class="col-md-6 col-lg-4">
-              <ul class="list-unstyled">
-                <li><a href="shop.php">Categories</a></li>
-                <li><a href="about.html">Shipping Details</a></li>
-                <li><a href="profile.php">Profile</a></li>
-              </ul>
-            </div>
-            <div class="col-md-6 col-lg-4">
-              <ul class="list-unstyled">
-                <li><a href="demo.html">How to become a Seller?</a></li>
-                <li><a href="#">Manage Order</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
-          <h3 class="footer-heading mb-4"></h3>
-          <a href="#" class="block-6">
-            <!-- Adjust the max-width value to reduce the image size further -->
-            <img src="images/kart.jpg" alt="Image placeholder" class="img-fluid rounded mb-4" style="width: 100%; max-width: 100px; height: auto;">
-            <h3 class="font-weight-light  mb-0">Finding Your Perfect Gadgets</h3>
-            <p>Make Living a Habit</p>
-          </a>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <div class="block-5 mb-5">
-            <h3 class="footer-heading mb-4">Contact Info</h3>
-            <ul class="list-unstyled">
-              <li class="address">203 St. Mountain View, San Francisco, California, USA</li>
-              <li class="phone"><a href="tel://23923929210">+2 392 3929 210</a></li>
-              <li class="email">emailaddress@domain.com</li>
-            </ul>
-          </div>
-
-          <div class="block-7">
-            <form action="#" method="post">
-              <label for="email_subscribe" class="footer-heading"></label>
-              <div class="form-group">
-                <input type="text" class="form-control py-4" id="email_subscribe" placeholder="Email">
-                <input type="submit" class="btn btn-sm btn-primary" value="Send">
+        <div class="row">
+          <div class="col-lg-6 mb-5 mb-lg-0">
+            <div class="row">
+              <div class="col-md-12">
+                <h3 class="footer-heading mb-4">Navigations</h3>
               </div>
-            </form>
+              <div class="col-md-6 col-lg-4">
+                <ul class="list-unstyled">
+                  <li><a href="demo.html">Sell online</a></li>
+                  <li><a href="about.html">Features</a></li>
+                  <li><a href="cart.html">Shopping cart</a></li>
+                  <li><a href="shop.php">Shop</a></li>
+                </ul>
+              </div>
+              <div class="col-md-6 col-lg-4">
+                <ul class="list-unstyled">
+                  <li><a href="shop.php">Categories</a></li>
+                  <li><a href="about.html">Shipping Details</a></li>
+                  <li><a href="profile.php">Profile</a></li>
+                </ul>
+              </div>
+              <div class="col-md-6 col-lg-4">
+                <ul class="list-unstyled">
+                  <li><a href="demo.html">How to become a Seller?</a></li>
+                  <li><a href="#">Manage Order</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+            <h3 class="footer-heading mb-4"></h3>
+            <a href="#" class="block-6">
+              <!-- Adjust the max-width value to reduce the image size further -->
+              <img src="images/kart.jpg" alt="Image placeholder" class="img-fluid rounded mb-4"
+                style="width: 100%; max-width: 100px; height: auto;">
+              <h3 class="font-weight-light  mb-0">Finding Your Perfect Gadgets</h3>
+              <p>Make Living a Habit</p>
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="block-5 mb-5">
+              <h3 class="footer-heading mb-4">Contact Info</h3>
+              <ul class="list-unstyled">
+                <li class="address">203 St. Mountain View, San Francisco, California, USA</li>
+                <li class="phone"><a href="tel://23923929210">+2 392 3929 210</a></li>
+                <li class="email">emailaddress@domain.com</li>
+              </ul>
+            </div>
+
+            <div class="block-7">
+              <form action="#" method="post">
+                <label for="email_subscribe" class="footer-heading"></label>
+                <div class="form-group">
+                  <input type="text" class="form-control py-4" id="email_subscribe" placeholder="Email">
+                  <input type="submit" class="btn btn-sm btn-primary" value="Send">
+                </div>
+              </form>
             </div>
           </div>
         </div>
@@ -803,33 +820,34 @@ include 'config.php';
         if (window.location.hash) {
           var pageNumber = window.location.hash.substr(1); // Remove the '#' character
           navigateToPage(pageNumber);
+        }
+      });
+
+    </script>
+
+    <script>
+      // Initialize the slider
+      $(document).ready(function () {
+        // Initialize the slider on page load
+        initializeSlider();
+      });
+      function initializeSlider() {
+        $("#slider-range").slider({
+          range: true,
+          min: 0,
+          max: 50000, // Set your maximum price
+          values: [50, 300], // Set default values
+          slide: function (event, ui) {
+            $("#amount").val("₹" + ui.values[0] + " - ₹" + ui.values[1]);
+          }
+        });
+
+        // Set initial values on page load
+        $("#amount").val("₹" + $("#slider-range").slider("values", 0) +
+          " - ₹" + $("#slider-range").slider("values", 1));
       }
-  });
+    </script>
 
-  </script>
+</body>
 
-<script>
-  // Initialize the slider
-  $(document).ready(function () {
-    // Initialize the slider on page load
-    initializeSlider();
-  });
-  function initializeSlider() {
-    $("#slider-range").slider({
-      range: true,
-      min: 0,
-      max: 50000, // Set your maximum price
-      values: [50, 300], // Set default values
-      slide: function (event, ui) {
-        $("#amount").val("₹" + ui.values[0] + " - ₹" + ui.values[1]);
-      }
-    });
-
-    // Set initial values on page load
-    $("#amount").val("₹" + $("#slider-range").slider("values", 0) +
-      " - ₹" + $("#slider-range").slider("values", 1));
-  }
-</script>
-  
-  </body>
 </html>

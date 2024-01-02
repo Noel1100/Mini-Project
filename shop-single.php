@@ -363,41 +363,40 @@ if (isset($_GET['show'])) {
                                 </header>
 
 
-                                <div class="col-md-6" style="overflow-y: auto;">
-                                    <div class="bg-light py-3">
-                                        <div class="container">
-                                            <div class="row">
-                                                <div class="col-md-12 mb-0"><a href="index.html">Home</a> <span class="mx-2 mb-0">/</span>
-                                                    <strong class="text-black">Shop</strong>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                              
                                     <div id="item-container">
                                         <div class="site-section">
                                             <div class="container show">
                                                 <div class="row">
-                                                    <div class="col-md-6" style="border-right: 1px solid #2e2e2e;">
-                                                        <img id="main-image" src="<?php echo $image ?>" alt="Image" class="img-fluid">
-                                                        <br><br>
-                                                        <div class="row">
-                                                            <div class="col-md-4">
-                                                                <img src="<?php echo $image1 ?>" alt="Image 2" class="img-fluid thumb"
-                                                                    data-src="' . $image1 . '" id="sub-image1"
-                                                                    style="width: 150px; height: 100px;">
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <img src="' <?php echo $image2 ?>" alt="Image 3" class="img-fluid thumb"
-                                                                    data-src="' . $image2 . '" id="sub-image2"
-                                                                    style="width: 150px; height: 100px;">
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <img src="<?php echo $image3 ?>" alt="Image 4" class="img-fluid thumb"
-                                                                    data-src="' . $image3 . '" id="sub-image3"
-                                                                    style="width: 150px; height: 100px;">
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                <div class="col-md-6" style="border-right: 1px solid #2e2e2e;">
+    <img id="main-image" src="<?php echo $image ?>" alt="Image" class="img-fluid">
+    <br><br>
+    <div class="row">
+        <div class="col-md-4">
+            <img src="<?php echo $image1 ?>" alt="Image 2" class="img-fluid thumb"
+                data-src="<?php echo $image1 ?>" onclick="changeMainImage(this)"
+                style="width: 200px; height: 200px;">
+        </div>
+        <div class="col-md-4">
+            <img src="<?php echo $image2 ?>" alt="Image 3" class="img-fluid thumb"
+                data-src="<?php echo $image2 ?>" onclick="changeMainImage(this)"
+                style="width: 200px; height: 200px;">
+        </div>
+        <div class="col-md-4">
+            <img src="<?php echo $image3 ?>" alt="Image 4" class="img-fluid thumb"
+                data-src="<?php echo $image3 ?>" onclick="changeMainImage(this)"
+                style="width: 200px; height: 200px;">
+        </div>
+    </div>
+</div>
+
+<script>
+    function changeMainImage(thumbnail) {
+        var mainImage = document.getElementById('main-image');
+        mainImage.src = thumbnail.getAttribute('data-src');
+    }
+</script>
+
                                                     <div class="col-md-6" style="overflow-y: auto;">
                                                         <h3 style="color: black;"><?php echo $name ?></h3>
                                                         <p style="color: black;"><?php echo $desc ?></p><br>
@@ -407,9 +406,10 @@ if (isset($_GET['show'])) {
       <input type="hidden" name="productId" value="<?php echo $productId; ?>">
       <label for="quantity">Quantity:</label>
 <input type="number" id="quantity" name="quantity" value="1" min="1" max="<?php echo $stock; ?>">
-      <input type="submit" name="addToCart" class="btn btn-primary btn-block" value="Add to Cart">
-    </form>
-    <button type="submit" name="Cart" class="btn btn-primary btn-block">Buy Now</button>
+<input type="submit" name="addToCart" class="btn btn-primary btn-block" value="Add to Cart" style="width: 200px; padding: 5px;">
+
+<button type="submit" name="Cart" class="btn btn-primary btn-block" style="width: 200px; padding: 5px;">Buy Now</button> </form>
+
                                                     <hr>
                                                     <p><strong class="text-secondary h5">Units Available: <?php echo $stock ?></strong></p>
                                                     <p><strong class="text-secondary h5">Product Hightlights: <?php echo $highlights ?></strong></p>

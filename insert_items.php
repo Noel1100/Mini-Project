@@ -37,29 +37,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
 
             // Insert image data into the database with the associated product ID
-           if (!empty($_FILES['image']['name'][0])) {
-        foreach ($_FILES['image']['tmp_name'] as $key => $tmp_name) {
-            $file_name = $_FILES['image']['name'][$key];
-            $targetFilePath = $file_name;
-
-            // Insert image name into the database
-            $imageSql = "INSERT INTO product_images (product_id, image1,image2,image3,image4) VALUES ('$proId', '$targetFilePath')";
-            if ($conn->query($imageSql) !== TRUE) {
-                echo "Error: " . $imageSql . "<br>" . $conn->error;
-            } else {
-                move_uploaded_file($tmp_name, $targetFilePath);
+            if (!empty($_FILES['image']['name'])) {
+                $imageSql = "INSERT INTO product_images (product_id, image1) VALUES (?, ?)";
+                $imageStmt = $conn->prepare($imageSql);
+            
+                if ($imageStmt) {
+                    foreach ($_FILES['image']['tmp_name'] as $key => $tmp_name) {
+                        $file_name = $_FILES['image']['name'][$key];
+                        $targetFilePath = $file_name;
+                        
+                        // Bind parameters to the prepared statement
+                        $imageStmt->bind_param("is", $proId, $targetFilePath);
+                        
+                        // Execute the prepared statement
+                        if ($imageStmt->execute()) {
+                            move_uploaded_file($tmp_name, $targetFilePath);
+                        } else {
+                            echo "Error inserting image: " . $imageStmt->error;
+                        }
+                    }
+                    $imageStmt->close();
+                } else {
+                    echo "Error preparing image statement: " . $conn->error;
+                }
             }
-        }
     }
 
     // Insert additional images into the new columns
-    if (!empty($_FILES['image1']['name'][0])) {
-        $file_name = $_FILES['image1']['name'][0];
-        $targetFilePath = $file_name;
-        move_uploaded_file($_FILES['image1']['tmp_name'][0], $targetFilePath);
-        $conn->query("UPDATE product_images SET image1 = '$targetFilePath' WHERE product_id = '$proId'");
-    }
-
     if (!empty($_FILES['image2']['name'][0])) {
         $file_name = $_FILES['image2']['name'][0];
         $targetFilePath = $file_name;
@@ -72,6 +76,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $targetFilePath = $file_name;
         move_uploaded_file($_FILES['image3']['tmp_name'][0], $targetFilePath);
         $conn->query("UPDATE product_images SET image3 = '$targetFilePath' WHERE product_id = '$proId'");
+    }
+
+    if (!empty($_FILES['image4']['name'][0])) {
+        $file_name = $_FILES['image4']['name'][0];
+        $targetFilePath = $file_name;
+        move_uploaded_file($_FILES['image4']['tmp_name'][0], $targetFilePath);
+        $conn->query("UPDATE product_images SET image4 = '$targetFilePath' WHERE product_id = '$proId'");
     }
 
     $_SESSION['success_message'] = "Product Inserted Successfully";
@@ -127,9 +138,7 @@ if (isset($_SESSION['success_message'])) {
             }
           </script>";
 
-    // Remove the success message from the session to avoid displaying it on page refresh
     unset($_SESSION['success_message']);
-}
 }
 ?>
 

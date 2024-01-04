@@ -312,12 +312,7 @@ include 'config.php';
         <div class="">
           <div class="row align-items-center">
 
-            <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left" style="padding-left: 50px;">
-              <form action="" class="site-block-top-search">
-                <span class="icon icon-search2"></span>
-                <input type="text" class="form-control border-0" placeholder="Search">
-              </form>
-            </div>
+         
 
             <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
               <div class="site-logo">
@@ -344,22 +339,7 @@ include 'config.php';
       </div>
 
 
-      <nav class="site-navigation text-right text-md-center" role="navigation">
-        <div class="container">
-          <ul class="site-menu js-clone-nav d-none d-md-block">
-            <li class="">
-              <a href="index.php">Home</a>
-            </li>
-            <li class="">
-              <a href="about.php">About</a>
-            </li>
-            <li class="">
-              <a href="shop.php">Shop</a>
-            </li>
-            <li><a href="contact.php">Contact</a></li>
-          </ul>
-        </div>
-      </nav>
+     
     </header>
 
  <!-- HEADER DESKTOP-->

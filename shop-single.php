@@ -328,8 +328,30 @@ if (isset($_GET['show'])) {
     h2 {
         margin-top: 10px;
     }
-    </style>
+    .modal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 300px;
+        height: 300px; 
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+    }
 
+    .modal-content {
+        text-align: center;
+    }
+
+    .modal button {
+        margin-top: 15px;
+    }
+</style>
 </head>
 
 <body>
@@ -451,18 +473,27 @@ if (isset($_GET['show'])) {
                             <p style="color: black;"><?php echo $desc ?></p><br>
                             <p><strong class="text-primary h3">M.R.P <?php echo $price ?></strong></p>
 
-                            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                            <form id="addToCartForm" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                                 <input type="hidden" name="productId" value="<?php echo $productId; ?>">
                                 <label for="quantity">Quantity:</label>
                                 <input type="number" id="quantity" name="quantity" value="1" min="1"
                                     max="<?php echo $stock; ?>">
-                                <input type="submit" name="addToCart" class="btn btn-primary btn-block"
+                                <input type="submit" name="addToCart" class="btn btn-primary btn-block addToCartBtn"
                                     value="Add to Cart" style="width: 200px; padding: 5px;">
                             </form>
+
+                            <div id="myModal" class="modal">
+                                <div class="modal-content">
+                                    <p>Product added to cart</p>
+                                    <button id="closeModal" class="btn btn-secondary">OK</button>
+                                    <a id="goToCart" class="btn btn-primary" href="cart.php">Go to Cart</a>
+                                </div>
+                            </div>
+
                             <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                                 <input type="hidden" name="productId" value="<?php echo $productId; ?>">
-                                <input type="submit" name="buynow" class="btn btn-primary btn-block"
-                                    value="Buy Now" style="width: 200px; padding: 5px;">
+                                <input type="submit" name="buynow" class="btn btn-primary btn-block" value="Buy Now"
+                                    style="width: 200px; padding: 5px;">
                             </form>
 
                             <hr>
@@ -615,6 +646,63 @@ if (isset($_GET['show'])) {
         document.getElementById('selectedQuantity').value = value;
     }
     </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+    $(document).ready(function() {
+        $('#addToCartForm').submit(function(event) {
+            event.preventDefault();
+            $('#myModal').css('display', 'block');
+        });
+
+        $('#closeModal').click(function() {
+            $('#myModal').css('display', 'none');
+        });
+    });
+    </script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Function to center the modal
+        function centerModal() {
+            var modal = $('.modal');
+            var windowHeight = $(window).height();
+            var windowWidth = $(window).width();
+            var modalHeight = modal.outerHeight();
+            var modalWidth = modal.outerWidth();
+
+            var topPosition = (windowHeight - modalHeight) / 2;
+            var leftPosition = (windowWidth - modalWidth) / 2;
+
+            modal.css({
+                'top': topPosition + 'px',
+                'left': leftPosition + 'px'
+            });
+        }
+
+        // Show modal on form submit
+        $('#addToCartForm').submit(function (event) {
+            event.preventDefault();
+            $('#myModal').css('display', 'block');
+            centerModal();
+        });
+
+        // Close modal when "OK" button is clicked
+        $('#closeModal').click(function () {
+            $('#myModal').css('display', 'none');
+        });
+
+        // Update modal position on window resize
+        $(window).resize(function () {
+            centerModal();
+        });
+    });
+</script>
+
+
+
     <script>
     document.getElementById('Cart').addEventListener('click', function() {
         var productId = <?php echo json_encode($productId); ?>; // Retrieve product ID from PHP

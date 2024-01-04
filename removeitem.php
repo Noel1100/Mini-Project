@@ -1,13 +1,11 @@
 <?php
 session_start();
-include 'config.php'; // Include your database connection
+include 'config.php'; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["product_id"])) {
-    // Get the product ID to be removed from the cart
+    
     $productId = $_POST["product_id"];
     $username = $_SESSION['username'];
-
-    // SQL query to remove the item from the cart table
     $removeCartItemQuery = "DELETE FROM cart WHERE product_id = ? AND username = ?";
     $stmt = $conn->prepare($removeCartItemQuery);
 

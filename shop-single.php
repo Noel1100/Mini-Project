@@ -71,7 +71,7 @@ $stmt->bind_param('iissd', $productId, $quantity, $username, $productName, $tota
     }
   }
 
-  if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['addToCart'])) {
+  if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['buynow'])) {
     if(isset($_POST['productId']) && isset($_POST['quantity'])){
       $productId = $_POST['productId'];
       $quantity = $_POST['quantity'];
@@ -82,7 +82,7 @@ $stmt->bind_param('iissd', $productId, $quantity, $username, $productName, $tota
         $productName = $product['product_name'];
         $totalPrice = $price * $quantity;
         $username = $_SESSION['username'];
-        $sql = "INSERT INTO cart (product_id, quantity, username, product_name, total) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO orders (product_id, quantity, username, product_name, total) VALUES (?, ?, ?, ?, ?)";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param('iissd', $productId, $quantity, $username, $productName, $totalPrice);
 

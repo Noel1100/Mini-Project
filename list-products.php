@@ -42,6 +42,13 @@
         tr:hover {
             background-color: #f2f2f2;
         }
+        #img {
+    display: block;
+    margin: auto;
+    width: auto;
+    height: 200px;
+}
+
     </style>
 </head>
 <body>
@@ -49,6 +56,7 @@
     <table border="1">
         <thead>
             <tr>
+                <th>Image</th>
                 <th>Product ID</th>
                 <th>Category ID</th>
                 <th>Seller Id</th>
@@ -61,36 +69,40 @@
             </tr>
         </thead>
         <tbody>
-            <?php
-            // Connect to your database - replace these values with your actual database credentials
-            include 'config.php';
+        <?php
+    include 'config.php';
+    $sql = "SELECT products.product_id, products.cat_id, products.seller_id, products.product_name, 
+                   products.brand, products.price, products.stock, products.color, 
+                   product_images.image1, categories.category_name
+            FROM products
+            JOIN product_images ON products.product_id = product_images.product_id
+            JOIN categories ON products.cat_id = categories.cat_id";
+    
+    $result = $conn->query($sql);
 
-            // Fetch data from the products table
-            $sql = "SELECT * FROM products";
-            $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        // Output data of each row
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td><img src='" . $row["image1"] . "' alt='Product Image'  id='img'></td>";
+            echo "<td>" . $row["product_id"] . "</td>";
+            echo "<td>" . $row["category_name"] . "</td>";
+            echo "<td>" . $row["seller_id"] . "</td>";
+            echo "<td>" . $row["product_name"] . "</td>";
+            echo "<td>" . $row["brand"] . "</td>";
+            echo "<td>" . $row["price"] . "</td>";
+            echo "<td>" . $row["stock"] . "</td>";
+            echo "<td>" . $row["color"] . "</td>";
+            echo "</tr>";
+        }
+    } else {
+        echo "<tr><td colspan='4'>No products found</td></tr>";
+    }
 
-            if ($result->num_rows > 0) {
-                // Output data of each row
-                while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . $row["product_id"] . "</td>";
-                    echo "<td>" . $row["cat_id"] . "</td>";
-                    echo "<td>" . $row["seller_id"] . "</td>";
-                    echo "<td>" . $row["product_name"] . "</td>";
-                    echo "<td>" . $row["brand"] . "</td>";
-                    echo "<td>" . $row["price"] . "</td>";
-                    echo "<td>" . $row["stock"] . "</td>";
-                    echo "<td>" . $row["color"] . "</td>";
-                    // Display other columns as needed
-                    echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan='4'>No products found</td></tr>";
-            }
+    // Close connection
+    $conn->close();
+?>
 
-            // Close connection
-            $conn->close();
-            ?>
         </tbody>
     </table>
 

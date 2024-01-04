@@ -234,6 +234,64 @@ if (isset($_SESSION['success_message'])) {
         button:hover {
             background-color: #45a049;
         }
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background: url('https://i.pinimg.com/originals/ff/26/d5/ff26d5a8cb3416fcf8ac05224acb858c.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        h1 {
+            color: #7971ea;
+            margin-top: 50px; /* Adjust as needed */
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Use rgba for a semi-transparent background */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        select,
+        input[type="text"],
+        input[type="number"],
+        textarea,
+        input[type="file"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        input[type="submit"] {
+            background-color: #7971ea;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #5c539a;
+        }
     </style>
 
 <style>
@@ -266,7 +324,7 @@ if (isset($_SESSION['success_message'])) {
 </head>
 
 <body>
-    <h1 style="color: #7971ea">
+    <h1 style="color: white">
         <center>Insert Product</center>
     </h1><br>
     <form action="" method="post" enctype="multipart/form-data">

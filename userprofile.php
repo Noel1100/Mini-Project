@@ -30,6 +30,7 @@ if (isset($_SESSION['username'])) {
                     $city = $row['city'];
                     $postalcode = $row['postal code']; // Changed to postal_code
                     $state = $row['state'];
+               
                 }
             } else {
                 echo "No user found";
@@ -604,11 +605,16 @@ echo $successMessage; // Display success message if both updates were successful
                     <?php echo $username ?>
                   </h4>
                   <p><?php echo $address?> <?php echo $postalcode?></p>
+                  <p><?php      if ($id == 0) {
+                      echo '<a href="admin.php" class="btn btn-outline-primary">Dashboard</a>';
+                  }?></p>
                   <button class="btn btn-outline-primary"><a href="signout.php">Logout</a></button>
                 </div>
               </div>
             </div>
           </div>
+          <?php  if($id == 1){
+            echo '
           <div class="card mt-3">
             <ul class="list-group list-group-flush" id="y">
               <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
@@ -638,7 +644,10 @@ echo $successMessage; // Display success message if both updates were successful
               </li>
 
             </ul>
-          </div>
+          </div>';
+          }
+          ?>
+
         </div>
         <div class="col-md-8">
           <div class="card mb-3">

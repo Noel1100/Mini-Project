@@ -403,7 +403,7 @@ include 'config.php';
                             </div>
                             <div class="col-sm-6 col-lg-3">
                                 <div class="overview-item overview-item--c3">
-                                    <div class="overview__inner"><a href="view_products.php">
+                                    <div class="overview__inner"><a href="list-categories.php">
                                         <div class="overview-box clearfix">
                                             <div class="icon">
                                                 <i class=""><svg xmlns="http://www.w3.org/2000/svg" width="82" height="82" viewBox="0 0 384 432">
@@ -418,7 +418,7 @@ include 'config.php';
                             </div>
                             <div class="col-sm-6 col-lg-3">
                                 <div class="overview-item overview-item--c4">
-                                    <div class="overview__inner"><a href="all_orders.php">
+                                    <div class="overview__inner"><a href="list-orders.php">
                                         <div class="overview-box clearfix">
                                             <div class="icon">
                                                 <i class=""><svg xmlns="http://www.w3.org/2000/svg" width="82" height="82" viewBox="0 0 432 432">

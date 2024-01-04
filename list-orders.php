@@ -44,7 +44,7 @@
     </style>
 </head>
 <body>
-    <h1>Seller Details</h1>
+    <h1>Orders</h1>
     <table border="1">
         <thead>
             <tr>
@@ -63,42 +63,28 @@
         </thead>
         <tbody>
             <?php
-            // Include your database connection
             include 'config.php';
-
-            // Fetch data from the users table
-            $sql = "SELECT * FROM seller";
+            $sql = "SELECT * FROM orders";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
-                // Output data of each row
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
-                    echo "<td>" . $row["shop_name"] . "</td>";
-                    echo "<td>" . $row["firstname"] . "</td>";
-                    echo "<td>" . $row["lastname"] . "</td>";
-                    echo "<td>" . $row["address"] . "</td>";
-                    echo "<td>" . $row["email"] . "</td>";
-                    echo "<td>" . $row["phone"] . "</td>";
-                    echo "<td>" . $row["city"] . "</td>";
-                    echo "<td>" . $row["district"] . "</td>";
-                    echo "<td>" . $row["state"] . "</td>";
-                    echo "<td>" . $row["postal_code"] . "</td>";
-                    echo "<td>" . $row["gst"] . "</td>";
-                    // Display other columns as needed
+                    echo "<td>" . $row["orderid"] . "</td>";
+                    echo "<td>" . $row["username"] . "</td>";
+                    echo "<td>" . $row["product_id"] . "</td>";
+                    echo "<td>" . $row["product_name"] . "</td>";
+                    echo "<td>" . $row["address_id"] . "</td>";
+                    echo "<td>" . $row["totalamount"] . "</td>";
                     echo "</tr>";
                 }
             } else {
                 echo "<tr><td colspan='4'>No users found</td></tr>";
             }
 
-            // Close connection
             $conn->close();
             ?>
         </tbody>
     </table>
-
-    <!-- Your HTML, CSS, or JavaScript code can go here -->
-
 </body>
 </html>

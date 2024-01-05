@@ -433,6 +433,22 @@ include 'config.php';
                             </div>
 
                             <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c1">
+                                    <div class="overview__inner"><a href="insert_users.php">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class=""><svg xmlns="http://www.w3.org/2000/svg" width="82" height="82" viewBox="0 0 24 24">
+                                                    <path fill="currentColor" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4s-4 1.79-4 4s1.79 4 4 4m0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4"/></svg></i>
+                                            </div><br>
+                                            <div class="text">
+                                                <span style="color: white; font-size: 20px;">Insert User</span>
+                                            </div>
+                                        </div>
+                                    </div></a>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-lg-3">
                                 <div class="overview-item overview-item--c2">
                                     <div class="overview__inner"><a href="list-user.php">
                                         <div class="overview-box clearfix">
@@ -450,11 +466,35 @@ include 'config.php';
 
                             <div class="col-sm-6 col-lg-3">
                                 <div class="overview-item overview-item--c3">
-                                    <div class="overview__inner"><a href="list-seller.php">
+                                    <div class="overview__inner"><a href="insert_sellers.php">
                                         <div class="overview-box clearfix">
                                             <div class="icon">
                                                 <i class=""><svg xmlns="http://www.w3.org/2000/svg" width="82" height="82" viewBox="0 0 384 384">
                                                     <path fill="currentColor" d="M363 21v43H21V21zm21 214h-21v128h-43V235h-85v128H21V235H0v-43L21 85h342l21 107zm-192 85v-85H64v85z"/></svg></i>
+                                            </div><br>
+                                            <div class="text">
+                                                <span style="color: white; font-size: 20px;">Insert Seller</span>
+                                            </div>
+                                        </div>
+                                    </div></a>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c4">
+                                    <div class="overview__inner"><a href="list-seller.php">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                            <i class="">
+    <svg xmlns="http://www.w3.org/2000/svg" width="82" height="82" viewBox="0 0 384 384">
+        <!-- First building -->
+        <rect x="64" y="0" width="85" height="256" fill="currentColor"></rect>
+
+        <!-- Second building (slightly apart and overlapped) -->
+        <rect x="192" y="64" width="85" height="256" fill="currentColor"></rect>
+    </svg>
+</i>
+
                                             </div><br>
                                             <div class="text">
                                                 <span style="color: white; font-size: 20px;">List of Sellers</span>

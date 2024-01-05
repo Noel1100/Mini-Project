@@ -482,14 +482,6 @@ if (isset($_GET['show'])) {
                                     value="Add to Cart" style="width: 200px; padding: 5px;">
                             </form>
 
-                            <div id="myModal" class="modal">
-                                <div class="modal-content">
-                                    <p>Product added to cart</p>
-                                    <button id="closeModal" class="btn btn-secondary">OK</button>
-                                    <a id="goToCart" class="btn btn-primary" href="cart.php">Go to Cart</a>
-                                </div>
-                            </div>
-
                             <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                                 <input type="hidden" name="productId" value="<?php echo $productId; ?>">
                                 <input type="submit" name="buynow" class="btn btn-primary btn-block" value="Buy Now"
@@ -646,62 +638,6 @@ if (isset($_GET['show'])) {
         document.getElementById('selectedQuantity').value = value;
     }
     </script>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <script>
-    $(document).ready(function() {
-        $('#addToCartForm').submit(function(event) {
-            event.preventDefault();
-            $('#myModal').css('display', 'block');
-        });
-
-        $('#closeModal').click(function() {
-            $('#myModal').css('display', 'none');
-        });
-    });
-    </script>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function () {
-        // Function to center the modal
-        function centerModal() {
-            var modal = $('.modal');
-            var windowHeight = $(window).height();
-            var windowWidth = $(window).width();
-            var modalHeight = modal.outerHeight();
-            var modalWidth = modal.outerWidth();
-
-            var topPosition = (windowHeight - modalHeight) / 2;
-            var leftPosition = (windowWidth - modalWidth) / 2;
-
-            modal.css({
-                'top': topPosition + 'px',
-                'left': leftPosition + 'px'
-            });
-        }
-
-        // Show modal on form submit
-        $('#addToCartForm').submit(function (event) {
-            event.preventDefault();
-            $('#myModal').css('display', 'block');
-            centerModal();
-        });
-
-        // Close modal when "OK" button is clicked
-        $('#closeModal').click(function () {
-            $('#myModal').css('display', 'none');
-        });
-
-        // Update modal position on window resize
-        $(window).resize(function () {
-            centerModal();
-        });
-    });
-</script>
-
-
 
     <script>
     document.getElementById('Cart').addEventListener('click', function() {

@@ -523,8 +523,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left" style="padding-left: 50px;">
               <form action="" class="site-block-top-search">
-                <span class="icon icon-search2"></span>
-                <input type="text" class="form-control border-0" placeholder="Search">
+                <span class="icon icon-search2" style="padding-right: 10px;"></span>
+                <input type="text" class="form-control border-0" placeholder="Search" style="padding-left: 50px;">
               </form>
             </div>
 

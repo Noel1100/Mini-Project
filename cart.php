@@ -317,10 +317,10 @@ include 'config.php';
                             <a href="index.php">Home</a>
                         </li>
                         <li class="">
-                            <a href="about.html">About</a>
+                            <a href="about.php">About</a>
                         </li>
                         <li class=""><a href="shop.php">Shop</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="contact.php">Contact</a></li>
                     </ul>
                 </div>
             </nav>

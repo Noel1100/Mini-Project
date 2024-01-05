@@ -413,13 +413,17 @@ include 'config.php';
                 <div class="block-38-img">
                   <div class="block-38-header">
                     <img src="images/me1.jpg" alt="Image placeholder" class="mb-4"
-                      style="border-radius: 20%; width: 130px; height: 150px;">
+                      style="border-radius: 20%; width: 140px; height: 150px;">
                     <h3 class="block-38-heading h4">Noel S Thomas</h3>
                     <p class="block-38-subheading" style="color: black;">Founder</p>
                   </div>
                   <div class="block-38-body">
                     <p style="color: black;">Able to inspire and motivate the team that makes our strong work ethic and
                       passion for our mission.</p>
+                      <a href="https://www.linkedin.com/in/noel-s-thomas-3828a526b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">
+                        <i class="fa fa-linkedin-square" style="font-size:28px;color:#7971ea; padding-right: 10px;"></i></a>
+                      <a href=""><i class="fa fa-instagram" style="font-size:28px;color:#7971ea;"></i></a>
+                      <a href=""><i class="fa fa-facebook-f" style="font-size:28px;color:#7971ea; padding-left: 10px;"></i></a>
                   </div>
                 </div>
               </div>
@@ -429,13 +433,16 @@ include 'config.php';
                 <div class="block-38-img">
                   <div class="block-38-header">
                     <img src="images/giku2.png" alt="Image placeholder" class="mb-4"
-                      style="border-radius: 20%; width: 130px; height: 150px;">
+                      style="border-radius: 20%; width: 140px; height: 150px;">
                     <h3 class="block-38-heading h4">Giku Cherian Pothen</h3>
                     <p class="block-38-subheading" style="color: black;">Founder</p>
                   </div>
                   <div class="block-38-body">
                     <p style="color: black;">Able to inspire and motivate the team that makes our strong work ethic and
                       passion for our mission.</p>
+                      <a href=""><i class="fa fa-linkedin-square" style="font-size:28px;color:#7971ea; padding-right: 10px;"></i></a>
+                      <a href=""><i class="fa fa-instagram" style="font-size:28px;color:#7971ea;"></i></a>
+                      <a href=""><i class="fa fa-facebook-f" style="font-size:28px;color:#7971ea; padding-left: 10px;"></i></a>
                   </div>
                 </div>
               </div>
@@ -453,6 +460,10 @@ include 'config.php';
                   <div class="block-38-body">
                     <p style="color: black;">Able to inspire and motivate the team that makes our strong work ethic and
                       passion for our mission.</p>
+                      <a href="https://www.linkedin.com/in/bilen-antony-977386244?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">
+                        <i class="fa fa-linkedin-square" style="font-size:28px;color:#7971ea; padding-right: 10px;"></i></a>
+                      <a href=""><i class="fa fa-instagram" style="font-size:28px;color:#7971ea;"></i></a>
+                      <a href=""><i class="fa fa-facebook-f" style="font-size:28px;color:#7971ea; padding-left: 10px;"></i></a>
                   </div>
                 </div>
               </div>

@@ -533,7 +533,11 @@ if (isset($_SESSION['seller_id'])) {
             <div class="col-1 col-md-4 order-3 order-md-3 text-right" style="padding-right: 30px;">
               <div class="site-top-icons">
                 <ul>
-                 
+                <li>
+                    <a href="insert_items.php" class="btn btn-sm custom-button">
+                      <span class="icon"><i class="fa fa-globe" aria-hidden="true"></i></span>Sell Online
+                    </a>
+                  </li>
 
                   <li>
                     <a href="cart.html" class="site-cart btn btn-sm custom-button">
@@ -555,12 +559,12 @@ if (isset($_SESSION['seller_id'])) {
               <a href="index.php">Home</a>
             </li>
             <li class="">
-              <a href="about.html">About</a>
+              <a href="about.pho">About</a>
             </li>
             <li class="">
               <a href="shop.php">Shop</a>
             </li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="contact.php">Contact</a></li>
           </ul>
         </div>
       </nav>

@@ -540,11 +540,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="col-6 col-md-4 order-3 order-md-3 text-right" style="padding-right: 50px;">
               <div class="site-top-icons">
                 <ul>
-                  <li>
-                    <a href="insert_items.php" class="btn btn-sm custom-button">
-                      <span class="icon"><i class="fa fa-globe" aria-hidden="true"></i></span>Sell Online
-                    </a>
-                  </li>
+             
 
                   <li>
                   <?php

@@ -422,7 +422,7 @@ include 'config.php';
                       passion for our mission.</p>
                       <a href="https://www.linkedin.com/in/noel-s-thomas-3828a526b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">
                         <i class="fa fa-linkedin-square" style="font-size:28px;color:#7971ea; padding-right: 10px;"></i></a>
-                      <a href=""><i class="fa fa-instagram" style="font-size:28px;color:#7971ea;"></i></a>
+                      <a href="https://www.instagram.com/noel_s_thomas?igsh=ODA1NTc5OTg5Nw=="><i class="fa fa-instagram" style="font-size:28px;color:#7971ea;"></i></a>
                       <a href=""><i class="fa fa-facebook-f" style="font-size:28px;color:#7971ea; padding-left: 10px;"></i></a>
                   </div>
                 </div>
@@ -441,7 +441,7 @@ include 'config.php';
                     <p style="color: black;">Able to inspire and motivate the team that makes our strong work ethic and
                       passion for our mission.</p>
                       <a href=""><i class="fa fa-linkedin-square" style="font-size:28px;color:#7971ea; padding-right: 10px;"></i></a>
-                      <a href=""><i class="fa fa-instagram" style="font-size:28px;color:#7971ea;"></i></a>
+                      <a href="https://www.instagram.com/giku_pothen?igsh=ODA1NTc5OTg5Nw=="><i class="fa fa-instagram" style="font-size:28px;color:#7971ea;"></i></a>
                       <a href=""><i class="fa fa-facebook-f" style="font-size:28px;color:#7971ea; padding-left: 10px;"></i></a>
                   </div>
                 </div>
@@ -462,7 +462,7 @@ include 'config.php';
                       passion for our mission.</p>
                       <a href="https://www.linkedin.com/in/bilen-antony-977386244?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">
                         <i class="fa fa-linkedin-square" style="font-size:28px;color:#7971ea; padding-right: 10px;"></i></a>
-                      <a href=""><i class="fa fa-instagram" style="font-size:28px;color:#7971ea;"></i></a>
+                      <a href="https://www.instagram.com/bil.en_?igsh=ODA1NTc5OTg5Nw=="><i class="fa fa-instagram" style="font-size:28px;color:#7971ea;"></i></a>
                       <a href=""><i class="fa fa-facebook-f" style="font-size:28px;color:#7971ea; padding-left: 10px;"></i></a>
                   </div>
                 </div>

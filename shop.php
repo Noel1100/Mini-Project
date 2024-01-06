@@ -701,7 +701,6 @@ include 'config.php';
                     <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
                         <h3 class="footer-heading mb-4"></h3>
                         <a href="#" class="block-6">
-                            <!-- Adjust the max-width value to reduce the image size further -->
                             <img src="images/kart.jpg" alt="Image placeholder" class="img-fluid rounded mb-4"
                                 style="width: 100%; max-width: 100px; height: auto;">
                             <h3 class="font-weight-light  mb-0">Finding Your Perfect Gadgets</h3>
@@ -788,38 +787,30 @@ include 'config.php';
 
         <script>
         function navigateToPage(pageNumber) {
-            // Set the URL hash fragment to maintain page state
             window.location.hash = '#' + pageNumber;
 
-            // Hide all page content divs
             var pageContents = document.getElementsByClassName('page-content');
             for (var i = 0; i < pageContents.length; i++) {
                 pageContents[i].style.display = 'none';
             }
 
-            // Show the selected page content div
             var selectedPage = document.getElementById('page' + pageNumber);
             if (selectedPage) {
                 selectedPage.style.display = 'block';
-
-                // Scroll to the top of the selected page
                 window.scrollTo(0, selectedPage.offsetTop);
             }
         }
 
-        // Call navigateToPage when the page loads to maintain state
         window.addEventListener('load', function() {
             if (window.location.hash) {
-                var pageNumber = window.location.hash.substr(1); // Remove the '#' character
+                var pageNumber = window.location.hash.substr(1);
                 navigateToPage(pageNumber);
             }
         });
         </script>
 
         <script>
-        // Initialize the slider
         $(document).ready(function() {
-            // Initialize the slider on page load
             initializeSlider();
         });
 
@@ -827,14 +818,13 @@ include 'config.php';
             $("#slider-range").slider({
                 range: true,
                 min: 0,
-                max: 50000, // Set your maximum price
-                values: [50, 300], // Set default values
+                max: 50000,
+                values: [50, 300],
                 slide: function(event, ui) {
                     $("#amount").val("₹" + ui.values[0] + " - ₹" + ui.values[1]);
                 }
             });
 
-            // Set initial values on page load
             $("#amount").val("₹" + $("#slider-range").slider("values", 0) +
                 " - ₹" + $("#slider-range").slider("values", 1));
         }

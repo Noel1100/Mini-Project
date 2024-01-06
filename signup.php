@@ -23,7 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $userStmt->bind_param("ssssss", $username, $fname, $lname, $email, $phone, $password);
         $userResult = $userStmt->execute();
 
-        // Insert address data into 'address' table
         $addressSql = "INSERT INTO address (username, address, city, `postal code`, state) VALUES (?, ?, ?, ?, ?)";
         $addressStmt = $conn->prepare($addressSql);
         $addressStmt->bind_param("sssss", $username, $address, $city, $postalcode, $state);
@@ -55,69 +54,64 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sign Up form </title>
-
-    <!-- Font Icon -->
     <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
-
-    <!-- Main css -->
     <link rel="stylesheet" href="css/login.css">
 
     <style>
-        /* Modal Styles */
-        .modal {
-  display: block;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.4);
-  padding-top: 60px;
-}
+    .modal {
+        display: block;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+        padding-top: 60px;
+    }
 
-.modal-content {
-  background-color: #fefefe;
-  margin: 10% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  max-width: 400px; /* Set a maximum width */
-  width: 80%;
-  text-align: center;
-  position: relative; /* Added relative positioning */
-}
+    .modal-content {
+        background-color: #fefefe;
+        margin: 10% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        max-width: 400px;
+        width: 80%;
+        text-align: center;
+        position: relative;
+    }
 
-.close {
-  color: #aaaaaa;
-  position: absolute;
-  top: 10px; /* Adjust the top position as needed */
-  right: 10px; /* Adjust the right position as needed */
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
+    .close {
+        color: #aaaaaa;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+    }
 
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-}
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+    }
 
-#modalOkBtn {
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
-</style>
+    #modalOkBtn {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+    </style>
 
 </head>
 
@@ -161,7 +155,8 @@ $conn->close();
                             </div>
                             <div class="form-group">
                                 <label for="postalcode"><i class="zmdi zmdi-home"></i></label>
-                                <input type="text" name="postalcode" id="postalcode" placeholder="Your Postal Code" / required>
+                                <input type="text" name="postalcode" id="postalcode" placeholder="Your Postal Code" /
+                                    required>
                             </div>
                             <div class="form-group">
                                 <label for="city"><i class="zmdi zmdi-city"></i></label>
@@ -202,44 +197,38 @@ $conn->close();
     </div>
 
     <!-- JS -->
- <!-- JS -->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="js/login.js"></script>
+    <!-- JS -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="js/login.js"></script>
 
-<div id="myModal" class="modal" style="display: none;">
-    <!-- Modal content -->
-    <div class="modal-content">
-        <span class="close" onclick="closeModal(false)">&times;</span>
-        <p>Registration successful! <br>Click OK to close.</p>
-        <button id="modalOkBtn" onclick="closeModal(true)">OK</button>
+    <div id="myModal" class="modal" style="display: none;">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close" onclick="closeModal(false)">&times;</span>
+            <p>Registration successful! <br>Click OK to close.</p>
+            <button id="modalOkBtn" onclick="closeModal(true)">OK</button>
+        </div>
     </div>
-</div>
 
-<script>
-    $(document).ready(function () {
-        $('#register-form').submit(function (event) {
+    <script>
+    $(document).ready(function() {
+        $('#register-form').submit(function(event) {
             event.preventDefault();
-
-            // Your existing form submission logic here
             var formData = $(this).serialize();
 
             $.ajax({
                 type: 'POST',
                 url: 'signup.php',
                 data: formData,
-                success: function (response) {
-                    // Display the modal on successful form submission
+                success: function(response) {
                     $('#myModal').css('display', 'block');
-                    // You may also handle other response messages if needed
                 },
-                error: function (error) {
+                error: function(error) {
                     console.error('Form submission error:', error);
-                    // Handle errors or display appropriate messages
                 }
             });
         });
 
-        // Function to close the modal and optionally redirect
         function closeModal(isOkButton) {
             $('#myModal').css('display', 'none');
             if (isOkButton) {
@@ -247,53 +236,52 @@ $conn->close();
             }
         }
 
-        // When the user clicks outside the modal, close it
-        window.onclick = function (event) {
+        window.onclick = function(event) {
             if (event.target === document.getElementById('myModal')) {
                 closeModal(true);
             }
         };
 
-        // Event listener for the close button (&times;)
-        document.getElementsByClassName('close')[0].onclick = function () {
+        document.getElementsByClassName('close')[0].onclick = function() {
             closeModal(true);
         };
 
-        // Event listener for the OK button
-        document.getElementById('modalOkBtn').onclick = function () {
+        document.getElementById('modalOkBtn').onclick = function() {
             closeModal(true);
         };
     });
-</script>
+    </script>
     <script>
-        $(document).ready(function () {
-            $('#pass').on('keyup', function () {
-                validatePassword();
-            });
+    $(document).ready(function() {
+        $('#pass').on('keyup', function() {
+            validatePassword();
+        });
 
-            $('#re_pass').on('keyup', function () {
-                var confirmPassword = $('#re_pass').val();
+        $('#re_pass').on('keyup', function() {
+            var confirmPassword = $('#re_pass').val();
 
-                if (validatePassword() && $('#pass').val() == confirmPassword) {
-                    $('#password-match-confirm').html('');
-                } else {
-                    $('#password-match-confirm').html('Passwords do not match');
-                }
-            });
-
-            function validatePassword() {
-                var password = $('#pass').val();
-                var passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-
-                if (passwordRegex.test(password)) {
-                    $('#password-match').html('');
-                    return true;
-                } else {
-                    $('#password-match').html('Password must be 8 characters long with at least 1 special character, 1 number, and 1 capital letter.');
-                    return false;
-                }
+            if (validatePassword() && $('#pass').val() == confirmPassword) {
+                $('#password-match-confirm').html('');
+            } else {
+                $('#password-match-confirm').html('Passwords do not match');
             }
         });
+
+        function validatePassword() {
+            var password = $('#pass').val();
+            var passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+            if (passwordRegex.test(password)) {
+                $('#password-match').html('');
+                return true;
+            } else {
+                $('#password-match').html(
+                    'Password must be 8 characters long with at least 1 special character, 1 number, and 1 capital letter.'
+                    );
+                return false;
+            }
+        }
+    });
     </script>
 </body>
 

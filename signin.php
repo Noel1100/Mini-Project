@@ -2,35 +2,29 @@
 session_start(); // Start the session
 
 include 'config.php';
-
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Check if form was submitted
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Check if the email and password are not empty
     if (empty($email) || empty($password)) {
         echo "Email and password cannot be empty.";
         exit();
     }
 
-    // SQL query to check if the user exists in the users table
     $userSql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
     $userResult = $conn->query($userSql);
 
     if ($userResult->num_rows > 0) {
-        // User found in the users table, get their id and redirect accordingly
         $userRow = $userResult->fetch_assoc();
         $userId = $userRow['id'];
 
-        $_SESSION['username'] = $userRow['username']; // Set the username in the session
-        $_SESSION['id'] = $userId; // Set the user ID in the session
-        $_SESSION['login'] = true; // Set the login status in the session
+        $_SESSION['username'] = $userRow['username'];
+        $_SESSION['id'] = $userId; 
+        $_SESSION['login'] = true; 
 
         if ($userId == 0) {
             // Admin
@@ -42,7 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit();
         }
     } else {
-        // User not found in the users table, check the seller table
         $sellerSql = "SELECT * FROM seller WHERE email='$email' AND password='$password'";
         $sellerResult = $conn->query($sellerSql);
 
@@ -51,11 +44,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $sellerId = $sellerRow['seller_id'];
             $_SESSION['firstname'] = $sellerRow['firstname']; 
             $_SESSION['seller_id'] = $sellerId;
-            // Seller found in the seller table, redirect to seller.php
             header("Location: sellerprofile.php");
             exit();
         } else {
-            // Neither user nor seller found in the tables
             echo "User does not exist.";
         }
     }
@@ -63,10 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $conn->close();
 ?>
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -76,11 +63,7 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sign In form</title>
-
-    <!-- Font Icon -->
     <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
-
-    <!-- Main css -->
     <link rel="stylesheet" href="css/login.css">
 </head>
 

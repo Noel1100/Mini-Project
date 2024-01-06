@@ -482,7 +482,7 @@ if (isset($_GET['show'])) {
                                     value="Add to Cart" style="width: 200px; padding: 5px;">
                             </form>
 
-                            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" style="padding-top: 10px;">
                                 <input type="hidden" name="productId" value="<?php echo $productId; ?>">
                                 <input type="submit" name="buynow" class="btn btn-primary btn-block" value="Buy Now"
                                     style="width: 200px; padding: 5px;">

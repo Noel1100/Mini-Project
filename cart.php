@@ -355,62 +355,65 @@ include 'config.php';
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php
+                                <?php
 global $productId;
 if (isset($_SESSION['username'])) {
-  $username = $_SESSION['username'];
-  $cartItemsQuery = "SELECT product_id, product_name, quantity, total FROM cart WHERE username = ?";
-  $stmt = $conn->prepare($cartItemsQuery);
+    $username = $_SESSION['username'];
+    $cartItemsQuery = "SELECT product_id, product_name, quantity, total FROM cart WHERE username = ?";
+    $stmt = $conn->prepare($cartItemsQuery);
 
-  if ($stmt) {
-    $stmt->bind_param("s", $_SESSION['username']);
-    $stmt->execute();
-    $cartItemsResult = $stmt->get_result();
+    if ($stmt) {
+        $stmt->bind_param("s", $_SESSION['username']);
+        $stmt->execute();
+        $cartItemsResult = $stmt->get_result();
 
-    if (!empty($cartItemsResult) && $cartItemsResult->num_rows > 0) {
-      while ($row = $cartItemsResult->fetch_assoc()) {
+        if (!empty($cartItemsResult) && $cartItemsResult->num_rows > 0) {
+            while ($row = $cartItemsResult->fetch_assoc()) {
 
-        $productId = $row['product_id'];
-        $imageQuery = "SELECT image1 FROM product_images WHERE product_id = ?";
-        $imageStmt = $conn->prepare($imageQuery);
-        
-        if ($imageStmt) {
-          $imageStmt->bind_param("i", $productId);
-          $imageStmt->execute();
-          $imageResult = $imageStmt->get_result();
-          
-          if ($imageResult->num_rows > 0) {
-            $imageRow = $imageResult->fetch_assoc();
-            $productImage = $imageRow['image1'];
+                $productId = $row['product_id'];
+                $imageQuery = "SELECT image1 FROM product_images WHERE product_id = ?";
+                $imageStmt = $conn->prepare($imageQuery);
 
-            $productName = $row['product_name'];
-            $quantity = $row['quantity'];
-            $price = $row['total'];
-            $totalPrice = $quantity * $price;
+                if ($imageStmt) {
+                    $imageStmt->bind_param("i", $productId);
+                    $imageStmt->execute();
+                    $imageResult = $imageStmt->get_result();
 
-            echo "<tr>
-                    <td><img src='$productImage' alt='$productName' style='max-width: 100px; max-height: 100px;'></td>
-                    <td>$productName</td>
-                    <td>$quantity</td>
-                    <td>₹$totalPrice</td>
-                    <td><a href='buy.html' class='btn btn-primary btn-sm'>Shop Now</a></td>
-                    <td><a href='#' class='btn btn-primary btn-sm remove-item' data-toggle='modal' data-target='#confirmationModal'>X</a></td>
-                  </tr>";
-          }
-          $imageStmt->close();
+                    if ($imageResult->num_rows > 0) {
+                        $imageRow = $imageResult->fetch_assoc();
+                        $productImage = $imageRow['image1'];
+
+                        $productName = $row['product_name'];
+                        $quantity = $row['quantity'];
+                        $price = $row['total'];
+                        $totalPrice = $quantity * $price;
+
+                        // Add a unique identifier to each row
+                        $uniqueIdentifier = 'cart-item-' . $productId;
+
+                        echo "<tr id='$uniqueIdentifier'>
+                                <td><img src='$productImage' alt='$productName' style='max-width: 100px; max-height: 100px;'></td>
+                                <td>$productName</td>
+                                <td>$quantity</td>
+                                <td>₹$totalPrice</td>
+                                <td><a href='buy.html' class='btn btn-primary btn-sm'>Shop Now</a></td>
+                                <td><a href='#' class='btn btn-primary btn-sm remove-item' data-toggle='modal' data-target='#confirmationModal' data-product-id='$productId' data-row-id='$uniqueIdentifier'>X</a></td>
+                              </tr>";
+                    }
+                    $imageStmt->close();
+                } else {
+                    echo "<tr><td colspan='6'>Error in preparing image statement.</td></tr>";
+                }
+            }
         } else {
-          echo "<tr><td colspan='6'>Error in preparing image statement.</td></tr>";
+            echo "<tr><td colspan='6'>Your cart is empty.</td></tr>";
         }
-      }
+        $stmt->close();
     } else {
-      echo "<tr><td colspan='6'>Your cart is empty.</td></tr>";
+        echo "<tr><td colspan='6'>Error in preparing statement.</td></tr>";
     }
-    $stmt->close();
-  } else {
-    echo "<tr><td colspan='6'>Error in preparing statement.</td></tr>";
-  }
 } else {
-  echo "<tr><td colspan='6'>User not logged in.</td></tr>";
+    echo "<tr><td colspan='6'>User not logged in.</td></tr>";
 }
 ?>
 
@@ -589,81 +592,63 @@ if (isset($_SESSION['username'])) {
     });
     </script>
 
-    <!-- Add your Bootstrap and jQuery dependencies as you mentioned -->
+<!-- Add these scripts after your existing script tags -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script>
-  document.addEventListener("DOMContentLoaded", function() {
+<script>
+document.addEventListener("DOMContentLoaded", function () {
     const removeButtons = document.querySelectorAll(".remove-item");
 
-    removeButtons.forEach(function(button) {
-        button.addEventListener("click", function(event) {
+    removeButtons.forEach(function (button) {
+        button.addEventListener("click", function (event) {
             event.preventDefault();
             const productId = this.getAttribute('data-product-id');
+            const tableRow = document.querySelector(`tr[data-product-id='${productId}']`);
 
-            // Store the product ID in a data attribute of the confirmation modal
-            document.getElementById("confirmRemove").setAttribute("data-product-id", productId);
-
-            // Show the modal for confirmation
-            $('#confirmationModal').modal('show');
-        });
-    });
-
-    // Add an event listener to the "Remove" button in the modal for confirmation
-    document.getElementById("confirmRemove").addEventListener("click", function() {
-        const productId = this.getAttribute('data-product-id');
-
-        $.ajax({
-            type: "POST",
-            url: "removeitem.php", // PHP script to handle removal
-            data: { product_id: productId },
-            success: function(response) {
-                console.log("Item removed from the cart!");
-                // You can update the UI accordingly (e.g., remove the table row)
-                // If you want to remove the table row, you can do it here
-                const tableRow = document.querySelector(`tr[data-product-id='${productId}']`);
-                if (tableRow) {
-                    tableRow.remove();
+            // Show a confirmation dialog before removing the item
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'Do you want to remove the item?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, remove it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Use AJAX to remove the item
+                    $.ajax({
+                        type: "POST",
+                        url: "removeitem.php",
+                        data: { product_id: productId },
+                        success: function (response) {
+                            console.log("Item removed from the cart!");
+                            // Remove the table row immediately after confirming removal
+                            if (tableRow) {
+                                tableRow.remove();
+                            }
+                            // Show a success message
+                            Swal.fire('Removed!', 'The item has been removed from the cart.', 'success');
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("Error:", error);
+                            // Show an error message
+                            Swal.fire('Error!', 'There was an error removing the item.', 'error');
+                        }
+                    });
                 }
-                // Close the modal after successful removal
-                $('#confirmationModal').modal('hide');
-            },
-            error: function(xhr, status, error) {
-                console.error("Error:", error);
-            }
+            });
         });
-    });
-
-    // Add an event listener when the modal is hidden
-    $('#confirmationModal').on('hidden.bs.modal', function() {
-        // Remove the blur effect and backdrop
-        document.body.classList.remove("modal-open");
-        $('.modal-backdrop').remove();
     });
 });
-    </script>
+</script>
 
 
-    <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content" style="border: 1px solid #ccc; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <i style="font-size: 100px; color: red; align-self: center;">&#9432;</i>
-                <div class="modal-body" style="color: black; text-align: center;">
-                    <h4>Do you want to remove the item?</h4>
-                </div>
-                <div class="modal-footer" style="align-self: center;">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <!-- Change onclick to call JavaScript function to handle removal -->
-                    <button type="button" class="btn btn-primary" id="confirmRemove">Remove</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
+
+
+
 
 </body>
 

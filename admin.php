@@ -332,8 +332,21 @@ include 'config.php';
         </svg>Dashboard</p>
     </div>
 </div>
+<div class="col-6 col-md-4 order-3 order-md-3 text-right" style="padding-right: 50px;">
+    <div class="site-top-icons">
+        <ul>
+        <?php      
+                $id = isset($id) ? $id : 0;
 
-
+                if ($id == 0) {
+                    echo '<li><a href="signout.php" class="btn btn-sm custom-button">
+                            <span class="icon"><i class="fas fa-sign-out-alt"></i></span> Logout
+                        </a></li>';
+                }
+            ?>
+        </ul> 
+    </div>
+</div>
           </div>
         </div>
       </div>

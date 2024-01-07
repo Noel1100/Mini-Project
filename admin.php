@@ -246,53 +246,52 @@ include 'config.php';
       /* Align the image vertically with the text */
     }
 
-    /* Initially hide all team members */
+
     .block {
       opacity: 0;
       transform: translateX(-100%);
-      /* Change translateX to translateY */
+ 
       transition: opacity 0.5s ease, transform 1s ease;
     }
 
-    /* Animate each team member with a delay */
+  
     .block:nth-child(1) {
       animation: slideInFromLeft 2s ease 3s forwards;
-      /* Change animation */
+
     }
 
     .block:nth-child(2) {
       animation: slideInFromLeft 2s ease 2s forwards;
-      /* Change animation and delay */
+  
     }
 
     .block:nth-child(3) {
       animation: slideInFromLeft 2s ease 1s forwards;
-      /* Change animation and delay */
+
     }
 
     @keyframes slideInFromLeft {
       to {
         opacity: 1;
         transform: translateX(0);
-        /* Change translateX to translateY */
+ 
       }
     }
 
-    /* Apply styles to the image */
     .block-38-header img {
       border-radius: 50%;
       width: 150px;
       height: 150px;
       transform: scale(1);
-      /* Initially at the normal scale */
+   
       transition: transform 0.3s;
-      /* Add a smooth transition */
+
     }
 
-    /* Apply styles to the containing <div> */
+  
     .block-38-header:hover img {
       transform: scale(1.4);
-      /* Scale up the image slightly on hover */
+   
 
 
     }
@@ -367,11 +366,6 @@ include 'config.php';
       </nav>
     </header>
 
- <!-- HEADER DESKTOP-->
-
-  
-
-            <!-- MAIN CONTENT-->
             <div class="content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
@@ -500,10 +494,7 @@ include 'config.php';
                                             <div class="icon">
                                             <i class="">
     <svg xmlns="http://www.w3.org/2000/svg" width="82" height="82" viewBox="0 0 384 384">
-        <!-- First building -->
         <rect x="64" y="0" width="85" height="256" fill="currentColor"></rect>
-
-        <!-- Second building (slightly apart and overlapped) -->
         <rect x="192" y="64" width="85" height="256" fill="currentColor"></rect>
     </svg>
 </i>
@@ -775,18 +766,14 @@ include 'config.php';
                     </div>
                 </div>
             </div>
-            <!-- END MAIN CONTENT-->
-            <!-- END PAGE CONTAINER-->
         </div>
 
     </div>
 
-    <!-- Jquery JS-->
+   
     <script src="vendor/jquery-3.2.1.min.js"></script>
-    <!-- Bootstrap JS-->
     <script src="vendor/bootstrap-4.1/popper.min.js"></script>
     <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
-    <!-- Vendor JS       -->
     <script src="vendor/slick/slick.min.js">
     </script>
     <script src="vendor/wow/wow.min.js"></script>
@@ -802,10 +789,10 @@ include 'config.php';
     <script src="vendor/select2/select2.min.js">
     </script>
 
-    <!-- Main JS-->
+ 
     <script src="js/main.js"></script>
 
 </body>
 
 </html>
-<!-- end document-->
+

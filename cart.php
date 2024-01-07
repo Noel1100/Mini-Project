@@ -624,12 +624,12 @@ document.addEventListener("DOMContentLoaded", function () {
                         data: { product_id: productId },
                         success: function (response) {
                             console.log("Item removed from the cart!");
-                            // Remove the table row immediately after confirming removal
-                            if (tableRow) {
-                                tableRow.remove();
-                            }
                             // Show a success message
-                            Swal.fire('Removed!', 'The item has been removed from the cart.', 'success');
+                            Swal.fire('Removed!', 'The item has been removed from the cart.', 'success')
+                                .then(() => {
+                                    // Reload the page after removing the item
+                                    location.reload(true);
+                                });
                         },
                         error: function (xhr, status, error) {
                             console.error("Error:", error);
@@ -643,6 +643,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 </script>
+
 
 
 

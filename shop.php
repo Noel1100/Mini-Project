@@ -31,7 +31,6 @@ include 'config.php';
     <link rel="stylesheet" href="css/style.css">
 
     <style>
-   
     #i {
         font-family: Arial, sans-serif;
         font-size: 36px;
@@ -432,7 +431,6 @@ include 'config.php';
 
 
                     <div class=" order-1 mb-5 mb-md-0">
-                        <!-- Categories Box -->
                         <div class="border p-4 rounded mb-4">
                             <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
                             <ul class="list-unstyled mb-0">

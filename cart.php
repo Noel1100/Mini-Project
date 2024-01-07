@@ -385,8 +385,7 @@ if (isset($_SESSION['username'])) {
 
                         $productName = $row['product_name'];
                         $quantity = $row['quantity'];
-                        $price = $row['total'];
-                        $totalPrice = $quantity * $price;
+                        $totalPrice = $row['total'];
 
                         // Add a unique identifier to each row
                         $uniqueIdentifier = 'cart-item-' . $productId;

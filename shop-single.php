@@ -1,7 +1,8 @@
 <?php
 include 'config.php';
 session_start();
-
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 if (isset($_SESSION['username'])) {
   $username = $_SESSION['username'];
 } else {
@@ -71,56 +72,45 @@ $stmt->bind_param('iissd', $productId, $quantity, $username, $productName, $tota
     }
   }
 
-  if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['buynow'])) {
+ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['buynow'])) {
     if(isset($_POST['productId']) && isset($_POST['quantity'])){
-      $productId = $_POST['productId'];
-      $quantity = $_POST['quantity'];
-      $productData = getProductDetails($productId);
-      if (!empty($productData['data'])) {
-        $product = $productData['data'];
-        $price = $product['price'];
-        $productName = $product['product_name'];
-        $totalPrice = $price * $quantity;
-        $username = $_SESSION['username'];
-        $sql = "INSERT INTO orders (product_id, quantity, username, product_name, total) VALUES (?, ?, ?, ?, ?)";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param('iissd', $productId, $quantity, $username, $productName, $totalPrice);
+        $productId = $_POST['productId'];
+        $quantity = $_POST['quantity'];
+        $productData = getProductDetails($productId);
+        
+        if (!empty($productData['data'])) {
+            $product = $productData['data'];
+            $price = $product['price'];
+            $productName = $product['product_name'];
+            $totalPrice = $price * $quantity;
+            $username = $_SESSION['username'];
+            $addressQuery = "SELECT address_id FROM address WHERE username = ?";
+            $stmtAddress = $conn->prepare($addressQuery);
+            $stmtAddress->bind_param('s', $username);
+            $stmtAddress->execute();
+            $resultAddress = $stmtAddress->get_result();
+            
+            if ($resultAddress->num_rows > 0) {
+                $row = $resultAddress->fetch_assoc();
+                $address_id = $row['address_id'];
+                $sql = "INSERT INTO orders (product_id, quantity, username, product_name, totalamount, address_id) VALUES (?, ?, ?, ?, ?, ?)";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param('iissdi', $productId, $quantity, $username, $productName, $totalPrice, $address_id);
 
-        if ($stmt->execute()) {
-          echo "Product added to cart successfully.";
+                if ($stmt->execute()) {
+                    header("Location:thankyou.php");
+                } else {
+                    echo "Error: " . $stmt->error;
+                }
+            } else {
+                echo "Address details not found for the user.";
+            }
         } else {
-          echo "Error: " . $stmt->error;
+            echo "Product details not found.";
         }
-      } else {
-        echo "Product details not found.";
-      }
     }
-  }
-  if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['buynow'])) {
-    if(isset($_POST['productId']) && isset($_POST['quantity'])){
-      $productId = $_POST['productId'];
-      $quantity = $_POST['quantity'];
-      $productData = getProductDetails($productId);
-      if (!empty($productData['data'])) {
-        $product = $productData['data'];
-        $price = $product['price'];
-        $productName = $product['product_name'];
-        $totalPrice = $price * $quantity;
-        $username = $_SESSION['username'];
-        $sql = "INSERT INTO cart (product_id, quantity, username, product_name, total) VALUES (?, ?, ?, ?, ?)";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param('iissd', $productId, $quantity, $username, $productName, $totalPrice);
+}
 
-        if ($stmt->execute()) {
-          echo "Product added to cart successfully.";
-        } else {
-          echo "Error: " . $stmt->error;
-        }
-      } else {
-        echo "Product details not found.";
-      }
-    }
-  }
   
 if (isset($_GET['show'])) {
   $productId = $_GET['show'];
@@ -328,6 +318,7 @@ if (isset($_GET['show'])) {
     h2 {
         margin-top: 10px;
     }
+
     .modal {
         display: none;
         position: fixed;
@@ -335,7 +326,7 @@ if (isset($_GET['show'])) {
         left: 50%;
         transform: translate(-50%, -50%);
         width: 300px;
-        height: 300px; 
+        height: 300px;
         background-color: #fff;
         border: 1px solid #ccc;
         border-radius: 8px;
@@ -351,7 +342,7 @@ if (isset($_GET['show'])) {
     .modal button {
         margin-top: 15px;
     }
-</style>
+    </style>
 </head>
 
 <body>
@@ -482,11 +473,16 @@ if (isset($_GET['show'])) {
                                     value="Add to Cart" style="width: 200px; padding: 5px;">
                             </form>
 
-                            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" style="padding-top: 10px;">
+                            <form id="buynowform" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>"
+                                style="padding-top: 10px;">
                                 <input type="hidden" name="productId" value="<?php echo $productId; ?>">
+                                <input type="hidden" id="buyNowQuantity" name="quantity" value="1">
                                 <input type="submit" name="buynow" class="btn btn-primary btn-block" value="Buy Now"
-                                    style="width: 200px; padding: 5px;">
+                                    style="width: 200px; padding: 5px;"
+                                    onclick="document.getElementById('buyNowQuantity').value = document.getElementById('quantity').value;">
                             </form>
+
+
 
                             <hr>
                             <p><strong class="text-secondary h5">Units Available: <?php echo $stock ?></strong></p>

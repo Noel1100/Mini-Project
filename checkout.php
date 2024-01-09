@@ -430,7 +430,6 @@
 
                         </div>
                     </div>
-                    <!-- </form> -->
                 </div>
             </div>
 
@@ -475,7 +474,6 @@
                         <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
                             <h3 class="footer-heading mb-4"></h3>
                             <a href="#" class="block-6">
-                                <!-- Adjust the max-width value to reduce the image size further -->
                                 <img src="images/kart.jpg" alt="Image placeholder" class="img-fluid rounded mb-4"
                                     style="width: 100%; max-width: 100px; height: auto;">
                                 <h3 class="font-weight-light  mb-0">Finding Your Perfect Gadgets</h3>

@@ -63,15 +63,11 @@
         </thead>
         <tbody>
             <?php
-            // Include your database connection
             include 'config.php';
-
-            // Fetch data from the users table
             $sql = "SELECT * FROM seller";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
-                // Output data of each row
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
                     echo "<td>" . $row["shop_name"] . "</td>";
@@ -85,20 +81,15 @@
                     echo "<td>" . $row["state"] . "</td>";
                     echo "<td>" . $row["postal_code"] . "</td>";
                     echo "<td>" . $row["gst"] . "</td>";
-                    // Display other columns as needed
                     echo "</tr>";
                 }
             } else {
                 echo "<tr><td colspan='4'>No users found</td></tr>";
             }
-
-            // Close connection
             $conn->close();
             ?>
         </tbody>
     </table>
-
-    <!-- Your HTML, CSS, or JavaScript code can go here -->
 
 </body>
 </html>

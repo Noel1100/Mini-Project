@@ -13,17 +13,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $postalcode = $_POST['postalcode'];
     $state = $_POST['state'];
 
-    // Check for empty fields
     if (empty($username) || empty($fname) || empty($lname) || empty($email) || empty($phone) || empty($password) || empty($confirm_password) || empty($address) || empty($city) || empty($postalcode) || empty($state)) {
         echo "All fields are required.";
     } else {
-        // Insert user data into 'users' table
         $userSql = "INSERT INTO users (username, firstname, lastname, email, phone, password) VALUES (?, ?, ?, ?, ?, ?)";
         $userStmt = $conn->prepare($userSql);
         $userStmt->bind_param("ssssss", $username, $fname, $lname, $email, $phone, $password);
         $userResult = $userStmt->execute();
-
-        // Insert address data into 'address' table
         $addressSql = "INSERT INTO address (username, address, city, `postal code`, state) VALUES (?, ?, ?, ?, ?)";
         $addressStmt = $conn->prepare($addressSql);
         $addressStmt->bind_param("sssss", $username, $address, $city, $postalcode, $state);
@@ -55,15 +51,10 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sign Up form </title>
-
-    <!-- Font Icon -->
     <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
-
-    <!-- Main css -->
     <link rel="stylesheet" href="css/login.css">
 
     <style>
-        /* Modal Styles */
         .modal {
   display: block;
   position: fixed;
@@ -83,17 +74,17 @@ $conn->close();
   margin: 10% auto;
   padding: 20px;
   border: 1px solid #888;
-  max-width: 400px; /* Set a maximum width */
+  max-width: 400px; 
   width: 80%;
   text-align: center;
-  position: relative; /* Added relative positioning */
+  position: relative; 
 }
 
 .close {
   color: #aaaaaa;
   position: absolute;
-  top: 10px; /* Adjust the top position as needed */
-  right: 10px; /* Adjust the right position as needed */
+  top: 10px; 
+  right: 10px;
   font-size: 28px;
   font-weight: bold;
   cursor: pointer;
@@ -125,7 +116,6 @@ $conn->close();
 
     <div class="main">
 
-        <!-- Sign up form -->
         <section class="signup">
             <div class="container">
                 <div class="signup-content">
@@ -197,13 +187,10 @@ $conn->close();
         </section>
     </div>
 
-    <!-- JS -->
- <!-- JS -->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="js/login.js"></script>
 
 <div id="myModal" class="modal" style="display: none;">
-    <!-- Modal content -->
     <div class="modal-content">
         <span class="close" onclick="closeModal(false)">&times;</span>
         <p>Registration successful! <br>Click OK to close.</p>
@@ -216,7 +203,6 @@ $conn->close();
         $('#register-form').submit(function (event) {
             event.preventDefault();
 
-            // Your existing form submission logic here
             var formData = $(this).serialize();
 
             $.ajax({
@@ -224,18 +210,14 @@ $conn->close();
                 url: 'signup.php',
                 data: formData,
                 success: function (response) {
-                    // Display the modal on successful form submission
                     $('#myModal').css('display', 'block');
-                    // You may also handle other response messages if needed
                 },
                 error: function (error) {
                     console.error('Form submission error:', error);
-                    // Handle errors or display appropriate messages
                 }
             });
         });
 
-        // Function to close the modal and optionally redirect
         function closeModal(isOkButton) {
             $('#myModal').css('display', 'none');
             if (isOkButton) {
@@ -243,19 +225,16 @@ $conn->close();
             }
         }
 
-        // When the user clicks outside the modal, close it
         window.onclick = function (event) {
             if (event.target === document.getElementById('myModal')) {
                 closeModal(true);
             }
         };
 
-        // Event listener for the close button (&times;)
         document.getElementsByClassName('close')[0].onclick = function () {
             closeModal(true);
         };
 
-        // Event listener for the OK button
         document.getElementById('modalOkBtn').onclick = function () {
             closeModal(true);
         };

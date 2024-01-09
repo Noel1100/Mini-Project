@@ -28,210 +28,185 @@ include 'config.php';
 
     <style>
     #i {
-      font-family: Arial, sans-serif;
-      font-size: 36px;
-      color: black;
-      /* Blue color, you can change this to your preferred color */
-      text-align: center;
-      text-shadow: 2px 2px 4px rgb(228, 227, 227);
-      /* Add a subtle text shadow */
+        font-family: Arial, sans-serif;
+        font-size: 36px;
+        color: black;
+        text-align: center;
+        text-shadow: 2px 2px 4px rgb(228, 227, 227);
     }
-  </style>
-  <style>
+    </style>
+    <style>
     #p {
-      width: 300px;
-      margin: 0 10px;
-      box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.1);
-      transition: 0.2s;
-      height: 400px;
+        width: 300px;
+        margin: 0 10px;
+        box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.1);
+        transition: 0.2s;
+        height: 400px;
     }
 
     #p img {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      width: 50%;
-      border-radius: 4px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        border-radius: 4px;
     }
 
     #p:hover {
-      transform: scale(1.20);
-      z-index: 1.5;
+        transform: scale(1.20);
+        z-index: 1.5;
     }
 
     #l {
-      color: black;
+        color: black;
     }
 
     #x {
-      box-shadow: 0 0 20px 2px rgba(0, 0, 0, .1);
+        box-shadow: 0 0 20px 2px rgba(0, 0, 0, .1);
     }
-  </style>
-  <style>
+    </style>
+    <style>
     #d {
-      border: 1px solid #ccc;
-      /* Optional: Add a border for visualization */
-      padding: 20px;
-      /* Add padding to create space inside the container */
+        border: 1px solid #ccc;
+        padding: 20px;
     }
 
     h2 {
-      margin-top: 10px;
-      /* Add margin to the top of the heading to create space */
+        margin-top: 10px;
     }
 
     #z {
-      background-color: rgba(60, 85, 140, 0.7);
-      /* Semi-transparent black background */
-      color: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
-      /* White box shadow for a cool effect */
-      text-align: center;
-      align-items: center;
+        background-color: rgba(60, 85, 140, 0.7);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+        text-align: center;
+        align-items: center;
     }
 
 
     #z1 {
-      background-color: rgba(60, 85, 140, 0.7);
-      /* Semi-transparent black background */
-      color: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
-      /* White box shadow for a cool effect */
-      text-align: center;
-      align-items: center;
+        background-color: rgba(60, 85, 140, 0.7);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+        text-align: center;
+        align-items: center;
     }
 
     #z1:hover {
-      transform: scale(1.10);
-      /* Scale up on hover */
-      transition: transform 0.3s ease-in-out;
+        transform: scale(1.10);
+        transition: transform 0.3s ease-in-out;
     }
 
     #z1 {
-      transition: transform 0.3s ease-in-out;
-      /* Apply the same transition without scaling */
+        transition: transform 0.3s ease-in-out;
     }
 
-    /* Add shade effect to all images inside the container */
     #cat .block-2-item::before {
-      content: "";
-      display: block;
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      background: rgba(0, 0, 0, 0.2);
-      /* Adjust the opacity to control the shade */
-      transition: background 0.3s ease;
+        content: "";
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.2);
+        transition: background 0.3s ease;
     }
 
-    /* Change the shade effect on hover */
     #cat .block-2-item:hover::before {
-      background: rgba(0, 0, 0, 0);
-      /* Change to transparent on hover */
+        background: rgba(0, 0, 0, 0);
     }
-  </style>
-  <style>
+    </style>
+    <style>
     .custom-button {
-      padding: 10px 20px;
-      margin-right: 10px;
-      display: inline-flex;
-      align-items: center;
-      background-color: aliceblue;
-      outline: none;
-      border: none;
+        padding: 10px 20px;
+        margin-right: 10px;
+        display: inline-flex;
+        align-items: center;
+        background-color: aliceblue;
+        outline: none;
+        border: none;
 
     }
 
     .custom-button .icon {
-      margin-right: 10px;
+        margin-right: 10px;
     }
 
     .site-navbar {
-      background-color: aliceblue;
+        background-color: aliceblue;
     }
 
 
     .site-logo {
-      position: relative;
-      overflow: hidden;
+        position: relative;
+        overflow: hidden;
     }
 
     .js-logo-clone {
-      display: inline-block;
-      font-size: 2rem;
-      position: relative;
-      overflow: hidden;
-      color: transparent;
-      transition: width 1s ease, opacity 1s ease;
-      width: 0;
-      white-space: nowrap;
-      animation: revealText 2s ease forwards;
+        display: inline-block;
+        font-size: 2rem;
+        position: relative;
+        overflow: hidden;
+        color: transparent;
+        transition: width 1s ease, opacity 1s ease;
+        width: 0;
+        white-space: nowrap;
+        animation: revealText 2s ease forwards;
     }
 
     @keyframes revealText {
-      0% {
-        width: 0;
-      }
+        0% {
+            width: 0;
+        }
 
-      100% {
-        width: 80%;
-      }
+        100% {
+            width: 80%;
+        }
     }
 
-    /* Style the image and text */
+
     .logo-image {
-      max-width: 15%;
-      /* Make the image responsive */
-      height: auto;
-      /* Automatically adjust the image height */
-      display: inline-block;
-      vertical-align: middle;
-      /* Align the image vertically with the text */
+        max-width: 15%;
+        height: auto;
+        display: inline-block;
+        vertical-align: middle;
     }
-  </style>
+    </style>
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <style>
-    /* Styles for the comment box */
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
     .comment-box {
-      position: absolute;
-      background-color: rgba(0, 0, 255, 0.1);
-      /* Transparent blue background */
-      border: 1px solid #ffffff;
-      padding: 5px 10px;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-      opacity: 1;
-      /* Initially visible */
-      transition: opacity 1s;
-      z-index: 1;
+        position: absolute;
+        background-color: rgba(0, 0, 255, 0.1);
+        border: 1px solid #ffffff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        opacity: 1;
+        transition: opacity 1s;
+        z-index: 1;
     }
 
-    /* Styles for the icon with the comment box */
     #login-icon {
-      position: relative;
-      color: blue;
+        position: relative;
+        color: blue;
     }
 
-    /* Styles for the comment text */
     #login-comment p {
-      margin: 0;
+        margin: 0;
     }
 
-    /* When the comment box is hidden */
     #login-icon.clicked #login-comment {
-      opacity: 0;
+        opacity: 0;
     }
-  </style>
+    </style>
 
     <style>
-    /* Add this CSS code to your stylesheet */
     .modal.fade .modal-dialog {
         transition: transform 0.3s ease-out, opacity 0.3s ease-out;
         transform: translateY(-100%);
@@ -248,8 +223,8 @@ include 'config.php';
 </head>
 
 <body>
-    
-<div class="site-wrap">
+
+    <div class="site-wrap">
         <header class="site-navbar" role="banner">
             <div class="site-navbar-top">
                 <div class="">
@@ -355,7 +330,7 @@ include 'config.php';
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <?php
+                                    <?php
 global $productId;
 if (isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
@@ -386,8 +361,7 @@ if (isset($_SESSION['username'])) {
                         $productName = $row['product_name'];
                         $quantity = $row['quantity'];
                         $totalPrice = $row['total'];
-
-                        // Add a unique identifier to each row
+                        
                         $uniqueIdentifier = 'cart-item-' . $productId;
 
                         echo "<tr id='$uniqueIdentifier'>
@@ -427,8 +401,8 @@ if (isset($_SESSION['username'])) {
                         <div class="row mb-5">
 
                             <div class="col-md-6">
-                                <button class="btn btn-primary btn-sm btn-block"><a href="shop.html"
-                                        class="white-link" style="color: white;">Continue Shopping</a></button>
+                                <button class="btn btn-primary btn-sm btn-block"><a href="shop.html" class="white-link"
+                                        style="color: white;">Continue Shopping</a></button>
                             </div>
                         </div>
                         <div class="row">
@@ -486,75 +460,75 @@ if (isset($_SESSION['username'])) {
     </div>
 
     <footer class="site-footer border-top">
-      <div>
-        <div class="row justify-content-center">
-          <div class="col-md-7 site-section-heading text-center pt-4">
-            <h2 id="i">Help</h2>
-          </div>
-        </div>
-      </div>
-      <div class="container" id="d">
-        <div class="row">
-          <div class="col-lg-6 mb-5 mb-lg-0">
-            <div class="row">
-              <div class="col-md-12">
-                <h3 class="footer-heading mb-4">Navigations</h3>
-              </div>
-              <div class="col-md-6 col-lg-4">
-                <ul class="list-unstyled">
-                  <li><a href="demo.html">Sell online</a></li>
-                  <li><a href="about.html">Features</a></li>
-                  <li><a href="cart.html">Shopping cart</a></li>
-                  <li><a href="shop.php">Shop</a></li>
-                </ul>
-              </div>
-              <div class="col-md-6 col-lg-4">
-                <ul class="list-unstyled">
-                  <li><a href="shop.php">Categories</a></li>
-                  <li><a href="about.html">Shipping Details</a></li>
-                  <li><a href="profile.php">Profile</a></li>
-                </ul>
-              </div>
-              <div class="col-md-6 col-lg-4">
-                <ul class="list-unstyled">
-                  <li><a href="seller.php">How to become a Seller?</a></li>
-                  <li><a href="#">Manage Order</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
-            <h3 class="footer-heading mb-4"></h3>
-            <a href="#" class="block-6">
-              <!-- Adjust the max-width value to reduce the image size further -->
-              <img src="images/kart.jpg" alt="Image placeholder" class="img-fluid rounded mb-4" style="width: 100%; max-width: 100px; height: auto;">
-              <h3 class="font-weight-light  mb-0">Finding Your Perfect Gadgets</h3>
-              <p>Make Living a Habit</p>
-            </a>
-          </div>
-          <div class="col-md-6 col-lg-3">
-            <div class="block-5 mb-5">
-              <h3 class="footer-heading mb-4">Contact Info</h3>
-              <ul class="list-unstyled">
-                <li class="address">203 St. Mountain View, San Francisco, California, USA</li>
-                <li class="phone"><a href="tel://23923929210">+2 392 3929 210</a></li>
-                <li class="email">emailaddress@domain.com</li>
-              </ul>
-            </div>
-  
-            <div class="block-7">
-              <form action="#" method="post">
-                <label for="email_subscribe" class="footer-heading"></label>
-                <div class="form-group">
-                  <input type="text" class="form-control py-4" id="email_subscribe" placeholder="Email">
-                  <input type="submit" class="btn btn-sm btn-primary" value="Send">
+        <div>
+            <div class="row justify-content-center">
+                <div class="col-md-7 site-section-heading text-center pt-4">
+                    <h2 id="i">Help</h2>
                 </div>
-              </form>
             </div>
-          </div>
         </div>
+        <div class="container" id="d">
+            <div class="row">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="footer-heading mb-4">Navigations</h3>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <ul class="list-unstyled">
+                                <li><a href="demo.html">Sell online</a></li>
+                                <li><a href="about.html">Features</a></li>
+                                <li><a href="cart.html">Shopping cart</a></li>
+                                <li><a href="shop.php">Shop</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <ul class="list-unstyled">
+                                <li><a href="shop.php">Categories</a></li>
+                                <li><a href="about.html">Shipping Details</a></li>
+                                <li><a href="profile.php">Profile</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <ul class="list-unstyled">
+                                <li><a href="seller.php">How to become a Seller?</a></li>
+                                <li><a href="#">Manage Order</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+                    <h3 class="footer-heading mb-4"></h3>
+                    <a href="#" class="block-6">
+                        <img src="images/kart.jpg" alt="Image placeholder" class="img-fluid rounded mb-4"
+                            style="width: 100%; max-width: 100px; height: auto;">
+                        <h3 class="font-weight-light  mb-0">Finding Your Perfect Gadgets</h3>
+                        <p>Make Living a Habit</p>
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="block-5 mb-5">
+                        <h3 class="footer-heading mb-4">Contact Info</h3>
+                        <ul class="list-unstyled">
+                            <li class="address">203 St. Mountain View, San Francisco, California, USA</li>
+                            <li class="phone"><a href="tel://23923929210">+2 392 3929 210</a></li>
+                            <li class="email">emailaddress@domain.com</li>
+                        </ul>
+                    </div>
 
-      </div>
+                    <div class="block-7">
+                        <form action="#" method="post">
+                            <label for="email_subscribe" class="footer-heading"></label>
+                            <div class="form-group">
+                                <input type="text" class="form-control py-4" id="email_subscribe" placeholder="Email">
+                                <input type="submit" class="btn btn-sm btn-primary" value="Send">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </footer>
     </div>
 
@@ -590,66 +564,56 @@ if (isset($_SESSION['username'])) {
         });
     });
     </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<!-- Add these scripts after your existing script tags -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const removeButtons = document.querySelectorAll(".remove-item");
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const removeButtons = document.querySelectorAll(".remove-item");
-
-    removeButtons.forEach(function (button) {
-        button.addEventListener("click", function (event) {
-            event.preventDefault();
-            const productId = this.getAttribute('data-product-id');
-            const tableRow = document.querySelector(`tr[data-product-id='${productId}']`);
-
-            // Show a confirmation dialog before removing the item
-            Swal.fire({
-                title: 'Are you sure?',
-                text: 'Do you want to remove the item?',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, remove it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Use AJAX to remove the item
-                    $.ajax({
-                        type: "POST",
-                        url: "removeitem.php",
-                        data: { product_id: productId },
-                        success: function (response) {
-                            console.log("Item removed from the cart!");
-                            // Show a success message
-                            Swal.fire('Removed!', 'The item has been removed from the cart.', 'success')
-                                .then(() => {
-                                    // Reload the page after removing the item
-                                    location.reload(true);
-                                });
-                        },
-                        error: function (xhr, status, error) {
-                            console.error("Error:", error);
-                            // Show an error message
-                            Swal.fire('Error!', 'There was an error removing the item.', 'error');
-                        }
-                    });
-                }
+        removeButtons.forEach(function(button) {
+            button.addEventListener("click", function(event) {
+                event.preventDefault();
+                const productId = this.getAttribute('data-product-id');
+                const tableRow = document.querySelector(`tr[data-product-id='${productId}']`);
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'Do you want to remove the item?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, remove it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type: "POST",
+                            url: "removeitem.php",
+                            data: {
+                                product_id: productId
+                            },
+                            success: function(response) {
+                                console.log("Item removed from the cart!");
+                                Swal.fire('Removed!',
+                                        'The item has been removed from the cart.',
+                                        'success')
+                                    .then(() => {
+                                        location.reload(true);
+                                    });
+                            },
+                            error: function(xhr, status, error) {
+                                console.error("Error:", error);
+                                Swal.fire('Error!',
+                                    'There was an error removing the item.',
+                                    'error');
+                            }
+                        });
+                    }
+                });
             });
         });
     });
-});
-</script>
-
-
-
-
-
-
-
-
+    </script>
 </body>
 
 </html>

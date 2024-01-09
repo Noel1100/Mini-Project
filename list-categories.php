@@ -1,56 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Product Details</title>
-    <!-- Add your CSS stylesheets or Bootstrap CDN links here -->
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            margin: 0;
-            padding: 0;
-        }
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+    }
 
-        h1 {
-            text-align: center;
-            margin-top: 50px;
-            color: #333;
-        }
+    h1 {
+        text-align: center;
+        margin-top: 50px;
+        color: #333;
+    }
 
-        table {
-            margin: 0 auto;
-            border-collapse: collapse;
-            width: 80%;
-            background-color: #fff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+    table {
+        margin: 0 auto;
+        border-collapse: collapse;
+        width: 80%;
+        background-color: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
+    th,
+    td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
 
-        th {
-            background-color: #007bff;
-            color: #fff;
-        }
+    th {
+        background-color: #007bff;
+        color: #fff;
+    }
 
-        tr:hover {
-            background-color: #f2f2f2;
-        }
-        #img {
-    display: block;
-    margin: auto;
-    width: auto;
-    height: 200px;
-}
+    tr:hover {
+        background-color: #f2f2f2;
+    }
 
+    #img {
+        display: block;
+        margin: auto;
+        width: auto;
+        height: 200px;
+    }
     </style>
 </head>
+
 <body>
     <h1>Category Details</h1>
     <table border="1">
@@ -61,9 +63,9 @@
             </tr>
         </thead>
         <tbody>
-        <?php
+            <?php
     include 'config.php';
-    $sql = "SELECT * FROM categories"; // Corrected SQL query
+    $sql = "SELECT * FROM categories"; 
 
     $result = $conn->query($sql);
 
@@ -83,8 +85,6 @@
 
         </tbody>
     </table>
-
-    <!-- Your HTML, CSS, or JavaScript code can go here -->
-
 </body>
+
 </html>

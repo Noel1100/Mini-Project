@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Product Details</title>
-    <!-- Add your CSS stylesheets or Bootstrap CDN links here -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -65,7 +64,6 @@
                 <th>Price</th>
                 <th>Stock</th>
                 <th>Color</th>
-                <!-- Add other columns as needed -->
             </tr>
         </thead>
         <tbody>
@@ -81,7 +79,6 @@
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        // Output data of each row
         while ($row = $result->fetch_assoc()) {
             echo "<tr>";
             echo "<td><img src='" . $row["image1"] . "' alt='Product Image'  id='img'></td>";
@@ -99,14 +96,11 @@
         echo "<tr><td colspan='4'>No products found</td></tr>";
     }
 
-    // Close connection
     $conn->close();
 ?>
 
         </tbody>
     </table>
-
-    <!-- Your HTML, CSS, or JavaScript code can go here -->
 
 </body>
 </html>

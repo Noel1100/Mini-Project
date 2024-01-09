@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>User Details</title>
-    <!-- Add your CSS stylesheets or Bootstrap CDN links here -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -54,20 +53,15 @@
                 <th>Last name</th>
                 <th>Email</th>
                 <th>Phone</th>
-                <!-- Add other columns as needed -->
             </tr>
         </thead>
         <tbody>
             <?php
-            // Include your database connection
             include 'config.php';
-
-            // Fetch data from the users table
             $sql = "SELECT * FROM users";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
-                // Output data of each row
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
                     echo "<td>" . $row["username"] . "</td>";
@@ -75,20 +69,14 @@
                     echo "<td>" . $row["lastname"] . "</td>";
                     echo "<td>" . $row["email"] . "</td>";
                     echo "<td>" . $row["phone"] . "</td>";
-                    // Display other columns as needed
                     echo "</tr>";
                 }
             } else {
                 echo "<tr><td colspan='4'>No users found</td></tr>";
             }
-
-            // Close connection
             $conn->close();
             ?>
         </tbody>
     </table>
-
-    <!-- Your HTML, CSS, or JavaScript code can go here -->
-
 </body>
 </html>

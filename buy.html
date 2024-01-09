@@ -26,10 +26,8 @@
       font-family: Arial, sans-serif;
       font-size: 36px;
       color: black;
-      /* Blue color, you can change this to your preferred color */
       text-align: center;
       text-shadow: 2px 2px 4px rgb(228, 227, 227);
-      /* Add a subtle text shadow */
     }
   </style>
   <style>
@@ -65,24 +63,19 @@
   <style>
     #d {
       border: 1px solid #ccc;
-      /* Optional: Add a border for visualization */
       padding: 20px;
-      /* Add padding to create space inside the container */
     }
 
     h2 {
       margin-top: 10px;
-      /* Add margin to the top of the heading to create space */
     }
 
     #z {
       background-color: rgba(60, 85, 140, 0.7);
-      /* Semi-transparent black background */
       color: white;
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
-      /* White box shadow for a cool effect */
       text-align: center;
       align-items: center;
     }
@@ -90,28 +83,23 @@
 
     #z1 {
       background-color: rgba(60, 85, 140, 0.7);
-      /* Semi-transparent black background */
       color: white;
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
-      /* White box shadow for a cool effect */
       text-align: center;
       align-items: center;
     }
 
     #z1:hover {
       transform: scale(1.10);
-      /* Scale up on hover */
       transition: transform 0.3s ease-in-out;
     }
 
     #z1 {
       transition: transform 0.3s ease-in-out;
-      /* Apply the same transition without scaling */
     }
 
-    /* Add shade effect to all images inside the container */
     #cat .block-2-item::before {
       content: "";
       display: block;
@@ -121,14 +109,11 @@
       top: 0;
       left: 0;
       background: rgba(0, 0, 0, 0.2);
-      /* Adjust the opacity to control the shade */
       transition: background 0.3s ease;
     }
 
-    /* Change the shade effect on hover */
     #cat .block-2-item:hover::before {
       background: rgba(0, 0, 0, 0);
-      /* Change to transparent on hover */
     }
   </style>
   <style>
@@ -164,47 +149,37 @@
       }
     }
 
-    /* Style the image and text */
     .logo-image {
       max-width: 15%;
-      /* Make the image responsive */
       height: auto;
-      /* Automatically adjust the image height */
       display: inline-block;
       vertical-align: middle;
-      /* Align the image vertically with the text */
     }
   </style>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
-    /* Styles for the comment box */
     .comment-box {
       position: absolute;
       background-color: rgba(0, 0, 255, 0.1);
-      /* Transparent blue background */
       border: 1px solid #ffffff;
       padding: 5px 10px;
       border-radius: 5px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
       opacity: 1;
-      /* Initially visible */
       transition: opacity 1s;
       z-index: 1;
     }
 
-    /* Styles for the icon with the comment box */
     #login-icon {
       position: relative;
       color: blue;
     }
 
-    /* Styles for the comment text */
     #login-comment p {
       margin: 0;
     }
 
-    /* When the comment box is hidden */
     #login-icon.clicked #login-comment {
       opacity: 0;
     }
@@ -239,12 +214,9 @@
       }
     }
 
-    /* Adjust the size of the promo image */
     .promo-image {
       width: auto;
-      /* Set your desired width */
       height: auto;
-      /* Auto adjust the height to maintain aspect ratio */
     }
   </style>
 
@@ -645,7 +617,6 @@
 
                   </div>
                 </div>
-                <!-- </form> -->
               </div>
             </div>
           </div>
@@ -735,43 +706,24 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      // Retrieve items from localStorage
       let buyItems = JSON.parse(localStorage.getItem('buyItems')) || [];
       const buyItemsContainer = document.getElementById("buyItemsContainer");
-  
-      // Function to update the cart table
       function updateBuy() {
-        // Clear existing content in the table body
         buyItemsContainer.innerHTML = "";
-  
-        // Iterate through the items and add them to the table
         buyItems.forEach((item) => {
           const buyItemHTML = `
             <td>${item.title} <strong class="mx-2">x</strong>${item.quantity}</td>
             <td>${item.price}</td>
           `;
-  
-          // Create a new table row
           const newRow = document.createElement('tr');
           newRow.innerHTML = buyItemHTML;
-  
-          // Append the new row to the table body
           buyItemsContainer.appendChild(newRow);
         });
       }
-  
-      // Call the updateCart function to populate the cart on page load
       updateBuy();
-  
-      // Clear the localStorage after retrieving the items
       localStorage.removeItem('buyItems');
     });
   </script>
-  
-  
-  
-
-
 </body>
 
 </html>

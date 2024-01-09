@@ -52,18 +52,18 @@
                 <th>Username</th>
                 <th>Product ID</th>
                 <th>Product Name</th>
-                <th>Address ID</th>
+                <th>Quantity</th>
+                <th>Ordered Date</th>
                 <th>Total Amount</th>
             </tr>
         </thead>
         <tbody>
             <?php
             include 'config.php';
+            session_start();
+            $username = $_SESSION['username'];
 
-            // Assuming the logged-in username is stored in a variable $loggedInUser
-            $loggedInUser = "example_user";
-
-            $sql = "SELECT * FROM orders WHERE username = '$loggedInUser'";
+            $sql = "SELECT * FROM orders WHERE username = '$username'";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
@@ -73,7 +73,8 @@
                     echo "<td>" . $row["username"] . "</td>";
                     echo "<td>" . $row["product_id"] . "</td>";
                     echo "<td>" . $row["product_name"] . "</td>";
-                    echo "<td>" . $row["address_id"] . "</td>";
+                    echo "<td>" . $row["quantity"] . "</td>";
+                    echo "<td>" . $row["date"] . "</td>";
                     echo "<td>" . $row["totalamount"] . "</td>";
                     echo "</tr>";
                 }

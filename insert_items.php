@@ -15,28 +15,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $weight = $_POST['weight'];
     $inthebox = $_POST['inthebox'];
     $connectivity = $_POST['connectivity'];
-    $category = $_POST['category']; // Assuming this is the selected category ID
-
-    // Validate form data (check for empty fields)
+    $category = $_POST['category']; 
     if (empty($name) || empty($title) || empty($highlights) || empty($desc) || empty($stock) || empty($brand) || empty($price) || empty($size) || empty($color) || empty($weight) || empty($inthebox) || empty($connectivity) || empty($category)) {
         echo "All fields are required.";
     } else {
-        // Prepare the SQL statement using prepared statements to prevent SQL injection
         $sql = "INSERT INTO products (product_name, product_title, highlights, description, stock, brand, price, size, color, weight, inthebox, connectivity, cat_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        // Create a prepared statement
         $stmt = $conn->prepare($sql);
     
         if ($stmt) {
-            // Bind parameters to the prepared statement as strings
             $stmt->bind_param("ssssssisssiss", $name, $title, $highlights, $desc, $stock, $brand, $price, $size, $color, $weight, $inthebox, $connectivity, $category);
 
-            // Execute the prepared statement
             if ($stmt->execute()) {
                 $proId = $conn->insert_id;
     
-
-            // Insert image data into the database with the associated product ID
             if (!empty($_FILES['image']['name'])) {
                 $imageSql = "INSERT INTO product_images (product_id, image1) VALUES (?, ?)";
                 $imageStmt = $conn->prepare($imageSql);
@@ -45,11 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     foreach ($_FILES['image']['tmp_name'] as $key => $tmp_name) {
                         $file_name = $_FILES['image']['name'][$key];
                         $targetFilePath = $file_name;
-                        
-                        // Bind parameters to the prepared statement
                         $imageStmt->bind_param("is", $proId, $targetFilePath);
-                        
-                        // Execute the prepared statement
                         if ($imageStmt->execute()) {
                             move_uploaded_file($tmp_name, $targetFilePath);
                         } else {
@@ -63,7 +51,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
     }
 
-    // Insert additional images into the new columns
     if (!empty($_FILES['image2']['name'][0])) {
         $file_name = $_FILES['image2']['name'][0];
         $targetFilePath = $file_name;
@@ -92,7 +79,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
-// Close the prepared statement
 $stmt->close();
     }
 }
@@ -196,7 +182,6 @@ if (isset($_SESSION['success_message'])) {
             margin-bottom: 0;
         }
 
-        /* Custom modal styles */
         .modal {
             display: none;
             position: fixed;
@@ -219,7 +204,6 @@ if (isset($_SESSION['success_message'])) {
             width: 80%;
             text-align: center;
             border-radius: 10px;
-            /* Added to make the modal box square-shaped */
         }
 
         button {
@@ -246,14 +230,14 @@ if (isset($_SESSION['success_message'])) {
 
         h1 {
             color: #7971ea;
-            margin-top: 50px; /* Adjust as needed */
+            margin-top: 50px;
         }
 
         form {
             max-width: 600px;
             margin: 20px auto;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.8); /* Use rgba for a semi-transparent background */
+            background-color: rgba(255, 255, 255, 0.8); 
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
@@ -295,7 +279,6 @@ if (isset($_SESSION['success_message'])) {
     </style>
 
 <style>
-    /* Add this style to your existing styles or in the head section of your HTML */
     input[type="text"],
     input[type="number"],
     #category,
@@ -306,18 +289,17 @@ if (isset($_SESSION['success_message'])) {
     #connectivity,
     select {
         border: 2px solid blue;
-        padding: 8px; /* Add some padding for better aesthetics */
+        padding: 8px;
     }
 
     input[type="file"] {
         border: 2px solid blue;
-        padding: 8px; /* Add some padding for better aesthetics */
-        display: block; /* Make file input display as block for better spacing */
-        margin-bottom: 10px; /* Add some margin between file inputs */
+        padding: 8px;
+        display: block; 
+        margin-bottom: 10px; 
     }
 </style>
 
-    <!-- Add Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         integrity="sha512-4ayA5WUNhz4GNxQ5XiyWJTna7/aB9/ejTp2MhN5pIG/QJT6z8e+25fLvl4CcGb7bKAAStEVpWtd5aQEGm7rpxQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -333,17 +315,14 @@ if (isset($_SESSION['success_message'])) {
         <select name="category" id="category" required>
             <option value="" disabled selected>Select a category</option>
             <?php
-            include 'config.php'; // Include the file with the database connection
+            include 'config.php'; 
             
             $sql = "SELECT cat_id, category_name FROM categories";
             $result = $conn->query($sql);
-
-            // Check for errors in query execution
             if ($result === false) {
                 trigger_error('Error: ' . $conn->error, E_USER_ERROR);
             }
 
-            // Display fetched categories in the dropdown
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     echo "<option value='" . $row['cat_id'] . "'>" . $row['category_name'] . "</option>";
@@ -352,7 +331,6 @@ if (isset($_SESSION['success_message'])) {
                 echo "<option value=''>No categories found</option>";
             }
 
-            // Close the database connection
             $conn->close();
             ?>
         </select><br><br>
@@ -415,13 +393,11 @@ if (isset($_SESSION['success_message'])) {
     <?php endif; ?>
 
     <?php
-    // Clear uploaded files session data after displaying
     unset($_SESSION['uploaded_files']);
     ?>
 
-    <!-- Modal -->
     <?php if (!empty($successMessage)): ?>
-        <!-- Modal -->
+   
         <div id="successModal" class="modal">
             <div class="modal-content">
                 <p>
@@ -432,11 +408,9 @@ if (isset($_SESSION['success_message'])) {
         </div>
 
         <script>
-            // Display the success modal
             const modal = document.getElementById('successModal');
             modal.style.display = 'flex';
 
-            // Close the modal when the user clicks the OK button
             function closeModal() {
                 modal.style.display = 'none';
             }

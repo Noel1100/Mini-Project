@@ -13,11 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $postalcode = $_POST['postalcode'];
     $state = $_POST['state'];
 
-    // Check for empty fields
     if (empty($username) || empty($fname) || empty($lname) || empty($email) || empty($phone) || empty($password) || empty($confirm_password) || empty($address) || empty($city) || empty($postalcode) || empty($state)) {
         echo "All fields are required.";
     } else {
-        // Insert user data into 'users' table
         $userSql = "INSERT INTO users (username, firstname, lastname, email, phone, password) VALUES (?, ?, ?, ?, ?, ?)";
         $userStmt = $conn->prepare($userSql);
         $userStmt->bind_param("ssssss", $username, $fname, $lname, $email, $phone, $password);
@@ -41,10 +39,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $conn->close();
 ?>
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -118,8 +112,6 @@ $conn->close();
 <body>
 
     <div class="main">
-
-        <!-- Sign up form -->
         <section class="signup">
             <div class="container">
                 <div class="signup-content">
@@ -196,13 +188,10 @@ $conn->close();
         </section>
     </div>
 
-    <!-- JS -->
-    <!-- JS -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="js/login.js"></script>
 
     <div id="myModal" class="modal" style="display: none;">
-        <!-- Modal content -->
         <div class="modal-content">
             <span class="close" onclick="closeModal(false)">&times;</span>
             <p>Registration successful! <br>Click OK to close.</p>
@@ -277,7 +266,7 @@ $conn->close();
             } else {
                 $('#password-match').html(
                     'Password must be 8 characters long with at least 1 special character, 1 number, and 1 capital letter.'
-                    );
+                );
                 return false;
             }
         }

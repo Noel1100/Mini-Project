@@ -30,10 +30,8 @@ include 'config.php';
       font-family: Arial, sans-serif;
       font-size: 36px;
       color: black;
-      /* Blue color, you can change this to your preferred color */
       text-align: center;
       text-shadow: 2px 2px 4px rgb(228, 227, 227);
-      /* Add a subtle text shadow */
     }
   </style>
   <style>
@@ -69,24 +67,19 @@ include 'config.php';
   <style>
     #d {
       border: 1px solid #ccc;
-      /* Optional: Add a border for visualization */
       padding: 20px;
-      /* Add padding to create space inside the container */
     }
 
     h2 {
       margin-top: 10px;
-      /* Add margin to the top of the heading to create space */
     }
 
     #z {
       background-color: rgba(60, 85, 140, 0.7);
-      /* Semi-transparent black background */
       color: white;
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
-      /* White box shadow for a cool effect */
       text-align: center;
       align-items: center;
     }
@@ -94,28 +87,23 @@ include 'config.php';
 
     #z1 {
       background-color: rgba(60, 85, 140, 0.7);
-      /* Semi-transparent black background */
       color: white;
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
-      /* White box shadow for a cool effect */
       text-align: center;
       align-items: center;
     }
 
     #z1:hover {
       transform: scale(1.10);
-      /* Scale up on hover */
       transition: transform 0.3s ease-in-out;
     }
 
     #z1 {
       transition: transform 0.3s ease-in-out;
-      /* Apply the same transition without scaling */
     }
 
-    /* Add shade effect to all images inside the container */
     #cat .block-2-item::before {
       content: "";
       display: block;
@@ -125,14 +113,11 @@ include 'config.php';
       top: 0;
       left: 0;
       background: rgba(0, 0, 0, 0.2);
-      /* Adjust the opacity to control the shade */
       transition: background 0.3s ease;
     }
 
-    /* Change the shade effect on hover */
     #cat .block-2-item:hover::before {
       background: rgba(0, 0, 0, 0);
-      /* Change to transparent on hover */
     }
   </style>
   <style>
@@ -183,47 +168,37 @@ include 'config.php';
       }
     }
 
-    /* Style the image and text */
     .logo-image {
       max-width: 15%;
-      /* Make the image responsive */
       height: auto;
-      /* Automatically adjust the image height */
       display: inline-block;
       vertical-align: middle;
-      /* Align the image vertically with the text */
     }
   </style>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
-    /* Styles for the comment box */
     .comment-box {
       position: absolute;
       background-color: rgba(0, 0, 255, 0.1);
-      /* Transparent blue background */
       border: 1px solid #ffffff;
       padding: 5px 10px;
       border-radius: 5px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
       opacity: 1;
-      /* Initially visible */
       transition: opacity 1s;
       z-index: 1;
     }
 
-    /* Styles for the icon with the comment box */
     #login-icon {
       position: relative;
       color: blue;
     }
 
-    /* Styles for the comment text */
     #login-comment p {
       margin: 0;
     }
 
-    /* When the comment box is hidden */
     #login-icon.clicked #login-comment {
       opacity: 0;
     }
@@ -258,12 +233,9 @@ include 'config.php';
       }
     }
 
-    /* Adjust the size of the promo image */
     .promo-image {
       width: auto;
-      /* Set your desired width */
       height: auto;
-      /* Auto adjust the height to maintain aspect ratio */
     }
 
     .container1 {
@@ -355,7 +327,6 @@ include 'config.php';
     #imageSliderContainer {
       width: 500;
       border: 1px solid #000;
-      /* Add a border to the container */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -363,13 +334,11 @@ include 'config.php';
 
     #imageSlider {
       display: inline-block;
-      /* Prevents the container from taking the full width */
       overflow: hidden;
     }
 
     #imageSlider img {
       vertical-align: middle;
-      /* Vertically align the images to the middle */
     }
   </style>
 </head>
@@ -818,9 +787,7 @@ include 'config.php';
 
   <script>
     $(document).ready(function () {
-      // Add a click event listener on your login button
       $('#login-icon').click(function () {
-        // Toggle the "clicked" class to hide the comment box
         $(this).toggleClass('clicked');
       });
     });
@@ -832,7 +799,6 @@ include 'config.php';
       var slides = document.querySelectorAll(".slide");
       var currentSlideIndex = 0;
 
-      // Show the first slide by default
       slides[currentSlideIndex].style.display = "block";
 
       function showNextSlide() {
@@ -841,7 +807,7 @@ include 'config.php';
         slides[currentSlideIndex].style.display = "block";
       }
 
-      setInterval(showNextSlide, 2000); // Change slides every 3 seconds
+      setInterval(showNextSlide, 2000);
     });
 
   </script>
@@ -860,7 +826,6 @@ include 'config.php';
         }
       });
 
-      // Update bullet indicators
       bulletIndicators.querySelectorAll('.bullet').forEach((bullet, i) => {
         if (i === index) {
           bullet.classList.add('active');
@@ -880,7 +845,6 @@ include 'config.php';
       showImage(currentImageIndex);
     }
 
-    // Create bullet indicators
     for (let i = 0; i < images.length; i++) {
       const bullet = document.createElement('div');
       bullet.classList.add('bullet');
@@ -893,8 +857,7 @@ include 'config.php';
     document.getElementById('next').addEventListener('click', nextImage);
     document.getElementById('prev').addEventListener('click', prevImage);
 
-    // Set an interval to automatically transition to the next image (adjust the time interval as needed)
-    setInterval(nextImage, 5000); // 5 seconds
+    setInterval(nextImage, 5000); 
   </script>
 </body>
 

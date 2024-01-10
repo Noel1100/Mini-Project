@@ -396,7 +396,7 @@ include 'config.php';
     <li>
         <a href="cart.php" class="site-cart btn btn-sm custom-button">
             <span class="icon icon-shopping_cart"><i class="fas"></i></span> Cart
-            <span class="count">2</span>
+          
         </a>
     </li>
 </ul>
@@ -453,8 +453,7 @@ include 'config.php';
             </div>
             <div class="text">
               <h2 class="text-uppercase">Free Shipping</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan
-                tincidunt fringilla.</p>
+              <p>Enjoy the perks of hassle-free shopping with our complimentary shipping, ensuring your orders reach you promptly without additional charges.</p>
             </div>
           </div>
           <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="100">
@@ -463,8 +462,7 @@ include 'config.php';
             </div>
             <div class="text">
               <h2 class="text-uppercase">Free Returns</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan
-                tincidunt fringilla.</p>
+              <p>Explore worry-free with our hassle-free, free returns policy - ensuring your satisfaction and confidence in every purchase. Shop confidently!</p>
             </div>
           </div>
           <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="200">
@@ -473,8 +471,7 @@ include 'config.php';
             </div>
             <div class="text">
               <h2 class="text-uppercase">Customer Support</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan
-                tincidunt fringilla.</p>
+              <p>Dedicated and responsive customer support ensures your satisfaction. We're committed to resolving queries promptly and providing exceptional service.</p>
             </div>
           </div>
         </div>

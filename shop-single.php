@@ -415,10 +415,10 @@ if (isset($_GET['show'])) {
                             <a href="index.php">Home</a>
                         </li>
                         <li class="">
-                            <a href="about.html">About</a>
+                            <a href="about.php">About</a>
                         </li>
                         <li class=""><a href="shop.php">Shop</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="contact.php">Contact</a></li>
                     </ul>
                 </div>
             </nav>
@@ -464,7 +464,8 @@ if (isset($_GET['show'])) {
                             <p style="color: black;"><?php echo $desc ?></p><br>
                             <p><strong class="text-primary h3">M.R.P <?php echo $price ?></strong></p>
 
-                            <form id="addToCartForm" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                            <form id="addToCartForm" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>"
+                            style="padding-bottom: 10px;">
                                 <input type="hidden" name="productId" value="<?php echo $productId; ?>">
                                 <label for="quantity">Quantity:</label>
                                 <input type="number" id="quantity" name="quantity" value="1" min="1"
@@ -473,16 +474,8 @@ if (isset($_GET['show'])) {
                                     value="Add to Cart" style="width: 200px; padding: 5px;">
                             </form>
 
-                            <form id="buynowform" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>"
-                                style="padding-top: 10px;">
-                                <input type="hidden" name="productId" value="<?php echo $productId; ?>">
-                                <input type="hidden" id="buyNowQuantity" name="quantity" value="1">
-                                <input type="submit" name="buynow" class="btn btn-primary btn-block" value="Buy Now"
-                                    style="width: 200px; padding: 5px;"
-                                    onclick="document.getElementById('buyNowQuantity').value = document.getElementById('quantity').value;">
-                            </form>
-
-
+                                <a href="thankyou.php"><input type="submit" name="buynow" class="btn btn-primary btn-block" value="Buy Now"
+                                    style="width: 200px; padding: 5px;"></a>
 
                             <hr>
                             <p><strong class="text-secondary h5">Units Available: <?php echo $stock ?></strong></p>

@@ -401,7 +401,7 @@ if (isset($_SESSION['username'])) {
                         <div class="row mb-5">
 
                             <div class="col-md-6">
-                                <button class="btn btn-primary btn-sm btn-block"><a href="shop.html" class="white-link"
+                                <button class="btn btn-primary btn-sm btn-block"><a href="shop.php" class="white-link"
                                         style="color: white;">Continue Shopping</a></button>
                             </div>
                         </div>
@@ -431,7 +431,7 @@ if (isset($_SESSION['username'])) {
                                         <span class="text-black">Subtotal</span>
                                     </div>
                                     <div class="col-md-6 text-right">
-                                        <strong class="text-black">$230.00</strong>
+                                        <strong class="text-black">0.00</strong>
                                     </div>
                                 </div>
                                 <div class="row mb-5">
@@ -439,14 +439,14 @@ if (isset($_SESSION['username'])) {
                                         <span class="text-black">Total</span>
                                     </div>
                                     <div class="col-md-6 text-right">
-                                        <strong class="text-black">$230.00</strong>
+                                        <strong class="text-black">0.00</strong>
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-12">
                                         <button class="btn btn-primary btn-lg py-3 btn-block"
-                                            onclick="window.location='checkout.html'">Proceed To Checkout</button>
+                                            onclick="window.location='checkout.php'">Proceed To Checkout</button>
                                     </div>
                                 </div>
                             </div>

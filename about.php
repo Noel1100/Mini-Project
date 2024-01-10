@@ -358,14 +358,11 @@ include 'config.php';
                     <div class="site-section-heading pt-3 mb-4">
                         <h2 class="text-black">How We Started</h2>
                     </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius repellat, dicta at laboriosam,
-                        nemo
-                        exercitationem itaque eveniet architecto cumque, deleniti commodi molestias repellendus quos
-                        sequi hic
-                        fugiat asperiores illum. Atque, in, fuga excepturi corrupti error corporis aliquam unde nostrum
-                        quas.</p>
-                    <p>Accusantium dolor ratione maiores est deleniti nihil? Dignissimos est, sunt nulla illum autem in,
-                        quibusdam cumque recusandae, laudantium minima repellendus.</p>
+                    <p>Driven by a mutual love for technology, my team and I embarked on the journey of launching our electronic website.
+                       We began with intense brainstorming sessions, outlining our vision for a platform that would showcase the latest and
+                        most innovative electronics. From coding to design, each team member played a crucial role in shaping our digital space.
+                         Late nights fueled by passion and dedication were invested to ensure a seamless user experience. The challenges were met with resilience, and today, 
+                      our electronic website stands as a testament to our collective efforts, offering a curated space for tech enthusiasts to explore and engage with cutting-edge gadgets.</p>
 
                 </div>
             </div>
@@ -468,9 +465,7 @@ include 'config.php';
                     </div>
                     <div class="text">
                         <h2 class="text-uppercase">Free Shipping</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer
-                            accumsan
-                            tincidunt fringilla.</p>
+                        <p>Enjoy the perks of hassle-free shopping with our complimentary shipping, ensuring your orders reach you promptly without additional charges.</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="100">
@@ -479,9 +474,7 @@ include 'config.php';
                     </div>
                     <div class="text">
                         <h2 class="text-uppercase">Free Returns</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer
-                            accumsan
-                            tincidunt fringilla.</p>
+                        <p>Explore worry-free with our hassle-free, free returns policy - ensuring your satisfaction and confidence in every purchase. Shop confidently!</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="200">
@@ -490,9 +483,7 @@ include 'config.php';
                     </div>
                     <div class="text">
                         <h2 class="text-uppercase">Customer Support</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer
-                            accumsan
-                            tincidunt fringilla.</p>
+                        <p>Dedicated and responsive customer support ensures your satisfaction. We're committed to resolving queries promptly and providing exceptional service.</p>
                     </div>
                 </div>
             </div>

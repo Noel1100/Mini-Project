@@ -453,6 +453,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         display: inline-block;
         margin-bottom: 20px;
         border-radius: 10px;
+    }
 
         input {
             width: calc(100% - 20px);
@@ -510,6 +511,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             cursor: pointer;
             border-radius: 5px;
         }
+    }
     </style>
 
 </head>

@@ -445,6 +445,17 @@ if (isset($_SESSION['seller_id'])) {
         text-decoration: none;
     }
     </style>
+    <style>
+    .btn.btn-outline-primary {
+        color: black;
+    }
+
+    .btn.btn-outline-primary:hover,
+    .btn.btn-outline-primary:focus {
+        color: white; 
+    }
+</style>
+
 
 </head>
 
@@ -477,17 +488,13 @@ if (isset($_SESSION['seller_id'])) {
                             <div class="site-top-icons">
                                 <ul>
                                     <li>
-                                        <a href="insert_items.php" class="btn btn-sm custom-button">
-                                            <span class="icon"><i class="fa fa-globe" aria-hidden="true"></i></span>Sell
-                                            Online
-                                        </a>
+                                    <a href="insert_items.php" class="btn btn-outline-primary" >
+    <span class="icon"><i class="fa fa-globe" aria-hidden="true"></i></span>Sell Online
+</a>
                                     </li>
 
                                     <li>
-                                        <a href="cart.html" class="site-cart btn btn-sm custom-button">
-                                            <span class="icon icon-shopping_cart"><i class="fas"></i></span> Cart
-                                            <span class="count">2</span>
-                                        </a>
+                                     
                                     </li>
                                 </ul>
                             </div>
@@ -503,7 +510,7 @@ if (isset($_SESSION['seller_id'])) {
                             <a href="index.php">Home</a>
                         </li>
                         <li class="">
-                            <a href="about.pho">About</a>
+                            <a href="about.php">About</a>
                         </li>
                         <li class="">
                             <a href="shop.php">Shop</a>
@@ -540,6 +547,10 @@ if (isset($_SESSION['seller_id'])) {
                                         <?php echo $shopname ?>
                                     </h4>
                                     <p class="text-muted font-size-sm"><?php echo $address ?></p>
+                                    <div style="padding-bottom: 10px;">
+                                    <a href="insert_items.php" class="btn btn-outline-primary" >
+                                        <span class="icon"><i class="fa fa-globe" aria-hidden="true"></i></span>Sell Online
+                                     </a></div>
                                     <button class="btn btn-outline-primary"><a href="signout.php">Logout</a></button>
                                 </div>
                             </div>

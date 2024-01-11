@@ -95,6 +95,10 @@ $stmt->bind_param('iissd', $productId, $quantity, $username, $productName, $tota
                 $address_id = $row['address_id'];
                 $sql = "INSERT INTO orders (product_id, quantity, username, product_name, totalamount, address_id) VALUES (?, ?, ?, ?, ?, ?)";
                 $stmt = $conn->prepare($sql);
+                if ($stmt === false) {
+                    die('Error in SQL query preparation: ' . $conn->error);
+                }
+                
                 $stmt->bind_param('iissdi', $productId, $quantity, $username, $productName, $totalPrice, $address_id);
 
                 if ($stmt->execute()) {
@@ -473,9 +477,14 @@ if (isset($_GET['show'])) {
                                 <input type="submit" name="addToCart" class="btn btn-primary btn-block addToCartBtn"
                                     value="Add to Cart" style="width: 200px; padding: 5px;">
                             </form>
-
-                                <a href="thankyou.php"><input type="submit" name="buynow" class="btn btn-primary btn-block" value="Buy Now"
-                                    style="width: 200px; padding: 5px;"></a>
+                            <form id="buynowform" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>"
+                                style="padding-top: 10px;">
+                                <input type="hidden" name="productId" value="<?php echo $productId; ?>">
+                                <input type="hidden" id="buyNowQuantity" name="quantity" value="1">
+                                <input type="submit" name="buynow" class="btn btn-primary btn-block" value="Buy Now"
+                                    style="width: 200px; padding: 5px;"
+                                    onclick="document.getElementById('buyNowQuantity').value = document.getElementById('quantity').value;">
+                            </form>
 
                             <hr>
                             <p><strong class="text-secondary h5">Units Available: <?php echo $stock ?></strong></p>

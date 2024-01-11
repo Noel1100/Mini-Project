@@ -47,30 +47,33 @@ function getProductDetails($productId)
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['addToCart'])) {
-    if(isset($_POST['productId']) && isset($_POST['quantity'])){
-      $productId = $_POST['productId'];
-      $quantity = $_POST['quantity'];
-      $productData = getProductDetails($productId);
-      if (!empty($productData['data'])) {
-        $product = $productData['data'];
-        $price = $product['price'];
-        $productName = $product['product_name'];
-        $totalPrice = $price * $quantity;
-        $username = $_SESSION['username'];
-        $sql = "INSERT INTO cart (product_id, quantity, username, product_name, total) VALUES (?, ?, ?, ?, ?)";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param('iissd', $productId, $quantity, $username, $productName, $totalPrice);
+    if (isset($_POST['productId']) && isset($_POST['quantity'])) {
+        $productId = $_POST['productId'];
+        $quantity = $_POST['quantity'];
+        $productData = getProductDetails($productId);
+        
+        if (!empty($productData['data'])) {
+            $product = $productData['data'];
+            $price = $product['price'];
+            $productName = $product['product_name'];
+            $totalPrice = $price * $quantity;
+            $username = $_SESSION['username'];
+            $sql = "INSERT INTO cart (product_id, quantity, username, product_name, total) VALUES (?, ?, ?, ?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('iissd', $productId, $quantity, $username, $productName, $totalPrice);
 
-        if ($stmt->execute()) {
-          echo "Product added to cart successfully.";
+            if ($stmt->execute()) {
+                // Redirect to the same page with the 'added' parameter
+                header("Location: {$_SERVER['PHP_SELF']}?show={$productId}&added=success");
+                exit();
+            } else {
+                echo "Error: " . $stmt->error;
+            }
         } else {
-          echo "Error: " . $stmt->error;
+            echo "Product details not found.";
         }
-      } else {
-        echo "Product details not found.";
-      }
     }
-  }
+}
 
  if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['buynow'])) {
     if(isset($_POST['productId']) && isset($_POST['quantity'])){
@@ -636,6 +639,24 @@ if (isset($_GET['show'])) {
         document.getElementById('selectedQuantity').value = value;
     }
     </script>
+
+<!-- Your HTML content goes here -->
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Check if the URL contains the 'added' parameter
+    var urlParams = new URLSearchParams(window.location.search);
+    var added = urlParams.get('added');
+
+    // If the 'added' parameter is present, show the modal box
+    if (added === 'success') {
+      // Replace this alert with your modal box display logic
+      alert('Product added to cart successfully!');
+    }
+  });
+</script>
+
+
 
     <script>
     document.getElementById('Cart').addEventListener('click', function() {

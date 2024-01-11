@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $conn->prepare($sql);
     
         if ($stmt) {
-            $stmt->bind_param("ssssssissssss", $name, $title, $highlights, $desc, $stock, $brand, $price, $size, $color, $weight, $inthebox, $connectivity, $category);
+            $stmt->bind_param("ssssisissssss", $name, $title, $highlights, $desc, $stock, $brand, $price, $size, $color, $weight, $inthebox, $connectivity, $category);
 
             if ($stmt->execute()) {
                 $proId = $conn->insert_id;

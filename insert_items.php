@@ -34,8 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $imageStmt = $conn->prepare($imageSql);
             
                 if ($imageStmt) {
-                    foreach ($_FILES['image']['tmp_name'] as $key => $tmp_name) {
-                        $file_name = $_FILES['image']['name'][$key];
+                    foreach ($_FILES['image1']['tmp_name'] as $key => $tmp_name) {
+                        $file_name = $_FILES['image1']['name'][$key];
                         $targetFilePath = $file_name;
                         $imageStmt->bind_param("is", $proId, $targetFilePath);
                         if ($imageStmt->execute()) {

@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $conn->prepare($sql);
     
         if ($stmt) {
-            $stmt->bind_param("ssssisissssss", $name, $title, $highlights, $desc, $stock, $brand, $price, $size, $color, $weight, $inthebox, $connectivity, $category);
+            $stmt->bind_param("ssssssisssiss", $name, $title, $highlights, $desc, $stock, $brand, $price, $size, $color, $weight, $inthebox, $connectivity, $category);
 
             if ($stmt->execute()) {
                 $proId = $conn->insert_id;
@@ -34,8 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $imageStmt = $conn->prepare($imageSql);
             
                 if ($imageStmt) {
-                    foreach ($_FILES['image1']['tmp_name'] as $key => $tmp_name) {
-                        $file_name = $_FILES['image1']['name'][$key];
+                    foreach ($_FILES['image']['tmp_name'] as $key => $tmp_name) {
+                        $file_name = $_FILES['image']['name'][$key];
                         $targetFilePath = $file_name;
                         $imageStmt->bind_param("is", $proId, $targetFilePath);
                         if ($imageStmt->execute()) {
